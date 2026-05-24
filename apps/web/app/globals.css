@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --pml-green: #039147;
+  --pml-green-dark: #026834;
+  --pml-red: #ef3124;
+  --pml-soft: #eaf8f0;
+  --pml-black: #050505;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: var(--pml-black);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pml-container {
+  width: min(100% - 48px, 1460px);
+  margin-inline: auto;
+}
+
+.pml-hex-pattern {
+  background-image:
+    linear-gradient(30deg, rgba(255,255,255,0.13) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.13) 87.5%, rgba(255,255,255,0.13)),
+    linear-gradient(150deg, rgba(255,255,255,0.13) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.13) 87.5%, rgba(255,255,255,0.13)),
+    linear-gradient(30deg, rgba(255,255,255,0.13) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.13) 87.5%, rgba(255,255,255,0.13)),
+    linear-gradient(150deg, rgba(255,255,255,0.13) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.13) 87.5%, rgba(255,255,255,0.13));
+  background-size: 80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+}
+
+@media (max-width: 768px) {
+  .pml-container {
+    width: min(100% - 28px, 1460px);
+  }
+}
