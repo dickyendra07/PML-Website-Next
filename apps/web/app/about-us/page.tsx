@@ -145,7 +145,7 @@ function CountUpNumber({ target, suffix }: { target: number; suffix: string }) {
   }, [hasAnimated, target]);
 
   return (
-    <p ref={ref} className="text-4xl font-black text-[#039147] md:text-5xl">
+    <p ref={ref} className="text-3xl font-black text-[#039147] md:text-5xl">
       {formatNumber(count)}
       {suffix}
     </p>
@@ -254,7 +254,7 @@ export default function AboutUsPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/58 to-black/20" />
         <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
 
-        <div className="pml-container relative py-24 md:py-32">
+        <div className="pml-container relative py-20 md:py-32">
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/60" aria-label="Breadcrumb">
             <Link href="/" className="transition hover:text-white">
               Home
@@ -288,10 +288,10 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section id="about-overview" className="bg-white py-20 md:py-28">
+      <section id="about-overview" className="bg-white py-16 md:py-28">
         <div className="pml-container">
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <div className="overflow-hidden rounded-[34px] bg-white p-3 shadow-[0_24px_70px_rgba(0,0,0,0.10)]">
+          <div className="grid gap-9 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
+            <div className="overflow-hidden rounded-[28px] bg-white p-2 shadow-[0_24px_70px_rgba(0,0,0,0.10)] md:rounded-[34px] md:p-3">
               <Image
                 src={companyImage}
                 alt="Pharma Metric Labs scientific team and laboratory"
@@ -302,15 +302,15 @@ export default function AboutUsPage() {
             </div>
 
             <div>
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
                 Company Overview
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-2xl font-black leading-tight text-black md:text-5xl">
                 Scientific CRO support for reliable pharmaceutical development
               </h2>
 
-              <div className="mt-6 space-y-5 text-base leading-8 text-black/65">
+              <div className="mt-5 space-y-4 text-sm leading-7 text-black/65 md:mt-6 md:space-y-5 md:text-base md:leading-8">
                 <p>
                   Pharma Metric Labs is an Indonesia-based Contract Research Organization
                   supporting sponsors through integrated clinical, analytical, and regulatory
@@ -326,7 +326,7 @@ export default function AboutUsPage() {
                 </p>
               </div>
 
-              <div className="mt-8 rounded-[28px] bg-[#039147] p-7 text-white shadow-[0_24px_60px_rgba(3,145,71,0.22)]">
+              <div className="mt-7 rounded-[24px] bg-[#039147] p-6 text-white shadow-[0_24px_60px_rgba(3,145,71,0.22)] md:mt-8 md:rounded-[28px] md:p-7">
                 <h3 className="text-2xl font-black">
                   Innovation, powered by scientific excellence.
                 </h3>
@@ -337,9 +337,9 @@ export default function AboutUsPage() {
             </div>
           </div>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-4">
+          <div className="mt-10 grid grid-cols-2 gap-3 md:mt-14 md:grid-cols-4 md:gap-5">
             {facts.map((fact) => (
-              <div key={fact.label} className="rounded-[28px] border border-black/5 bg-white p-7 text-center shadow-sm">
+              <div key={fact.label} className="rounded-[22px] border border-black/5 bg-white p-4 text-center shadow-sm md:rounded-[28px] md:p-7">
                 <CountUpNumber target={fact.number} suffix={fact.suffix} />
                 <p className="mt-2 text-sm font-extrabold leading-6 text-[#039147]">
                   {fact.label}
@@ -350,7 +350,7 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section className="overflow-hidden bg-[#eaf8f0] py-20 md:py-28">
+      <section className="overflow-hidden bg-[#eaf8f0] py-16 md:py-28">
         <div className="pml-container">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
@@ -367,7 +367,7 @@ export default function AboutUsPage() {
             </p>
           </div>
 
-          <div className="mx-auto mt-14 max-w-6xl">
+          <div className="mx-auto mt-10 max-w-6xl md:mt-14">
             <div className="relative">
               <div className="absolute left-0 right-0 top-[35px] hidden h-px bg-black/10 lg:block" />
 
@@ -408,10 +408,10 @@ export default function AboutUsPage() {
               </div>
             </div>
 
-            <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_0.75fr] lg:items-center">
-              <div className="relative min-h-[300px]">
+            <div className="mt-8 grid gap-6 md:mt-12 lg:grid-cols-[1fr_0.75fr] lg:items-center lg:gap-10">
+              <div className="relative">
                 <article>
-                  <div className="rounded-[34px] border border-black/5 bg-white p-8 shadow-sm md:p-10">
+                  <div className="rounded-[28px] border border-black/5 bg-white p-6 shadow-sm md:rounded-[34px] md:p-10">
                     <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
                       {activeItem.year}
                     </p>
@@ -420,18 +420,18 @@ export default function AboutUsPage() {
                       {activeItem.title}
                     </h3>
 
-                    <p className="mt-6 text-base leading-8 text-black/65">
+                    <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
                       {activeItem.text}
                     </p>
                   </div>
                 </article>
               </div>
 
-              <div className="relative overflow-hidden rounded-[34px] bg-white p-8 text-center shadow-sm md:p-12">
+              <div className="relative overflow-hidden rounded-[28px] bg-white p-6 text-center shadow-sm md:rounded-[34px] md:p-12">
                 <div className="pml-hex-pattern absolute inset-0 opacity-[0.06]" />
 
                 <div className="relative">
-                  <p className="text-[76px] font-black leading-none text-[#039147] md:text-[110px]">
+                  <p className="text-[58px] font-black leading-none text-[#039147] md:text-[110px]">
                     {activeItem.year}
                   </p>
 
@@ -465,10 +465,10 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-16 md:py-28">
         <div className="pml-container">
           <div className="grid gap-8 lg:grid-cols-2">
-            <article className="rounded-[34px] border border-black/5 bg-white p-8 shadow-sm md:p-10">
+            <article className="rounded-[28px] border border-black/5 bg-white p-6 shadow-sm md:rounded-[34px] md:p-10">
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
                 Vision
               </p>
@@ -483,7 +483,7 @@ export default function AboutUsPage() {
               </p>
             </article>
 
-            <article className="rounded-[34px] border border-black/5 bg-[#039147] p-8 text-white shadow-[0_24px_70px_rgba(3,145,71,0.20)] md:p-10">
+            <article className="rounded-[28px] border border-black/5 bg-[#039147] p-6 text-white shadow-[0_24px_70px_rgba(3,145,71,0.20)] md:rounded-[34px] md:p-10">
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
                 Mission
               </p>
@@ -510,9 +510,9 @@ export default function AboutUsPage() {
               </h2>
             </div>
 
-            <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4">
               {values.map((value) => (
-                <article key={value.title} className="group rounded-[28px] border border-black/5 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                <article key={value.title} className="group w-[78vw] max-w-[320px] shrink-0 snap-start rounded-[26px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:w-auto md:max-w-none md:rounded-[28px] md:p-7">
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] transition group-hover:bg-[#039147] group-hover:text-white">
                     <Icon name={value.icon} />
                   </div>
@@ -527,11 +527,15 @@ export default function AboutUsPage() {
                 </article>
               ))}
             </div>
+
+            <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
+              Swipe to explore values
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#039147] py-20 text-white md:py-28">
+      <section className="relative overflow-hidden bg-[#039147] py-16 text-white md:py-28">
         <Image src={companyImage} alt="" fill className="object-cover opacity-80" />
         <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-[#039147]/35" />
@@ -553,9 +557,9 @@ export default function AboutUsPage() {
             </p>
           </div>
 
-          <div className="mx-auto mt-12 grid max-w-6xl gap-5 md:grid-cols-3">
+          <div className="-mx-4 mt-10 flex max-w-none snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-auto md:mt-12 md:grid md:max-w-6xl md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0 md:pb-0">
             {certifications.map((certification) => (
-              <article key={certification.title} className="group overflow-hidden rounded-[30px] border border-white/15 bg-white/10 p-4 backdrop-blur transition hover:-translate-y-1 hover:bg-white/15">
+              <article key={certification.title} className="group w-[82vw] max-w-[340px] shrink-0 snap-start overflow-hidden rounded-[26px] border border-white/15 bg-white/10 p-4 backdrop-blur transition hover:-translate-y-1 hover:bg-white/15 md:w-auto md:max-w-none md:rounded-[30px]">
                 <div className="overflow-hidden rounded-[22px] bg-white p-3">
                   <Image
                     src={certification.image}
@@ -578,14 +582,18 @@ export default function AboutUsPage() {
               </article>
             ))}
           </div>
+
+          <p className="mt-1 text-center text-xs font-bold text-white/50 md:hidden">
+            Swipe to explore certifications
+          </p>
         </div>
       </section>
 
       <OtherServices current={null} variant="four" />
 
-      <section className="bg-white pb-24 pt-20 md:pb-32 md:pt-28">
+      <section className="bg-white pb-20 pt-16 md:pb-32 md:pt-28">
         <div className="pml-container">
-          <div className="relative overflow-hidden rounded-[36px] bg-black px-8 py-16 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:px-14 md:py-20">
+          <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:rounded-[36px] md:px-14 md:py-20">
             <Image src={heroImage} alt="" fill className="object-cover opacity-80" />
 
             <div className="absolute inset-0 bg-black/62" />
