@@ -386,8 +386,8 @@ function MobileAccordion({
   onNavigate: () => void;
   isActiveHref: (href: string) => boolean;
 }) {
-  const [open, setOpen] = useState(defaultOpen);
   const isParentActive = isActiveHref(href) || items.some((item) => isActiveHref(item.href));
+  const [open, setOpen] = useState(defaultOpen || isParentActive);
 
   return (
     <div className={`overflow-hidden rounded-2xl border transition ${
@@ -670,7 +670,6 @@ export default function Header({ onOpenProposal }: HeaderProps) {
                 title="Services"
                 href="/services"
                 items={serviceItems}
-                defaultOpen
                 onNavigate={closeMobile}
                 isActiveHref={isActiveHref}
               />
