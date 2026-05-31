@@ -58,7 +58,7 @@ export default function CTACard() {
             </button>
 
             <a
-              href="#footer"
+              href="/contact"
               className="inline-flex w-full items-center justify-center rounded-full border border-white/35 px-7 py-3.5 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-white hover:text-[#039147] sm:w-auto"
             >
               Discuss Your Needs

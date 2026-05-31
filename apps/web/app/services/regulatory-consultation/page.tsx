@@ -310,7 +310,7 @@ export default function RegulatoryConsultationPage() {
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/60" aria-label="Breadcrumb">
             <Link href="/" className="transition hover:text-white">Home</Link>
             <span aria-hidden="true">/</span>
-            <Link href="/#services" className="transition hover:text-white">Services</Link>
+            <Link href="/services" className="transition hover:text-white">Services</Link>
             <span aria-hidden="true">/</span>
             <span className="text-white">Regulatory Consultation</span>
           </nav>

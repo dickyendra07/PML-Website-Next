@@ -172,7 +172,7 @@ export default function BabeStudiesPage() {
               Home
             </Link>
             <span aria-hidden="true">/</span>
-            <Link href="/#services" className="transition hover:text-white">
+            <Link href="/services" className="transition hover:text-white">
               Services
             </Link>
             <span aria-hidden="true">/</span>
