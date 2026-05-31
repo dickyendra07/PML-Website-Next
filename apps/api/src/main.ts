@@ -35,4 +35,5 @@ async function bootstrap() {
 
   console.log(`PML API is running on http://localhost:${port}/api`);
 }
-bootstrap();
+
+void bootstrap();

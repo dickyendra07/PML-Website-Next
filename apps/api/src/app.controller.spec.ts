@@ -14,9 +14,22 @@ describe('AppController', () => {
     appController = app.get<AppController>(AppController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+  describe('api info', () => {
+    it('should return API info', () => {
+      expect(appController.getApiInfo()).toMatchObject({
+        name: 'Pharma Metric Labs API',
+        service: 'pml-cms-api',
+        status: 'running',
+      });
+    });
+  });
+
+  describe('health', () => {
+    it('should return health status', () => {
+      expect(appController.getHealth()).toMatchObject({
+        status: 'ok',
+        service: 'pml-cms-api',
+      });
     });
   });
 });
