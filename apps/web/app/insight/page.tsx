@@ -35,14 +35,14 @@ export default function InsightPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/54 via-transparent to-black/20" />
         <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
 
-        <div className="pml-container relative py-24 md:py-32">
+        <div className="pml-container relative py-20 md:py-32">
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/60">
             <Link href="/" className="transition hover:text-white">Home</Link>
             <span>/</span>
             <span className="text-white">Insight</span>
           </nav>
 
-          <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+          <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:gap-12">
             <div>
               <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-white backdrop-blur">
                 <span className="h-2 w-2 rounded-full bg-[#039147]" />
@@ -76,18 +76,18 @@ export default function InsightPage() {
               </div>
             </div>
 
-            <div className="rounded-[34px] border border-white/15 bg-white/10 p-6 backdrop-blur-xl">
+            <div className="rounded-[28px] border border-white/15 bg-white/10 p-5 backdrop-blur-xl md:rounded-[34px] md:p-6">
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/60">
                 Resource Focus
               </p>
 
-              <div className="mt-6 grid gap-4">
+              <div className="mt-5 grid gap-3 md:mt-6 md:gap-4">
                 {[
                   ["CRO Service Education", "Understand PML’s BA/BE, clinical, analytical, and regulatory support."],
                   ["Sponsor Preparation", "Prepare better inquiries, documents, timelines, and project requirements."],
                   ["Facility & Company Updates", "Follow PML facility capability and service-related updates."],
                 ].map(([title, desc]) => (
-                  <div key={title} className="rounded-[24px] border border-white/10 bg-white/10 p-5">
+                  <div key={title} className="rounded-[20px] border border-white/10 bg-white/10 p-4 md:rounded-[24px] md:p-5">
                     <h3 className="text-base font-black text-white">{title}</h3>
                     <p className="mt-2 text-sm leading-6 text-white/62">{desc}</p>
                   </div>
@@ -98,11 +98,11 @@ export default function InsightPage() {
         </div>
       </section>
 
-      <section id="insight-content" className="bg-[#eaf8f0] py-20 md:py-28">
+      <section id="insight-content" className="bg-[#eaf8f0] py-16 md:py-28">
         <div className="pml-container">
-          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
+          <div className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-end lg:gap-10">
             <div>
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
                 Resource Categories
               </p>
 
@@ -111,26 +111,26 @@ export default function InsightPage() {
               </h2>
             </div>
 
-            <p className="max-w-3xl text-base leading-8 text-black/65 lg:justify-self-end">
+            <p className="max-w-3xl text-sm leading-7 text-black/65 md:text-base md:leading-8 lg:justify-self-end">
               PML resources are organized to help sponsors understand services, prepare inquiries,
               follow company updates, and review technical or regulatory references.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:mt-12 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4">
             {insightCategories.map((category) => (
               <Link
                 key={category.href}
                 href={category.href}
-                className="group relative overflow-hidden rounded-[32px] border border-black/5 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                className="group relative w-[78vw] max-w-[320px] shrink-0 snap-start overflow-hidden rounded-[26px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:w-auto md:max-w-none md:rounded-[32px] md:p-7"
               >
                 <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-[#039147]/10 transition group-hover:scale-125" />
 
-                <div className="relative mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#eaf8f0] text-sm font-black text-[#039147] transition group-hover:bg-[#039147] group-hover:text-white">
+                <div className="relative mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf8f0] text-sm font-black text-[#039147] transition group-hover:bg-[#039147] group-hover:text-white md:mb-8 md:h-14 md:w-14">
                   {categoryIcons[category.label]}
                 </div>
 
-                <h3 className="relative text-2xl font-black leading-tight text-black">
+                <h3 className="relative text-xl font-black leading-tight text-black md:text-2xl">
                   {category.label}
                 </h3>
 
@@ -145,12 +145,16 @@ export default function InsightPage() {
               </Link>
             ))}
           </div>
+
+          <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
+            Swipe to explore resources
+          </p>
         </div>
       </section>
 
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-16 md:py-28">
         <div className="pml-container">
-          <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div className="mb-9 flex flex-col justify-between gap-5 md:mb-12 md:flex-row md:items-end md:gap-6">
             <div>
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
                 Featured Insight
@@ -171,17 +175,21 @@ export default function InsightPage() {
 
           <InsightCard item={featured} featured />
 
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
+          <div className="-mx-4 mt-8 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
             {latest.map((item) => (
               <InsightCard key={item.slug} item={item} />
             ))}
           </div>
+
+          <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
+            Swipe to read latest insights
+          </p>
         </div>
       </section>
 
-      <section className="bg-[#f6faf7] py-20 md:py-28">
+      <section className="bg-[#f6faf7] py-16 md:py-28">
         <div className="pml-container">
-          <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+          <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start lg:gap-10">
             <div>
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
                 FAQ Preview
@@ -191,7 +199,7 @@ export default function InsightPage() {
                 Common questions before starting with PML
               </h2>
 
-              <p className="mt-6 text-base leading-8 text-black/65">
+              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
                 Quick answers about services, project preparation, regulatory support, and facility access.
               </p>
 
@@ -203,13 +211,13 @@ export default function InsightPage() {
               </Link>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               {insightFaqs.slice(0, 4).map((faq) => (
                 <details
                   key={faq.question}
-                  className="group rounded-[26px] border border-black/5 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-xl"
+                  className="group rounded-[22px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-xl md:rounded-[26px] md:p-6"
                 >
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-black text-black">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-base font-black text-black md:gap-6 md:text-lg">
                     {faq.question}
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-xl text-[#039147] transition group-open:rotate-45">
                       +
@@ -225,9 +233,9 @@ export default function InsightPage() {
         </div>
       </section>
 
-      <section className="bg-white pb-24 md:pb-32">
+      <section className="bg-white pb-20 md:pb-32">
         <div className="pml-container">
-          <div className="relative overflow-hidden rounded-[36px] bg-black px-8 py-16 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:px-14 md:py-20">
+          <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:rounded-[36px] md:px-14 md:py-20">
             <Image
               src="/images/pml/cta-lab-background.png"
               alt=""

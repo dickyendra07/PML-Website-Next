@@ -68,7 +68,7 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
         <div className="absolute inset-0 bg-gradient-to-t from-black/54 via-transparent to-black/20" />
         <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
 
-        <div className="pml-container relative py-24 md:py-32">
+        <div className="pml-container relative py-20 md:py-32">
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/60">
             <Link href="/" className="transition hover:text-white">Home</Link>
             <span>/</span>
@@ -94,11 +94,11 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
         </div>
       </section>
 
-      <section className="sticky top-20 z-30 border-b border-black/5 bg-[#eaf8f0]/95 py-4 backdrop-blur">
-        <div className="pml-container flex gap-3 overflow-x-auto">
+      <section className="sticky top-[72px] z-30 border-b border-black/5 bg-[#eaf8f0]/95 py-3 backdrop-blur md:top-20 md:py-4">
+        <div className="pml-container flex gap-2 overflow-x-auto md:gap-3">
           <Link
             href="/insight"
-            className="shrink-0 rounded-full bg-white px-5 py-3 text-sm font-extrabold text-black/60 transition hover:text-[#039147]"
+            className="shrink-0 rounded-full bg-white px-4 py-2.5 text-xs font-extrabold text-black/60 transition hover:text-[#039147] md:px-5 md:py-3 md:text-sm"
           >
             All Resources
           </Link>
@@ -107,7 +107,7 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
             <Link
               key={item.href}
               href={item.href}
-              className={`shrink-0 rounded-full px-5 py-3 text-sm font-extrabold transition ${
+              className={`shrink-0 rounded-full px-4 py-2.5 text-xs font-extrabold transition md:px-5 md:py-3 md:text-sm ${
                 item.category === category
                   ? "bg-[#039147] text-white shadow-[0_12px_30px_rgba(3,145,71,0.20)]"
                   : "bg-white text-black/60 hover:text-[#039147]"
@@ -120,8 +120,8 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
       </section>
 
       {category === "faq" ? (
-        <section className="bg-white py-20 md:py-28">
-          <div className="pml-container grid gap-10 lg:grid-cols-[0.78fr_1.22fr]">
+        <section className="bg-white py-16 md:py-28">
+          <div className="pml-container grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:gap-10">
             <div>
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
                 FAQ Center
@@ -131,18 +131,18 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
                 Answers to common sponsor questions
               </h2>
 
-              <p className="mt-6 text-base leading-8 text-black/65">
+              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
                 Use this section as a quick guide before contacting PML. More detailed answers can be discussed directly with the team.
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               {insightFaqs.map((faq) => (
                 <details
                   key={faq.question}
-                  className="group rounded-[26px] border border-black/5 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-xl"
+                  className="group rounded-[22px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-xl md:rounded-[26px] md:p-6"
                 >
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-black text-black">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-base font-black text-black md:gap-6 md:text-lg">
                     {faq.question}
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-xl text-[#039147] transition group-open:rotate-45">
                       +
@@ -157,9 +157,9 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
           </div>
         </section>
       ) : (
-        <section className="bg-white py-20 md:py-28">
+        <section className="bg-white py-16 md:py-28">
           <div className="pml-container">
-            <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div className="mb-9 flex flex-col justify-between gap-5 md:mb-12 md:flex-row md:items-end md:gap-6">
               <div>
                 <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
                   {hero.eyebrow} Collection
@@ -176,11 +176,17 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
             </div>
 
             {items.length > 0 ? (
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {items.map((item) => (
-                  <InsightCard key={item.slug} item={item} />
-                ))}
-              </div>
+              <>
+                <div className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3">
+                  {items.map((item) => (
+                    <InsightCard key={item.slug} item={item} />
+                  ))}
+                </div>
+
+                <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
+                  Swipe to explore resources
+                </p>
+              </>
             ) : (
               <div className="mx-auto max-w-3xl rounded-[34px] border border-black/5 bg-white p-10 text-center shadow-sm">
                 <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
@@ -199,9 +205,9 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
         </section>
       )}
 
-      <section className="bg-[#f6faf7] pb-24 pt-4 md:pb-32">
+      <section className="bg-[#f6faf7] pb-20 pt-4 md:pb-32">
         <div className="pml-container">
-          <div className="relative overflow-hidden rounded-[36px] bg-black px-8 py-16 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:px-14 md:py-20">
+          <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:rounded-[36px] md:px-14 md:py-20">
             <Image
               src="/images/pml/cta-lab-background.png"
               alt=""

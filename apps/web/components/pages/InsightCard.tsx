@@ -18,10 +18,12 @@ export default function InsightCard({ item, featured = false }: InsightCardProps
   return (
     <article
       className={`group overflow-hidden border border-black/5 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(0,0,0,0.12)] ${
-        featured ? "rounded-[38px]" : "rounded-[32px]"
+        featured
+          ? "rounded-[30px] md:rounded-[38px]"
+          : "w-[82vw] max-w-[340px] shrink-0 snap-start rounded-[28px] md:w-auto md:max-w-none md:rounded-[32px]"
       }`}
     >
-      <div className={`relative overflow-hidden bg-black ${featured ? "aspect-[16/8.5]" : "aspect-[16/10]"}`}>
+      <div className={`relative overflow-hidden bg-black ${featured ? "aspect-[16/10] md:aspect-[16/8.5]" : "aspect-[16/10]"}`}>
         <Image
           src={item.image}
           alt={item.title}
@@ -47,18 +49,18 @@ export default function InsightCard({ item, featured = false }: InsightCardProps
         </div>
       </div>
 
-      <div className={featured ? "p-8 md:p-10" : "p-7"}>
+      <div className={featured ? "p-6 md:p-10" : "p-6 md:p-7"}>
         <div className="flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-[0.12em] text-black/40">
           <span>{item.date}</span>
           <span className="h-1 w-1 rounded-full bg-black/20" />
           <span>{item.readTime}</span>
         </div>
 
-        <h3 className={`${featured ? "mt-5 text-3xl md:text-4xl" : "mt-4 text-2xl"} font-black leading-tight text-black transition group-hover:text-[#039147]`}>
+        <h3 className={`${featured ? "mt-4 text-2xl md:mt-5 md:text-4xl" : "mt-4 text-xl md:text-2xl"} font-black leading-tight text-black transition group-hover:text-[#039147]`}>
           {item.title}
         </h3>
 
-        <p className={`${featured ? "mt-5 text-base leading-8" : "mt-4 text-sm leading-7"} text-black/60`}>
+        <p className={`${featured ? "mt-4 text-sm leading-7 md:mt-5 md:text-base md:leading-8" : "mt-3 text-sm leading-6 md:mt-4 md:leading-7"} text-black/60`}>
           {item.excerpt}
         </p>
 
