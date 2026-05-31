@@ -504,14 +504,14 @@ export default function Header({ onOpenProposal }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur-xl">
-      <div className="pml-container flex h-20 items-center justify-between">
+      <div className="pml-container flex h-[72px] items-center justify-between md:h-20">
         <Link href="/" aria-label="Pharma Metric Labs Home" className="flex items-center">
           <Image
             src="/images/LOGO-PML.png"
             alt="Pharma Metric Labs"
             width={170}
             height={90}
-            className="h-16 w-auto scale-[1.25] origin-left md:h-20 md:scale-[1.35]"
+            className="h-12 w-auto scale-[1.18] origin-left md:h-20 md:scale-[1.35]"
             priority
           />
         </Link>
@@ -613,7 +613,7 @@ export default function Header({ onOpenProposal }: HeaderProps) {
         <button
           type="button"
           onClick={() => setMobileOpen(true)}
-          className="relative z-[70] inline-flex h-12 w-12 items-center justify-center rounded-full border border-black/10 text-black lg:hidden"
+          className="relative z-[70] inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-black shadow-sm lg:hidden"
           aria-label="Open menu"
           aria-expanded={mobileOpen}
         >
@@ -628,24 +628,24 @@ export default function Header({ onOpenProposal }: HeaderProps) {
         <div className="fixed inset-0 z-[999] lg:hidden">
           <button
             type="button"
-            className="absolute inset-0 bg-black/45"
+            className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"
             onClick={closeMobile}
             aria-label="Close menu overlay"
           />
 
-          <aside className="absolute right-0 top-0 h-[100dvh] w-[min(90vw,420px)] overflow-y-auto bg-white p-6 shadow-2xl">
+          <aside className="absolute right-0 top-0 h-[100dvh] w-[min(92vw,430px)] overflow-y-auto border-l border-black/5 bg-white p-5 shadow-2xl sm:p-6">
             <div className="flex items-center justify-between">
               <Image
                 src="/images/LOGO-PML.png"
                 alt="Pharma Metric Labs"
                 width={150}
                 height={80}
-                className="h-16 w-auto scale-[1.2] origin-left"
+                className="h-13 w-auto scale-[1.12] origin-left sm:h-16 sm:scale-[1.2]"
               />
 
               <button
                 type="button"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-black/10 text-black"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-[#f6faf7] text-black shadow-sm"
                 onClick={closeMobile}
                 aria-label="Close menu"
               >
@@ -653,7 +653,7 @@ export default function Header({ onOpenProposal }: HeaderProps) {
               </button>
             </div>
 
-            <div className="mt-9 grid gap-3 text-lg font-black text-black">
+            <div className="mt-7 grid gap-2.5 text-base font-black text-black sm:mt-9 sm:gap-3 sm:text-lg">
               <Link onClick={closeMobile} className={mobileLinkClass("/")} href="/">
                 Home
               </Link>
@@ -702,7 +702,7 @@ export default function Header({ onOpenProposal }: HeaderProps) {
                 closeMobile();
                 onOpenProposal();
               }}
-              className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-[#039147] px-6 py-4 text-sm font-extrabold text-white"
+              className="sticky bottom-4 mt-8 inline-flex w-full items-center justify-center rounded-full bg-[#039147] px-6 py-4 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.28)] transition active:scale-[0.99]"
             >
               Request a Proposal
             </button>

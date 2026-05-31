@@ -125,3 +125,69 @@ button {
   background-position: 0 0;
   background-repeat: repeat;
 }
+
+/* Mobile polish baseline */
+@media (max-width: 640px) {
+  body {
+    text-rendering: optimizeLegibility;
+  }
+
+  .pml-container {
+    width: min(100% - 32px, 1460px);
+  }
+
+  main h1 {
+    font-size: clamp(2.15rem, 10vw, 3rem);
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+  }
+
+  main h2 {
+    font-size: clamp(1.9rem, 8.5vw, 2.55rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  main p {
+    line-height: 1.75;
+  }
+
+  main > section {
+    scroll-margin-top: 84px;
+  }
+
+  main > section:first-child {
+    min-height: 560px;
+  }
+
+  main > section:first-child .pml-container {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  main img {
+    max-width: 100%;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mega-service-item {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 420px) {
+  main h1 {
+    font-size: clamp(2rem, 10.5vw, 2.65rem);
+  }
+
+  main h2 {
+    font-size: clamp(1.75rem, 8.8vw, 2.25rem);
+  }
+
+  .pml-container {
+    width: min(100% - 28px, 1460px);
+  }
+}
