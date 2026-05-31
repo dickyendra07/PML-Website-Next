@@ -321,7 +321,7 @@ export default function ClinicalTrialPage() {
 
   return (
     <main>
-      <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-black text-white">
+      <section className="relative min-h-[520px] overflow-hidden bg-black text-white md:min-h-[calc(100vh-80px)]">
         <div className="absolute inset-0">
           {heroSlides.map((slideImage, index) => (
             <Image
@@ -342,8 +342,8 @@ export default function ClinicalTrialPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/10" />
         <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
 
-        <div className="pml-container relative flex min-h-[calc(100vh-80px)] flex-col items-start justify-center py-16 md:py-24">
-          <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/60" aria-label="Breadcrumb">
+        <div className="pml-container relative flex min-h-[520px] flex-col items-start justify-center py-14 md:min-h-[calc(100vh-80px)] md:py-24">
+          <nav className="mb-7 flex flex-wrap items-center gap-2 text-xs font-bold text-white/60 md:mb-10 md:text-sm" aria-label="Breadcrumb">
             <Link href="/" className="transition hover:text-white">
               Home
             </Link>
@@ -356,33 +356,33 @@ export default function ClinicalTrialPage() {
           </nav>
 
           <div className="max-w-4xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-white shadow-sm backdrop-blur">
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.16em] md:text-xs text-white shadow-sm backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
               Clinical Trial Services
             </p>
 
-            <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-tight text-white md:text-6xl lg:text-[68px]">
+            <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] tracking-tight text-white md:mt-6 md:text-6xl lg:text-[68px]">
               End-to-end clinical trial support with local expertise
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-white/75 md:text-lg">
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-white/75 md:mt-6 md:text-lg md:leading-8">
               PML supports sponsors with clinical research services across study planning,
               regulatory coordination, site management, monitoring, data management, and
               medical writing.
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row md:mt-8">
               <button
                 type="button"
                 onClick={openProposal}
-                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
+                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-extrabold md:py-4 text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
               >
                 Request a Proposal
               </button>
 
               <a
                 href="#clinical-overview"
-                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147]"
+                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-extrabold md:py-4 text-white backdrop-blur transition hover:bg-white hover:text-[#039147]"
               >
                 Explore Service
               </a>
@@ -405,11 +405,11 @@ export default function ClinicalTrialPage() {
         </div>
       </section>
 
-      <section id="clinical-overview" className="bg-white py-20 md:py-28">
+      <section id="clinical-overview" className="bg-white py-16 md:py-28">
         <div className="pml-container">
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
                 Service Overview
               </p>
 
@@ -418,7 +418,7 @@ export default function ClinicalTrialPage() {
               </h2>
             </div>
 
-            <div className="space-y-5 text-base leading-8 text-black/65">
+            <div className="space-y-5 text-sm leading-7 text-black/65 md:text-base md:leading-8">
               <p>
                 PML provides clinical trial services for sponsors that need reliable local
                 execution, regulatory coordination, and study management support in Indonesia.
@@ -435,11 +435,11 @@ export default function ClinicalTrialPage() {
             </div>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:mt-12 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4">
             {benefits.map((benefit) => (
               <article
                 key={benefit.title}
-                className="rounded-[28px] border border-black/5 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                className="w-[78vw] max-w-[320px] shrink-0 snap-start rounded-[26px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:w-auto md:max-w-none md:rounded-[28px] md:p-6"
               >
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147]">
                   <ServiceIcon name={benefit.icon} />
@@ -450,13 +450,17 @@ export default function ClinicalTrialPage() {
               </article>
             ))}
           </div>
+
+          <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
+            Swipe to explore benefits
+          </p>
         </div>
       </section>
 
-      <section className="bg-[#eaf8f0] py-20 md:py-28">
+      <section className="bg-[#eaf8f0] py-16 md:py-28">
         <div className="pml-container">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
               Scope of Service
             </p>
 
@@ -464,28 +468,28 @@ export default function ClinicalTrialPage() {
               Complete clinical trial service coverage
             </h2>
 
-            <p className="mt-6 text-base leading-7 text-black/65">
+            <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base">
               PML supports multiple areas of clinical research execution, from medical writing
               and site readiness to monitoring, regulatory coordination, data management, and
               statistical analysis.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:mt-12 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3">
             {scopeGroups.map((group) => (
               <article
                 key={group.title}
-                className="rounded-[30px] border border-black/5 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                className="w-[78vw] max-w-[320px] shrink-0 snap-start rounded-[26px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:w-auto md:max-w-none md:rounded-[30px] md:p-7"
               >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147]">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] md:mb-5 md:h-12 md:w-12">
                   <ServiceIcon name={group.icon} />
                 </div>
 
-                <h3 className="text-xl font-black leading-tight text-black">{group.title}</h3>
+                <h3 className="text-lg font-black leading-tight text-black md:text-xl">{group.title}</h3>
 
-                <ul className="mt-5 space-y-3">
+                <ul className="mt-4 space-y-2.5 md:mt-5 md:space-y-3">
                   {group.items.map((item) => (
-                    <li key={item} className="flex gap-3 text-sm font-bold leading-6 text-black/65">
+                    <li key={item} className="flex gap-2 text-xs font-bold leading-5 text-black/65 md:gap-3 md:text-sm md:leading-6">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#039147]" />
                       {item}
                     </li>
@@ -494,13 +498,17 @@ export default function ClinicalTrialPage() {
               </article>
             ))}
           </div>
+
+          <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
+            Swipe to explore scope
+          </p>
         </div>
       </section>
 
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-16 md:py-28">
         <div className="pml-container">
           <div className="max-w-4xl">
-            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
               Target Client
             </p>
 
@@ -515,7 +523,7 @@ export default function ClinicalTrialPage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid grid-cols-2 gap-3 md:mt-12 md:grid-cols-2 md:gap-5 lg:grid-cols-3">
             {clients.map((client, index) => (
               <article
                 key={client}
@@ -532,11 +540,11 @@ export default function ClinicalTrialPage() {
         </div>
       </section>
 
-      <section className="bg-[#eaf8f0] py-20 md:py-28">
+      <section className="bg-[#eaf8f0] py-16 md:py-28">
         <div className="pml-container">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
                 Process / Workflow
               </p>
 
@@ -569,10 +577,10 @@ export default function ClinicalTrialPage() {
         </div>
       </section>
 
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-16 md:py-28">
         <div className="pml-container">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
               Therapeutic Areas
             </p>
 
@@ -580,7 +588,7 @@ export default function ClinicalTrialPage() {
               Experience across multiple clinical research areas
             </h2>
 
-            <p className="mt-6 text-base leading-7 text-black/65">
+            <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base">
               PML has experience supporting clinical trials and related clinical research
               activities across a wide range of therapeutic and product areas.
             </p>
@@ -599,7 +607,7 @@ export default function ClinicalTrialPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#039147] py-20 text-white md:py-28">
+      <section className="relative overflow-hidden bg-[#039147] py-16 text-white md:py-28">
         <Image
           src="/images/pml/services/clinical-trial-proof.png"
           alt=""
@@ -612,7 +620,7 @@ export default function ClinicalTrialPage() {
 
         <div className="pml-container relative">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/70 md:text-sm">
               Proof & Trust Signals
             </p>
 
@@ -620,7 +628,7 @@ export default function ClinicalTrialPage() {
               Local CRO support for Indonesia and multi-country clinical trials
             </h2>
 
-            <p className="mt-6 text-base leading-8 text-white/75">
+            <p className="mt-6 text-sm leading-7 text-white/75 md:text-base md:leading-8">
               PML has experience participating as the local CRO partner for Indonesia in
               multi-country clinical trials led by global sponsors or global CROs, supporting
               local execution while maintaining regulatory and GCP alignment.
@@ -642,11 +650,11 @@ export default function ClinicalTrialPage() {
         </div>
       </section>
 
-      <section className="bg-[#eaf8f0] py-20 md:py-28">
+      <section className="bg-[#eaf8f0] py-16 md:py-28">
         <div className="pml-container">
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
                 Required Information
               </p>
 
@@ -654,7 +662,7 @@ export default function ClinicalTrialPage() {
                 What we need to start clinical trial discussion
               </h2>
 
-              <p className="mt-6 text-base leading-7 text-black/65">
+              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base">
                 To prepare a relevant proposal or consultation, sponsors can share available
                 study, product, regulatory, timeline, and site-related information.
               </p>
@@ -682,10 +690,10 @@ export default function ClinicalTrialPage() {
         </div>
       </section>
 
-      <section id="clinical-faq" className="bg-white py-20 md:py-28">
+      <section id="clinical-faq" className="bg-white py-16 md:py-28">
         <div className="pml-container">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
               Clinical Trial FAQ
             </p>
 
@@ -694,10 +702,10 @@ export default function ClinicalTrialPage() {
             </h2>
           </div>
 
-          <div className="mx-auto mt-10 max-w-4xl space-y-4">
+          <div className="mx-auto mt-8 max-w-4xl space-y-3 md:mt-10 md:space-y-4">
             {faqs.map((faq) => (
-              <details key={faq.question} className="group rounded-[24px] border border-black/5 bg-white p-6 shadow-sm">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-black text-black">
+              <details key={faq.question} className="group rounded-[22px] border border-black/5 bg-white p-5 shadow-sm md:rounded-[24px] md:p-6">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-base font-black text-black md:gap-6 md:text-lg">
                   {faq.question}
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-[#039147] transition group-open:rotate-45">
                     +
@@ -714,7 +722,7 @@ export default function ClinicalTrialPage() {
 
       <section className="bg-white pb-24 md:pb-32">
         <div className="pml-container">
-          <div className="relative overflow-hidden rounded-[36px] bg-black px-8 py-16 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:px-14 md:py-20">
+          <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-white md:rounded-[36px] md:px-14 md:py-20 shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:px-14 md:py-20">
             <Image
               src="/images/pml/services/clinical-trial-cta.png"
               alt=""
@@ -727,11 +735,11 @@ export default function ClinicalTrialPage() {
             <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
 
             <div className="relative mx-auto max-w-3xl">
-              <div className="mx-auto mb-7 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/25 bg-white/90 shadow-lg backdrop-blur">
-                <Image src="/images/LOGO-PML.png" alt="PML" width={64} height={40} className="h-8 w-auto" />
+              <div className="mx-auto mb-6 flex h-14 w-14 md:mb-7 md:h-16 md:w-16 items-center justify-center rounded-2xl border border-white/25 bg-white/90 shadow-lg backdrop-blur">
+                <Image src="/images/LOGO-PML.png" alt="PML" width={64} height={40} className="h-7 w-auto md:h-8" />
               </div>
 
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/70 md:text-sm">
                 Start a Project
               </p>
 
@@ -739,12 +747,12 @@ export default function ClinicalTrialPage() {
                 Need clinical trial support in Indonesia?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/75">
+              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/75 md:text-base md:leading-8">
                 Share your clinical research requirements with our team and we will help identify
                 the right service scope, required information, and next steps.
               </p>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row md:mt-8 sm:justify-center">
                 <button
                   type="button"
                   onClick={openProposal}

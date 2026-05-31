@@ -394,9 +394,9 @@ export default function RegulatoryConsultationPage() {
             </div>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:mt-12 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4">
             {benefits.map((benefit) => (
-              <article key={benefit.title} className="rounded-[28px] border border-black/5 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+              <article key={benefit.title} className="w-[78vw] max-w-[320px] shrink-0 snap-start rounded-[26px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:w-auto md:max-w-none md:rounded-[28px] md:p-6">
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147]">
                   <Icon name={benefit.icon} />
                 </div>
@@ -426,18 +426,18 @@ export default function RegulatoryConsultationPage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:mt-12 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3">
             {scopeGroups.map((group) => (
-              <article key={group.title} className="rounded-[30px] border border-black/5 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+              <article key={group.title} className="w-[78vw] max-w-[320px] shrink-0 snap-start rounded-[26px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:w-auto md:max-w-none md:rounded-[30px] md:p-7">
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147]">
                   <Icon name={group.icon} />
                 </div>
 
-                <h3 className="text-xl font-black leading-tight text-black">{group.title}</h3>
+                <h3 className="text-lg font-black leading-tight text-black md:text-xl">{group.title}</h3>
 
-                <ul className="mt-5 space-y-3">
+                <ul className="mt-4 space-y-2.5 md:mt-5 md:space-y-3">
                   {group.items.map((item) => (
-                    <li key={item} className="flex gap-3 text-sm font-bold leading-6 text-black/65">
+                    <li key={item} className="flex gap-2 text-xs font-bold leading-5 text-black/65 md:gap-3 md:text-sm md:leading-6">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#039147]" />
                       {item}
                     </li>
@@ -467,13 +467,13 @@ export default function RegulatoryConsultationPage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid grid-cols-2 gap-3 md:mt-12 md:grid-cols-2 md:gap-5 lg:grid-cols-3">
             {clients.map((client, index) => (
-              <article key={client} className="group rounded-[28px] border border-black/5 bg-white p-7 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] transition group-hover:bg-[#039147] group-hover:text-white">
+              <article key={client} className="group rounded-[22px] border border-black/5 bg-white p-4 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:rounded-[28px] md:p-7">
+                <div className="mx-auto mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] transition group-hover:bg-[#039147] group-hover:text-white md:mb-5 md:h-14 md:w-14">
                   <ClientIcon index={index} />
                 </div>
-                <h3 className="text-base font-black leading-tight text-black">{client}</h3>
+                <h3 className="text-xs font-black leading-tight text-black md:text-base">{client}</h3>
               </article>
             ))}
           </div>

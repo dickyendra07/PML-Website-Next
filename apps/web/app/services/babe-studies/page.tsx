@@ -2,38 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import OtherServices from "@/components/OtherServices";
 
 const heroSlides = [
   "/images/pml/services/babe-studies-hero.png",
   "/images/pml/services/babe-studies-lab-analysis.png",
   "/images/pml/services/babe-studies-sample-handling.png",
-];
-
-const countries = [
-  "Cambodia",
-  "Hong Kong",
-  "Indonesia",
-  "Malaysia",
-  "Maldives",
-  "Mauritius",
-  "Mongolia",
-  "Myanmar",
-  "Nigeria",
-  "Philippines",
-  "Singapore",
-  "Sri Lanka",
-  "Vietnam",
-];
-
-const scope = [
-  "Bioavailability and bioequivalence study planning support",
-  "Clinical conduct coordination for BA/BE study activities",
-  "Sample collection, handling, and study operation support",
-  "Bioanalytical method support and laboratory analysis",
-  "Study documentation and regulatory-ready reporting",
-  "Project coordination with sponsors and relevant study stakeholders",
 ];
 
 const benefits = [
@@ -53,6 +27,46 @@ const benefits = [
     title: "Accepted BE reports",
     text: "PML BE reports have been accepted by global regulatory bodies in multiple countries.",
   },
+];
+
+const scope = [
+  "Bioavailability and bioequivalence study planning support",
+  "Clinical conduct coordination for BA/BE study activities",
+  "Sample collection, handling, and study operation support",
+  "Bioanalytical method support and laboratory analysis",
+  "Study documentation and regulatory-ready reporting",
+  "Project coordination with sponsors and relevant study stakeholders",
+];
+
+const clients = [
+  {
+    title: "Pharmaceutical companies",
+    text: "Sponsors that require structured BA/BE study execution, bioanalysis, and documentation support.",
+  },
+  {
+    title: "Generic manufacturers",
+    text: "Manufacturers preparing equivalence evidence for generic drug development and registration.",
+  },
+  {
+    title: "Regulatory and product teams",
+    text: "Teams that need reliable study outputs, accepted reports, and clear documentation to support submission readiness.",
+  },
+];
+
+const countries = [
+  "Cambodia",
+  "Hong Kong",
+  "Indonesia",
+  "Malaysia",
+  "Maldives",
+  "Mauritius",
+  "Mongolia",
+  "Myanmar",
+  "Nigeria",
+  "Philippines",
+  "Singapore",
+  "Sri Lanka",
+  "Vietnam",
 ];
 
 const workflow = [
@@ -94,9 +108,13 @@ const faqs = [
   },
 ];
 
-function CheckIcon({ size = 14 }: { size?: number }) {
+function openProposal() {
+  window.dispatchEvent(new CustomEvent("open-proposal-modal"));
+}
+
+function CheckIcon() {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
       <path
         d="M5 12L10 17L20 7"
         stroke="currentColor"
@@ -129,111 +147,94 @@ function ShieldIcon() {
 }
 
 export default function BabeStudiesPage() {
-  const [activeSlide, setActiveSlide] = useState(0);
-
-  const openProposal = () => {
-    window.dispatchEvent(new CustomEvent("open-proposal-modal"));
-  };
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActiveSlide((current) => (current + 1) % heroSlides.length);
-    }, 6000);
-
-    return () => window.clearInterval(timer);
-  }, []);
-
   return (
     <main>
-      <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-black text-white">
+      <section className="relative min-h-[560px] overflow-hidden bg-black text-white md:min-h-[calc(100vh-80px)]">
         <div className="absolute inset-0">
-          {heroSlides.map((slideImage, index) => (
+          {heroSlides.map((slide, index) => (
             <Image
-              key={slideImage}
-              src={slideImage}
+              key={slide}
+              src={slide}
               alt=""
               fill
               priority={index === 0}
               className={`object-cover transition-opacity duration-1000 ${
-                index === activeSlide ? "opacity-100" : "opacity-0"
+                index === 0 ? "opacity-100" : "opacity-0"
               }`}
             />
           ))}
         </div>
 
-        <div className="absolute inset-0 bg-black/62" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/62 to-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/10" />
-        <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
+        <div className="absolute inset-0 bg-black/62" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/62 to-black/20" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/10" aria-hidden="true" />
+        <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" aria-hidden="true" />
 
-        <div className="pml-container relative flex min-h-[calc(100vh-80px)] flex-col justify-center py-16 md:py-24">
-          <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/60" aria-label="Breadcrumb">
+        <div className="pml-container relative flex min-h-[560px] flex-col justify-center py-14 md:min-h-[calc(100vh-80px)] md:py-24">
+          <nav className="mb-7 flex flex-wrap items-center gap-2 text-xs font-bold text-white/60 md:mb-10 md:text-sm">
             <Link href="/" className="transition hover:text-white">
               Home
             </Link>
-            <span aria-hidden="true">/</span>
+            <span>/</span>
             <Link href="/services" className="transition hover:text-white">
               Services
             </Link>
-            <span aria-hidden="true">/</span>
+            <span>/</span>
             <span className="text-white">BA/BE Studies</span>
           </nav>
 
           <div className="max-w-4xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-white shadow-sm backdrop-blur">
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.16em] text-white shadow-sm backdrop-blur md:text-xs">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
               BA/BE Studies
             </p>
 
-            <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-tight text-white md:text-6xl lg:text-[68px]">
+            <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] tracking-tight text-white md:mt-6 md:text-6xl lg:text-[68px]">
               End-to-end bioequivalence study support for reliable regulatory submission
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-white/75 md:text-lg">
-              PML supports pharmaceutical companies and generic manufacturers with integrated
-              BA/BE study services, from clinical conduct and bioanalysis to regulatory-ready
-              documentation and reporting.
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-white/75 md:mt-6 md:text-lg md:leading-8">
+              PML supports pharmaceutical companies and generic manufacturers with integrated BA/BE
+              study services, from clinical conduct and bioanalysis to regulatory-ready documentation
+              and reporting.
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row md:mt-8">
               <button
                 type="button"
                 onClick={openProposal}
-                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
+                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)] transition hover:-translate-y-0.5 md:py-4"
               >
                 Request a Proposal
               </button>
 
               <a
                 href="#babe-overview"
-                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147]"
+                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147] md:py-4"
               >
                 Explore Service
               </a>
             </div>
           </div>
 
-          <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 items-center gap-2">
-            {heroSlides.map((slideImage, index) => (
-              <button
-                key={slideImage}
-                type="button"
-                onClick={() => setActiveSlide(index)}
-                className={`h-2.5 rounded-full transition-all ${
-                  index === activeSlide ? "w-8 bg-[#039147]" : "w-2.5 bg-white/45"
+          <div className="absolute bottom-7 left-1/2 flex -translate-x-1/2 items-center gap-2">
+            {heroSlides.map((slide, index) => (
+              <span
+                key={slide}
+                className={`h-2.5 rounded-full ${
+                  index === 0 ? "w-8 bg-[#039147]" : "w-2.5 bg-white/45"
                 }`}
-                aria-label={`Go to BA/BE hero slide ${index + 1}`}
               />
             ))}
           </div>
         </div>
       </section>
 
-      <section id="babe-overview" className="bg-white py-20 md:py-28">
+      <section id="babe-overview" className="bg-white py-16 md:py-28">
         <div className="pml-container">
-          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
             <div>
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
                 Service Overview
               </p>
 
@@ -242,56 +243,60 @@ export default function BabeStudiesPage() {
               </h2>
             </div>
 
-            <div className="space-y-5 text-base leading-8 text-black/65">
+            <div className="space-y-4 text-sm leading-7 text-black/65 md:space-y-5 md:text-base md:leading-8">
               <p>
-                PML provides end-to-end BA/BE study support for pharmaceutical companies and
-                generic manufacturers that need reliable study execution and regulatory-ready
-                documentation. The service covers key activities from clinical conduct and sample
-                handling to bioanalytical support and final reporting.
+                PML provides end-to-end BA/BE study support for pharmaceutical companies and generic
+                manufacturers that need reliable study execution and regulatory-ready documentation.
               </p>
 
               <p>
-                With accepted BE reports across multiple regulatory bodies and more than 190
-                validated bioanalytical methods, PML helps sponsors prepare better evidence for
-                product registration and market access requirements.
+                With accepted BE reports across multiple regulatory bodies and more than 190 validated
+                bioanalytical methods, PML helps sponsors prepare better evidence for product registration
+                and market access requirements.
               </p>
             </div>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:mt-12 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4">
             {benefits.map((benefit) => (
               <article
                 key={benefit.title}
-                className="rounded-[28px] border border-black/5 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                className="w-[78vw] max-w-[320px] shrink-0 snap-start rounded-[26px] border border-black/5 bg-white p-5 shadow-[0_18px_50px_rgba(0,0,0,0.08)] transition hover:-translate-y-1 hover:shadow-xl md:w-auto md:max-w-none md:rounded-[28px] md:p-6"
               >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147]">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] md:mb-5 md:h-12 md:w-12">
                   <ShieldIcon />
                 </div>
-                <h3 className="text-lg font-black leading-tight text-black">{benefit.title}</h3>
+                <h3 className="text-base font-black leading-tight text-black md:text-lg">
+                  {benefit.title}
+                </h3>
                 <p className="mt-3 text-sm leading-6 text-black/60">{benefit.text}</p>
               </article>
             ))}
           </div>
+
+          <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
+            Swipe to explore key benefits
+          </p>
         </div>
       </section>
 
-      <section className="bg-[#eaf8f0] py-20 md:py-28">
+      <section className="bg-[#eaf8f0] py-16 md:py-28">
         <div className="pml-container">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-            <div className="relative">
-              <div className="overflow-hidden rounded-[34px] bg-white p-3 shadow-[0_24px_70px_rgba(0,0,0,0.10)]">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-12">
+            <div className="relative order-2 lg:order-1">
+              <div className="overflow-hidden rounded-[30px] bg-white p-2 shadow-[0_24px_70px_rgba(0,0,0,0.10)] md:rounded-[34px] md:p-3">
                 <Image
                   src="/images/pml/services/babe-studies-lab-analysis.png"
                   alt="Bioanalytical laboratory analysis"
                   width={900}
-                  height={675}
-                  className="aspect-[4/3] w-full rounded-[26px] object-cover"
+                  height={700}
+                  className="aspect-[4/3] w-full rounded-[24px] object-cover md:rounded-[26px]"
                 />
               </div>
             </div>
 
-            <div>
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+            <div className="order-1 lg:order-2">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
                 Scope of Service
               </p>
 
@@ -299,32 +304,37 @@ export default function BabeStudiesPage() {
                 From clinical conduct to bioanalytical reporting
               </h2>
 
-              <p className="mt-6 text-base leading-7 text-black/65">
+              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base">
                 BA/BE studies require coordinated clinical activity, reliable sample handling,
-                robust bioanalysis, and complete documentation. PML supports these stages through
-                an integrated CRO workflow.
+                robust bioanalysis, and complete documentation.
               </p>
 
-              <div className="mt-8 grid gap-3">
+              <div className="mt-8 grid grid-cols-2 gap-3 md:gap-4">
                 {scope.map((item) => (
-                  <div key={item} className="flex items-start gap-3 rounded-2xl border border-black/5 bg-white p-4 shadow-sm">
-                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-[#039147]">
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm md:p-5"
+                  >
+                    <span className="mb-3 flex h-6 w-6 items-center justify-center rounded-full bg-[#eaf8f0] text-[#039147]">
                       <CheckIcon />
                     </span>
-                    <p className="text-sm font-bold leading-6 text-black/70">{item}</p>
+                    <p className="text-xs font-bold leading-5 text-black/70 md:text-sm md:leading-6">
+                      {item}
+                    </p>
                   </div>
                 ))}
               </div>
+
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-16 md:py-28">
         <div className="pml-container">
-          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-12">
             <div>
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
                 Target Client
               </p>
 
@@ -332,43 +342,30 @@ export default function BabeStudiesPage() {
                 Built for pharmaceutical sponsors and generic manufacturers
               </h2>
 
-              <p className="mt-6 text-base leading-7 text-black/65">
-                BA/BE Studies are most relevant for companies preparing evidence for product
-                registration, generic drug development, regulatory submission, or equivalence
-                evaluation.
+              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base">
+                BA/BE Studies are most relevant for companies preparing evidence for product registration,
+                generic drug development, regulatory submission, or equivalence evaluation.
               </p>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-2">
-              <article className="rounded-[28px] border border-black/5 bg-white p-7 shadow-sm">
-                <h3 className="text-xl font-black text-black">Pharmaceutical companies</h3>
-                <p className="mt-3 text-sm leading-6 text-black/60">
-                  Sponsors that require structured BA/BE study execution, bioanalysis, and
-                  documentation support.
-                </p>
-              </article>
-
-              <article className="rounded-[28px] border border-black/5 bg-white p-7 shadow-sm">
-                <h3 className="text-xl font-black text-black">Generic manufacturers</h3>
-                <p className="mt-3 text-sm leading-6 text-black/60">
-                  Manufacturers preparing equivalence evidence for generic drug development
-                  and registration.
-                </p>
-              </article>
-
-              <article className="rounded-[28px] border border-black/5 bg-white p-7 shadow-sm md:col-span-2">
-                <h3 className="text-xl font-black text-black">Regulatory and product teams</h3>
-                <p className="mt-3 text-sm leading-6 text-black/60">
-                  Teams that need reliable study outputs, accepted reports, and clear
-                  documentation to support submission readiness.
-                </p>
-              </article>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
+              {clients.map((client, index) => (
+                <article
+                  key={client.title}
+                  className={`rounded-[26px] border border-black/5 bg-white p-6 shadow-sm md:rounded-[28px] md:p-7 ${
+                    index === 2 ? "md:col-span-2" : ""
+                  }`}
+                >
+                  <h3 className="text-lg font-black text-black md:text-xl">{client.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-black/60">{client.text}</p>
+                </article>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#039147] py-20 text-white md:py-28">
+      <section className="relative overflow-hidden bg-[#039147] py-16 text-white md:py-28">
         <Image
           src="/images/pml/services/babe-global-trust-bg.png"
           alt=""
@@ -380,7 +377,7 @@ export default function BabeStudiesPage() {
 
         <div className="pml-container relative">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/70 md:text-sm">
               Proof & Trust Signals
             </p>
 
@@ -388,46 +385,46 @@ export default function BabeStudiesPage() {
               Accepted BE reports across global regulatory bodies
             </h2>
 
-            <p className="mt-6 text-base leading-8 text-white/75">
-              PML’s BE reports have been accepted by regulatory bodies in multiple countries,
-              supporting client submissions across regional and international contexts.
+            <p className="mt-5 text-sm leading-7 text-white/75 md:mt-6 md:text-base md:leading-8">
+              PML’s BE reports have been accepted by regulatory bodies in multiple countries, supporting
+              client submissions across regional and international contexts.
             </p>
           </div>
 
-          <div className="mx-auto mt-10 flex max-w-5xl flex-wrap justify-center gap-3">
+          <div className="-mx-4 mt-9 flex snap-x gap-2.5 overflow-x-auto px-4 pb-4 md:mx-auto md:mt-10 md:flex-wrap md:justify-center md:overflow-visible md:px-0 md:pb-0">
             {countries.map((country) => (
               <span
                 key={country}
-                className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-extrabold text-white backdrop-blur"
+                className="shrink-0 snap-start rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-extrabold text-white backdrop-blur"
               >
                 {country}
               </span>
             ))}
           </div>
 
-          <div className="mx-auto mt-12 grid max-w-4xl gap-5 md:grid-cols-2">
-            <div className="rounded-[30px] border border-white/15 bg-white/10 p-7 backdrop-blur">
-              <p className="text-5xl font-black">190+</p>
-              <p className="mt-2 text-sm font-bold leading-6 text-white/75">
-                validated bioanalytical methods covering a wide range of pharmaceutical compounds.
+          <div className="mx-auto mt-8 grid max-w-4xl grid-cols-2 gap-3 md:mt-12 md:gap-5">
+            <div className="rounded-[24px] border border-white/15 bg-white/10 p-5 backdrop-blur md:rounded-[30px] md:p-7">
+              <p className="text-4xl font-black md:text-5xl">190+</p>
+              <p className="mt-2 text-xs font-bold leading-5 text-white/75 md:text-sm md:leading-6">
+                validated bioanalytical methods.
               </p>
             </div>
 
-            <div className="rounded-[30px] border border-white/15 bg-white/10 p-7 backdrop-blur">
-              <p className="text-5xl font-black">13</p>
-              <p className="mt-2 text-sm font-bold leading-6 text-white/75">
-                countries listed where PML BE reports have been accepted by regulatory bodies.
+            <div className="rounded-[24px] border border-white/15 bg-white/10 p-5 backdrop-blur md:rounded-[30px] md:p-7">
+              <p className="text-4xl font-black md:text-5xl">13</p>
+              <p className="mt-2 text-xs font-bold leading-5 text-white/75 md:text-sm md:leading-6">
+                countries with accepted reports.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-16 md:py-28">
         <div className="pml-container">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-12">
             <div>
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
                 Process / Workflow
               </p>
 
@@ -435,36 +432,41 @@ export default function BabeStudiesPage() {
                 A clear workflow from discussion to report completion
               </h2>
 
-              <div className="mt-8 space-y-4">
+              <div className="mt-8 space-y-3 md:space-y-4">
                 {workflow.map((step, index) => (
-                  <div key={step} className="flex gap-4 rounded-[24px] border border-black/5 bg-white p-5 shadow-sm">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#039147] text-sm font-black text-white">
+                  <div
+                    key={step}
+                    className="flex gap-3 rounded-[22px] border border-black/5 bg-white p-4 shadow-sm md:gap-4 md:rounded-[24px] md:p-5"
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-[#039147] text-xs font-black text-white md:h-10 md:w-10 md:text-sm">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <p className="pt-2 text-sm font-bold leading-6 text-black/70">{step}</p>
+                    <p className="pt-1 text-sm font-bold leading-6 text-black/70 md:pt-2">
+                      {step}
+                    </p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-[34px] bg-white p-3 shadow-[0_24px_70px_rgba(0,0,0,0.10)]">
+            <div className="overflow-hidden rounded-[30px] bg-white p-2 shadow-[0_24px_70px_rgba(0,0,0,0.10)] md:rounded-[34px] md:p-3">
               <Image
                 src="/images/pml/services/babe-studies-sample-handling.png"
                 alt="BA/BE sample handling and laboratory workflow"
                 width={900}
-                height={675}
-                className="aspect-[4/3] w-full rounded-[26px] object-cover"
+                height={700}
+                className="aspect-[4/3] w-full rounded-[24px] object-cover md:rounded-[26px]"
               />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#eaf8f0] py-20 md:py-28">
+      <section className="bg-[#eaf8f0] py-16 md:py-28">
         <div className="pml-container">
-          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
             <div>
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
                 Required Information
               </p>
 
@@ -472,23 +474,26 @@ export default function BabeStudiesPage() {
                 What we need to start the discussion
               </h2>
 
-              <p className="mt-6 text-base leading-7 text-black/65">
-                To prepare a better proposal or consultation, sponsors can share available
-                product, study, timeline, and regulatory information.
+              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base">
+                To prepare a better proposal or consultation, sponsors can share available product,
+                study, timeline, and regulatory information.
               </p>
 
               <button
                 type="button"
                 onClick={openProposal}
-                className="mt-8 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)]"
+                className="mt-7 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-3.5 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] md:mt-8 md:py-4"
               >
                 Discuss This Service
               </button>
             </div>
 
-            <div className="grid gap-4">
+            <div className="grid grid-cols-1 gap-3 md:gap-4">
               {requirements.map((item) => (
-                <div key={item} className="flex items-start gap-3 rounded-[22px] border border-black/5 bg-white p-5 shadow-sm">
+                <div
+                  key={item}
+                  className="flex items-start gap-3 rounded-[20px] border border-black/5 bg-white p-4 shadow-sm md:rounded-[22px] md:p-5"
+                >
                   <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-[#039147]">
                     <CheckIcon />
                   </span>
@@ -500,10 +505,10 @@ export default function BabeStudiesPage() {
         </div>
       </section>
 
-      <section id="faq" className="bg-white py-20 md:py-28">
+      <section id="faq" className="bg-white py-16 md:py-28">
         <div className="pml-container">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
               BA/BE FAQ
             </p>
 
@@ -512,29 +517,30 @@ export default function BabeStudiesPage() {
             </h2>
           </div>
 
-          <div className="mx-auto mt-10 max-w-4xl space-y-4">
+          <div className="mx-auto mt-9 max-w-4xl space-y-3 md:mt-10 md:space-y-4">
             {faqs.map((faq) => (
-              <details key={faq.question} className="group rounded-[24px] border border-black/5 bg-white p-6 shadow-sm">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-black text-black">
+              <details
+                key={faq.question}
+                className="group rounded-[22px] border border-black/5 bg-white p-5 shadow-sm md:rounded-[24px] md:p-6"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-base font-black text-black md:text-lg">
                   {faq.question}
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-[#039147] transition group-open:rotate-45">
                     +
                   </span>
                 </summary>
-                <p className="mt-4 text-sm leading-7 text-black/60">
-                  {faq.answer}
-                </p>
+                <p className="mt-4 text-sm leading-7 text-black/60">{faq.answer}</p>
               </details>
             ))}
           </div>
         </div>
       </section>
 
-      <OtherServices current="babe" variant="three" />
+      <OtherServices current="babe" />
 
-      <section className="bg-white pb-24 md:pb-32">
+      <section className="bg-white pb-20 md:pb-32">
         <div className="pml-container">
-          <div className="relative overflow-hidden rounded-[36px] bg-black px-8 py-16 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:px-14 md:py-20">
+          <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:rounded-[36px] md:px-14 md:py-20">
             <Image
               src="/images/pml/facilities-lab-main.png"
               alt=""
@@ -547,17 +553,17 @@ export default function BabeStudiesPage() {
             <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
 
             <div className="relative mx-auto max-w-3xl">
-              <div className="mx-auto mb-7 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/25 bg-white/90 shadow-lg backdrop-blur">
+              <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/25 bg-white/90 shadow-lg backdrop-blur md:mb-7 md:h-16 md:w-16">
                 <Image
                   src="/images/LOGO-PML.png"
                   alt="PML"
-                  width={64}
-                  height={40}
-                  className="h-8 w-auto"
+                  width={100}
+                  height={48}
+                  className="h-7 w-auto md:h-8"
                 />
               </div>
 
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/70 md:text-sm">
                 Start a Project
               </p>
 
@@ -565,23 +571,23 @@ export default function BabeStudiesPage() {
                 Need BA/BE study support?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/75">
-                Share your study requirements with our team and we will help identify the right
-                service scope, required information, and next steps.
+              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/75 md:text-base md:leading-8">
+                Share your study requirements with our team and we will help identify the right service
+                scope, required information, and next steps.
               </p>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+              <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                 <button
                   type="button"
                   onClick={openProposal}
-                  className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5 md:py-4"
                 >
                   Request a Proposal
                 </button>
 
                 <a
                   href="#babe-overview"
-                  className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147]"
+                  className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-3.5 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147] md:py-4"
                 >
                   Review BA/BE Service
                 </a>
