@@ -21,12 +21,12 @@ export default function FacilityCardGrid() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
+        <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:mt-12 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
           {facilities.map((facility) => (
             <Link
               key={facility.key}
               href={facility.href}
-              className="group overflow-hidden rounded-[34px] border border-black/5 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,0,0,0.12)]"
+              className="group w-[82vw] max-w-[340px] shrink-0 snap-start overflow-hidden rounded-[28px] border border-black/5 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,0,0,0.12)] md:w-auto md:max-w-none md:rounded-[34px]"
             >
               <div className="relative aspect-[16/9] overflow-hidden bg-black">
                 <Image
@@ -41,12 +41,12 @@ export default function FacilityCardGrid() {
                 </div>
               </div>
 
-              <div className="p-8">
-                <h3 className="text-2xl font-black leading-tight text-black transition group-hover:text-[#039147]">
+              <div className="p-6 md:p-8">
+                <h3 className="text-xl font-black leading-tight text-black transition group-hover:text-[#039147] md:text-2xl">
                   {facility.title}
                 </h3>
 
-                <p className="mt-4 text-sm leading-7 text-black/60">
+                <p className="mt-3 text-sm leading-6 text-black/60 md:mt-4 md:leading-7">
                   {facility.summary}
                 </p>
 
@@ -58,6 +58,10 @@ export default function FacilityCardGrid() {
             </Link>
           ))}
         </div>
+
+        <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
+          Swipe to explore facilities
+        </p>
       </div>
     </section>
   );

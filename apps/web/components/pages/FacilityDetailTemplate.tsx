@@ -41,7 +41,7 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/62 to-black/20" />
         <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
 
-        <div className="pml-container relative py-24 md:py-32">
+        <div className="pml-container relative py-20 md:py-32">
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/60">
             <Link href="/" className="transition hover:text-white">Home</Link>
             <span>/</span>
@@ -95,8 +95,8 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
         </div>
       </section>
 
-      <section id="facility-detail" className="bg-white py-20 md:py-28">
-        <div className="pml-container grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+      <section id="facility-detail" className="bg-white py-16 md:py-28">
+        <div className="pml-container grid gap-9 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
           <div>
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
               Facility Detail
@@ -132,22 +132,22 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
             )}
           </div>
 
-          <div className="grid gap-4">
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
             {data.points.map((point) => (
-              <div key={point} className="flex items-start gap-3 rounded-[22px] border border-black/5 bg-white p-5 shadow-sm">
+              <div key={point} className="flex items-start gap-3 rounded-[20px] border border-black/5 bg-white p-4 shadow-sm md:rounded-[22px] md:p-5">
                 <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-[#039147]">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                     <path d="M5 12L10 17L20 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
-                <p className="text-sm font-bold leading-6 text-black/70">{point}</p>
+                <p className="text-xs font-bold leading-5 text-black/70 md:text-sm md:leading-6">{point}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-[#f6faf7] py-20 md:py-28">
+      <section className="bg-[#f6faf7] py-16 md:py-28">
         <div className="pml-container">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
@@ -164,15 +164,15 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
             </p>
           </div>
 
-          <div className="mx-auto mt-12 max-w-6xl">
-            <div className="relative overflow-hidden rounded-[34px] bg-white p-3 shadow-[0_24px_70px_rgba(0,0,0,0.12)]">
+          <div className="mx-auto mt-10 max-w-6xl md:mt-12">
+            <div className="relative overflow-hidden rounded-[28px] bg-white p-2 shadow-[0_24px_70px_rgba(0,0,0,0.12)] md:rounded-[34px] md:p-3">
               <div className="relative overflow-hidden rounded-[26px] bg-black">
                 <Image
                   src={data.gallery[activeImage]}
                   alt={`${data.title} gallery ${activeImage + 1}`}
                   width={1200}
                   height={760}
-                  className="mx-auto aspect-[16/8.5] max-h-[560px] w-full object-contain bg-black"
+                  className="mx-auto aspect-[4/3] max-h-[560px] w-full object-contain bg-black md:aspect-[16/8.5]"
                 />
 
                 <div className="absolute left-5 top-5 rounded-full bg-white/90 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-[#039147] backdrop-blur">
@@ -239,7 +239,7 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
       </section>
 
 
-      <section className="bg-[#eaf8f0] py-20 md:py-28">
+      <section className="bg-[#eaf8f0] py-16 md:py-28">
         <div className="pml-container">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
@@ -251,12 +251,12 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
             </h2>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:mt-12 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
             {otherFacilities.map((facility) => (
               <Link
                 key={facility.key}
                 href={facility.href}
-                className="group overflow-hidden rounded-[30px] border border-black/5 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                className="group w-[78vw] max-w-[320px] shrink-0 snap-start overflow-hidden rounded-[26px] border border-black/5 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:w-auto md:max-w-none md:rounded-[30px]"
               >
                 <div className="relative aspect-[16/10]">
                   <Image
@@ -284,6 +284,10 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
               </Link>
             ))}
           </div>
+
+          <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
+            Swipe to explore other facilities
+          </p>
         </div>
       </section>
     </main>

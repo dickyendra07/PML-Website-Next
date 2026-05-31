@@ -23,7 +23,7 @@ export default function FacilitiesPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/62 to-black/20" />
         <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
 
-        <div className="pml-container relative py-24 md:py-32">
+        <div className="pml-container relative py-20 md:py-32">
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/60">
             <Link href="/" className="transition hover:text-white">Home</Link>
             <span>/</span>
@@ -70,10 +70,10 @@ export default function FacilitiesPage() {
         <FacilityCardGrid />
       </div>
 
-      <section className="bg-white py-20 md:py-28">
-        <div className="pml-container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <section className="bg-white py-16 md:py-28">
+        <div className="pml-container grid gap-9 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
           <div>
-            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
               Facility Trust
             </p>
 
@@ -81,14 +81,14 @@ export default function FacilitiesPage() {
               Built for reliable study execution and laboratory support
             </h2>
 
-            <p className="mt-6 text-base leading-8 text-black/65">
+            <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
               PML facilities are designed to support clinical conduct, sample handling,
               analytical work, study documentation, and project coordination. This gives sponsors
               a clearer operational foundation from early discussion to final reporting.
             </p>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-2 md:gap-4">
             {[
               "Clinical facility and volunteer coordination",
               "Analytical laboratory capability",
@@ -97,20 +97,20 @@ export default function FacilitiesPage() {
               "Regulatory-ready documentation",
               "VR Gallery facility experience",
             ].map((item) => (
-              <div key={item} className="rounded-[24px] border border-black/5 bg-white p-5 shadow-sm">
+              <div key={item} className="rounded-[20px] border border-black/5 bg-white p-4 shadow-sm md:rounded-[24px] md:p-5">
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
                   ✓
                 </span>
-                <p className="mt-4 text-sm font-bold leading-6 text-black/65">{item}</p>
+                <p className="mt-3 text-xs font-bold leading-5 text-black/65 md:mt-4 md:text-sm md:leading-6">{item}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-white pb-24 md:pb-32">
+      <section className="bg-white pb-20 md:pb-32">
         <div className="pml-container">
-          <div className="relative overflow-hidden rounded-[36px] bg-black px-8 py-16 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:px-14 md:py-20">
+          <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:rounded-[36px] md:px-14 md:py-20">
             <Image
               src="/images/pml/cta-lab-background.png"
               alt=""
