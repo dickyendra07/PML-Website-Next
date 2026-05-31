@@ -70,7 +70,7 @@ model ProposalSubmission {
   status       InquiryStatus @default(NEW)
   internalNote String?
   createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  updatedAt    DateTime      @default(now()) @updatedAt
 
   @@index([status])
   @@index([serviceType])
@@ -88,7 +88,7 @@ model ContactInquiry {
   sourcePage   String?
   internalNote String?
   createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  updatedAt    DateTime      @default(now()) @updatedAt
 
   @@index([status])
   @@index([service])
