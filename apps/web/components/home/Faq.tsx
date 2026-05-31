@@ -18,6 +18,10 @@ const faqs = [
     "How do we start a project or request a proposal?",
     "You can submit a request through the proposal form and share your study, testing, registration, or consultation needs. The PML team will review the requirements and recommend the next steps.",
   ],
+  [
+    "Does PML provide regulatory consultation?",
+    "Yes. PML provides regulatory consultation support including BPOM-focused guidance, document review, dossier gap analysis, ACTD preparation, and submission readiness support.",
+  ],
 ];
 
 export default function Faq() {

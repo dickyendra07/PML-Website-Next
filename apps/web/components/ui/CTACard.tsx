@@ -8,53 +8,61 @@ export default function CTACard() {
   };
 
   return (
-    <section id="proposal" className="bg-white px-4 py-20 md:py-28">
+    <section id="contact" className="relative overflow-hidden bg-white px-4 py-16 md:py-20">
       <div className="pml-container">
-        <div className="relative overflow-hidden rounded-[34px] bg-black px-6 py-20 text-center shadow-[0_24px_90px_rgba(3,145,71,0.18)] md:px-12 md:py-24">
+        <div className="relative overflow-hidden rounded-[36px] bg-[#039147] px-6 py-16 text-center text-white shadow-[0_28px_90px_rgba(3,145,71,0.20)] md:rounded-[44px] md:px-10 md:py-20">
           <Image
             src="/images/pml/cta-lab-background.png"
             alt=""
             fill
-            className="object-cover opacity-70"
+            className="object-cover"
+            aria-hidden="true"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/70 to-[#039147]/55" />
-          <div className="pml-hex-pattern absolute inset-0 opacity-[0.12]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/62 to-black/34" aria-hidden="true" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/48 via-transparent to-black/18" aria-hidden="true" />
+          <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" aria-hidden="true" />
 
-          <div className="relative z-10 mx-auto max-w-3xl">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/95 shadow-xl">
-              <Image src="/images/LOGO-PML.png" alt="" width={56} height={36} className="h-auto w-11" />
-            </div>
+          <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" aria-hidden="true" />
+          <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-black/20 blur-3xl" aria-hidden="true" />
 
-            <p className="mt-7 text-sm font-black uppercase tracking-[0.2em] text-white/70">
-              Start a Project
-            </p>
+          <div className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-white/25 bg-white/90 shadow-lg backdrop-blur">
+            <Image
+              src="/images/LOGO-PML.png"
+              alt="PML"
+              width={64}
+              height={40}
+              className="h-8 w-auto"
+            />
+          </div>
 
-            <h2 className="mt-4 text-4xl font-black leading-tight tracking-[-0.04em] text-white md:text-6xl">
-              We are ready to support your next project
-            </h2>
+          <p className="relative mt-8 text-sm font-extrabold uppercase tracking-[0.18em] text-white/80">
+            Start a Project
+          </p>
 
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/72">
-              Share your study, testing, or regulatory needs with our team and we will help identify
-              the right service, required information, and next steps.
-            </p>
+          <h2 className="relative mx-auto mt-4 max-w-4xl text-3xl font-black leading-tight md:text-5xl">
+            We are ready to support you
+          </h2>
 
-            <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-              <button
-                type="button"
-                onClick={openProposal}
-                className="inline-flex h-13 items-center justify-center rounded-full bg-white px-7 text-sm font-black text-[#039147] transition hover:-translate-y-0.5"
-              >
-                Request a Proposal
-              </button>
+          <p className="relative mx-auto mt-6 max-w-2xl text-sm leading-7 text-white/78 md:text-base">
+            Share your project needs with our team and we will help you identify the right service, required information, and next steps.
+          </p>
 
-              <a
-                href="/services"
-                className="inline-flex h-13 items-center justify-center rounded-full border border-white/20 bg-white/10 px-7 text-sm font-black text-white transition hover:-translate-y-0.5"
-              >
-                Explore Services
-              </a>
-            </div>
+          <div className="relative mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <button
+              type="button"
+              onClick={openProposal}
+              className="inline-flex w-full items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-extrabold text-[#039147] shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl sm:w-auto"
+            >
+              Request a Proposal
+            </button>
+
+            <a
+              href="#footer"
+              className="inline-flex w-full items-center justify-center rounded-full border border-white/35 px-7 py-3.5 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-white hover:text-[#039147] sm:w-auto"
+            >
+              Discuss Your Needs
+            </a>
           </div>
         </div>
       </div>
