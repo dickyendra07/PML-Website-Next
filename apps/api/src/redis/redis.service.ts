@@ -6,11 +6,22 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
   private client: Redis;
 
   onModuleInit() {
-    this.client = new Redis(process.env.REDIS_URL || 'redis://localhost:6379');
+    this.client = new Redis(process.env.REDIS_URL || 'redis://localhost:6379', {
+      lazyConnect: true,
+      maxRetriesPerRequest: 1,
+    });
   }
 
   getClient() {
     return this.client;
+  }
+
+  async ping() {
+    if (this.client.status === 'wait') {
+      await this.client.connect();
+    }
+
+    return this.client.ping();
   }
 
   async get(key: string) {
@@ -26,6 +37,10 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
   }
 
   async increment(key: string, seconds?: number) {
+    if (this.client.status === 'wait') {
+      await this.client.connect();
+    }
+
     const value = await this.client.incr(key);
 
     if (value === 1 && seconds) {
@@ -36,6 +51,8 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
   }
 
   async onModuleDestroy() {
-    await this.client.quit();
+    if (this.client.status !== 'end') {
+      await this.client.quit();
+    }
   }
 }
