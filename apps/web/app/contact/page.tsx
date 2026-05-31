@@ -98,7 +98,7 @@ export default function ContactPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/62 to-black/20" />
         <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
 
-        <div className="pml-container relative py-24 md:py-32">
+        <div className="pml-container relative py-20 md:py-32">
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/60">
             <Link href="/" className="transition hover:text-white">Home</Link>
             <span>/</span>
@@ -138,10 +138,10 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section id="contact-form" className="bg-[#f6faf7] py-20 md:py-28">
-        <div className="pml-container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <section id="contact-form" className="bg-[#f6faf7] py-16 md:py-28">
+        <div className="pml-container grid gap-9 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-10">
           <div>
-            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
               Get in Touch
             </p>
 
@@ -149,14 +149,14 @@ export default function ContactPage() {
               Complete the details below and our team will follow up
             </h2>
 
-            <p className="mt-6 text-base leading-8 text-black/65">
+            <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
               Please share your name, contact details, service interest, and message. For now, this form will open your email app with a prepared inquiry to PML.
             </p>
 
-            <div className="mt-8 grid gap-4">
+            <div className="mt-8 grid gap-3 md:gap-4">
               {contactCards.map((card) => (
-                <div key={card.title} className="flex gap-4 rounded-[26px] border border-black/5 bg-white p-5 shadow-sm">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147]">
+                <div key={card.title} className="flex gap-3 rounded-[22px] border border-black/5 bg-white p-4 shadow-sm md:gap-4 md:rounded-[26px] md:p-5">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] md:h-12 md:w-12">
                     <ContactIcon type={card.icon} />
                   </div>
 
@@ -164,11 +164,11 @@ export default function ContactPage() {
                     <h3 className="text-sm font-black uppercase tracking-[0.12em] text-black/45">
                       {card.title}
                     </h3>
-                    <p className="mt-2 text-sm font-bold leading-7 text-black/70">
+                    <p className="mt-2 text-sm font-bold leading-6 text-black/70 md:leading-7">
                       {card.value}
                     </p>
                     {card.secondValue ? (
-                      <p className="mt-1 text-sm font-bold leading-7 text-black/70">
+                      <p className="mt-1 text-sm font-bold leading-6 text-black/70 md:leading-7">
                         {card.secondValue}
                       </p>
                     ) : null}
@@ -180,9 +180,9 @@ export default function ContactPage() {
 
           <form
             onSubmit={handleSubmit}
-            className="rounded-[36px] border border-black/5 bg-white p-6 shadow-[0_24px_70px_rgba(0,0,0,0.08)] md:p-8"
+            className="rounded-[28px] border border-black/5 bg-white p-5 shadow-[0_24px_70px_rgba(0,0,0,0.08)] md:rounded-[36px] md:p-8"
           >
-            <div className="grid gap-5 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2 md:gap-5">
               <label className="grid gap-2">
                 <span className="text-sm font-black text-black">Your Name*</span>
                 <input
@@ -238,7 +238,7 @@ export default function ContactPage() {
                   required
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
-                  rows={7}
+                  rows={6}
                   className="resize-none rounded-2xl border border-black/10 bg-white px-4 py-4 text-sm font-bold leading-7 text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                   placeholder="Tell us about your inquiry, project needs, timeline, or questions..."
                 />
@@ -259,9 +259,57 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-16 md:py-28">
         <div className="pml-container">
-          <div className="relative overflow-hidden rounded-[36px] bg-black px-8 py-16 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:px-14 md:py-20">
+          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-stretch lg:gap-10">
+            <div className="rounded-[30px] border border-black/5 bg-[#f6faf7] p-6 shadow-sm md:rounded-[36px] md:p-8">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
+                Location Map
+              </p>
+
+              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+                Visit Pharma Metric Labs office
+              </h2>
+
+              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+                PML is located at Gedung Indra Sentral, Cempaka Putih, Jakarta Pusat. Use the map to find the office location and plan your visit.
+              </p>
+
+              <div className="mt-7 grid gap-3">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Gedung%20Indra%20Sentral%20Jl.%20Let.%20Jend.%20Suprapto%20No.%2060%20Cempaka%20Putih%20Jakarta%20Pusat"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5"
+                >
+                  Open in Google Maps
+                </a>
+
+                <a
+                  href="tel:+62214265310"
+                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-7 py-4 text-sm font-extrabold text-[#039147] transition hover:bg-[#039147] hover:text-white"
+                >
+                  Call Before Visit
+                </a>
+              </div>
+            </div>
+
+            <div className="overflow-hidden rounded-[30px] border border-black/5 bg-white p-2 shadow-[0_24px_70px_rgba(0,0,0,0.10)] md:rounded-[36px] md:p-3">
+              <iframe
+                title="Pharma Metric Labs Location Map"
+                src="https://www.google.com/maps?q=Gedung%20Indra%20Sentral%20Jl.%20Let.%20Jend.%20Suprapto%20No.%2060%20Cempaka%20Putih%20Jakarta%20Pusat%2010520%20Indonesia&output=embed"
+                className="h-[320px] w-full rounded-[24px] border-0 md:h-full md:min-h-[470px] md:rounded-[28px]"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-16 md:py-28">
+        <div className="pml-container">
+          <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:rounded-[36px] md:px-14 md:py-20">
             <Image
               src="/images/pml/facilities-gallery/analytical-main.jpg"
               alt=""
