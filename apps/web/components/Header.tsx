@@ -39,25 +39,25 @@ type IconType =
 const aboutItems: MegaItem[] = [
   {
     label: "Experts & Team",
-    href: "/about-us",
+    href: "/about-us#experts-team",
     desc: "Multidisciplinary professionals across clinical, laboratory, regulatory, and project workflows.",
     icon: "team",
   },
   {
     label: "Company Profile",
-    href: "/about-us",
+    href: "/about-us#company-profile",
     desc: "Learn about PML’s capability, experience, quality standards, and CRO service focus.",
     icon: "company",
   },
   {
     label: "Clients & Network",
-    href: "/about-us",
+    href: "/about-us#clients-network",
     desc: "Serving local and international clients with hospital, investigator, and industry networks.",
     icon: "network",
   },
   {
     label: "Catalogue",
-    href: "/about-us",
+    href: "/about-us#catalogue",
     desc: "Access company materials, service information, and downloadable references.",
     icon: "catalogue",
   },

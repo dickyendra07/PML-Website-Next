@@ -288,7 +288,7 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section id="about-overview" className="bg-white py-16 md:py-28">
+      <section id="company-profile" className="bg-white py-16 md:py-28">
         <div className="pml-container">
           <div className="grid gap-9 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
             <div className="overflow-hidden rounded-[28px] bg-white p-2 shadow-[0_24px_70px_rgba(0,0,0,0.10)] md:rounded-[34px] md:p-3">
@@ -346,6 +346,50 @@ export default function AboutUsPage() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+
+      <section id="experts-team" className="bg-[#f6faf7] py-16 md:py-28">
+        <div className="pml-container">
+          <div className="grid gap-9 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-12">
+            <div>
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
+                Experts & Team
+              </p>
+
+              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+                Multidisciplinary expertise across clinical, laboratory, regulatory, and project workflows
+              </h2>
+
+              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+                PML is supported by professionals with experience across clinical study operations,
+                bioanalysis, laboratory testing, regulatory affairs, documentation, and project
+                coordination. This multidisciplinary structure helps sponsors move from inquiry to
+                execution with clearer communication and stronger technical support.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 md:gap-4">
+              {[
+                "Clinical operations team",
+                "Bioanalytical laboratory team",
+                "Regulatory affairs support",
+                "Project coordination team",
+                "Quality and documentation workflow",
+                "Sponsor communication support",
+              ].map((item) => (
+                <div key={item} className="rounded-[20px] border border-black/5 bg-white p-4 shadow-sm md:rounded-[24px] md:p-5">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
+                    ✓
+                  </span>
+                  <p className="mt-3 text-xs font-bold leading-5 text-black/65 md:mt-4 md:text-sm md:leading-6">
+                    {item}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -586,6 +630,96 @@ export default function AboutUsPage() {
           <p className="mt-1 text-center text-xs font-bold text-white/50 md:hidden">
             Swipe to explore certifications
           </p>
+        </div>
+      </section>
+
+
+      <section id="clients-network" className="bg-white py-16 md:py-28">
+        <div className="pml-container">
+          <div className="grid gap-9 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
+            <div>
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
+                Clients & Network
+              </p>
+
+              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+                Supporting local and international sponsors through reliable collaboration
+              </h2>
+
+              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+                PML supports pharmaceutical companies, healthcare organizations, research partners,
+                hospitals, investigators, and overseas sponsors that require clinical, analytical,
+                regulatory, and documentation support in Indonesia.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 md:gap-4">
+              {[
+                "Local pharmaceutical companies",
+                "International sponsors",
+                "Hospital and investigator network",
+                "Healthcare and research partners",
+                "Regulatory and documentation teams",
+                "Clinical and laboratory collaborators",
+              ].map((item) => (
+                <div key={item} className="rounded-[20px] border border-black/5 bg-[#f6faf7] p-4 shadow-sm md:rounded-[24px] md:p-5">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
+                    ✓
+                  </span>
+                  <p className="mt-3 text-xs font-bold leading-5 text-black/65 md:mt-4 md:text-sm md:leading-6">
+                    {item}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="catalogue" className="bg-[#eaf8f0] py-16 md:py-28">
+        <div className="pml-container">
+          <div className="relative overflow-hidden rounded-[30px] border border-black/5 bg-white p-6 shadow-[0_24px_70px_rgba(0,0,0,0.08)] md:rounded-[36px] md:p-10">
+            <div className="pml-hex-pattern absolute inset-0 opacity-[0.05]" />
+
+            <div className="relative grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
+              <div>
+                <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
+                  Catalogue
+                </p>
+
+                <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+                  Company materials and service references
+                </h2>
+
+                <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+                  This section is prepared for future company profile, service catalogue,
+                  certificates, and downloadable business materials. For now, visitors can contact
+                  PML directly to request the latest official documents.
+                </p>
+
+                <Link
+                  href="/contact"
+                  className="mt-7 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5"
+                >
+                  Request Catalogue
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 md:gap-4">
+                {[
+                  "Company Profile",
+                  "Service Catalogue",
+                  "Certificates",
+                  "Facility Overview",
+                ].map((item) => (
+                  <div key={item} className="rounded-[22px] border border-black/5 bg-[#f6faf7] p-5 text-center shadow-sm md:rounded-[26px] md:p-6">
+                    <p className="text-sm font-black leading-tight text-black">{item}</p>
+                    <p className="mt-2 text-xs font-bold text-black/45">Available by request</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
