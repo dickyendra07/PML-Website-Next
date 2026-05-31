@@ -39,7 +39,7 @@ type IconType =
 const aboutItems: MegaItem[] = [
   {
     label: "Experts & Team",
-    href: "/about-us#experts-team",
+    href: "/about-us/experts-and-team",
     desc: "Multidisciplinary professionals across clinical, laboratory, regulatory, and project workflows.",
     icon: "team",
   },

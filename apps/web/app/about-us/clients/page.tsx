@@ -173,9 +173,6 @@ export default function ClientsPage() {
                 ))}
               </div>
 
-              <p className="mt-4 text-xs font-bold leading-6 text-black/45">
-                Client logo assets adapted from the previous PML client page.
-              </p>
             </div>
           </div>
 
