@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import AdminShell from "@/components/admin/AdminShell";
 import AdminState from "@/components/admin/AdminState";
 import {
@@ -93,7 +93,7 @@ export default function AdminPopupsPage() {
     return items.find((item) => item.id === form.id) || null;
   }, [items, form.id]);
 
-  const loadPopups = async () => {
+  const loadPopups = useCallback(async () => {
     const token = getAdminToken();
 
     if (!token) {
@@ -107,18 +107,28 @@ export default function AdminPopupsPage() {
       setItems(data);
       setStatus("success");
 
-      if (data.length > 0 && !form.id) {
-        setForm(mapPopupToForm(data[0]));
-      }
+      setForm((current) => {
+        if (data.length > 0 && !current.id) {
+          return mapPopupToForm(data[0]);
+        }
+
+        return current;
+      });
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : "Failed to load popups.");
     }
-  };
+  }, []);
 
   useEffect(() => {
-    loadPopups();
-  }, []);
+    const timer = window.setTimeout(() => {
+      void loadPopups();
+    }, 0);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [loadPopups]);
 
   const updateField = (key: keyof PopupForm, value: string) => {
     setForm((current) => ({
