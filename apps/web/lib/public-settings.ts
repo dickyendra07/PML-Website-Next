@@ -13,6 +13,8 @@ export const fallbackPublicSettings: PublicSettings = {
   "contact.phone": "(021) 426 5310",
   "footer.copyright": "Pharma Metric Labs. All rights reserved.",
   "proposal.recipientEmail": "info@pharmametriclabs.com",
+  "seo.defaultTitle": "Pharma Metric Labs | Contract Research Organization in Indonesia",
+  "seo.defaultDescription": "Integrated CRO services for pharmaceutical development, including BA/BE studies, clinical trial services, contract analysis, and regulatory consultation.",
   "social.instagram": "https://www.instagram.com",
   "social.linkedin": "https://www.linkedin.com",
 };
