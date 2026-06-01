@@ -1,3 +1,4 @@
+import HomepagePopup from "@/components/popups/HomepagePopup";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ export default function Home() {
       <Testimonials />
       <Faq />
       <CTACard />
+          <HomepagePopup />
     </main>
   );
 }

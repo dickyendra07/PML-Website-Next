@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PML Website Development Checklist</title>
+  <style>
+    :root {
+      --green: #039147;
+      --soft: #eaf8f0;
+      --dark: #101410;
+      --muted: #647067;
+      --line: #e5ece7;
+      --bg: #f7faf8;
+      --white: #ffffff;
+      --yellow: #f59e0b;
+      --blue: #2563eb;
+      --red: #dc2626;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
+    }
+
+    .wrap {
+      width: min(100% - 32px, 1180px);
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 28px 0;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 8px 0 8px;
+      font-size: clamp(28px, 4vw, 48px);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 760px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      padding: 20px 0 8px;
+    }
+
+    .summary-card,
+    .batch {
+      border: 1px solid var(--line);
+      background: var(--white);
+      border-radius: 24px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.04);
+    }
+
+    .summary-card {
+      padding: 18px;
+    }
+
+    .summary-card strong {
+      display: block;
+      font-size: 28px;
+      letter-spacing: -0.04em;
+    }
+
+    .summary-card span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    main {
+      padding: 18px 0 60px;
+    }
+
+    .batch {
+      margin-top: 18px;
+      overflow: hidden;
+    }
+
+    details summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 22px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+    }
+
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .batch-title {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .batch-title h2 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .batch-title p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .done { background: var(--soft); color: var(--green); }
+    .progress { background: #eff6ff; color: var(--blue); }
+    .todo { background: #fff7ed; color: var(--yellow); }
+    .later { background: #f1f5f9; color: #64748b; }
+
+    .items {
+      border-top: 1px solid var(--line);
+      padding: 8px 22px 22px;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      gap: 12px;
+      align-items: start;
+      padding: 14px 0;
+      border-bottom: 1px solid #eef3ef;
+    }
+
+    .item:last-child {
+      border-bottom: 0;
+    }
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--green);
+      margin-top: 3px;
+    }
+
+    .item h3 {
+      margin: 0 0 4px;
+      font-size: 14px;
+    }
+
+    .item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    code {
+      border-radius: 8px;
+      background: #f1f5f9;
+      padding: 2px 6px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .summary {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      details summary,
+      .items {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .item {
+        grid-template-columns: 24px 1fr;
+      }
+
+      .item .badge {
+        grid-column: 2;
+        justify-self: start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap hero">
+      <div class="eyebrow">Kara Digital · Pharma Metric Labs</div>
+      <h1>PML Website Development Checklist</h1>
+      <p class="subtitle">
+        Checklist kerja internal untuk menjaga progress website PML tetap rapi, bertahap, dan tidak lompat ke deployment sebelum fitur utama selesai.
+      </p>
+
+      <div class="summary">
+        <div class="summary-card">
+          <strong>J8</strong>
+          <span>Current Batch</span>
+        </div>
+        <div class="summary-card">
+          <strong>31</strong>
+          <span>Public/Admin Routes Built</span>
+        </div>
+        <div class="summary-card">
+          <strong>SEO</strong>
+          <span>Dynamic Metadata Done</span>
+        </div>
+        <div class="summary-card">
+          <strong>Later</strong>
+          <span>Production Deployment</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <details class="batch" open>
+      <summary>
+        <div class="batch-title">
+          <h2>Batch J8 — CMS & Admin Refinement</h2>
+          <p>Fokus sekarang: menyempurnakan admin/CMS, SEO settings, inquiry workflow, dan kesiapan konten sebelum masuk deployment.</p>
+        </div>
+        <span class="badge progress">In Progress</span>
+      </summary>
+
+      <div class="items">
+        <div class="item">
+          <input type="checkbox" checked />
+          <div>
+            <h3>Dynamic SEO metadata for public pages</h3>
+            <p>Semua public page utama sudah bisa mengambil metadata dari API <code>/page-seo</code>.</p>
+          </div>
+          <span class="badge done">Done</span>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" checked />
+          <div>
+            <h3>Admin SEO settings accordion</h3>
+            <p>Halaman settings admin sudah dipolish agar SEO settings tidak terlalu panjang ke bawah.</p>
+          </div>
+          <span class="badge done">Done</span>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" />
+          <div>
+            <h3>Admin sidebar navigation polish</h3>
+            <p>Rapikan menu admin supaya ada akses jelas ke Dashboard, Inquiries, Settings, dan SEO/content management.</p>
+          </div>
+          <span class="badge todo">Next</span>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" />
+          <div>
+            <h3>Inquiry detail UX polish</h3>
+            <p>Pastikan inquiry drawer/table enak dipakai: status, internal note, spam, dan kontak calon client mudah dibaca.</p>
+          </div>
+          <span class="badge todo">Todo</span>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" />
+          <div>
+            <h3>Admin dashboard summary cards</h3>
+            <p>Tambahkan ringkasan inquiries, status terbaru, dan quick action agar dashboard tidak kosong.</p>
+          </div>
+          <span class="badge todo">Todo</span>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" />
+          <div>
+            <h3>Public CTA and proposal modal consistency</h3>
+            <p>Pastikan semua tombol Request Proposal di halaman public membuka modal yang sama dan sourcePage terkirim benar.</p>
+          </div>
+          <span class="badge todo">Todo</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="batch">
+      <summary>
+        <div class="batch-title">
+          <h2>Batch J9 — Content Management Expansion</h2>
+          <p>Batch berikutnya untuk memperluas CMS ke content yang lebih dinamis.</p>
+        </div>
+        <span class="badge later">Later</span>
+      </summary>
+
+      <div class="items">
+        <div class="item">
+          <input type="checkbox" />
+          <div>
+            <h3>Insight articles CMS</h3>
+            <p>Persiapan CRUD artikel, news, publications, dan FAQ jika client ingin edit sendiri dari admin.</p>
+          </div>
+          <span class="badge later">Later</span>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" />
+          <div>
+            <h3>Catalogue/document upload management</h3>
+            <p>Siapkan alur admin untuk kelola company profile/catalogue/downloadable documents.</p>
+          </div>
+          <span class="badge later">Later</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="batch">
+      <summary>
+        <div class="batch-title">
+          <h2>Final Batch — Production & Deployment</h2>
+          <p>Dikerjakan nanti setelah admin, CMS, konten, dan public page sudah final.</p>
+        </div>
+        <span class="badge later">Later</span>
+      </summary>
+
+      <div class="items">
+        <div class="item">
+          <input type="checkbox" />
+          <div>
+            <h3>Production environment setup</h3>
+            <p>Setup production env untuk web, API, database, Redis, CORS, JWT secret, dan domain.</p>
+          </div>
+          <span class="badge later">Later</span>
+        </div>
+
+        <div class="item">
+          <input type="checkbox" />
+          <div>
+            <h3>Deployment smoke test</h3>
+            <p>Test live domain, API health, form submission, admin login, sitemap, robots, dan metadata.</p>
+          </div>
+          <span class="badge later">Later</span>
+        </div>
+      </div>
+    </details>
+  </main>
+</body>
+</html>

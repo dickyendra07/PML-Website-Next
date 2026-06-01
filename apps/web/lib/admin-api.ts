@@ -273,3 +273,90 @@ export async function seedAdminPageSeoDefaults(token: string) {
 
   return parseJsonResponse<PageSeoItem[]>(response);
 }
+
+export type PopupType = "ANNOUNCEMENT" | "PROMOTION" | "ALERT" | "INFORMATION";
+
+export type PopupItem = {
+  id: string;
+  title: string;
+  description: string | null;
+  buttonLabel: string | null;
+  buttonUrl: string | null;
+  imageUrl: string | null;
+  type: PopupType;
+  status: PageSeoStatus;
+  placementPages: string[];
+  frequency: string;
+  startsAt: string | null;
+  endsAt: string | null;
+  priority: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type PopupPayload = {
+  title: string;
+  description?: string | null;
+  buttonLabel?: string | null;
+  buttonUrl?: string | null;
+  imageUrl?: string | null;
+  type?: PopupType;
+  status?: PageSeoStatus;
+  placementPages?: string[];
+  frequency?: string;
+  startsAt?: string | null;
+  endsAt?: string | null;
+  priority?: number;
+};
+
+export async function getAdminPopups(token: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/popups`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+  });
+
+  return parseJsonResponse<PopupItem[]>(response);
+}
+
+export async function createAdminPopup(token: string, payload: PopupPayload) {
+  const response = await fetch(`${API_BASE_URL}/admin/popups`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return parseJsonResponse<PopupItem>(response);
+}
+
+export async function updateAdminPopup(
+  token: string,
+  id: string,
+  payload: PopupPayload
+) {
+  const response = await fetch(`${API_BASE_URL}/admin/popups/${id}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return parseJsonResponse<PopupItem>(response);
+}
+
+export async function archiveAdminPopup(token: string, id: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/popups/${id}/archive`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return parseJsonResponse<PopupItem>(response);
+}
