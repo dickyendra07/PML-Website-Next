@@ -8,6 +8,7 @@ import { RedisModule } from './redis/redis.module';
 import { AuthModule } from './auth/auth.module';
 import { SettingsModule } from './settings/settings.module';
 import { PageSeoModule } from './page-seo/page-seo.module';
+import { PopupsModule } from './popups/popups.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { PageSeoModule } from './page-seo/page-seo.module';
     AuthModule,
     SettingsModule,
     PageSeoModule,
+    PopupsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
