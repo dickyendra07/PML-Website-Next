@@ -1,7 +1,7 @@
 import InsightCategoryTemplate from "@/components/pages/InsightCategoryTemplate";
 
 export const metadata = {
-  title: "Publications | Pharma Metric Labs",
+  title: "Publications",
   description: "Scientific and regulatory references from Pharma Metric Labs.",
 };
 

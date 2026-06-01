@@ -3,7 +3,7 @@ import { getFacilityByKey } from "@/data/facilities";
 import { notFound } from "next/navigation";
 
 export const metadata = {
-  title: "Clinical Facilities | Pharma Metric Labs",
+  title: "Clinical Facilities",
   description: "Clinical facility support for controlled study activities at Pharma Metric Labs.",
 };
 

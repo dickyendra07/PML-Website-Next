@@ -1,7 +1,7 @@
 import InsightCategoryTemplate from "@/components/pages/InsightCategoryTemplate";
 
 export const metadata = {
-  title: "Articles | Pharma Metric Labs",
+  title: "Articles",
   description: "Educational articles about CRO services, BA/BE studies, clinical trials, and pharmaceutical development.",
 };
 

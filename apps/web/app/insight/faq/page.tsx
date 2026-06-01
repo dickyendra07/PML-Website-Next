@@ -1,7 +1,7 @@
 import InsightCategoryTemplate from "@/components/pages/InsightCategoryTemplate";
 
 export const metadata = {
-  title: "FAQ | Pharma Metric Labs",
+  title: "FAQ",
   description: "Frequently asked questions about Pharma Metric Labs services and project inquiries.",
 };
 
