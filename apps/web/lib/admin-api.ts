@@ -165,3 +165,42 @@ export async function markAdminProposalAsSpam(token: string, id: string) {
 
   return parseJsonResponse<ProposalSubmission>(response);
 }
+
+export type SiteSetting = {
+  id: string;
+  key: string;
+  label: string;
+  value: string | number | boolean | null | Record<string, unknown> | unknown[];
+  group: string;
+  description: string | null;
+  isPublic: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export async function getAdminSettings(token: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/settings`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+  });
+
+  return parseJsonResponse<SiteSetting[]>(response);
+}
+
+export async function updateAdminSettings(
+  token: string,
+  items: Array<{ key: string; value: SiteSetting["value"] }>
+) {
+  const response = await fetch(`${API_BASE_URL}/admin/settings`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ items }),
+  });
+
+  return parseJsonResponse<SiteSetting[]>(response);
+}
