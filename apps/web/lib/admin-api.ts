@@ -204,3 +204,72 @@ export async function updateAdminSettings(
 
   return parseJsonResponse<SiteSetting[]>(response);
 }
+
+
+export type PageSeoStatus = "DRAFT" | "PUBLISHED" | "ARCHIVED";
+
+export type PageSeoItem = {
+  id: string;
+  path: string;
+  label: string;
+  title: string;
+  description: string;
+  ogTitle: string | null;
+  ogDescription: string | null;
+  ogImage: string | null;
+  canonicalUrl: string | null;
+  status: PageSeoStatus;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export async function getAdminPageSeoItems(token: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/page-seo`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+  });
+
+  return parseJsonResponse<PageSeoItem[]>(response);
+}
+
+export async function updateAdminPageSeo(
+  token: string,
+  id: string,
+  payload: Partial<
+    Pick<
+      PageSeoItem,
+      | "label"
+      | "title"
+      | "description"
+      | "ogTitle"
+      | "ogDescription"
+      | "ogImage"
+      | "canonicalUrl"
+      | "status"
+    >
+  >
+) {
+  const response = await fetch(`${API_BASE_URL}/admin/page-seo/${id}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return parseJsonResponse<PageSeoItem>(response);
+}
+
+export async function seedAdminPageSeoDefaults(token: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/page-seo/seed-defaults`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return parseJsonResponse<PageSeoItem[]>(response);
+}
