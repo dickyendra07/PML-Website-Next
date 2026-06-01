@@ -1,7 +1,13 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { submitProposal } from "@/lib/api";
+import {
+  fallbackPublicSettings,
+  getPublicSettings,
+  getSettingValue,
+  PublicSettings,
+} from "@/lib/public-settings";
 
 type ProposalModalProps = {
   open: boolean;
@@ -19,11 +25,36 @@ const initialForm = {
 };
 
 export default function ProposalModal({ open, onClose }: ProposalModalProps) {
+  const [settings, setSettings] = useState<PublicSettings>(fallbackPublicSettings);
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
+  useEffect(() => {
+    if (!open) return;
+
+    getPublicSettings()
+      .then((data) => {
+        setSettings({
+          ...fallbackPublicSettings,
+          ...data,
+        });
+      })
+      .catch(() => {
+        setSettings(fallbackPublicSettings);
+      });
+  }, [open]);
+
   if (!open) return null;
+
+  const primaryEmail = getSettingValue(settings, "contact.email", "info@pharmametriclabs.com");
+  const secondaryEmail = getSettingValue(
+    settings,
+    "contact.secondaryEmail",
+    "novida.aristyowati@pharmametriclabs.com"
+  );
+  const phoneNumber = getSettingValue(settings, "contact.phone", "(+6221) 426 5310 / (+6221) 426 9475");
+  const proposalRecipient = getSettingValue(settings, "proposal.recipientEmail", primaryEmail);
 
   const updateField = (field: keyof typeof initialForm, value: string) => {
     setForm((current) => ({
@@ -85,6 +116,46 @@ export default function ProposalModal({ open, onClose }: ProposalModalProps) {
             <p className="mt-3 text-sm leading-7 text-black/60">
               Share your study, testing, or regulatory needs and the PML team will help identify the right next steps.
             </p>
+
+            <div className="mt-4 grid gap-3 rounded-2xl border border-[#039147]/10 bg-[#eaf8f0] p-4 text-xs font-bold leading-6 text-black/60">
+              <div>
+                <p className="font-black uppercase tracking-[0.14em] text-[#039147]">
+                  Proposal routed to
+                </p>
+                <a
+                  className="mt-1 inline-flex break-all text-sm font-black text-black underline decoration-[#039147]/30 underline-offset-4 transition hover:text-[#039147]"
+                  href={`mailto:${proposalRecipient}`}
+                >
+                  {proposalRecipient}
+                </a>
+              </div>
+
+              <div className="grid gap-1 border-t border-[#039147]/10 pt-3">
+                <p className="font-black uppercase tracking-[0.14em] text-[#039147]">
+                  Direct assistance
+                </p>
+                <a
+                  className="break-all text-black/70 underline decoration-black/20 underline-offset-4 transition hover:text-[#039147]"
+                  href={`mailto:${primaryEmail}`}
+                >
+                  {primaryEmail}
+                </a>
+                {secondaryEmail ? (
+                  <a
+                    className="break-all text-black/50 underline decoration-black/10 underline-offset-4 transition hover:text-[#039147]"
+                    href={`mailto:${secondaryEmail}`}
+                  >
+                    {secondaryEmail}
+                  </a>
+                ) : null}
+                <a
+                  className="text-black/70 transition hover:text-[#039147]"
+                  href={`tel:${phoneNumber.replace(/[^0-9+]/g, "")}`}
+                >
+                  {phoneNumber}
+                </a>
+              </div>
+            </div>
           </div>
 
           <button
