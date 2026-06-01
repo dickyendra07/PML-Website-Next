@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Pharma Metric Labs | Contract Research Organization in Indonesia",
+  description: "Pharma Metric Labs provides integrated CRO services in Indonesia, including BA/BE studies, clinical trial services, contract analysis, and regulatory consultation.",
+};
+
 import Hero from "@/components/home/Hero";
 import Stats from "@/components/home/Stats";
 import Services from "@/components/home/Services";
