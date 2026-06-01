@@ -275,6 +275,8 @@ export async function seedAdminPageSeoDefaults(token: string) {
 }
 
 export type PopupType = "ANNOUNCEMENT" | "PROMOTION" | "ALERT" | "INFORMATION";
+export type PopupLayout = "IMAGE_LEFT" | "IMAGE_RIGHT" | "IMAGE_TOP" | "TEXT_ONLY";
+export type PopupFrequency = "ONCE_PER_SESSION" | "ONCE_PER_DAY" | "ALWAYS";
 
 export type PopupItem = {
   id: string;
@@ -286,7 +288,8 @@ export type PopupItem = {
   type: PopupType;
   status: PageSeoStatus;
   placementPages: string[];
-  frequency: string;
+  frequency: PopupFrequency;
+  layout: PopupLayout;
   startsAt: string | null;
   endsAt: string | null;
   priority: number;
@@ -303,7 +306,8 @@ export type PopupPayload = {
   type?: PopupType;
   status?: PageSeoStatus;
   placementPages?: string[];
-  frequency?: string;
+  frequency?: PopupFrequency;
+  layout?: PopupLayout;
   startsAt?: string | null;
   endsAt?: string | null;
   priority?: number;
@@ -359,4 +363,25 @@ export async function archiveAdminPopup(token: string, id: string) {
   });
 
   return parseJsonResponse<PopupItem>(response);
+}
+
+export async function uploadAdminPopupImage(token: string, file: File) {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(`${API_BASE_URL}/admin/popups/upload`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  });
+
+  return parseJsonResponse<{
+    filename: string;
+    originalName: string;
+    mimeType: string;
+    size: number;
+    url: string;
+  }>(response);
 }

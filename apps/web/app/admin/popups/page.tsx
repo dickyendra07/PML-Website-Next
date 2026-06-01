@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import AdminShell from "@/components/admin/AdminShell";
 import AdminState from "@/components/admin/AdminState";
@@ -8,8 +9,11 @@ import {
   getAdminPopups,
   getAdminToken,
   PageSeoStatus,
+  PopupFrequency,
   PopupItem,
+  PopupLayout,
   updateAdminPopup,
+  uploadAdminPopupImage,
 } from "@/lib/admin-api";
 
 type PopupForm = {
@@ -22,7 +26,8 @@ type PopupForm = {
   type: "ANNOUNCEMENT" | "PROMOTION" | "ALERT" | "INFORMATION";
   status: PageSeoStatus;
   placementPages: string;
-  frequency: string;
+  frequency: PopupFrequency;
+  layout: PopupLayout;
   startsAt: string;
   endsAt: string;
   priority: string;
@@ -39,10 +44,38 @@ const emptyForm: PopupForm = {
   status: "DRAFT",
   placementPages: "/",
   frequency: "ONCE_PER_SESSION",
+  layout: "IMAGE_LEFT",
   startsAt: "",
   endsAt: "",
   priority: "0",
 };
+
+const layoutOptions: Array<{
+  value: PopupLayout;
+  title: string;
+  description: string;
+}> = [
+  {
+    value: "IMAGE_LEFT",
+    title: "Image Left",
+    description: "Gambar di kiri, konten dan CTA di kanan.",
+  },
+  {
+    value: "IMAGE_RIGHT",
+    title: "Image Right",
+    description: "Konten di kiri, gambar di kanan.",
+  },
+  {
+    value: "IMAGE_TOP",
+    title: "Image Top",
+    description: "Gambar di atas, konten di bawah.",
+  },
+  {
+    value: "TEXT_ONLY",
+    title: "Text Only",
+    description: "Tanpa gambar, fokus ke headline dan CTA.",
+  },
+];
 
 function toDateTimeLocal(value: string | null) {
   if (!value) return "";
@@ -66,6 +99,7 @@ function mapPopupToForm(item: PopupItem): PopupForm {
     status: item.status,
     placementPages: item.placementPages?.join("\n") || "/",
     frequency: item.frequency || "ONCE_PER_SESSION",
+    layout: item.layout || "IMAGE_LEFT",
     startsAt: toDateTimeLocal(item.startsAt),
     endsAt: toDateTimeLocal(item.endsAt),
     priority: String(item.priority || 0),
@@ -82,11 +116,30 @@ function toIsoOrNull(value: string) {
   return date.toISOString();
 }
 
+function getAssetUrl(value: string) {
+  if (!value) return "";
+
+  if (value.startsWith("http")) {
+    return value;
+  }
+
+  if (value.startsWith("/uploads")) {
+    const apiBaseUrl =
+      process.env.NEXT_PUBLIC_API_URL?.replace(/\/api\/?$/, "") ||
+      "http://localhost:4000";
+
+    return `${apiBaseUrl}${value}`;
+  }
+
+  return value;
+}
+
 export default function AdminPopupsPage() {
   const [items, setItems] = useState<PopupItem[]>([]);
   const [form, setForm] = useState<PopupForm>(emptyForm);
   const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
 
   const selectedPopup = useMemo(() => {
@@ -147,6 +200,32 @@ export default function AdminPopupsPage() {
     setMessage("");
   };
 
+  const handleImageUpload = async (file: File | null) => {
+    if (!file) {
+      return;
+    }
+
+    const token = getAdminToken();
+
+    if (!token) {
+      setMessage("Admin token not found. Please login again.");
+      return;
+    }
+
+    setUploading(true);
+    setMessage("");
+
+    try {
+      const result = await uploadAdminPopupImage(token, file);
+      updateField("imageUrl", result.url);
+      setMessage("Popup image uploaded successfully.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Failed to upload popup image.");
+    } finally {
+      setUploading(false);
+    }
+  };
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -173,6 +252,7 @@ export default function AdminPopupsPage() {
         .map((item) => item.trim())
         .filter(Boolean),
       frequency: form.frequency || "ONCE_PER_SESSION",
+      layout: form.layout || "IMAGE_LEFT",
       startsAt: toIsoOrNull(form.startsAt),
       endsAt: toIsoOrNull(form.endsAt),
       priority: Number(form.priority || 0),
@@ -353,14 +433,87 @@ export default function AdminPopupsPage() {
                 />
               </label>
 
-              <label className="grid gap-2 md:col-span-2">
-                <span className="text-sm font-black text-white">Image URL</span>
-                <input
-                  value={form.imageUrl}
-                  onChange={(event) => updateField("imageUrl", event.target.value)}
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
-                />
-              </label>
+              <div className="grid gap-4 rounded-[26px] border border-white/10 bg-black/20 p-4 md:col-span-2 md:grid-cols-[0.9fr_1.1fr] md:p-5">
+                <div className="overflow-hidden rounded-[22px] border border-white/10 bg-black/30">
+                  {form.imageUrl && form.layout !== "TEXT_ONLY" ? (
+                    <div className="relative h-56 w-full">
+                      <Image
+                        src={getAssetUrl(form.imageUrl)}
+                        alt="Popup preview"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 420px"
+                        className="object-cover"
+                        unoptimized
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex h-56 items-center justify-center px-6 text-center text-sm font-bold text-white/35">
+                      {form.layout === "TEXT_ONLY"
+                        ? "Text only layout tidak memakai gambar."
+                        : "Upload atau isi Image URL untuk preview popup."}
+                    </div>
+                  )}
+                </div>
+
+                <div className="grid gap-4">
+                  <label className="grid gap-2">
+                    <span className="text-sm font-black text-white">Popup Image</span>
+                    <span className="text-xs font-semibold leading-5 text-white/35">
+                      Upload gambar JPG, PNG, atau WEBP. Idealnya landscape agar rapi di desktop dan mobile.
+                    </span>
+
+                    <input
+                      type="file"
+                      accept="image/png,image/jpeg,image/webp"
+                      onChange={(event) => {
+                        void handleImageUpload(event.target.files?.[0] || null);
+                        event.target.value = "";
+                      }}
+                      className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm font-bold text-white file:mr-4 file:rounded-full file:border-0 file:bg-[#039147] file:px-4 file:py-2 file:text-xs file:font-black file:text-white"
+                    />
+
+                    <input
+                      value={form.imageUrl}
+                      onChange={(event) => updateField("imageUrl", event.target.value)}
+                      placeholder="/uploads/popups/image.png"
+                      className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition placeholder:text-white/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                    />
+
+                    <span className="text-xs font-semibold text-white/35">
+                      {uploading ? "Uploading image..." : "Bisa upload dari CMS atau paste URL manual."}
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <div className="grid gap-3 md:col-span-2">
+                <div>
+                  <span className="text-sm font-black text-white">Popup Layout</span>
+                  <p className="mt-1 text-xs font-semibold leading-5 text-white/35">
+                    Pilih komposisi popup. Di mobile layout akan otomatis dibuat stack agar tetap aman.
+                  </p>
+                </div>
+
+                <div className="grid gap-3 md:grid-cols-4">
+                  {layoutOptions.map((layout) => (
+                    <button
+                      key={layout.value}
+                      type="button"
+                      onClick={() => updateField("layout", layout.value)}
+                      className={`rounded-2xl border p-4 text-left transition ${
+                        form.layout === layout.value
+                          ? "border-[#039147] bg-[#039147]/15 text-white"
+                          : "border-white/10 bg-black/20 text-white/50 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+                      }`}
+                    >
+                      <span className="text-sm font-black">{layout.title}</span>
+                      <span className="mt-2 block text-xs font-semibold leading-5 opacity-70">
+                        {layout.description}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
 
               <label className="grid gap-2">
                 <span className="text-sm font-black text-white">Type</span>
@@ -421,11 +574,17 @@ export default function AdminPopupsPage() {
 
               <label className="grid gap-2">
                 <span className="text-sm font-black text-white">Frequency</span>
-                <input
+                <select
                   value={form.frequency}
-                  onChange={(event) => updateField("frequency", event.target.value)}
+                  onChange={(event) =>
+                    updateField("frequency", event.target.value as PopupForm["frequency"])
+                  }
                   className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
-                />
+                >
+                  <option value="ONCE_PER_SESSION">Once per session</option>
+                  <option value="ONCE_PER_DAY">Once per day</option>
+                  <option value="ALWAYS">Always show</option>
+                </select>
               </label>
 
               <label className="grid gap-2 md:col-span-2">
