@@ -9,8 +9,10 @@ export const fallbackPublicSettings: PublicSettings = {
     "Pharma Metric Labs supports pharmaceutical and biotechnology companies with scientific CRO services for BA/BE studies, clinical trials, contract analysis, and regulatory consultation.",
   "contact.address": "Gedung Indra Sentral Unit R & T, Jakarta Pusat, Indonesia",
   "contact.email": "info@pharmametriclabs.com",
+  "contact.secondaryEmail": "novida.aristyowati@pharmametriclabs.com",
   "contact.phone": "(021) 426 5310",
   "footer.copyright": "Pharma Metric Labs. All rights reserved.",
+  "proposal.recipientEmail": "info@pharmametriclabs.com",
   "social.instagram": "https://www.instagram.com",
   "social.linkedin": "https://www.linkedin.com",
 };
