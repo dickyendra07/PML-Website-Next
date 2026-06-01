@@ -228,3 +228,22 @@ model MediaAsset {
   @@index([folder])
   @@index([createdAt])
 }
+
+model PageSeo {
+  id              String        @id @default(cuid())
+  path            String        @unique
+  label           String
+  title           String
+  description     String
+  ogTitle         String?
+  ogDescription   String?
+  ogImage         String?
+  canonicalUrl    String?
+  status          PublishStatus @default(PUBLISHED)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([status])
+  @@index([path])
+}
+

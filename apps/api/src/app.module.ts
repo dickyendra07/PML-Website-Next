@@ -7,6 +7,7 @@ import { ProposalsModule } from './proposals/proposals.module';
 import { RedisModule } from './redis/redis.module';
 import { AuthModule } from './auth/auth.module';
 import { SettingsModule } from './settings/settings.module';
+import { PageSeoModule } from './page-seo/page-seo.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { SettingsModule } from './settings/settings.module';
     ProposalsModule,
     AuthModule,
     SettingsModule,
+    PageSeoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
