@@ -10,6 +10,13 @@ export type AdminLoginResult = {
   user: AdminUser;
 };
 
+export type InquiryStatus =
+  | "NEW"
+  | "IN_REVIEW"
+  | "CONTACTED"
+  | "CLOSED"
+  | "SPAM";
+
 export type ProposalSubmission = {
   id: string;
   name: string;
@@ -20,7 +27,7 @@ export type ProposalSubmission = {
   serviceType: string;
   projectNeeds: string;
   sourcePage: string | null;
-  status: string;
+  status: InquiryStatus;
   internalNote: string | null;
   createdAt: string;
   updatedAt: string;
@@ -101,4 +108,60 @@ export async function getAdminProposals(token: string) {
   });
 
   return parseJsonResponse<ProposalSubmission[]>(response);
+}
+
+export async function getAdminProposalDetail(token: string, id: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/proposals/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+  });
+
+  return parseJsonResponse<ProposalSubmission>(response);
+}
+
+export async function updateAdminProposalStatus(
+  token: string,
+  id: string,
+  status: InquiryStatus
+) {
+  const response = await fetch(`${API_BASE_URL}/admin/proposals/${id}/status`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ status }),
+  });
+
+  return parseJsonResponse<ProposalSubmission>(response);
+}
+
+export async function updateAdminProposalNote(
+  token: string,
+  id: string,
+  internalNote: string
+) {
+  const response = await fetch(`${API_BASE_URL}/admin/proposals/${id}/internal-note`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ internalNote }),
+  });
+
+  return parseJsonResponse<ProposalSubmission>(response);
+}
+
+export async function markAdminProposalAsSpam(token: string, id: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/proposals/${id}/spam`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return parseJsonResponse<ProposalSubmission>(response);
 }

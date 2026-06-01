@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
@@ -77,7 +78,7 @@ export default function AdminShell({ children }: AdminShellProps) {
         <aside className="border-b border-white/10 bg-black/20 p-5 backdrop-blur-xl lg:border-b-0 lg:border-r lg:p-6">
           <div className="flex items-center gap-3 rounded-[24px] border border-white/10 bg-white/8 p-4">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-lg">
-              <img src="/images/LOGO-PML.png" alt="PML" className="h-7 w-auto" />
+              <Image src="/images/LOGO-PML.png" alt="PML" width={74} height={44} className="h-7 w-auto" />
             </div>
             <div>
               <p className="text-xs font-black uppercase tracking-[0.18em] text-[#76d69f]">
