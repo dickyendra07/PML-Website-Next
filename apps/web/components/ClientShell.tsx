@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Header from "./Header";
 import Footer from "./Footer";
 import ProposalModal from "./ProposalModal";
@@ -10,7 +11,9 @@ type ClientShellProps = {
 };
 
 export default function ClientShell({ children }: ClientShellProps) {
+  const pathname = usePathname();
   const [proposalOpen, setProposalOpen] = useState(false);
+  const isAdminRoute = pathname?.startsWith("/admin");
 
   useEffect(() => {
     const openProposal = () => setProposalOpen(true);
@@ -21,6 +24,10 @@ export default function ClientShell({ children }: ClientShellProps) {
       window.removeEventListener("open-proposal-modal", openProposal);
     };
   }, []);
+
+  if (isAdminRoute) {
+    return <>{children}</>;
+  }
 
   return (
     <>

@@ -1,0 +1,141 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { ReactNode, useEffect, useState } from "react";
+import {
+  AdminUser,
+  clearAdminToken,
+  getAdminToken,
+  getCurrentAdmin,
+  logoutAdmin,
+} from "@/lib/admin-api";
+
+const navItems = [
+  { label: "Dashboard", href: "/admin", icon: "D" },
+  { label: "Inquiries", href: "/admin/inquiries", icon: "I" },
+];
+
+type AdminShellProps = {
+  children: ReactNode;
+};
+
+export default function AdminShell({ children }: AdminShellProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const [admin, setAdmin] = useState<AdminUser | null>(null);
+  const [checking, setChecking] = useState(true);
+
+  useEffect(() => {
+    const token = getAdminToken();
+
+    if (!token) {
+      router.replace("/admin/login");
+      return;
+    }
+
+    getCurrentAdmin(token)
+      .then((user) => {
+        setAdmin(user);
+        setChecking(false);
+      })
+      .catch(() => {
+        clearAdminToken();
+        router.replace("/admin/login");
+      });
+  }, [router]);
+
+  const handleLogout = async () => {
+    const token = getAdminToken();
+
+    if (token) {
+      await logoutAdmin(token).catch(() => null);
+    }
+
+    clearAdminToken();
+    router.replace("/admin/login");
+  };
+
+  if (checking) {
+    return (
+      <main className="min-h-screen bg-[#06140d] text-white">
+        <div className="flex min-h-screen items-center justify-center">
+          <div className="rounded-[28px] border border-white/10 bg-white/5 px-8 py-6 text-sm font-bold text-white/70 shadow-2xl backdrop-blur">
+            Loading secure admin area...
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  return (
+    <main className="min-h-screen bg-[#06140d] text-white">
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_top_left,rgba(3,145,71,0.28),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(239,49,36,0.12),transparent_32%)]" />
+      <div className="pml-hex-pattern-light fixed inset-0 opacity-[0.04]" />
+
+      <div className="relative grid min-h-screen lg:grid-cols-[300px_1fr]">
+        <aside className="border-b border-white/10 bg-black/20 p-5 backdrop-blur-xl lg:border-b-0 lg:border-r lg:p-6">
+          <div className="flex items-center gap-3 rounded-[24px] border border-white/10 bg-white/8 p-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-lg">
+              <img src="/images/LOGO-PML.png" alt="PML" className="h-7 w-auto" />
+            </div>
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#76d69f]">
+                PML CMS
+              </p>
+              <h1 className="text-lg font-black leading-tight text-white">
+                Admin Panel
+              </h1>
+            </div>
+          </div>
+
+          <nav className="mt-6 grid gap-2">
+            {navItems.map((item) => {
+              const active = pathname === item.href;
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-extrabold transition ${
+                    active
+                      ? "bg-[#039147] text-white shadow-[0_18px_40px_rgba(3,145,71,0.25)]"
+                      : "text-white/62 hover:bg-white/8 hover:text-white"
+                  }`}
+                >
+                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-xs">
+                    {item.icon}
+                  </span>
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="mt-6 rounded-[24px] border border-white/10 bg-white/5 p-4">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/40">
+              Signed in as
+            </p>
+            <p className="mt-2 text-sm font-black text-white">{admin?.name}</p>
+            <p className="mt-1 break-all text-xs font-semibold text-white/45">{admin?.email}</p>
+            <span className="mt-3 inline-flex rounded-full border border-[#039147]/30 bg-[#039147]/15 px-3 py-1 text-[11px] font-black uppercase tracking-[0.12em] text-[#76d69f]">
+              {admin?.role}
+            </span>
+          </div>
+
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="mt-4 w-full rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-extrabold text-white/70 transition hover:bg-white hover:text-[#039147]"
+          >
+            Logout
+          </button>
+        </aside>
+
+        <section className="min-w-0 p-5 lg:p-8">
+          {children}
+        </section>
+      </div>
+    </main>
+  );
+}
