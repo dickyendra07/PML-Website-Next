@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useState } from "react";
+import { submitProposal } from "@/lib/api";
 
 const contactCards = [
   {
@@ -55,33 +56,36 @@ export default function ContactPage() {
   const [email, setEmail] = useState("");
   const [service, setService] = useState("General Inquiry");
   const [message, setMessage] = useState("");
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
 
-  const mailtoHref = useMemo(() => {
-    const subject = encodeURIComponent(`Website Inquiry - ${service}`);
-    const body = encodeURIComponent(
-      [
-        "Hello Pharma Metric Labs Team,",
-        "",
-        "I would like to discuss a project/inquiry with PML.",
-        "",
-        `Name: ${name}`,
-        `Company: ${company || "-"}`,
-        `Email: ${email}`,
-        `Service Interest: ${service}`,
-        "",
-        "Message:",
-        message,
-        "",
-        "Thank you.",
-      ].join("\n")
-    );
-
-    return `mailto:info@pharmametriclabs.com?cc=Novida.aristyowati@pharmametriclabs.com&subject=${subject}&body=${body}`;
-  }, [name, company, email, service, message]);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    window.location.href = mailtoHref;
+
+    setSubmitStatus("loading");
+    setSubmitMessage("");
+
+    try {
+      await submitProposal({
+        name,
+        company: company || "-",
+        email,
+        serviceType: service,
+        projectNeeds: message,
+        sourcePage: typeof window !== "undefined" ? window.location.pathname : "/contact",
+      });
+
+      setSubmitStatus("success");
+      setSubmitMessage("Your inquiry has been submitted successfully. PML team will follow up soon.");
+      setName("");
+      setCompany("");
+      setEmail("");
+      setService("General Inquiry");
+      setMessage("");
+    } catch (error) {
+      setSubmitStatus("error");
+      setSubmitMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -150,7 +154,7 @@ export default function ContactPage() {
             </h2>
 
             <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
-              Please share your name, contact details, service interest, and message. For now, this form will open your email app with a prepared inquiry to PML.
+              Please share your name, contact details, service interest, and message. Your inquiry will be submitted directly to the PML backend system.
             </p>
 
             <div className="mt-8 grid gap-3 md:gap-4">
@@ -245,15 +249,28 @@ export default function ContactPage() {
               </label>
             </div>
 
+            {submitMessage ? (
+              <div
+                className={`mt-6 rounded-2xl p-4 text-sm font-bold ${
+                  submitStatus === "success"
+                    ? "bg-green-50 text-green-700"
+                    : "bg-red-50 text-red-700"
+                }`}
+              >
+                {submitMessage}
+              </div>
+            ) : null}
+
             <button
               type="submit"
-              className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 md:w-auto"
+              disabled={submitStatus === "loading"}
+              className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 md:w-auto"
             >
-              Send Inquiry
+              {submitStatus === "loading" ? "Sending..." : "Send Inquiry"}
             </button>
 
             <p className="mt-5 text-xs font-semibold leading-6 text-black/45">
-              This form currently opens your email application with a prepared message. Backend submission can be connected later through NestJS.
+              This form is connected to the PML NestJS backend and stored securely for follow-up.
             </p>
           </form>
         </div>

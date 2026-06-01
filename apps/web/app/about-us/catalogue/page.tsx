@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { FormEvent, useState } from "react";
+import { submitProposal } from "@/lib/api";
 
 const catalogues = [
   {
@@ -28,8 +30,45 @@ const catalogues = [
 ];
 
 export default function CataloguePage() {
+  const [selectedCatalogue, setSelectedCatalogue] = useState("");
+  const [requestEmail, setRequestEmail] = useState("");
+  const [requestStatus, setRequestStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [requestMessage, setRequestMessage] = useState("");
+
   const openProposal = () => {
     window.dispatchEvent(new CustomEvent("open-proposal-modal"));
+  };
+
+  const handleCatalogueRequest = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!selectedCatalogue) {
+      setRequestStatus("error");
+      setRequestMessage("Please select a catalogue first.");
+      return;
+    }
+
+    setRequestStatus("loading");
+    setRequestMessage("");
+
+    try {
+      await submitProposal({
+        name: "Catalogue Request",
+        company: "-",
+        email: requestEmail,
+        serviceType: selectedCatalogue,
+        projectNeeds: `Please send the latest official ${selectedCatalogue}.`,
+        sourcePage: typeof window !== "undefined" ? window.location.pathname : "/about-us/catalogue",
+      });
+
+      setRequestStatus("success");
+      setRequestMessage("Catalogue request submitted successfully. PML team will follow up soon.");
+      setSelectedCatalogue("");
+      setRequestEmail("");
+    } catch (error) {
+      setRequestStatus("error");
+      setRequestMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -133,12 +172,19 @@ export default function CataloguePage() {
                   </p>
 
                   <div className="mt-auto grid gap-3 pt-7">
-                    <a
-                      href={`mailto:info@pharmametriclabs.com?cc=Novida.aristyowati@pharmametriclabs.com&subject=${encodeURIComponent(catalogue.requestSubject)}`}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedCatalogue(catalogue.title);
+                        document.getElementById("catalogue-request-form")?.scrollIntoView({
+                          behavior: "smooth",
+                          block: "center",
+                        });
+                      }}
                       className="inline-flex items-center justify-center rounded-full bg-[#039147] px-6 py-3.5 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(3,145,71,0.20)] transition hover:-translate-y-0.5"
                     >
                       Request PDF
-                    </a>
+                    </button>
 
                     <Link
                       href="/contact"
@@ -155,6 +201,61 @@ export default function CataloguePage() {
           <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
             Swipe to explore catalogue
           </p>
+
+          <form
+            id="catalogue-request-form"
+            onSubmit={handleCatalogueRequest}
+            className="mx-auto mt-10 grid max-w-3xl gap-4 rounded-[30px] border border-black/5 bg-white p-5 shadow-sm md:mt-12 md:grid-cols-[1fr_1fr_auto] md:items-end md:rounded-[34px] md:p-6"
+          >
+            <label className="grid gap-2">
+              <span className="text-sm font-black text-black">Catalogue Type</span>
+              <select
+                required
+                value={selectedCatalogue}
+                onChange={(event) => setSelectedCatalogue(event.target.value)}
+                className="h-13 rounded-2xl border border-black/10 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+              >
+                <option value="">Choose catalogue</option>
+                {catalogues.map((catalogue) => (
+                  <option key={catalogue.title} value={catalogue.title}>
+                    {catalogue.title}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="grid gap-2">
+              <span className="text-sm font-black text-black">Email Address</span>
+              <input
+                required
+                type="email"
+                value={requestEmail}
+                onChange={(event) => setRequestEmail(event.target.value)}
+                className="h-13 rounded-2xl border border-black/10 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                placeholder="you@company.com"
+              />
+            </label>
+
+            <button
+              type="submit"
+              disabled={requestStatus === "loading"}
+              className="inline-flex h-13 items-center justify-center rounded-full bg-[#039147] px-7 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(3,145,71,0.20)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {requestStatus === "loading" ? "Sending..." : "Submit"}
+            </button>
+
+            {requestMessage ? (
+              <div
+                className={`rounded-2xl p-4 text-sm font-bold md:col-span-3 ${
+                  requestStatus === "success"
+                    ? "bg-green-50 text-green-700"
+                    : "bg-red-50 text-red-700"
+                }`}
+              >
+                {requestMessage}
+              </div>
+            ) : null}
+          </form>
         </div>
       </section>
 

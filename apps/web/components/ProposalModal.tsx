@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { submitProposal } from "@/lib/api";
 
 type ProposalModalProps = {
   open: boolean;
@@ -49,24 +50,10 @@ export default function ProposalModal({ open, onClose }: ProposalModalProps) {
     setMessage("");
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
-
-      const response = await fetch(`${apiUrl}/proposals`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...form,
-          sourcePage: typeof window !== "undefined" ? window.location.pathname : "unknown",
-        }),
+      await submitProposal({
+        ...form,
+        sourcePage: typeof window !== "undefined" ? window.location.pathname : "unknown",
       });
-
-      const result = await response.json();
-
-      if (!response.ok || !result.success) {
-        throw new Error(result.message || "Failed to submit proposal request.");
-      }
 
       setStatus("success");
       setMessage("Your proposal request has been submitted successfully.");
