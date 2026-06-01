@@ -15,6 +15,7 @@ import {
 const navItems = [
   { label: "Dashboard", href: "/admin", icon: "D" },
   { label: "Inquiries", href: "/admin/inquiries", icon: "I" },
+  { label: "Settings", href: "/admin/settings", icon: "S" },
 ];
 
 type AdminShellProps = {
