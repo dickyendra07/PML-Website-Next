@@ -2,27 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { submitProposal } from "@/lib/api";
-
-const contactCards = [
-  {
-    title: "Office Address",
-    value: "Gedung Indra Sentral Unit R & T, Jl. Let. Jend. Suprapto No. 60, Cempaka Putih, Jakarta Pusat 10520, Indonesia",
-    icon: "address",
-  },
-  {
-    title: "Phone Number",
-    value: "(+6221) 426 5310 / (+6221) 426 9475",
-    icon: "phone",
-  },
-  {
-    title: "Email Address",
-    value: "info@pharmametriclabs.com",
-    secondValue: "Novida.aristyowati@pharmametriclabs.com",
-    icon: "email",
-  },
-];
+import {
+  fallbackPublicSettings,
+  getPublicSettings,
+  getSettingValue,
+  PublicSettings,
+} from "@/lib/public-settings";
 
 function ContactIcon({ type }: { type: string }) {
   if (type === "phone") {
@@ -51,6 +38,7 @@ function ContactIcon({ type }: { type: string }) {
 }
 
 export default function ContactPage() {
+  const [settings, setSettings] = useState<PublicSettings>(fallbackPublicSettings);
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
@@ -58,6 +46,65 @@ export default function ContactPage() {
   const [message, setMessage] = useState("");
   const [submitStatus, setSubmitStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [submitMessage, setSubmitMessage] = useState("");
+
+  useEffect(() => {
+    getPublicSettings()
+      .then((data) => {
+        setSettings({
+          ...fallbackPublicSettings,
+          ...data,
+        });
+      })
+      .catch(() => {
+        setSettings(fallbackPublicSettings);
+      });
+  }, []);
+
+  const officeAddress = getSettingValue(
+    settings,
+    "contact.address",
+    "Gedung Indra Sentral Unit R & T, Jl. Let. Jend. Suprapto No. 60, Cempaka Putih, Jakarta Pusat 10520, Indonesia"
+  );
+
+  const phoneNumber = getSettingValue(
+    settings,
+    "contact.phone",
+    "(+6221) 426 5310 / (+6221) 426 9475"
+  );
+
+  const primaryEmail = getSettingValue(
+    settings,
+    "contact.email",
+    "info@pharmametriclabs.com"
+  );
+
+  const secondaryEmail = getSettingValue(
+    settings,
+    "contact.secondaryEmail",
+    "Novida.aristyowati@pharmametriclabs.com"
+  );
+
+  const mapsQuery = encodeURIComponent(officeAddress);
+  const phoneHref = `tel:${phoneNumber.replace(/[^0-9+]/g, "")}`;
+
+  const contactCards = [
+    {
+      title: "Office Address",
+      value: officeAddress,
+      icon: "address",
+    },
+    {
+      title: "Phone Number",
+      value: phoneNumber,
+      icon: "phone",
+    },
+    {
+      title: "Email Address",
+      value: primaryEmail,
+      secondValue: secondaryEmail,
+      icon: "email",
+    },
+  ];
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -132,7 +179,7 @@ export default function ContactPage() {
               </a>
 
               <a
-                href="tel:+62214265310"
+                href={phoneHref}
                 className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147]"
               >
                 Call PML
@@ -289,12 +336,12 @@ export default function ContactPage() {
               </h2>
 
               <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
-                PML is located at Gedung Indra Sentral, Cempaka Putih, Jakarta Pusat. Use the map to find the office location and plan your visit.
+                PML is located at the address listed in the contact information. Use the map to find the office location and plan your visit.
               </p>
 
               <div className="mt-7 grid gap-3">
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=Gedung%20Indra%20Sentral%20Jl.%20Let.%20Jend.%20Suprapto%20No.%2060%20Cempaka%20Putih%20Jakarta%20Pusat"
+                  href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5"
@@ -303,7 +350,7 @@ export default function ContactPage() {
                 </a>
 
                 <a
-                  href="tel:+62214265310"
+                  href={phoneHref}
                   className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-7 py-4 text-sm font-extrabold text-[#039147] transition hover:bg-[#039147] hover:text-white"
                 >
                   Call Before Visit
@@ -314,7 +361,7 @@ export default function ContactPage() {
             <div className="overflow-hidden rounded-[30px] border border-black/5 bg-white p-2 shadow-[0_24px_70px_rgba(0,0,0,0.10)] md:rounded-[36px] md:p-3">
               <iframe
                 title="Pharma Metric Labs Location Map"
-                src="https://www.google.com/maps?q=Gedung%20Indra%20Sentral%20Jl.%20Let.%20Jend.%20Suprapto%20No.%2060%20Cempaka%20Putih%20Jakarta%20Pusat%2010520%20Indonesia&output=embed"
+                src={`https://www.google.com/maps?q=${mapsQuery}&output=embed`}
                 className="h-[320px] w-full rounded-[24px] border-0 md:h-full md:min-h-[470px] md:rounded-[28px]"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -351,7 +398,7 @@ export default function ContactPage() {
               </p>
 
               <a
-                href="mailto:info@pharmametriclabs.com"
+                href={`mailto:${primaryEmail}`}
                 className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
               >
                 Email PML
