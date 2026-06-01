@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
+import { defaultSettings } from '../src/settings/settings.service';
 
 const prisma = new PrismaClient();
 
@@ -25,6 +26,26 @@ async function main() {
       isActive: true,
     },
   });
+
+
+  for (const setting of defaultSettings) {
+    await prisma.siteSetting.upsert({
+      where: {
+        key: setting.key,
+      },
+      update: {},
+      create: {
+        key: setting.key,
+        label: setting.label,
+        value: setting.value,
+        group: setting.group || 'general',
+        description: setting.description || null,
+        isPublic: setting.isPublic ?? true,
+      },
+    });
+  }
+
+  console.log('Seeded default site settings:', defaultSettings.length);
 
   console.log('Seeded admin user:', {
     id: admin.id,
