@@ -1,15 +1,11 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Headers,
-  Post,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { CurrentAdminUser } from './decorators/current-admin.decorator';
+import type { CurrentAdmin } from './decorators/current-admin.decorator';
 import { LoginDto } from './dto/login.dto';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
-@Controller('auth')
+@Controller('admin/auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
@@ -19,13 +15,23 @@ export class AuthController {
   }
 
   @Get('me')
-  me(@Headers('authorization') authorization?: string) {
-    const token = authorization?.replace('Bearer ', '').trim();
+  @UseGuards(JwtAuthGuard)
+  me(@CurrentAdminUser() admin: CurrentAdmin) {
+    return admin;
+  }
 
-    if (!token) {
-      throw new UnauthorizedException('Missing authorization token.');
-    }
+  @Post('refresh')
+  @UseGuards(JwtAuthGuard)
+  refresh(@CurrentAdminUser() admin: CurrentAdmin) {
+    return this.authService.refresh(admin);
+  }
 
-    return this.authService.verifyToken(token);
+  @Post('logout')
+  @UseGuards(JwtAuthGuard)
+  logout() {
+    return {
+      success: true,
+      message: 'Logged out successfully.',
+    };
   }
 }

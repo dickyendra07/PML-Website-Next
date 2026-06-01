@@ -10,6 +10,13 @@ type JwtAdminPayload = {
   role: string;
 };
 
+type AdminSession = {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+};
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -46,24 +53,27 @@ export class AuthService {
       },
     });
 
-    const payload: JwtAdminPayload = {
-      sub: admin.id,
+    const user = {
+      id: admin.id,
+      name: admin.name,
       email: admin.email,
       role: admin.role,
     };
 
     return {
-      accessToken: await this.jwt.signAsync(payload),
-      user: {
-        id: admin.id,
-        name: admin.name,
-        email: admin.email,
-        role: admin.role,
-      },
+      accessToken: await this.signAdminToken(user),
+      user,
     };
   }
 
-  async verifyToken(token: string) {
+  async refresh(admin: AdminSession) {
+    return {
+      accessToken: await this.signAdminToken(admin),
+      user: admin,
+    };
+  }
+
+  async verifyToken(token: string): Promise<AdminSession> {
     try {
       const payload = await this.jwt.verifyAsync<JwtAdminPayload>(token);
 
@@ -86,5 +96,15 @@ export class AuthService {
     } catch {
       throw new UnauthorizedException('Invalid admin session.');
     }
+  }
+
+  private signAdminToken(admin: AdminSession) {
+    const payload: JwtAdminPayload = {
+      sub: admin.id,
+      email: admin.email,
+      role: admin.role,
+    };
+
+    return this.jwt.signAsync(payload);
   }
 }

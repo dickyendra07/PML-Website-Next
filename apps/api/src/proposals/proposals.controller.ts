@@ -1,15 +1,14 @@
 import {
   Body,
   Controller,
-  Get,
   HttpException,
   HttpStatus,
   Ip,
   Post,
 } from '@nestjs/common';
+import { RedisService } from '../redis/redis.service';
 import { CreateProposalDto } from './dto/create-proposal.dto';
 import { ProposalsService } from './proposals.service';
-import { RedisService } from '../redis/redis.service';
 
 @Controller('proposals')
 export class ProposalsController {
@@ -41,10 +40,5 @@ export class ProposalsController {
       message: 'Proposal request submitted successfully.',
       id: submission.id,
     };
-  }
-
-  @Get()
-  async findAll() {
-    return this.proposalsService.findAll();
   }
 }
