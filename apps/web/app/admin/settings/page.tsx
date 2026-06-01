@@ -37,8 +37,10 @@ export default function AdminSettingsPage() {
     const token = getAdminToken();
 
     if (!token) {
-      setStatus("error");
-      setMessage("Admin token not found. Please login again.");
+      Promise.resolve().then(() => {
+        setStatus("error");
+        setMessage("Admin token not found. Please login again.");
+      });
       return;
     }
 
