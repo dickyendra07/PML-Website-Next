@@ -385,3 +385,132 @@ export async function uploadAdminPopupImage(token: string, file: File) {
     url: string;
   }>(response);
 }
+
+export type CatalogueDownloadMode = "PUBLIC_DOWNLOAD" | "REQUEST_REQUIRED";
+
+export type AdminCatalogueItem = {
+  id: string;
+  title: string;
+  slug: string;
+  description: string | null;
+  serviceType: string | null;
+  fileUrl: string | null;
+  coverImage: string | null;
+  downloadMode: CatalogueDownloadMode;
+  status: PageSeoStatus;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+  _count?: {
+    requests: number;
+  };
+};
+
+export type AdminCataloguePayload = {
+  title: string;
+  slug?: string;
+  description?: string | null;
+  serviceType?: string | null;
+  fileUrl?: string | null;
+  coverImage?: string | null;
+  downloadMode?: CatalogueDownloadMode;
+  status?: PageSeoStatus;
+  sortOrder?: number;
+};
+
+export async function getAdminCatalogues(token: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/catalogues`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+  });
+
+  return parseJsonResponse<AdminCatalogueItem[]>(response);
+}
+
+export async function createAdminCatalogue(
+  token: string,
+  payload: AdminCataloguePayload
+) {
+  const response = await fetch(`${API_BASE_URL}/admin/catalogues`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return parseJsonResponse<AdminCatalogueItem>(response);
+}
+
+export async function updateAdminCatalogue(
+  token: string,
+  id: string,
+  payload: AdminCataloguePayload
+) {
+  const response = await fetch(`${API_BASE_URL}/admin/catalogues/${id}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return parseJsonResponse<AdminCatalogueItem>(response);
+}
+
+export async function archiveAdminCatalogue(token: string, id: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/catalogues/${id}/archive`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return parseJsonResponse<AdminCatalogueItem>(response);
+}
+
+export async function uploadAdminCatalogueCover(token: string, file: File) {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(`${API_BASE_URL}/admin/catalogues/upload-cover`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  });
+
+  return parseJsonResponse<{
+    filename: string;
+    originalName: string;
+    mimeType: string;
+    size: number;
+    url: string;
+  }>(response);
+}
+
+export async function uploadAdminCatalogueFile(token: string, file: File) {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(`${API_BASE_URL}/admin/catalogues/upload-file`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  });
+
+  return parseJsonResponse<{
+    filename: string;
+    originalName: string;
+    mimeType: string;
+    size: number;
+    url: string;
+  }>(response);
+}

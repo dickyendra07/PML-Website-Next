@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { SettingsModule } from './settings/settings.module';
 import { PageSeoModule } from './page-seo/page-seo.module';
 import { PopupsModule } from './popups/popups.module';
+import { CataloguesModule } from './catalogues/catalogues.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { PopupsModule } from './popups/popups.module';
     SettingsModule,
     PageSeoModule,
     PopupsModule,
+    CataloguesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

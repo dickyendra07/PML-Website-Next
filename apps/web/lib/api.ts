@@ -39,3 +39,62 @@ export async function submitProposal(payload: ProposalPayload): Promise<ApiSubmi
     id: result.id,
   };
 }
+
+export type CatalogueDownloadMode = "PUBLIC_DOWNLOAD" | "REQUEST_REQUIRED";
+
+export type CatalogueItem = {
+  id: string;
+  title: string;
+  slug: string;
+  description: string | null;
+  serviceType: string | null;
+  fileUrl: string | null;
+  coverImage: string | null;
+  downloadMode: CatalogueDownloadMode;
+  status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export async function getCatalogues() {
+  const response = await fetch(`${API_BASE_URL}/catalogues`, {
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to load catalogues.");
+  }
+
+  return (await response.json()) as CatalogueItem[];
+}
+
+export async function submitCatalogueRequest(payload: {
+  catalogueId?: string;
+  name: string;
+  company?: string;
+  email: string;
+  phone?: string;
+  message?: string;
+}) {
+  const response = await fetch(`${API_BASE_URL}/catalogues/requests`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const result = await response.json().catch(() => null);
+
+  if (!response.ok) {
+    const message =
+      result && typeof result === "object" && "message" in result
+        ? String(result.message)
+        : "Failed to submit catalogue request.";
+
+    throw new Error(message);
+  }
+
+  return result;
+}

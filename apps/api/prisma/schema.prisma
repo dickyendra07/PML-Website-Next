@@ -55,6 +55,11 @@ enum MediaType {
   OTHER
 }
 
+enum CatalogueDownloadMode {
+  PUBLIC_DOWNLOAD
+  REQUEST_REQUIRED
+}
+
 model AdminUser {
   id           String    @id @default(cuid())
   name         String
@@ -148,17 +153,18 @@ model PopupAnnouncement {
 }
 
 model CatalogueItem {
-  id          String        @id @default(cuid())
-  title       String
-  slug        String        @unique
-  description String?
-  serviceType String?
-  fileUrl     String?
-  coverImage  String?
-  status      PublishStatus @default(DRAFT)
-  sortOrder   Int           @default(0)
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  id           String                @id @default(cuid())
+  title        String
+  slug         String                @unique
+  description  String?
+  serviceType  String?
+  fileUrl      String?
+  coverImage   String?
+  downloadMode CatalogueDownloadMode @default(REQUEST_REQUIRED)
+  status       PublishStatus         @default(DRAFT)
+  sortOrder    Int                   @default(0)
+  createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
 
   requests CatalogueRequest[]
 

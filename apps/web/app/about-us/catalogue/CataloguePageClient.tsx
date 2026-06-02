@@ -2,45 +2,74 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
-import { submitProposal } from "@/lib/api";
+import { FormEvent, useEffect, useState } from "react";
+import { CatalogueItem, getCatalogues, submitCatalogueRequest } from "@/lib/api";
 
-const catalogues = [
-  {
-    title: "BA/BE Catalogue",
-    desc: "Catalogue material for bioavailability and bioequivalence study capability, clinical facility, bioanalytical support, validated methods, and accepted study outputs.",
-    tag: "BA/BE Studies",
-    image: "/images/pml/services/babe-studies-hero.png",
-    requestSubject: "BA/BE Catalogue Request",
-  },
-  {
-    title: "Clinical Trial Catalogue",
-    desc: "Catalogue material for clinical trial service capability, study flow, clinical operations, project support, portfolio areas, and collaboration readiness.",
-    tag: "Clinical Trial",
-    image: "/images/pml/services/clinical-trial-hero.png",
-    requestSubject: "Clinical Trial Catalogue Request",
-  },
-  {
-    title: "Contract Analysis Catalogue",
-    desc: "Catalogue material for laboratory testing capability, instruments, microbiology, physical and chemical testing, sample handling, and analytical support.",
-    tag: "Contract Analysis",
-    image: "/images/pml/facilities-gallery/analytical-main.jpg",
-    requestSubject: "Contract Analysis Catalogue Request",
-  },
-];
+
+function getAssetUrl(value: string | null) {
+  if (!value) return "/images/pml/cta-lab-background.png";
+
+  if (value.startsWith("http")) return value;
+
+  if (value.startsWith("/uploads")) {
+    const apiOrigin =
+      process.env.NEXT_PUBLIC_API_URL?.replace(/\/api\/?$/, "") ||
+      "http://localhost:4000";
+
+    return `${apiOrigin}${value}`;
+  }
+
+  return value;
+}
+
+function getCatalogueMessage(catalogue: CatalogueItem) {
+  return `Please send the latest official ${catalogue.title}.`;
+}
 
 export default function CataloguePage() {
-  const [selectedCatalogue, setSelectedCatalogue] = useState("");
+  const [catalogues, setCatalogues] = useState<CatalogueItem[]>([]);
+  const [selectedCatalogueId, setSelectedCatalogueId] = useState("");
+  const [requestName, setRequestName] = useState("");
+  const [requestCompany, setRequestCompany] = useState("");
   const [requestEmail, setRequestEmail] = useState("");
+  const [requestPhone, setRequestPhone] = useState("");
   const [requestStatus, setRequestStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [requestMessage, setRequestMessage] = useState("");
+  const [catalogueStatus, setCatalogueStatus] = useState<"loading" | "success" | "error">("loading");
 
   const openProposal = () => {
     window.dispatchEvent(new CustomEvent("open-proposal-modal"));
   };
 
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadCatalogues() {
+      try {
+        const data = await getCatalogues();
+
+        if (!isMounted) return;
+
+        setCatalogues(data);
+        setCatalogueStatus("success");
+      } catch {
+        if (!isMounted) return;
+
+        setCatalogueStatus("error");
+      }
+    }
+
+    void loadCatalogues();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const handleCatalogueRequest = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    const selectedCatalogue = catalogues.find((item) => item.id === selectedCatalogueId);
 
     if (!selectedCatalogue) {
       setRequestStatus("error");
@@ -52,19 +81,22 @@ export default function CataloguePage() {
     setRequestMessage("");
 
     try {
-      await submitProposal({
-        name: "Catalogue Request",
-        company: "-",
+      await submitCatalogueRequest({
+        catalogueId: selectedCatalogue.id,
+        name: requestName || "Catalogue Request",
+        company: requestCompany || undefined,
         email: requestEmail,
-        serviceType: selectedCatalogue,
-        projectNeeds: `Please send the latest official ${selectedCatalogue}.`,
-        sourcePage: typeof window !== "undefined" ? window.location.pathname : "/about-us/catalogue",
+        phone: requestPhone || undefined,
+        message: getCatalogueMessage(selectedCatalogue),
       });
 
       setRequestStatus("success");
       setRequestMessage("Catalogue request submitted successfully. PML team will follow up soon.");
-      setSelectedCatalogue("");
+      setSelectedCatalogueId("");
+      setRequestName("");
+      setRequestCompany("");
       setRequestEmail("");
+      setRequestPhone("");
     } catch (error) {
       setRequestStatus("error");
       setRequestMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
@@ -147,18 +179,37 @@ export default function CataloguePage() {
           </div>
 
           <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+            {catalogueStatus === "loading" ? (
+              <div className="col-span-full rounded-[30px] border border-black/5 bg-white p-8 text-center text-sm font-bold text-black/45">
+                Loading catalogue data from CMS...
+              </div>
+            ) : null}
+
+            {catalogueStatus === "error" ? (
+              <div className="col-span-full rounded-[30px] border border-red-100 bg-red-50 p-8 text-center text-sm font-bold text-red-700">
+                Unable to load catalogue data. Please try again later.
+              </div>
+            ) : null}
+
+            {catalogueStatus === "success" && catalogues.length === 0 ? (
+              <div className="col-span-full rounded-[30px] border border-black/5 bg-white p-8 text-center text-sm font-bold text-black/45">
+                No catalogue available yet.
+              </div>
+            ) : null}
+
             {catalogues.map((catalogue) => (
-              <article key={catalogue.title} className="group w-[82vw] max-w-[350px] shrink-0 snap-start overflow-hidden rounded-[30px] border border-black/5 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,0,0,0.12)] md:w-auto md:max-w-none md:rounded-[34px]">
+              <article key={catalogue.id} className="group w-[82vw] max-w-[350px] shrink-0 snap-start overflow-hidden rounded-[30px] border border-black/5 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,0,0,0.12)] md:w-auto md:max-w-none md:rounded-[34px]">
                 <div className="relative h-48 overflow-hidden bg-black md:h-56">
                   <Image
-                    src={catalogue.image}
+                    src={getAssetUrl(catalogue.coverImage)}
                     alt={catalogue.title}
+                    unoptimized={Boolean(catalogue.coverImage?.startsWith("/uploads"))}
                     fill
                     className="object-cover opacity-90 transition duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/10 to-transparent" />
                   <div className="absolute bottom-5 left-5 rounded-full bg-white/90 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-[#039147] backdrop-blur">
-                    {catalogue.tag}
+                    {catalogue.serviceType || "Catalogue"}
                   </div>
                 </div>
 
@@ -168,23 +219,34 @@ export default function CataloguePage() {
                   </h3>
 
                   <p className="mt-4 text-sm leading-7 text-black/60">
-                    {catalogue.desc}
+                    {catalogue.description}
                   </p>
 
                   <div className="mt-auto grid gap-3 pt-7">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setSelectedCatalogue(catalogue.title);
-                        document.getElementById("catalogue-request-form")?.scrollIntoView({
-                          behavior: "smooth",
-                          block: "center",
-                        });
-                      }}
-                      className="inline-flex items-center justify-center rounded-full bg-[#039147] px-6 py-3.5 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(3,145,71,0.20)] transition hover:-translate-y-0.5"
-                    >
-                      Request PDF
-                    </button>
+                    {catalogue.downloadMode === "PUBLIC_DOWNLOAD" && catalogue.fileUrl ? (
+                      <a
+                        href={getAssetUrl(catalogue.fileUrl)}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-center rounded-full bg-[#039147] px-6 py-3.5 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(3,145,71,0.20)] transition hover:-translate-y-0.5"
+                      >
+                        Download PDF
+                      </a>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedCatalogueId(catalogue.id);
+                          document.getElementById("catalogue-request-form")?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center",
+                          });
+                        }}
+                        className="inline-flex items-center justify-center rounded-full bg-[#039147] px-6 py-3.5 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(3,145,71,0.20)] transition hover:-translate-y-0.5"
+                      >
+                        Request PDF
+                      </button>
+                    )}
 
                     <Link
                       href="/contact"
@@ -205,23 +267,62 @@ export default function CataloguePage() {
           <form
             id="catalogue-request-form"
             onSubmit={handleCatalogueRequest}
-            className="mx-auto mt-10 grid max-w-3xl gap-4 rounded-[30px] border border-black/5 bg-white p-5 shadow-sm md:mt-12 md:grid-cols-[1fr_1fr_auto] md:items-end md:rounded-[34px] md:p-6"
+            className="mx-auto mt-10 grid max-w-4xl gap-4 rounded-[30px] border border-black/5 bg-white p-5 shadow-sm md:mt-12 md:grid-cols-2 md:items-end md:rounded-[34px] md:p-6"
           >
             <label className="grid gap-2">
               <span className="text-sm font-black text-black">Catalogue Type</span>
               <select
                 required
-                value={selectedCatalogue}
-                onChange={(event) => setSelectedCatalogue(event.target.value)}
+                value={selectedCatalogueId}
+                onChange={(event) => setSelectedCatalogueId(event.target.value)}
                 className="h-13 rounded-2xl border border-black/10 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
               >
                 <option value="">Choose catalogue</option>
                 {catalogues.map((catalogue) => (
-                  <option key={catalogue.title} value={catalogue.title}>
+                  <option key={catalogue.id} value={catalogue.id}>
                     {catalogue.title}
                   </option>
                 ))}
               </select>
+
+              {catalogueStatus === "loading" ? (
+                <span className="text-xs font-bold text-black/40">
+                  Loading catalogue data from CMS...
+                </span>
+              ) : null}
+
+              {catalogueStatus === "error" ? (
+                <span className="text-xs font-bold text-red-600">
+                  Unable to load catalogue data. Please try again later.
+                </span>
+              ) : null}
+
+              {catalogueStatus === "success" && catalogues.length === 0 ? (
+                <span className="text-xs font-bold text-black/40">
+                  No catalogue available yet.
+                </span>
+              ) : null}
+            </label>
+
+            <label className="grid gap-2">
+              <span className="text-sm font-black text-black">Full Name</span>
+              <input
+                required
+                value={requestName}
+                onChange={(event) => setRequestName(event.target.value)}
+                className="h-13 rounded-2xl border border-black/10 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                placeholder="Your name"
+              />
+            </label>
+
+            <label className="grid gap-2">
+              <span className="text-sm font-black text-black">Company</span>
+              <input
+                value={requestCompany}
+                onChange={(event) => setRequestCompany(event.target.value)}
+                className="h-13 rounded-2xl border border-black/10 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                placeholder="Company name"
+              />
             </label>
 
             <label className="grid gap-2">
@@ -236,17 +337,27 @@ export default function CataloguePage() {
               />
             </label>
 
+            <label className="grid gap-2">
+              <span className="text-sm font-black text-black">Phone Number</span>
+              <input
+                value={requestPhone}
+                onChange={(event) => setRequestPhone(event.target.value)}
+                className="h-13 rounded-2xl border border-black/10 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                placeholder="+62..."
+              />
+            </label>
+
             <button
               type="submit"
               disabled={requestStatus === "loading"}
-              className="inline-flex h-13 items-center justify-center rounded-full bg-[#039147] px-7 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(3,145,71,0.20)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex h-13 items-center justify-center rounded-full bg-[#039147] px-7 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(3,145,71,0.20)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 md:col-span-2"
             >
               {requestStatus === "loading" ? "Sending..." : "Submit"}
             </button>
 
             {requestMessage ? (
               <div
-                className={`rounded-2xl p-4 text-sm font-bold md:col-span-3 ${
+                className={`rounded-2xl p-4 text-sm font-bold md:col-span-2 ${
                   requestStatus === "success"
                     ? "bg-green-50 text-green-700"
                     : "bg-red-50 text-red-700"
