@@ -514,3 +514,108 @@ export async function uploadAdminCatalogueFile(token: string, file: File) {
     url: string;
   }>(response);
 }
+
+export type AdminInsightItem = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  content: string | null;
+  category: string;
+  coverImage: string | null;
+  tags: string[];
+  status: PageSeoStatus;
+  isFeatured: boolean;
+  publishedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type AdminInsightPayload = {
+  title: string;
+  slug?: string;
+  excerpt?: string | null;
+  content?: string | null;
+  category?: string;
+  coverImage?: string | null;
+  tags?: string[];
+  status?: PageSeoStatus;
+  isFeatured?: boolean;
+  publishedAt?: string | null;
+};
+
+export async function getAdminInsights(token: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/insights`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+  });
+
+  return parseJsonResponse<AdminInsightItem[]>(response);
+}
+
+export async function createAdminInsight(
+  token: string,
+  payload: AdminInsightPayload
+) {
+  const response = await fetch(`${API_BASE_URL}/admin/insights`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return parseJsonResponse<AdminInsightItem>(response);
+}
+
+export async function updateAdminInsight(
+  token: string,
+  id: string,
+  payload: AdminInsightPayload
+) {
+  const response = await fetch(`${API_BASE_URL}/admin/insights/${id}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return parseJsonResponse<AdminInsightItem>(response);
+}
+
+export async function archiveAdminInsight(token: string, id: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/insights/${id}/archive`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return parseJsonResponse<AdminInsightItem>(response);
+}
+
+export async function uploadAdminInsightCover(token: string, file: File) {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(`${API_BASE_URL}/admin/insights/upload-cover`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  });
+
+  return parseJsonResponse<{
+    filename: string;
+    originalName: string;
+    mimeType: string;
+    size: number;
+    url: string;
+  }>(response);
+}

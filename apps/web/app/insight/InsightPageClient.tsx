@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 import InsightCard from "@/components/pages/InsightCard";
-import { insightCategories, insights, insightFaqs } from "@/data/insights";
+import { insightCategories, insightFaqs } from "@/data/insights";
+import { getInsights, InsightItem } from "@/lib/api";
 
 const categoryIcons: Record<string, string> = {
   Articles: "01",
@@ -17,8 +19,41 @@ export default function InsightPage() {
     window.dispatchEvent(new CustomEvent("open-proposal-modal"));
   };
 
-  const featured = insights[0];
-  const latest = insights.slice(1, 4);
+  const [insights, setInsights] = useState<InsightItem[]>([]);
+  const [insightStatus, setInsightStatus] = useState<"loading" | "success" | "error">("loading");
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadInsights() {
+      try {
+        const data = await getInsights();
+
+        if (!isMounted) return;
+
+        setInsights(data);
+        setInsightStatus("success");
+      } catch {
+        if (!isMounted) return;
+
+        setInsightStatus("error");
+      }
+    }
+
+    void loadInsights();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const featured = useMemo(() => {
+    return insights.find((item) => item.isFeatured) || insights[0] || null;
+  }, [insights]);
+
+  const latest = useMemo(() => {
+    return insights.filter((item) => item.id !== featured?.id).slice(0, 3);
+  }, [insights, featured]);
 
   return (
     <main>
@@ -173,13 +208,33 @@ export default function InsightPage() {
             </Link>
           </div>
 
-          <InsightCard item={featured} featured />
+          {insightStatus === "loading" ? (
+            <div className="rounded-[30px] border border-black/5 bg-[#f6faf7] p-8 text-center text-sm font-bold text-black/45">
+              Loading insights from CMS...
+            </div>
+          ) : null}
 
-          <div className="-mx-4 mt-8 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
-            {latest.map((item) => (
-              <InsightCard key={item.slug} item={item} />
-            ))}
-          </div>
+          {insightStatus === "error" ? (
+            <div className="rounded-[30px] border border-red-100 bg-red-50 p-8 text-center text-sm font-bold text-red-700">
+              Unable to load insights. Please try again later.
+            </div>
+          ) : null}
+
+          {insightStatus === "success" && !featured ? (
+            <div className="rounded-[30px] border border-black/5 bg-[#f6faf7] p-8 text-center text-sm font-bold text-black/45">
+              No insight available yet.
+            </div>
+          ) : null}
+
+          {featured ? <InsightCard item={featured} featured /> : null}
+
+          {latest.length > 0 ? (
+            <div className="-mx-4 mt-8 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+              {latest.map((item) => (
+                <InsightCard key={item.slug} item={item} />
+              ))}
+            </div>
+          ) : null}
 
           <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
             Swipe to read latest insights

@@ -1,9 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { InsightItem } from "@/data/insights";
+import { InsightItem as StaticInsightItem } from "@/data/insights";
+import { InsightItem as ApiInsightItem } from "@/lib/api";
+
+type InsightCardItem = StaticInsightItem | ApiInsightItem;
 
 type InsightCardProps = {
-  item: InsightItem;
+  item: InsightCardItem;
   featured?: boolean;
 };
 
@@ -14,7 +17,61 @@ const categoryLabel: Record<string, string> = {
   faq: "FAQ",
 };
 
+function getAssetUrl(value: string | null | undefined) {
+  if (!value) return "/images/pml/cta-lab-background.png";
+
+  if (value.startsWith("http")) return value;
+
+  if (value.startsWith("/uploads")) {
+    const apiOrigin =
+      process.env.NEXT_PUBLIC_API_URL?.replace(/\/api\/?$/, "") ||
+      "http://localhost:4000";
+
+    return `${apiOrigin}${value}`;
+  }
+
+  return value;
+}
+
+function getImage(item: InsightCardItem) {
+  if ("image" in item) return item.image;
+
+  return getAssetUrl(item.coverImage);
+}
+
+function getExcerpt(item: InsightCardItem) {
+  return item.excerpt || "";
+}
+
+function getDate(item: InsightCardItem) {
+  if ("date" in item) return item.date;
+
+  const value = item.publishedAt || item.createdAt;
+
+  if (!value) return "PML Insight";
+
+  return new Intl.DateTimeFormat("en", {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+  }).format(new Date(value));
+}
+
+function getReadTime(item: InsightCardItem) {
+  if ("readTime" in item) return item.readTime;
+
+  const source = item.content || item.excerpt || "";
+  const words = source.trim().split(/\s+/).filter(Boolean).length;
+  const minutes = Math.max(1, Math.ceil(words / 180));
+
+  return `${minutes} min read`;
+}
+
 export default function InsightCard({ item, featured = false }: InsightCardProps) {
+  const category = item.category;
+  const image = getImage(item);
+  const isUploadImage = image.startsWith("http://localhost") || image.includes("/uploads/");
+
   return (
     <article
       className={`group overflow-hidden border border-black/5 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(0,0,0,0.12)] ${
@@ -25,16 +82,17 @@ export default function InsightCard({ item, featured = false }: InsightCardProps
     >
       <div className={`relative overflow-hidden bg-black ${featured ? "aspect-[16/10] md:aspect-[16/8.5]" : "aspect-[16/10]"}`}>
         <Image
-          src={item.image}
+          src={image}
           alt={item.title}
           fill
+          unoptimized={isUploadImage}
           className="object-cover opacity-90 transition duration-700 group-hover:scale-105"
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/20 to-transparent" />
 
         <div className="absolute left-5 top-5 rounded-full border border-white/15 bg-white/12 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-white backdrop-blur">
-          {categoryLabel[item.category]}
+          {categoryLabel[category] || "Insight"}
         </div>
 
         <div className="absolute bottom-5 left-5 right-5 flex flex-wrap gap-2">
@@ -51,9 +109,9 @@ export default function InsightCard({ item, featured = false }: InsightCardProps
 
       <div className={featured ? "p-6 md:p-10" : "p-6 md:p-7"}>
         <div className="flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-[0.12em] text-black/40">
-          <span>{item.date}</span>
+          <span>{getDate(item)}</span>
           <span className="h-1 w-1 rounded-full bg-black/20" />
-          <span>{item.readTime}</span>
+          <span>{getReadTime(item)}</span>
         </div>
 
         <h3 className={`${featured ? "mt-4 text-2xl md:mt-5 md:text-4xl" : "mt-4 text-xl md:text-2xl"} font-black leading-tight text-black transition group-hover:text-[#039147]`}>
@@ -61,11 +119,11 @@ export default function InsightCard({ item, featured = false }: InsightCardProps
         </h3>
 
         <p className={`${featured ? "mt-4 text-sm leading-7 md:mt-5 md:text-base md:leading-8" : "mt-3 text-sm leading-6 md:mt-4 md:leading-7"} text-black/60`}>
-          {item.excerpt}
+          {getExcerpt(item)}
         </p>
 
         <Link
-          href={`/insight/${item.category}`}
+          href={`/insight/${category}`}
           className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#eaf8f0] px-5 py-3 text-sm font-extrabold text-[#039147] transition group-hover:bg-[#039147] group-hover:text-white"
         >
           Read more

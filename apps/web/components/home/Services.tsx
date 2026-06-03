@@ -21,7 +21,13 @@ export default function Services() {
               className="group flex h-full min-w-[82%] snap-start flex-col rounded-[28px] border border-black/5 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,0,0,0.12)] sm:min-w-[48%] md:min-w-0 md:rounded-[34px] md:p-7"
             >
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#eaf8f0] transition group-hover:bg-[#039147] md:h-16 md:w-16">
-                <Image src={service.icon} alt="" width={32} height={32} />
+                <Image
+                  src={service.icon}
+                  alt=""
+                  width={32}
+                  height={32}
+                  className="transition duration-300 group-hover:brightness-0 group-hover:invert"
+                />
               </div>
 
               <h3 className="mt-6 text-xl font-black leading-tight text-black md:mt-7 md:text-2xl">

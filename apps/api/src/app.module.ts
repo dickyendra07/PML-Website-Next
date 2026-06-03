@@ -10,6 +10,7 @@ import { SettingsModule } from './settings/settings.module';
 import { PageSeoModule } from './page-seo/page-seo.module';
 import { PopupsModule } from './popups/popups.module';
 import { CataloguesModule } from './catalogues/catalogues.module';
+import { InsightsModule } from './insights/insights.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { CataloguesModule } from './catalogues/catalogues.module';
     PageSeoModule,
     PopupsModule,
     CataloguesModule,
+    InsightsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

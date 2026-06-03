@@ -2,19 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import InsightCard from "@/components/pages/InsightCard";
-import {
-  InsightCategory,
-  getInsightsByCategory,
-  insightCategories,
-  insightFaqs,
-} from "@/data/insights";
+import { InsightCategory, insightCategories } from "@/data/insights";
+import { getInsights, InsightItem } from "@/lib/api";
 
 type InsightCategoryTemplateProps = {
   category: InsightCategory;
 };
 
-const categoryHero: Record<InsightCategory, { title: string; eyebrow: string; description: string; image: string }> = {
+const categoryHero: Record<
+  InsightCategory,
+  { title: string; eyebrow: string; description: string; image: string }
+> = {
   articles: {
     eyebrow: "Articles",
     title: "Educational articles for CRO and pharmaceutical project readiness",
@@ -47,11 +47,37 @@ const categoryHero: Record<InsightCategory, { title: string; eyebrow: string; de
 
 export default function InsightCategoryTemplate({ category }: InsightCategoryTemplateProps) {
   const hero = categoryHero[category];
-  const items = getInsightsByCategory(category);
+  const [items, setItems] = useState<InsightItem[]>([]);
+  const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
 
   const openProposal = () => {
     window.dispatchEvent(new CustomEvent("open-proposal-modal"));
   };
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadCategoryInsights() {
+      try {
+        const data = await getInsights(category);
+
+        if (!isMounted) return;
+
+        setItems(data);
+        setStatus("success");
+      } catch {
+        if (!isMounted) return;
+
+        setStatus("error");
+      }
+    }
+
+    void loadCategoryInsights();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [category]);
 
   return (
     <main>
@@ -137,19 +163,37 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
             </div>
 
             <div className="space-y-3 md:space-y-4">
-              {insightFaqs.map((faq) => (
+              {status === "loading" ? (
+                <div className="rounded-[26px] border border-black/5 bg-[#f6faf7] p-6 text-sm font-bold text-black/45">
+                  Loading FAQ from CMS...
+                </div>
+              ) : null}
+
+              {status === "error" ? (
+                <div className="rounded-[26px] border border-red-100 bg-red-50 p-6 text-sm font-bold text-red-700">
+                  Unable to load FAQ. Please try again later.
+                </div>
+              ) : null}
+
+              {status === "success" && items.length === 0 ? (
+                <div className="rounded-[26px] border border-black/5 bg-[#f6faf7] p-6 text-sm font-bold text-black/45">
+                  No FAQ available yet.
+                </div>
+              ) : null}
+
+              {items.map((faq) => (
                 <details
-                  key={faq.question}
+                  key={faq.id}
                   className="group rounded-[22px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-xl md:rounded-[26px] md:p-6"
                 >
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-base font-black text-black md:gap-6 md:text-lg">
-                    {faq.question}
+                    {faq.title}
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-xl text-[#039147] transition group-open:rotate-45">
                       +
                     </span>
                   </summary>
                   <p className="mt-4 text-sm leading-7 text-black/60">
-                    {faq.answer}
+                    {faq.excerpt || faq.content || "Answer will be available soon."}
                   </p>
                 </details>
               ))}
@@ -171,11 +215,36 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
               </div>
 
               <p className="max-w-xl text-sm leading-7 text-black/55">
-                This section is prepared as a CMS-ready resource collection for future PML content updates.
+                This section is connected to the CMS and can be updated from the admin panel.
               </p>
             </div>
 
-            {items.length > 0 ? (
+            {status === "loading" ? (
+              <div className="mx-auto max-w-3xl rounded-[34px] border border-black/5 bg-[#f6faf7] p-10 text-center shadow-sm">
+                <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+                  Loading
+                </p>
+                <h2 className="mt-4 text-3xl font-black leading-tight text-black">
+                  Loading {hero.eyebrow.toLowerCase()} from CMS...
+                </h2>
+              </div>
+            ) : null}
+
+            {status === "error" ? (
+              <div className="mx-auto max-w-3xl rounded-[34px] border border-red-100 bg-red-50 p-10 text-center shadow-sm">
+                <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-red-600">
+                  Error
+                </p>
+                <h2 className="mt-4 text-3xl font-black leading-tight text-red-700">
+                  Unable to load content
+                </h2>
+                <p className="mt-5 text-base leading-8 text-red-600">
+                  Please try again later.
+                </p>
+              </div>
+            ) : null}
+
+            {status === "success" && items.length > 0 ? (
               <>
                 <div className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3">
                   {items.map((item) => (
@@ -187,7 +256,9 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
                   Swipe to explore resources
                 </p>
               </>
-            ) : (
+            ) : null}
+
+            {status === "success" && items.length === 0 ? (
               <div className="mx-auto max-w-3xl rounded-[34px] border border-black/5 bg-white p-10 text-center shadow-sm">
                 <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
                   Coming Soon
@@ -196,11 +267,10 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
                   More resources will be available soon
                 </h2>
                 <p className="mt-5 text-base leading-8 text-black/60">
-                  This section is ready for future content updates, including CMS-managed articles,
-                  news, and publications.
+                  This section is ready for future CMS-managed content updates.
                 </p>
               </div>
-            )}
+            ) : null}
           </div>
         </section>
       )}

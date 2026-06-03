@@ -98,3 +98,33 @@ export async function submitCatalogueRequest(payload: {
 
   return result;
 }
+
+export type InsightItem = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  content: string | null;
+  category: string;
+  coverImage: string | null;
+  tags: string[];
+  status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
+  isFeatured: boolean;
+  publishedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export async function getInsights(category?: string) {
+  const searchParams = category ? `?category=${encodeURIComponent(category)}` : "";
+
+  const response = await fetch(`${API_BASE_URL}/insights${searchParams}`, {
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to load insights.");
+  }
+
+  return (await response.json()) as InsightItem[];
+}
