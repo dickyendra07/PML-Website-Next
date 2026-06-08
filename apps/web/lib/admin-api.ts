@@ -619,3 +619,189 @@ export async function uploadAdminInsightCover(token: string, file: File) {
     url: string;
   }>(response);
 }
+
+export type HomepageFeatureItem = {
+  id: string;
+  title: string;
+  description: string | null;
+  type: string;
+  referenceId: string | null;
+  imageUrl: string | null;
+  buttonLabel: string | null;
+  buttonUrl: string | null;
+  status: PageSeoStatus;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type HomepageFeaturePayload = {
+  title: string;
+  description?: string | null;
+  type?: string;
+  referenceId?: string | null;
+  imageUrl?: string | null;
+  buttonLabel?: string | null;
+  buttonUrl?: string | null;
+  status?: PageSeoStatus;
+  sortOrder?: number;
+};
+
+export async function getAdminHomepageFeatures(token: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/homepage-features`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+  });
+
+  return parseJsonResponse<HomepageFeatureItem[]>(response);
+}
+
+export async function createAdminHomepageFeature(
+  token: string,
+  payload: HomepageFeaturePayload
+) {
+  const response = await fetch(`${API_BASE_URL}/admin/homepage-features`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return parseJsonResponse<HomepageFeatureItem>(response);
+}
+
+export async function updateAdminHomepageFeature(
+  token: string,
+  id: string,
+  payload: HomepageFeaturePayload
+) {
+  const response = await fetch(`${API_BASE_URL}/admin/homepage-features/${id}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return parseJsonResponse<HomepageFeatureItem>(response);
+}
+
+export async function archiveAdminHomepageFeature(token: string, id: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/homepage-features/${id}/archive`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return parseJsonResponse<HomepageFeatureItem>(response);
+}
+
+export async function uploadAdminHomepageFeatureImage(token: string, file: File) {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(`${API_BASE_URL}/admin/homepage-features/upload-image`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  });
+
+  return parseJsonResponse<{
+    filename: string;
+    originalName: string;
+    mimeType: string;
+    size: number;
+    url: string;
+  }>(response);
+}
+
+export type MediaAssetType = "IMAGE" | "DOCUMENT" | "VIDEO" | "OTHER";
+
+export type MediaAssetItem = {
+  id: string;
+  filename: string;
+  originalName: string | null;
+  mimeType: string | null;
+  size: number | null;
+  url: string;
+  type: MediaAssetType;
+  altText: string | null;
+  caption: string | null;
+  folder: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type MediaAssetPayload = {
+  altText?: string | null;
+  caption?: string | null;
+  folder?: string | null;
+  type?: MediaAssetType;
+};
+
+export async function getAdminMediaAssets(token: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/media`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+  });
+
+  return parseJsonResponse<MediaAssetItem[]>(response);
+}
+
+export async function updateAdminMediaAsset(
+  token: string,
+  id: string,
+  payload: MediaAssetPayload
+) {
+  const response = await fetch(`${API_BASE_URL}/admin/media/${id}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return parseJsonResponse<MediaAssetItem>(response);
+}
+
+export async function deleteAdminMediaAsset(token: string, id: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/media/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return parseJsonResponse<{ success: boolean; message: string }>(response);
+}
+
+export async function uploadAdminMediaAsset(
+  token: string,
+  file: File,
+  folder = "general"
+) {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("folder", folder);
+
+  const response = await fetch(`${API_BASE_URL}/admin/media/upload`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  });
+
+  return parseJsonResponse<MediaAssetItem>(response);
+}

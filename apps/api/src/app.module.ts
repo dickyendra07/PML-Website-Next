@@ -11,6 +11,8 @@ import { PageSeoModule } from './page-seo/page-seo.module';
 import { PopupsModule } from './popups/popups.module';
 import { CataloguesModule } from './catalogues/catalogues.module';
 import { InsightsModule } from './insights/insights.module';
+import { HomepageFeaturesModule } from './homepage-features/homepage-features.module';
+import { MediaModule } from './media/media.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { InsightsModule } from './insights/insights.module';
     PopupsModule,
     CataloguesModule,
     InsightsModule,
+    HomepageFeaturesModule,
+    MediaModule,
   ],
   controllers: [AppController],
   providers: [AppService],

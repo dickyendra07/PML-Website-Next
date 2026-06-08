@@ -128,3 +128,32 @@ export async function getInsights(category?: string) {
 
   return (await response.json()) as InsightItem[];
 }
+
+export type HomepageFeature = {
+  id: string;
+  title: string;
+  description: string | null;
+  type: string;
+  referenceId: string | null;
+  imageUrl: string | null;
+  buttonLabel: string | null;
+  buttonUrl: string | null;
+  status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export async function getHomepageFeatures(type?: string) {
+  const searchParams = type ? `?type=${encodeURIComponent(type)}` : "";
+
+  const response = await fetch(`${API_BASE_URL}/homepage-features${searchParams}`, {
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to load homepage features.");
+  }
+
+  return (await response.json()) as HomepageFeature[];
+}
