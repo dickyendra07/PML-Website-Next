@@ -268,7 +268,7 @@ function Icon({ type }: { type: IconType }) {
 
 function MegaPanel({
   label,
-  width = "1080",
+  width = "980",
   items,
   sideTitle,
   sideDesc,
@@ -278,7 +278,7 @@ function MegaPanel({
   grid = "grid-cols-2",
 }: {
   label: string;
-  width?: "1080" | "1180";
+  width?: "920" | "980" | "1080" | "1180";
   items: MegaItem[];
   sideTitle: string;
   sideDesc: string;
@@ -288,28 +288,28 @@ function MegaPanel({
   grid?: string;
 }) {
   return (
-    <div className={`invisible fixed left-1/2 top-[70px] z-50 w-[min(${width}px,calc(100vw-48px))] -translate-x-1/2 pt-8 opacity-0 transition duration-200 group-hover/menu:visible group-hover/menu:opacity-100`}>
-      <div className="absolute left-0 right-0 top-0 h-8" aria-hidden="true" />
+    <div className={`invisible fixed left-1/2 top-[66px] z-50 w-[min(${width}px,calc(100vw-56px))] -translate-x-1/2 pt-5 opacity-0 transition duration-200 group-hover/menu:visible group-hover/menu:opacity-100`}>
+      <div className="absolute left-0 right-0 top-0 h-5" aria-hidden="true" />
 
-      <div className="overflow-hidden rounded-[30px] border border-black/5 bg-white shadow-[0_28px_90px_rgba(0,0,0,0.14)]">
-        <div className="grid grid-cols-[1.2fr_0.8fr]">
-          <div className="p-7">
+      <div className="overflow-hidden rounded-[26px] border border-black/5 bg-white shadow-[0_22px_70px_rgba(0,0,0,0.13)] ring-1 ring-black/[0.02]">
+        <div className="grid grid-cols-[1.45fr_0.75fr]">
+          <div className="p-6">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147]">
               {label}
             </p>
 
-            <div className={`mt-5 grid ${grid} gap-4`}>
+            <div className={`mt-4 grid ${grid} gap-3`}>
               {items.map((item) => (
-                <Link key={`${label}-${item.label}`} href={item.href} className="group/item flex min-h-[132px] gap-4 rounded-[24px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:bg-[#eaf8f0] hover:shadow-xl">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] transition group-hover/item:bg-[#039147] group-hover/item:text-white">
+                <Link key={`${label}-${item.label}`} href={item.href} className="group/item flex min-h-[104px] gap-3 rounded-[20px] border border-black/5 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:bg-[#eaf8f0] hover:shadow-[0_16px_40px_rgba(0,0,0,0.09)]">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] transition group-hover/item:bg-[#039147] group-hover/item:text-white">
                     <Icon type={item.icon} />
                   </span>
 
                   <span>
-                    <span className="block text-sm font-black leading-tight text-black">
+                    <span className="block text-[13px] font-black leading-tight text-black">
                       {item.label}
                     </span>
-                    <span className="mt-2 block text-xs leading-5 text-black/55">
+                    <span className="mt-1.5 block text-[11px] font-semibold leading-5 text-black/52">
                       {item.desc}
                     </span>
                   </span>
@@ -318,23 +318,23 @@ function MegaPanel({
             </div>
           </div>
 
-          <div className="relative overflow-hidden bg-[#eaf8f0] p-7">
+          <div className="relative overflow-hidden bg-gradient-to-br from-[#eaf8f0] via-[#f4fbf7] to-white p-6">
             <div className="pml-hex-pattern absolute inset-0 opacity-[0.10]" aria-hidden="true" />
 
             <div className="relative">
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[#039147] shadow-sm">
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-[#039147] shadow-sm">
                 <Icon type={sideIcon} />
               </div>
 
-              <h3 className="text-xl font-black leading-tight text-black">
+              <h3 className="text-lg font-black leading-tight text-black">
                 {sideTitle}
               </h3>
 
-              <p className="mt-3 text-sm leading-6 text-black/60">
+              <p className="mt-3 text-xs font-semibold leading-6 text-black/56">
                 {sideDesc}
               </p>
 
-              <Link href={sideHref} className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#039147] px-5 py-3 text-xs font-extrabold text-white shadow-[0_14px_32px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5">
+              <Link href={sideHref} className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#039147] px-5 py-3 text-xs font-extrabold text-white shadow-[0_14px_32px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5">
                 {sideCta}
                 <span aria-hidden="true">→</span>
               </Link>

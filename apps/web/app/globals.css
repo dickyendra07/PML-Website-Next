@@ -19,7 +19,10 @@ html {
 body {
   background: #ffffff;
   color: var(--pml-black);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-kalbe-helix), Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
 }
 
 button,
@@ -30,6 +33,21 @@ a {
 button {
   cursor: pointer;
 }
+
+/* Kalbe Helix weight mapping */
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-extrabold,
+.font-black {
+  font-weight: 800;
+}
+
 
 .pml-container {
   width: min(100% - 48px, 1460px);

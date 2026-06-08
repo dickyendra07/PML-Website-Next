@@ -1,7 +1,40 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import ClientShell from "@/components/ClientShell";
 import { getSeoDefaults } from "@/lib/server-settings";
+
+const kalbeHelix = localFont({
+  src: [
+    {
+      path: "../public/fonts/kalbe/KalbeHelix-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/kalbe/KalbeHelix-Medium.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/kalbe/KalbeHelix-SemiBold.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/kalbe/KalbeHelix-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/kalbe/KalbeHelix-ExtraBold.otf",
+      weight: "800",
+      style: "normal",
+    },
+  ],
+  variable: "--font-kalbe-helix",
+  display: "swap",
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getSeoDefaults();
@@ -79,7 +112,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${kalbeHelix.className} ${kalbeHelix.variable}`}>
         <ClientShell>{children}</ClientShell>
       </body>
     </html>
