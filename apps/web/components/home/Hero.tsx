@@ -9,7 +9,7 @@ const slides = [
     eyebrow: "CRO Services",
     title: "Your Partner for End-to-End Clinical Research Success",
     description:
-      "Pharma Metric Labs supports pharmaceutical, biotechnology, medical device, food, beverage, and healthcare companies with integrated CRO services, from contract analysis, BA/BE study, and clinical trial to regulatory management.",
+      "PML supports pharmaceutical, biotechnology, medical device, food, beverage, and healthcare companies with integrated CRO services, from contract analysis, BA/BE study, and clinical trial to regulatory management.",
     primary: "Request a Proposal",
     secondary: "Explore Our Services",
     secondaryHref: "#services",
@@ -53,13 +53,13 @@ export default function Hero() {
   useEffect(() => {
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % slides.length);
-    }, 6500);
+    }, 10000);
 
     return () => window.clearInterval(timer);
   }, []);
 
   return (
-    <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-black">
+    <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-white">
       <div className="relative min-h-[calc(100vh-80px)]">
         {slides.map((slide, index) => {
           const isActive = index === activeIndex;
@@ -78,13 +78,14 @@ export default function Hero() {
                   alt=""
                   fill
                   priority={index === 0}
-                  className={`object-cover opacity-60 transition-transform duration-[6500ms] ${
+                  className={`object-cover opacity-90 transition-transform duration-[9000ms] ${
                     isActive ? "scale-105" : "scale-100"
                   }`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/58 to-black/18" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
-                <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.075]" />
+                <div className="absolute inset-0 bg-gradient-to-r from-white/96 via-white/78 to-white/20" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_38%,rgba(3,145,71,0.18),transparent_34%),radial-gradient(circle_at_18%_70%,rgba(255,40,0,0.055),transparent_28%)]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/65 via-transparent to-white/20" />
+                <div className="pml-hex-pattern absolute inset-0 opacity-[0.075]" />
               </div>
 
               <div className="pml-container relative flex min-h-[calc(100vh-80px)] items-center py-20">
@@ -93,16 +94,16 @@ export default function Hero() {
                     isActive ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
                   }`}
                 >
-                  <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white backdrop-blur">
+                  <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-black/70 shadow-sm backdrop-blur">
                     <span className="h-2 w-2 rounded-full bg-[#039147]" />
                     {slide.eyebrow}
                   </div>
 
-                  <h1 className="max-w-5xl text-4xl font-black leading-[1.04] tracking-tight text-white md:text-5xl lg:text-[54px] xl:text-[60px]">
+                  <h1 className="max-w-5xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-5xl lg:text-[54px] xl:text-[60px]">
                     {slide.title}
                   </h1>
 
-                  <p className="mt-6 max-w-2xl text-base leading-7 text-white/75 md:text-lg">
+                  <p className="mt-6 max-w-2xl text-base leading-7 text-black/66 md:text-lg">
                     {slide.description}
                   </p>
 
@@ -110,14 +111,14 @@ export default function Hero() {
                     <button
                       type="button"
                       onClick={openProposal}
-                      className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-extrabold text-[#039147] shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+                      className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-3.5 text-sm font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c] hover:shadow-xl"
                     >
                       {slide.primary}
                     </button>
 
                     <Link
                       href={slide.secondaryHref}
-                      className="inline-flex items-center justify-center rounded-full border border-white/40 px-7 py-3.5 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-white hover:text-[#039147]"
+                      className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/70 px-7 py-3.5 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white"
                     >
                       {slide.secondary}
                     </Link>
@@ -131,7 +132,7 @@ export default function Hero() {
         <button
           type="button"
           onClick={() => goToSlide(activeIndex - 1)}
-          className="absolute left-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-white/10 text-2xl font-light text-white backdrop-blur transition hover:bg-white hover:text-[#039147] md:flex"
+          className="absolute left-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-black/10 bg-white/75 text-2xl font-light text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white md:flex"
           aria-label="Previous hero slide"
         >
           ‹
@@ -140,7 +141,7 @@ export default function Hero() {
         <button
           type="button"
           onClick={() => goToSlide(activeIndex + 1)}
-          className="absolute right-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-white/10 text-2xl font-light text-white backdrop-blur transition hover:bg-white hover:text-[#039147] md:flex"
+          className="absolute right-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-black/10 bg-white/75 text-2xl font-light text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white md:flex"
           aria-label="Next hero slide"
         >
           ›

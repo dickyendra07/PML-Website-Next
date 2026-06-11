@@ -37,12 +37,12 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
           priority
           className="object-cover opacity-80"
         />
-        <div className="absolute inset-0 bg-black/62" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/62 to-black/20" />
-        <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
+        <div className="absolute inset-0 bg-[#039147]/22" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/62 to-[#039147]/20" />
+        <div className="pml-hex-pattern absolute inset-0 opacity-[0.075]" />
 
         <div className="pml-container relative py-20 md:py-32">
-          <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/60">
+          <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-black/58">
             <Link href="/" className="transition hover:text-white">Home</Link>
             <span>/</span>
             <Link href="/facilities" className="transition hover:text-white">Facilities</Link>
@@ -56,11 +56,11 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
               {data.eyebrow}
             </p>
 
-            <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-tight text-white md:text-6xl lg:text-[68px]">
+            <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-6xl lg:text-[68px]">
               {data.title}
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-white/75 md:text-lg">
+            <p className="mt-6 max-w-2xl text-base leading-8 text-black/68 md:text-lg">
               {data.summary}
             </p>
 

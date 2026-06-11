@@ -11,47 +11,73 @@ export default function ServicesPageClient() {
 
   return (
     <main>
-      <section className="relative overflow-hidden bg-black text-white">
+      <section className="relative overflow-hidden bg-white text-black">
         <Image
           src="/images/pml/services/contract-analysis-cta.png"
           alt=""
           fill
           priority
-          className="object-cover opacity-80"
+          className="object-cover opacity-90"
         />
 
-        <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/45 to-black/70 md:bg-gradient-to-r md:from-black/90 md:via-black/58 md:to-black/20" aria-hidden="true" />
-        <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/68 to-white/24" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_34%,rgba(3,145,71,0.22),transparent_34%),radial-gradient(circle_at_18%_72%,rgba(255,40,0,0.055),transparent_28%)]" aria-hidden="true" />
+
+        <svg
+          className="absolute right-[-90px] top-12 h-[460px] w-[460px] text-[#039147]/18"
+          viewBox="0 0 460 460"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path d="M230 24L407 126V334L230 436L53 334V126L230 24Z" stroke="currentColor" strokeWidth="4" />
+        </svg>
+
+        <svg
+          className="absolute right-[120px] bottom-[-90px] h-[260px] w-[260px] text-[#039147]/10"
+          viewBox="0 0 260 260"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path d="M130 14L230 72V188L130 246L30 188V72L130 14Z" stroke="currentColor" strokeWidth="3" />
+        </svg>
+
+        <svg
+          className="absolute left-[-120px] bottom-[-110px] h-[320px] w-[320px] text-[#FF2800]/10"
+          viewBox="0 0 320 320"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path d="M160 18L284 89V231L160 302L36 231V89L160 18Z" stroke="currentColor" strokeWidth="3" />
+        </svg>
 
         <div className="pml-container relative flex min-h-[520px] flex-col justify-center py-14 md:min-h-[620px] md:py-32">
-          <nav className="mb-7 flex flex-wrap items-center justify-center gap-2 text-xs font-bold text-white/60 md:mb-10 md:text-sm" aria-label="Breadcrumb">
-            <Link href="/" className="transition hover:text-white">
+          <nav className="mb-7 flex flex-wrap items-center gap-2 text-xs font-bold text-black/55 md:mb-10 md:text-sm" aria-label="Breadcrumb">
+            <Link href="/" className="transition hover:text-[#039147]">
               Home
             </Link>
             <span aria-hidden="true">/</span>
-            <span className="text-white">Services</span>
+            <span className="text-[#039147]">Services</span>
           </nav>
 
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.16em] text-white shadow-sm backdrop-blur md:text-xs">
+          <div className="max-w-4xl text-left">
+            <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/15 bg-white/82 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#039147] shadow-sm backdrop-blur md:text-xs">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
               CRO Services
             </p>
 
-            <h1 className="mt-5 text-4xl font-black leading-[1.02] tracking-tight text-white md:mt-6 md:text-6xl lg:text-[68px]">
+            <h1 className="mt-5 max-w-5xl text-4xl font-black leading-[1.02] tracking-tight text-black md:mt-6 md:text-6xl lg:text-[68px]">
               Integrated CRO services for pharmaceutical development
             </h1>
 
-            <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/75 md:mt-6 md:text-lg md:leading-8">
+            <p className="mt-5 max-w-2xl text-base leading-8 text-black/70 md:mt-6 md:text-lg md:leading-8">
               Explore PML services across bioequivalence studies, clinical research support,
               analytical testing, and regulatory management.
             </p>
 
-            <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row md:mt-8">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row md:mt-8">
               <a
                 href="#services-list"
-                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)] transition hover:-translate-y-0.5 md:py-4"
+                className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-3.5 text-sm font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c] md:py-4"
               >
                 Explore Services
               </a>
@@ -59,7 +85,7 @@ export default function ServicesPageClient() {
               <button
                 type="button"
                 onClick={openProposal}
-                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147] md:py-4"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/78 px-7 py-3.5 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white md:py-4"
               >
                 Request a Proposal
               </button>
@@ -102,7 +128,7 @@ export default function ServicesPageClient() {
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
 
-                  <div className="absolute bottom-4 left-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/95 text-[#039147] shadow-lg backdrop-blur transition group-hover:bg-[#039147] group-hover:text-white md:bottom-5 md:left-5 md:h-14 md:w-14">
+                  <div className="absolute bottom-4 left-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#039147]/10 bg-white/95 text-[#039147] shadow-lg backdrop-blur transition group-hover:scale-105 group-hover:border-[#039147]/25 group-hover:bg-white md:bottom-5 md:left-5 md:h-14 md:w-14">
                     <Image src={service.icon} alt="" width={24} height={24} />
                   </div>
 
@@ -145,8 +171,8 @@ export default function ServicesPageClient() {
               className="object-cover opacity-80"
             />
 
-            <div className="absolute inset-0 bg-black/62" aria-hidden="true" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-[#039147]/35" aria-hidden="true" />
+            <div className="absolute inset-0 bg-[#039147]/22" aria-hidden="true" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/82 via-white/46 to-[#039147]/24" aria-hidden="true" />
             <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" aria-hidden="true" />
 
             <div className="relative mx-auto max-w-3xl">
@@ -160,7 +186,7 @@ export default function ServicesPageClient() {
                 />
               </div>
 
-              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/70 md:text-sm">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-black/64 md:text-sm">
                 Start a Project
               </p>
 
@@ -168,7 +194,7 @@ export default function ServicesPageClient() {
                 Need support for your next project?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/75 md:text-base md:leading-8">
+              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-black/68 md:text-base md:leading-8">
                 Share your project needs with our team and we will help identify the right
                 service scope, required information, and next steps.
               </p>
@@ -184,7 +210,7 @@ export default function ServicesPageClient() {
 
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-3.5 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147] md:py-4"
+                  className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-3.5 text-sm font-extrabold text-white backdrop-blur transition hover:bg-[#039147] hover:text-white md:py-4"
                 >
                   Contact PML
                 </Link>

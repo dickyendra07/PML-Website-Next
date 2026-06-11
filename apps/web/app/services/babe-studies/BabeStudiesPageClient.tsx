@@ -219,35 +219,35 @@ export default function BabeStudiesPage() {
           ))}
         </div>
 
-        <div className="absolute inset-0 bg-black/62" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/62 to-black/20" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[#039147]/22" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/62 to-[#039147]/20" aria-hidden="true" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/10" aria-hidden="true" />
-        <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" aria-hidden="true" />
+        <div className="pml-hex-pattern absolute inset-0 opacity-[0.075]" aria-hidden="true" />
 
         <div className="pml-container relative flex min-h-[560px] flex-col justify-center py-14 md:min-h-[calc(100vh-80px)] md:py-24">
-          <nav className="mb-7 flex flex-wrap items-center gap-2 text-xs font-bold text-white/60 md:mb-10 md:text-sm">
-            <Link href="/" className="transition hover:text-white">
+          <nav className="mb-7 flex flex-wrap items-center gap-2 text-xs font-bold text-black/58 md:mb-10 md:text-sm">
+            <Link href="/" className="transition hover:text-[#039147]">
               Home
             </Link>
             <span>/</span>
-            <Link href="/services" className="transition hover:text-white">
+            <Link href="/services" className="transition hover:text-[#039147]">
               Services
             </Link>
             <span>/</span>
-            <span className="text-white">BA/BE Study</span>
+            <span className="text-[#039147]">BA/BE Study</span>
           </nav>
 
           <div className="max-w-4xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.16em] text-white shadow-sm backdrop-blur md:text-xs">
+            <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/20 bg-white/95 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#039147] shadow-sm backdrop-blur md:text-xs">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
               BA/BE Study
             </p>
 
-            <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] tracking-tight text-white md:mt-6 md:text-6xl lg:text-[68px]">
+            <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] tracking-tight text-black md:mt-6 md:text-6xl lg:text-[68px]">
               End-to-end bioequivalence study support for reliable regulatory submission
             </h1>
 
-            <p className="mt-5 max-w-2xl text-sm leading-7 text-white/75 md:mt-6 md:text-lg md:leading-8">
+            <p className="mt-5 max-w-2xl text-base leading-8 text-black/70 md:mt-6 md:text-lg md:leading-8">
               PML supports pharmaceutical companies and generic manufacturers with integrated BA/BE
               study services, from clinical conduct and bioanalysis to regulatory-ready documentation
               and reporting.
@@ -264,7 +264,7 @@ export default function BabeStudiesPage() {
 
               <a
                 href="#babe-overview"
-                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147] md:py-4"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-3.5 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white md:py-4"
               >
                 Explore Service
               </a>
@@ -276,7 +276,7 @@ export default function BabeStudiesPage() {
               <span
                 key={slide}
                 className={`h-2.5 rounded-full ${
-                  index === 0 ? "w-8 bg-[#039147]" : "w-2.5 bg-white/45"
+                  index === 0 ? "w-8 bg-[#039147]" : "w-2.5 bg-black/25"
                 }`}
               />
             ))}
@@ -419,28 +419,39 @@ export default function BabeStudiesPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#022d1c] px-4 py-20 text-white md:py-28">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-45 transition-all duration-700"
-          style={{ backgroundImage: `url(${activeCountry.image})` }}
+      <section className="relative overflow-hidden bg-[#f4fbf7] px-4 py-20 text-black md:py-28">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_28%,rgba(3,145,71,0.14),transparent_34%),radial-gradient(circle_at_16%_72%,rgba(255,40,0,0.045),transparent_26%)]" aria-hidden="true" />
+
+        <svg
+          className="absolute right-[-140px] top-[-80px] h-[420px] w-[420px] text-[#039147]/10"
+          viewBox="0 0 420 420"
+          fill="none"
           aria-hidden="true"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#022d1c]/92 via-[#034b2f]/84 to-[#021b12]/96" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_20%,rgba(255,255,255,0.16),transparent_28%),radial-gradient(circle_at_78%_32%,rgba(255,255,255,0.12),transparent_30%)]" />
-        <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
+        >
+          <path d="M210 20L374 115V305L210 400L46 305V115L210 20Z" stroke="currentColor" strokeWidth="4" />
+        </svg>
+
+        <svg
+          className="absolute left-[-120px] bottom-[-140px] h-[320px] w-[320px] text-[#FF2800]/8"
+          viewBox="0 0 320 320"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path d="M160 18L284 89V231L160 302L36 231V89L160 18Z" stroke="currentColor" strokeWidth="3" />
+        </svg>
 
         <div className="relative mx-auto w-[min(100%-24px,1280px)]">
           <div className="mx-auto max-w-4xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-white/78 backdrop-blur">
-              <span className="h-2 w-2 rounded-full bg-white" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#039147]/15 bg-white/85 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-[#039147] shadow-sm backdrop-blur">
+              <span className="h-2 w-2 rounded-full bg-[#039147]" />
               Proof & Trust Signals
             </div>
 
-            <h2 className="mt-6 text-4xl font-black leading-tight tracking-[-0.04em] md:text-5xl lg:text-6xl">
+            <h2 className="mt-6 text-4xl font-black leading-tight tracking-[-0.04em] text-black md:text-5xl lg:text-6xl">
               Accepted BE reports across global regulatory bodies
             </h2>
 
-            <p className="mx-auto mt-6 max-w-3xl text-sm leading-7 text-white/72 md:text-base md:leading-8">
+            <p className="mx-auto mt-6 max-w-3xl text-sm leading-7 text-black/64 md:text-base md:leading-8">
               PML’s BE reports have supported client submissions across regional and international contexts,
               helping sponsors move forward with credible, regulatory-ready documentation.
             </p>
@@ -459,15 +470,15 @@ export default function BabeStudiesPage() {
                       onMouseEnter={() => setActiveCountry(country)}
                       onFocus={() => setActiveCountry(country)}
                       onClick={() => setActiveCountry(country)}
-                      className={`group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-extrabold shadow-[0_12px_35px_rgba(0,0,0,0.18)] backdrop-blur transition duration-300 hover:-translate-y-1 ${
+                      className={`group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-extrabold shadow-sm transition duration-300 hover:-translate-y-1 ${
                         isActive
-                          ? "border-white bg-white text-[#039147]"
-                          : "border-white/14 bg-white/10 text-white/88 hover:border-white/35 hover:bg-white hover:text-[#039147]"
+                          ? "border-[#039147] bg-[#039147] text-white"
+                          : "border-black/8 bg-white text-black/62 hover:border-[#039147]/30 hover:text-[#039147]"
                       }`}
                     >
                       <span
                         className={`h-1.5 w-1.5 rounded-full transition ${
-                          isActive ? "bg-[#039147]" : "bg-white/55 group-hover:bg-[#039147]"
+                          isActive ? "bg-white" : "bg-[#039147]/55 group-hover:bg-[#039147]"
                         }`}
                       />
                       {country.name}
@@ -496,15 +507,15 @@ export default function BabeStudiesPage() {
                 ].map((item) => (
                   <article
                     key={item.label}
-                    className="rounded-[24px] border border-white/14 bg-white/[0.09] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.20)] backdrop-blur transition duration-300 hover:-translate-y-2 hover:border-white/30 hover:bg-white/[0.14]"
+                    className="rounded-[24px] border border-black/5 bg-white p-5 shadow-[0_18px_55px_rgba(0,0,0,0.07)] transition duration-300 hover:-translate-y-2 hover:border-[#039147]/20 hover:shadow-[0_26px_70px_rgba(3,145,71,0.12)]"
                   >
-                    <p className="text-3xl font-black tracking-[-0.06em] text-white md:text-4xl">
+                    <p className="text-3xl font-black tracking-[-0.06em] text-[#039147] md:text-4xl">
                       {item.value}
                     </p>
-                    <h3 className="mt-3 text-xs font-extrabold uppercase tracking-[0.13em] text-white/86">
+                    <h3 className="mt-3 text-xs font-extrabold uppercase tracking-[0.13em] text-black/78">
                       {item.label}
                     </h3>
-                    <p className="mt-3 text-xs leading-6 text-white/58">
+                    <p className="mt-3 text-xs leading-6 text-black/55">
                       {item.desc}
                     </p>
                   </article>
@@ -512,14 +523,14 @@ export default function BabeStudiesPage() {
               </div>
             </div>
 
-            <aside className="group overflow-hidden rounded-[34px] border border-white/16 bg-white/[0.11] p-4 shadow-[0_30px_110px_rgba(0,0,0,0.32)] backdrop-blur transition duration-300 hover:-translate-y-2 hover:bg-white/[0.15]">
+            <aside className="group overflow-hidden rounded-[34px] border border-black/5 bg-white p-4 shadow-[0_28px_85px_rgba(0,0,0,0.09)] transition duration-300 hover:-translate-y-2 hover:shadow-[0_34px_100px_rgba(3,145,71,0.13)]">
               <div
                 className="relative h-[300px] overflow-hidden rounded-[26px] bg-cover bg-center transition duration-700 group-hover:scale-[1.01]"
                 style={{ backgroundImage: `url(${activeCountry.image})` }}
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/10 to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5">
-                  <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-white/70">
+                  <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-black/64">
                     Active country
                   </p>
                   <h3 className="mt-2 text-3xl font-black tracking-[-0.04em] text-white">
@@ -532,16 +543,16 @@ export default function BabeStudiesPage() {
               </div>
 
               <div className="p-3 pt-5">
-                <p className="text-sm leading-7 text-white/68">
+                <p className="text-sm leading-7 text-black/62">
                   BE report acceptance experience in {activeCountry.name} supports PML’s positioning as a
                   CRO partner with regional and international regulatory readiness.
                 </p>
 
-                <div className="mt-5 flex items-center justify-between rounded-2xl border border-white/12 bg-black/10 px-4 py-3">
-                  <span className="text-xs font-extrabold uppercase tracking-[0.16em] text-white/58">
+                <div className="mt-5 flex items-center justify-between rounded-2xl border border-[#039147]/12 bg-[#f4fbf7] px-4 py-3">
+                  <span className="text-xs font-extrabold uppercase tracking-[0.16em] text-black/45">
                     Submission context
                   </span>
-                  <span className="rounded-full bg-white px-3 py-1 text-xs font-extrabold text-[#039147]">
+                  <span className="rounded-full bg-[#039147] px-3 py-1 text-xs font-extrabold text-white">
                     Accepted report
                   </span>
                 </div>
@@ -549,7 +560,7 @@ export default function BabeStudiesPage() {
             </aside>
           </div>
 
-          <div className="mx-auto mt-9 max-w-4xl rounded-[26px] border border-white/12 bg-black/15 px-6 py-5 text-center text-sm leading-7 text-white/66 backdrop-blur">
+          <div className="mx-auto mt-9 max-w-4xl rounded-[26px] border border-[#039147]/10 bg-white/80 px-6 py-5 text-center text-sm leading-7 text-black/58 shadow-sm backdrop-blur">
             These trust signals are presented to strengthen confidence in PML’s BA/BE study capability,
             reporting experience, and regulatory submission support.
           </div>
@@ -684,8 +695,8 @@ export default function BabeStudiesPage() {
               className="object-cover opacity-80"
             />
 
-            <div className="absolute inset-0 bg-black/62" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-[#039147]/35" />
+            <div className="absolute inset-0 bg-[#039147]/22" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/82 via-white/46 to-[#039147]/24" />
             <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
 
             <div className="relative mx-auto max-w-3xl">
@@ -699,7 +710,7 @@ export default function BabeStudiesPage() {
                 />
               </div>
 
-              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/70 md:text-sm">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-black/64 md:text-sm">
                 Start a Project
               </p>
 
@@ -707,7 +718,7 @@ export default function BabeStudiesPage() {
                 Need BA/BE study support?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/75 md:text-base md:leading-8">
+              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-black/68 md:text-base md:leading-8">
                 Share your study requirements with our team and we will help identify the right service
                 scope, required information, and next steps.
               </p>
@@ -723,7 +734,7 @@ export default function BabeStudiesPage() {
 
                 <a
                   href="#babe-overview"
-                  className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-3.5 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147] md:py-4"
+                  className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-3.5 text-sm font-extrabold text-white backdrop-blur transition hover:bg-[#039147] hover:text-white md:py-4"
                 >
                   Review BA/BE Service
                 </a>

@@ -89,13 +89,13 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
           priority
           className="object-cover opacity-80"
         />
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-[#039147]/22" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/66 to-black/24" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/54 via-transparent to-black/20" />
-        <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
+        <div className="pml-hex-pattern absolute inset-0 opacity-[0.075]" />
 
         <div className="pml-container relative py-20 md:py-32">
-          <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/60">
+          <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-black/58">
             <Link href="/" className="transition hover:text-white">Home</Link>
             <span>/</span>
             <Link href="/insight" className="transition hover:text-white">Insight</Link>
@@ -109,11 +109,11 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
               {hero.eyebrow}
             </p>
 
-            <h1 className="mt-6 max-w-5xl text-4xl font-black leading-[1.04] tracking-tight text-white md:text-6xl lg:text-[68px]">
+            <h1 className="mt-6 max-w-5xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-6xl lg:text-[68px]">
               {hero.title}
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-white/75 md:text-lg">
+            <p className="mt-6 max-w-2xl text-base leading-8 text-black/68 md:text-lg">
               {hero.description}
             </p>
           </div>
@@ -284,12 +284,12 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
               fill
               className="object-cover opacity-80"
             />
-            <div className="absolute inset-0 bg-black/62" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-[#039147]/35" />
+            <div className="absolute inset-0 bg-[#039147]/22" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/82 via-white/46 to-[#039147]/24" />
             <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
 
             <div className="relative mx-auto max-w-3xl">
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
+              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-black/64">
                 Start a Project
               </p>
 
@@ -297,7 +297,7 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
                 Need support for your next project?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/75">
+              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68">
                 Share your study, testing, or regulatory needs with our team and we will help
                 identify the right service scope, required information, and next steps.
               </p>

@@ -4,14 +4,14 @@ const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") || "http://localhost:4000/api";
 
 export const fallbackPublicSettings: PublicSettings = {
-  "company.name": "Pharma Metric Labs",
+  "company.name": "PML",
   "company.description":
-    "Pharma Metric Labs supports pharmaceutical and biotechnology companies with scientific CRO services for BA/BE study, clinical trials, contract analysis, and regulatory management.",
+    "PML supports pharmaceutical and biotechnology companies with scientific CRO services for BA/BE study, clinical trial, contract analysis, and regulatory management.",
   "contact.address": "Gedung Indra Sentral Unit R & T, Jakarta Pusat, Indonesia",
   "contact.email": "info@pharmametriclabs.com",
   "contact.secondaryEmail": "",
   "contact.phone": "(021) 426 5310",
-  "footer.copyright": "Pharma Metric Labs. All rights reserved.",
+  "footer.copyright": "PML. All rights reserved.",
   "proposal.recipientEmail": "info@pharmametriclabs.com",
   "seo.defaultTitle": "Pharma Metric Labs | Contract Research Organization in Indonesia",
   "seo.defaultDescription": "Integrated CRO services for pharmaceutical development, including BA/BE study, clinical trial, contract analysis, and regulatory management.",

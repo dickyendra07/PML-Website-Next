@@ -35,7 +35,7 @@ export default function ServiceHero({
 
       <div className="pml-container relative z-10 grid min-h-[680px] items-center py-24">
         <div className="max-w-5xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-white/80 backdrop-blur">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-black/70 backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-[#039147]" />
             {eyebrow}
           </div>

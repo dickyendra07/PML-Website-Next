@@ -1,68 +1,96 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
-export default function CTACard() {
+type CTACardProps = {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  primaryLabel?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+};
+
+export default function CTACard({
+  eyebrow = "Start a Project",
+  title = "We are ready to support you",
+  description = "Share your project needs with our team and we will help you identify the right service scope, required information, and next steps.",
+  primaryLabel = "Request a Proposal",
+  secondaryLabel = "Discuss Your Needs",
+  secondaryHref = "/contact",
+}: CTACardProps) {
   const openProposal = () => {
     window.dispatchEvent(new CustomEvent("open-proposal-modal"));
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-white px-4 py-16 md:py-20">
-      <div className="pml-container">
-        <div className="relative overflow-hidden rounded-[36px] bg-[#039147] px-6 py-16 text-center text-white shadow-[0_28px_90px_rgba(3,145,71,0.20)] md:rounded-[44px] md:px-10 md:py-20">
+    <section className="bg-white px-4 py-16 md:py-24">
+      <div className="mx-auto w-[min(100%-24px,1400px)]">
+        <div className="relative overflow-hidden rounded-[34px] bg-[#f4fbf7] px-6 py-14 text-center text-black shadow-[0_28px_90px_rgba(0,0,0,0.10)] md:rounded-[42px] md:px-12 md:py-20">
           <Image
             src="/images/pml/cta-lab-background.png"
             alt=""
             fill
-            className="object-cover"
-            aria-hidden="true"
+            className="object-cover opacity-58"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/62 to-black/34" aria-hidden="true" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/48 via-transparent to-black/18" aria-hidden="true" />
-          <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" aria-hidden="true" />
+          <div className="absolute inset-0 bg-white/46" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/84 via-white/56 to-[#039147]/20" />
+          <div className="pml-hex-pattern absolute inset-0 opacity-[0.055]" />
 
-          <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" aria-hidden="true" />
-          <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-black/20 blur-3xl" aria-hidden="true" />
-
-          <div className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-white/25 bg-white/90 shadow-lg backdrop-blur">
-            <Image
-              src="/images/LOGO-PML.png"
-              alt="PML"
-              width={64}
-              height={40}
-              className="h-8 w-auto"
+          <svg
+            className="absolute -right-24 -top-24 h-[360px] w-[360px] text-[#039147]/10"
+            viewBox="0 0 400 400"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M200 20L356 110V290L200 380L44 290V110L200 20Z"
+              stroke="currentColor"
+              strokeWidth="4"
             />
-          </div>
+          </svg>
 
-          <p className="relative mt-8 text-sm font-extrabold uppercase tracking-[0.18em] text-white/80">
-            Start a Project
-          </p>
+          <div className="relative mx-auto max-w-3xl">
+            <div className="mx-auto mb-7 flex h-16 w-16 items-center justify-center rounded-2xl border border-[#039147]/10 bg-white/90 shadow-lg backdrop-blur">
+              <Image
+                src="/images/LOGO-PML.png"
+                alt="PML"
+                width={72}
+                height={44}
+                className="h-8 w-auto"
+              />
+            </div>
 
-          <h2 className="relative mx-auto mt-4 max-w-4xl text-3xl font-black leading-tight md:text-5xl">
-            We are ready to support you
-          </h2>
+            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+              {eyebrow}
+            </p>
 
-          <p className="relative mx-auto mt-6 max-w-2xl text-sm leading-7 text-white/78 md:text-base">
-            Share your project needs with our team and we will help you identify the right service, required information, and next steps.
-          </p>
+            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              {title}
+            </h2>
 
-          <div className="relative mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <button
-              type="button"
-              onClick={openProposal}
-              className="inline-flex w-full items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-extrabold text-[#039147] shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl sm:w-auto"
-            >
-              Request a Proposal
-            </button>
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68">
+              {description}
+            </p>
 
-            <a
-              href="/contact"
-              className="inline-flex w-full items-center justify-center rounded-full border border-white/35 px-7 py-3.5 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-white hover:text-[#039147] sm:w-auto"
-            >
-              Discuss Your Needs
-            </a>
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <button
+                type="button"
+                onClick={openProposal}
+                className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-sm font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
+              >
+                {primaryLabel}
+              </button>
+
+              <Link
+                href={secondaryHref}
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
+              >
+                {secondaryLabel}
+              </Link>
+            </div>
           </div>
         </div>
       </div>

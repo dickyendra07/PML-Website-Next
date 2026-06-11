@@ -93,30 +93,30 @@ export default function ExpertsAndTeamPage() {
           priority
           className="object-cover opacity-85"
         />
-        <div className="absolute inset-0 bg-black/66" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/68 to-black/24" />
-        <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
+        <div className="absolute inset-0 bg-[#039147]/24" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/62 to-[#039147]/20" />
+        <div className="pml-hex-pattern absolute inset-0 opacity-[0.075]" />
 
         <div className="pml-container relative py-20 md:py-32">
-          <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/60">
-            <Link href="/" className="transition hover:text-white">Home</Link>
+          <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-black/58">
+            <Link href="/" className="transition hover:text-[#039147]">Home</Link>
             <span>/</span>
-            <Link href="/about-us" className="transition hover:text-white">About Us</Link>
+            <Link href="/about-us" className="transition hover:text-[#039147]">About Us</Link>
             <span>/</span>
             <span className="text-white">Experts & Team</span>
           </nav>
 
           <div className="max-w-5xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-white backdrop-blur">
+            <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/15 bg-white/80 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-white backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
               Experts & Team
             </p>
 
-            <h1 className="mt-6 max-w-5xl text-4xl font-black leading-[1.04] tracking-tight text-white md:text-6xl lg:text-[68px]">
+            <h1 className="mt-6 max-w-5xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-6xl lg:text-[68px]">
               Multidisciplinary experts supporting reliable CRO project delivery
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-white/75 md:text-lg">
+            <p className="mt-6 max-w-2xl text-base leading-8 text-black/68 md:text-lg">
               PML is supported by professionals across clinical research, analytical laboratory,
               regulatory affairs, project management, data management, and quality assurance.
             </p>
@@ -132,7 +132,7 @@ export default function ExpertsAndTeamPage() {
               <button
                 type="button"
                 onClick={openProposal}
-                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147]"
+                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-[#039147] hover:text-white"
               >
                 Request a Proposal
               </button>
@@ -208,7 +208,7 @@ export default function ExpertsAndTeamPage() {
                     className="object-cover object-top transition duration-700 group-hover:scale-105"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/5 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
 
                   <div className="absolute bottom-5 left-5 right-5">
                     <p className="rounded-full bg-white/90 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-[#039147] backdrop-blur">
@@ -280,13 +280,13 @@ export default function ExpertsAndTeamPage() {
           fill
           className="object-cover opacity-80"
         />
-        <div className="absolute inset-0 bg-black/58" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-[#039147]/35" />
+        <div className="absolute inset-0 bg-[#039147]/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/82 via-white/46 to-[#039147]/24" />
         <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
 
         <div className="pml-container relative">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/70 md:text-sm">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-black/64 md:text-sm">
               Work With PML Experts
             </p>
 
@@ -294,7 +294,7 @@ export default function ExpertsAndTeamPage() {
               Need clinical, analytical, regulatory, or project support?
             </h2>
 
-            <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/75 md:mt-6 md:text-base md:leading-8">
+            <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-black/68 md:mt-6 md:text-base md:leading-8">
               Share your project needs with PML and our team will help identify the right service
               scope, required information, and next steps.
             </p>
@@ -310,7 +310,7 @@ export default function ExpertsAndTeamPage() {
 
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147]"
+                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-[#039147] hover:text-white"
               >
                 Contact PML
               </Link>

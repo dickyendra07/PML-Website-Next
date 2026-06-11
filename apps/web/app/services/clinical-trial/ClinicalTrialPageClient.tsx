@@ -337,35 +337,35 @@ export default function ClinicalTrialPage() {
           ))}
         </div>
 
-        <div className="absolute inset-0 bg-black/62" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/62 to-black/20" />
+        <div className="absolute inset-0 bg-[#039147]/22" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/62 to-[#039147]/20" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/10" />
-        <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
+        <div className="pml-hex-pattern absolute inset-0 opacity-[0.075]" />
 
         <div className="pml-container relative flex min-h-[520px] flex-col items-start justify-center py-14 md:min-h-[calc(100vh-80px)] md:py-24">
-          <nav className="mb-7 flex flex-wrap items-center gap-2 text-xs font-bold text-white/60 md:mb-10 md:text-sm" aria-label="Breadcrumb">
-            <Link href="/" className="transition hover:text-white">
+          <nav className="mb-7 flex flex-wrap items-center gap-2 text-xs font-bold text-black/58 md:mb-10 md:text-sm" aria-label="Breadcrumb">
+            <Link href="/" className="transition hover:text-[#039147]">
               Home
             </Link>
             <span aria-hidden="true">/</span>
-            <Link href="/services" className="transition hover:text-white">
+            <Link href="/services" className="transition hover:text-[#039147]">
               Services
             </Link>
             <span aria-hidden="true">/</span>
-            <span className="text-white">Clinical Trial</span>
+            <span className="text-[#039147]">Clinical Trial</span>
           </nav>
 
           <div className="max-w-4xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.16em] md:text-xs text-white shadow-sm backdrop-blur">
+            <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/20 bg-white/95 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#039147] shadow-sm backdrop-blur md:text-xs">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
               Clinical Trial
             </p>
 
-            <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] tracking-tight text-white md:mt-6 md:text-6xl lg:text-[68px]">
+            <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] tracking-tight text-black md:mt-6 md:text-6xl lg:text-[68px]">
               End-to-end clinical trial support with local expertise
             </h1>
 
-            <p className="mt-5 max-w-2xl text-sm leading-7 text-white/75 md:mt-6 md:text-lg md:leading-8">
+            <p className="mt-5 max-w-2xl text-base leading-8 text-black/70 md:mt-6 md:text-lg md:leading-8">
               PML supports sponsors with clinical research services across study planning,
               regulatory coordination, site management, monitoring, data management, and
               medical writing.
@@ -382,7 +382,7 @@ export default function ClinicalTrialPage() {
 
               <a
                 href="#clinical-overview"
-                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-extrabold md:py-4 text-white backdrop-blur transition hover:bg-white hover:text-[#039147]"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-3.5 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white md:py-4"
               >
                 Explore Service
               </a>
@@ -396,7 +396,7 @@ export default function ClinicalTrialPage() {
                 type="button"
                 onClick={() => setActiveSlide(index)}
                 className={`h-2.5 rounded-full transition-all ${
-                  index === activeSlide ? "w-8 bg-[#039147]" : "w-2.5 bg-white/45"
+                  index === activeSlide ? "w-8 bg-[#039147]" : "w-2.5 bg-black/25"
                 }`}
                 aria-label={`Go to Clinical Trial hero slide ${index + 1}`}
               />
@@ -441,7 +441,7 @@ export default function ClinicalTrialPage() {
                 key={benefit.title}
                 className="w-[78vw] max-w-[320px] shrink-0 snap-start rounded-[26px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:w-auto md:max-w-none md:rounded-[28px] md:p-6"
               >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147]">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#039147]/10 bg-[#eaf8f0] text-[#039147] transition group-hover:scale-105">
                   <ServiceIcon name={benefit.icon} />
                 </div>
 
@@ -529,7 +529,7 @@ export default function ClinicalTrialPage() {
                 key={client}
                 className="group rounded-[28px] border border-black/5 bg-white p-7 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
               >
-                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] transition group-hover:bg-[#039147] group-hover:text-white">
+                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] transition group-hover:bg-[#eaf8f0] group-hover:text-[#039147]">
                   <ClientIcon index={index} />
                 </div>
 
@@ -607,28 +607,36 @@ export default function ClinicalTrialPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#039147] py-16 text-white md:py-28">
+      <section className="relative overflow-hidden bg-[#f4fbf7] px-4 py-20 text-black md:py-28">
         <Image
           src="/images/pml/services/clinical-trial-proof.png"
           alt=""
           fill
-          className="object-cover opacity-80"
+          className="object-cover opacity-24"
         />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-[#039147]/35" />
-        <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
+        <div className="absolute inset-0 bg-white/72" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/96 via-white/84 to-[#039147]/12" />
+
+        <svg
+          className="absolute right-[-120px] top-[-90px] h-[400px] w-[400px] text-[#039147]/10"
+          viewBox="0 0 400 400"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path d="M200 20L356 110V290L200 380L44 290V110L200 20Z" stroke="currentColor" strokeWidth="4" />
+        </svg>
 
         <div className="pml-container relative">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/70 md:text-sm">
+            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
               Proof & Trust Signals
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl">
+            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
               Local CRO support for Indonesia and multi-country clinical trials
             </h2>
 
-            <p className="mt-6 text-sm leading-7 text-white/75 md:text-base md:leading-8">
+            <p className="mt-6 text-base leading-8 text-black/68">
               PML has experience participating as the local CRO partner for Indonesia in
               multi-country clinical trials led by global sponsors or global CROs, supporting
               local execution while maintaining regulatory and GCP alignment.
@@ -641,9 +649,12 @@ export default function ClinicalTrialPage() {
               ["GCP", "Study support aligned with Good Clinical Practice standards."],
               ["Multi-country", "Experience supporting studies led by global sponsors and CROs."],
             ].map(([title, desc]) => (
-              <div key={title} className="rounded-[30px] border border-white/15 bg-white/10 p-7 backdrop-blur">
-                <p className="text-4xl font-black">{title}</p>
-                <p className="mt-3 text-sm font-bold leading-6 text-white/75">{desc}</p>
+              <div
+                key={title}
+                className="rounded-[30px] border border-black/5 bg-white/92 p-7 shadow-[0_18px_55px_rgba(0,0,0,0.07)] backdrop-blur transition hover:-translate-y-1 hover:border-[#039147]/20 hover:shadow-[0_26px_70px_rgba(3,145,71,0.12)]"
+              >
+                <p className="text-3xl font-black text-black md:text-4xl">{title}</p>
+                <p className="mt-4 text-sm font-bold leading-7 text-black/62">{desc}</p>
               </div>
             ))}
           </div>
@@ -722,48 +733,48 @@ export default function ClinicalTrialPage() {
 
       <section className="bg-white pb-24 md:pb-32">
         <div className="pml-container">
-          <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-white md:rounded-[36px] md:px-14 md:py-20 shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:px-14 md:py-20">
+          <div className="relative overflow-hidden rounded-[36px] bg-[#f4fbf7] px-8 py-16 text-center text-black shadow-[0_28px_90px_rgba(0,0,0,0.12)] md:px-14 md:py-20">
             <Image
               src="/images/pml/services/clinical-trial-cta.png"
               alt=""
               fill
-              className="object-cover opacity-80"
+              className="object-cover opacity-46"
             />
 
-            <div className="absolute inset-0 bg-black/62" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-[#039147]/35" />
-            <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
+            <div className="absolute inset-0 bg-white/60" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/74 to-[#039147]/18" />
+            <div className="pml-hex-pattern absolute inset-0 opacity-[0.06]" />
 
             <div className="relative mx-auto max-w-3xl">
-              <div className="mx-auto mb-6 flex h-14 w-14 md:mb-7 md:h-16 md:w-16 items-center justify-center rounded-2xl border border-white/25 bg-white/90 shadow-lg backdrop-blur">
-                <Image src="/images/LOGO-PML.png" alt="PML" width={64} height={40} className="h-7 w-auto md:h-8" />
+              <div className="mx-auto mb-7 flex h-16 w-16 items-center justify-center rounded-2xl border border-[#039147]/10 bg-white/90 shadow-lg backdrop-blur">
+                <Image src="/images/LOGO-PML.png" alt="PML" width={64} height={40} className="h-8 w-auto" />
               </div>
 
-              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/70 md:text-sm">
+              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
                 Start a Project
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl">
+              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
                 Need clinical trial support in Indonesia?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/75 md:text-base md:leading-8">
+              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68">
                 Share your clinical research requirements with our team and we will help identify
                 the right service scope, required information, and next steps.
               </p>
 
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row md:mt-8 sm:justify-center">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
                 <button
                   type="button"
                   onClick={openProposal}
-                  className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-sm font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
                 >
                   Request a Proposal
                 </button>
 
                 <a
                   href="#clinical-overview"
-                  className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147]"
+                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
                 >
                   Review Clinical Trial
                 </a>

@@ -65,9 +65,9 @@ export default function AdminShell({ children }: AdminShellProps) {
 
   if (checking) {
     return (
-      <main className="min-h-screen bg-[#06140d] text-white">
+      <main className="min-h-screen bg-[#f6faf7] text-black">
         <div className="flex min-h-screen items-center justify-center">
-          <div className="rounded-[28px] border border-white/10 bg-white/5 px-8 py-6 text-sm font-bold text-white/70 shadow-2xl backdrop-blur">
+          <div className="rounded-[28px] border border-black/5 bg-white px-8 py-6 text-sm font-bold text-black/60 shadow-xl">
             Loading secure admin area...
           </div>
         </div>
@@ -76,21 +76,21 @@ export default function AdminShell({ children }: AdminShellProps) {
   }
 
   return (
-    <main className="min-h-screen bg-[#06140d] text-white">
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_top_left,rgba(3,145,71,0.28),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(239,49,36,0.12),transparent_32%)]" />
-      <div className="pml-hex-pattern-light fixed inset-0 opacity-[0.04]" />
+    <main className="min-h-screen bg-[#f6faf7] text-black">
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_top_left,rgba(3,145,71,0.10),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(3,145,71,0.08),transparent_34%)]" />
+      <div className="pml-hex-pattern fixed inset-0 opacity-[0.035]" />
 
       <div className="relative grid min-h-screen lg:grid-cols-[300px_1fr]">
-        <aside className="border-b border-white/10 bg-black/20 p-5 backdrop-blur-xl lg:border-b-0 lg:border-r lg:p-6">
-          <div className="flex items-center gap-3 rounded-[24px] border border-white/10 bg-white/8 p-4">
+        <aside className="border-b border-black/5 bg-white/82 p-5 shadow-[12px_0_50px_rgba(0,0,0,0.04)] backdrop-blur-xl lg:border-b-0 lg:border-r lg:p-6">
+          <div className="flex items-center gap-3 rounded-[24px] border border-black/5 bg-[#f6faf7] p-4 shadow-sm">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-lg">
               <Image src="/images/LOGO-PML.png" alt="PML" width={74} height={44} className="h-7 w-auto" />
             </div>
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#76d69f]">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#039147]">
                 PML CMS
               </p>
-              <h1 className="text-lg font-black leading-tight text-white">
+              <h1 className="text-lg font-black leading-tight text-black">
                 Admin Panel
               </h1>
             </div>
@@ -106,11 +106,15 @@ export default function AdminShell({ children }: AdminShellProps) {
                   href={item.href}
                   className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-extrabold transition ${
                     active
-                      ? "bg-[#039147] text-white shadow-[0_18px_40px_rgba(3,145,71,0.25)]"
-                      : "text-white/62 hover:bg-white/8 hover:text-white"
+                      ? "bg-[#039147] text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)]"
+                      : "text-black/58 hover:bg-[#eaf8f0] hover:text-[#039147]"
                   }`}
                 >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-xs">
+                  <span
+                    className={`flex h-9 w-9 items-center justify-center rounded-xl text-xs ${
+                      active ? "bg-white/18 text-white" : "bg-[#eaf8f0] text-[#039147]"
+                    }`}
+                  >
                     {item.icon}
                   </span>
                   {item.label}
@@ -119,13 +123,13 @@ export default function AdminShell({ children }: AdminShellProps) {
             })}
           </nav>
 
-          <div className="mt-6 rounded-[24px] border border-white/10 bg-white/5 p-4">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/40">
+          <div className="mt-6 rounded-[24px] border border-black/5 bg-white p-4 shadow-sm">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-black/35">
               Signed in as
             </p>
-            <p className="mt-2 text-sm font-black text-white">{admin?.name}</p>
-            <p className="mt-1 break-all text-xs font-semibold text-white/45">{admin?.email}</p>
-            <span className="mt-3 inline-flex rounded-full border border-[#039147]/30 bg-[#039147]/15 px-3 py-1 text-[11px] font-black uppercase tracking-[0.12em] text-[#76d69f]">
+            <p className="mt-2 text-sm font-black text-black">{admin?.name}</p>
+            <p className="mt-1 break-all text-xs font-semibold text-black/45">{admin?.email}</p>
+            <span className="mt-3 inline-flex rounded-full border border-[#039147]/20 bg-[#eaf8f0] px-3 py-1 text-[11px] font-black uppercase tracking-[0.12em] text-[#039147]">
               {admin?.role}
             </span>
           </div>
@@ -133,7 +137,7 @@ export default function AdminShell({ children }: AdminShellProps) {
           <button
             type="button"
             onClick={handleLogout}
-            className="mt-4 w-full rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-extrabold text-white/70 transition hover:bg-white hover:text-[#039147]"
+            className="mt-4 w-full rounded-full border border-black/5 bg-white px-5 py-3 text-sm font-extrabold text-black/60 shadow-sm transition hover:bg-[#039147] hover:text-white"
           >
             Logout
           </button>

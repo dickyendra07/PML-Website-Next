@@ -301,31 +301,31 @@ export default function RegulatoryConsultationPage() {
           ))}
         </div>
 
-        <div className="absolute inset-0 bg-black/62" />
-        <div className="absolute inset-0 bg-gradient-to-l from-black/92 via-black/62 to-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/10" />
-        <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
+        <div className="absolute inset-0 bg-[#039147]/8" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/94 via-white/72 to-[#039147]/18" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/36 via-transparent to-white/8" />
+        <div className="pml-hex-pattern absolute inset-0 opacity-[0.075]" />
 
         <div className="pml-container relative flex min-h-[calc(100vh-80px)] flex-col items-start justify-center py-16 md:py-24">
-          <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/60" aria-label="Breadcrumb">
-            <Link href="/" className="transition hover:text-white">Home</Link>
+          <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-black/58" aria-label="Breadcrumb">
+            <Link href="/" className="transition hover:text-[#039147]">Home</Link>
             <span aria-hidden="true">/</span>
-            <Link href="/services" className="transition hover:text-white">Services</Link>
+            <Link href="/services" className="transition hover:text-[#039147]">Services</Link>
             <span aria-hidden="true">/</span>
-            <span className="text-white">Regulatory Management</span>
+            <span className="text-[#039147]">Regulatory Management</span>
           </nav>
 
           <div className="max-w-4xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-white shadow-sm backdrop-blur">
+            <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/20 bg-white/95 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#039147] shadow-sm backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
               Regulatory Management
             </p>
 
-            <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-tight text-white md:text-6xl lg:text-[68px]">
+            <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-6xl lg:text-[68px]">
               Regulatory affairs support for BPOM registration and compliance
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-white/75 md:text-lg">
+            <p className="mt-6 max-w-2xl text-base leading-8 text-black/68 md:text-lg">
               PML supports pharmaceutical, biologics, advanced therapy, traditional and quasi-drug,
               and medical device registration through practical regulatory strategy,
               documentation review, and BPOM-focused compliance guidance.
@@ -342,7 +342,7 @@ export default function RegulatoryConsultationPage() {
 
               <a
                 href="#regulatory-overview"
-                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147]"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
               >
                 Explore Service
               </a>
@@ -355,7 +355,7 @@ export default function RegulatoryConsultationPage() {
                 key={slideImage}
                 type="button"
                 onClick={() => setActiveSlide(index)}
-                className={`h-2.5 rounded-full transition-all ${index === activeSlide ? "w-8 bg-[#039147]" : "w-2.5 bg-white/45"}`}
+                className={`h-2.5 rounded-full transition-all ${index === activeSlide ? "w-8 bg-[#039147]" : "w-2.5 bg-black/25"}`}
                 aria-label={`Go to Regulatory Management hero slide ${index + 1}`}
               />
             ))}
@@ -449,8 +449,19 @@ export default function RegulatoryConsultationPage() {
         </div>
       </section>
 
-      <section className="bg-white py-20 md:py-28">
-        <div className="pml-container">
+      <section className="relative overflow-hidden bg-white py-20 md:py-28">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(3,145,71,0.08),transparent_30%),radial-gradient(circle_at_8%_88%,rgba(255,40,0,0.035),transparent_24%)]" aria-hidden="true" />
+
+        <svg
+          className="absolute right-[-120px] top-[-80px] h-[360px] w-[360px] text-[#039147]/8"
+          viewBox="0 0 360 360"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path d="M180 18L318 98V262L180 342L42 262V98L180 18Z" stroke="currentColor" strokeWidth="4" />
+        </svg>
+
+        <div className="pml-container relative">
           <div className="max-w-4xl">
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
               Target Client
@@ -460,20 +471,28 @@ export default function RegulatoryConsultationPage() {
               Built for local and overseas companies preparing Indonesian registration
             </h2>
 
-            <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-black/65">
+            <p className="mt-6 max-w-3xl text-base leading-8 text-black/62">
               Regulatory Management supports local companies, overseas principals, manufacturers,
               and product teams that need clarity on BPOM requirements, local agent needs,
               registration pathways, documentation gaps, and compliance planning.
             </p>
           </div>
 
-          <div className="mt-8 grid grid-cols-2 gap-3 md:mt-12 md:grid-cols-2 md:gap-5 lg:grid-cols-3">
-            {clients.map((client, index) => (
-              <article key={client} className="group rounded-[22px] border border-black/5 bg-white p-4 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:rounded-[28px] md:p-7">
-                <div className="mx-auto mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] transition group-hover:bg-[#039147] group-hover:text-white md:mb-5 md:h-14 md:w-14">
-                  <ClientIcon index={index} />
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {clients.map((client) => (
+              <article
+                key={client}
+                className="group relative overflow-hidden rounded-[30px] border border-black/5 bg-white/92 p-7 text-center shadow-[0_18px_55px_rgba(0,0,0,0.06)] backdrop-blur transition hover:-translate-y-1 hover:border-[#039147]/20 hover:shadow-[0_26px_70px_rgba(3,145,71,0.11)]"
+              >
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#039147] via-[#039147]/35 to-[#FF2800]/55 opacity-0 transition group-hover:opacity-100" />
+
+                <div className="mx-auto mb-6 flex h-13 w-13 items-center justify-center rounded-2xl border border-[#039147]/10 bg-[#eaf8f0] text-[#039147]">
+                  <Icon name="document" />
                 </div>
-                <h3 className="text-xs font-black leading-tight text-black md:text-base">{client}</h3>
+
+                <h3 className="text-base font-black leading-tight text-black">
+                  {client}
+                </h3>
               </article>
             ))}
           </div>
@@ -517,28 +536,37 @@ export default function RegulatoryConsultationPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#039147] py-20 text-white md:py-28">
+      <section className="relative overflow-hidden bg-[#f4fbf7] px-4 py-20 text-black md:py-28">
         <Image
           src="/images/pml/services/contract-analysis-proof.png"
           alt=""
           fill
-          className="object-cover opacity-80"
+          className="object-cover opacity-24"
         />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-[#039147]/35" />
-        <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
+        <div className="absolute inset-0 bg-white/72" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/96 via-white/84 to-[#039147]/12" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_30%,rgba(3,145,71,0.13),transparent_34%),radial-gradient(circle_at_18%_72%,rgba(255,40,0,0.04),transparent_26%)]" />
+
+        <svg
+          className="absolute right-[-120px] top-[-90px] h-[400px] w-[400px] text-[#039147]/10"
+          viewBox="0 0 400 400"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path d="M200 20L356 110V290L200 380L44 290V110L200 20Z" stroke="currentColor" strokeWidth="4" />
+        </svg>
 
         <div className="pml-container relative">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
+            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
               Proof & Trust Signals
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl">
+            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
               Regulatory affairs support backed by BPOM-focused execution
             </h2>
 
-            <p className="mt-6 text-base leading-8 text-white/75">
+            <p className="mt-6 text-base leading-8 text-black/68">
               PML combines regulatory affairs experience, BPOM requirement understanding,
               documentation support, and coordination with scientific CRO services to help
               clients prepare stronger registration strategies.
@@ -551,9 +579,12 @@ export default function RegulatoryConsultationPage() {
               ["Documents", "Dossier gap analysis and ACTD-related document preparation support."],
               ["Compliance", "Guidance for BPOM requirements, halal compliance, importation, and licensing support."],
             ].map(([title, desc]) => (
-              <div key={title} className="rounded-[30px] border border-white/15 bg-white/10 p-7 backdrop-blur">
-                <p className="text-4xl font-black">{title}</p>
-                <p className="mt-3 text-sm font-bold leading-6 text-white/75">{desc}</p>
+              <div
+                key={title}
+                className="rounded-[30px] border border-black/5 bg-white/92 p-7 shadow-[0_18px_55px_rgba(0,0,0,0.07)] backdrop-blur transition hover:-translate-y-1 hover:border-[#039147]/20 hover:shadow-[0_26px_70px_rgba(3,145,71,0.12)]"
+              >
+                <p className="text-3xl font-black text-black md:text-4xl">{title}</p>
+                <p className="mt-4 text-sm font-bold leading-7 text-black/62">{desc}</p>
               </div>
             ))}
           </div>
@@ -633,32 +664,32 @@ export default function RegulatoryConsultationPage() {
 
       <section className="bg-white pb-24 md:pb-32">
         <div className="pml-container">
-          <div className="relative overflow-hidden rounded-[36px] bg-black px-8 py-16 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:px-14 md:py-20">
+          <div className="relative overflow-hidden rounded-[36px] bg-[#f4fbf7] px-8 py-16 text-center text-black shadow-[0_28px_90px_rgba(0,0,0,0.12)] md:px-14 md:py-20">
             <Image
               src="/images/pml/services/clinical-trial-cta.png"
               alt=""
               fill
-              className="object-cover opacity-80"
+              className="object-cover opacity-46"
             />
 
-            <div className="absolute inset-0 bg-black/62" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-[#039147]/35" />
-            <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
+            <div className="absolute inset-0 bg-white/60" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/74 to-[#039147]/18" />
+            <div className="pml-hex-pattern absolute inset-0 opacity-[0.06]" />
 
             <div className="relative mx-auto max-w-3xl">
               <div className="mx-auto mb-7 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/25 bg-white/90 shadow-lg backdrop-blur">
                 <Image src="/images/LOGO-PML.png" alt="PML" width={64} height={40} className="h-8 w-auto" />
               </div>
 
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
+              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
                 Start a Project
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl">
+              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
                 Need BPOM regulatory management?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/75">
+              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68">
                 Share your product registration, documentation, local agent, or study requirement
                 questions with our team and we will help identify the right regulatory next steps.
               </p>
@@ -667,14 +698,14 @@ export default function RegulatoryConsultationPage() {
                 <button
                   type="button"
                   onClick={openProposal}
-                  className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-sm font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
                 >
                   Request a Proposal
                 </button>
 
                 <a
                   href="#regulatory-overview"
-                  className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147]"
+                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
                 >
                   Review Regulatory Service
                 </a>

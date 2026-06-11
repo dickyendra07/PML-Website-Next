@@ -216,7 +216,7 @@ function HeroButton({
   const className =
     variant === "white"
       ? "inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
-      : "inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147]";
+      : "inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-[#039147] hover:text-white";
 
   if (href) {
     return (
@@ -250,30 +250,30 @@ export default function AboutUsPage() {
     <main>
       <section className="relative overflow-hidden bg-black text-white">
         <Image src={heroImage} alt="" fill priority className="object-cover opacity-90" />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/58 to-black/20" />
-        <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
+        <div className="absolute inset-0 bg-[#039147]/18" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/60 to-[#039147]/18" />
+        <div className="pml-hex-pattern absolute inset-0 opacity-[0.075]" />
 
         <div className="pml-container relative py-20 md:py-32">
-          <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/60" aria-label="Breadcrumb">
-            <Link href="/" className="transition hover:text-white">
+          <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-black/58" aria-label="Breadcrumb">
+            <Link href="/" className="transition hover:text-[#039147]">
               Home
             </Link>
             <span aria-hidden="true">/</span>
-            <span className="text-white">About Us</span>
+            <span className="text-[#039147]">About Us</span>
           </nav>
 
           <div className="max-w-4xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-white shadow-sm backdrop-blur">
+            <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/20 bg-white/95 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#039147] shadow-sm backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
               About Pharma Metric Labs
             </p>
 
-            <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-tight text-white md:text-6xl lg:text-[68px]">
+            <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-6xl lg:text-[68px]">
               Indonesia-based CRO partner built for scientific excellence
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-white/75 md:text-lg">
+            <p className="mt-6 max-w-2xl text-base leading-8 text-black/68 md:text-lg">
               Pharma Metric Labs supports pharmaceutical and healthcare companies with BA/BE study,
               clinical trial, contract analysis, and regulatory management.
             </p>
@@ -330,7 +330,7 @@ export default function AboutUsPage() {
                 <h3 className="text-2xl font-black">
                   Innovation, powered by scientific excellence.
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-white/75">
+                <p className="mt-3 text-sm leading-7 text-black/68">
                   The brand essence behind Pharma Metric Labs’ renewed identity and digital direction.
                 </p>
               </div>
@@ -499,7 +499,7 @@ export default function AboutUsPage() {
               <button
                 type="button"
                 onClick={() => goTimeline(activeTimeline + 1)}
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white text-lg font-black text-[#039147] transition hover:bg-[#039147] hover:text-white"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white text-lg font-black text-[#039147] transition hover:bg-[#039147] hover:text-[#039147]"
                 aria-label="Next milestone"
               >
                 →
@@ -528,7 +528,7 @@ export default function AboutUsPage() {
             </article>
 
             <article className="rounded-[28px] border border-black/5 bg-[#039147] p-6 text-white shadow-[0_24px_70px_rgba(3,145,71,0.20)] md:rounded-[34px] md:p-10">
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
+              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-black/64">
                 Mission
               </p>
 
@@ -536,7 +536,7 @@ export default function AboutUsPage() {
                 To ensure good quality healthcare products for the community
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-white/75">
+              <p className="mt-5 text-base leading-8 text-black/68">
                 PML supports this mission through scientific services, reliable data,
                 quality-focused workflows, and collaborative project execution.
               </p>
@@ -557,7 +557,7 @@ export default function AboutUsPage() {
             <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4">
               {values.map((value) => (
                 <article key={value.title} className="group w-[78vw] max-w-[320px] shrink-0 snap-start rounded-[26px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:w-auto md:max-w-none md:rounded-[28px] md:p-7">
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] transition group-hover:bg-[#039147] group-hover:text-white">
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#039147]/10 bg-[#eaf8f0] text-[#039147] transition group-hover:scale-105">
                     <Icon name={value.icon} />
                   </div>
 
@@ -579,60 +579,70 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#039147] py-16 text-white md:py-28">
-        <Image src={companyImage} alt="" fill className="object-cover opacity-80" />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-[#039147]/35" />
-        <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
+      <section className="relative overflow-hidden bg-[#f4fbf7] px-4 py-20 text-black md:py-28">
+        <Image
+          src="/images/pml/services/contract-analysis-proof.png"
+          alt=""
+          fill
+          className="object-cover opacity-24"
+        />
+        <div className="absolute inset-0 bg-white/72" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/96 via-white/84 to-[#039147]/12" />
+
+        <svg
+          className="absolute right-[-120px] top-[-90px] h-[400px] w-[400px] text-[#039147]/10"
+          viewBox="0 0 400 400"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path d="M200 20L356 110V290L200 380L44 290V110L200 20Z" stroke="currentColor" strokeWidth="4" />
+        </svg>
 
         <div className="pml-container relative">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
               Certifications / Compliance
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl">
+            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
               Accredited support for reliable study and laboratory services
             </h2>
 
-            <p className="mt-6 text-base leading-8 text-white/75">
+            <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-black/68">
               PML’s certification and accreditation records strengthen trust in its scientific,
               clinical, and laboratory service delivery.
             </p>
           </div>
 
-          <div className="-mx-4 mt-10 flex max-w-none snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-auto md:mt-12 md:grid md:max-w-6xl md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0 md:pb-0">
-            {certifications.map((certification) => (
-              <article key={certification.title} className="group w-[82vw] max-w-[340px] shrink-0 snap-start overflow-hidden rounded-[26px] border border-white/15 bg-white/10 p-4 backdrop-blur transition hover:-translate-y-1 hover:bg-white/15 md:w-auto md:max-w-none md:rounded-[30px]">
-                <div className="overflow-hidden rounded-[22px] bg-white p-3">
+          <div className="mx-auto mt-12 grid max-w-6xl gap-5 md:grid-cols-3">
+            {certifications.map((item) => (
+              <article
+                key={item.title}
+                className="group overflow-hidden rounded-[30px] border border-black/5 bg-white/92 p-5 shadow-[0_18px_55px_rgba(0,0,0,0.07)] backdrop-blur transition hover:-translate-y-1 hover:border-[#039147]/20 hover:shadow-[0_26px_70px_rgba(3,145,71,0.12)] md:p-6"
+              >
+                <div className="overflow-hidden rounded-[22px] bg-[#f4fbf7]">
                   <Image
-                    src={certification.image}
-                    alt={certification.title}
-                    width={500}
-                    height={375}
-                    className="aspect-[4/3] w-full rounded-[16px] object-contain"
+                    src={item.image}
+                    alt={item.title}
+                    width={700}
+                    height={460}
+                    className="aspect-[4/3] w-full object-contain p-4 transition duration-700 group-hover:scale-105"
                   />
                 </div>
 
-                <div className="p-4">
-                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-white">
-                    <CertIcon />
-                  </div>
-
-                  <h3 className="text-lg font-black leading-tight text-white">
-                    {certification.title}
-                  </h3>
+                <div className="mt-5 flex h-10 w-10 items-center justify-center rounded-2xl border border-[#039147]/10 bg-[#eaf8f0] text-[#039147]">
+                  <Icon name="shield" />
                 </div>
+
+                <h3 className="mt-4 text-lg font-black leading-tight text-black md:text-xl">
+                  {item.title}
+                </h3>
+
               </article>
             ))}
           </div>
-
-          <p className="mt-1 text-center text-xs font-bold text-white/50 md:hidden">
-            Swipe to explore certifications
-          </p>
         </div>
       </section>
-
 
       <section id="clients-network" className="bg-white py-16 md:py-28">
         <div className="pml-container">
@@ -725,45 +735,50 @@ export default function AboutUsPage() {
 
       <OtherServices current={null} variant="four" />
 
-      <section className="bg-white pb-20 pt-16 md:pb-32 md:pt-28">
+      <section className="bg-white pb-24 md:pb-32">
         <div className="pml-container">
-          <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:rounded-[36px] md:px-14 md:py-20">
-            <Image src={heroImage} alt="" fill className="object-cover opacity-80" />
+          <div className="relative overflow-hidden rounded-[36px] bg-[#f4fbf7] px-8 py-16 text-center text-black shadow-[0_28px_90px_rgba(0,0,0,0.12)] md:px-14 md:py-20">
+            <Image
+              src="/images/pml/services/clinical-trial-cta.png"
+              alt=""
+              fill
+              className="object-cover opacity-46"
+            />
 
-            <div className="absolute inset-0 bg-black/62" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-[#039147]/35" />
-            <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
+            <div className="absolute inset-0 bg-white/60" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/74 to-[#039147]/18" />
+            <div className="pml-hex-pattern absolute inset-0 opacity-[0.06]" />
 
             <div className="relative mx-auto max-w-3xl">
-              <div className="mx-auto mb-7 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/25 bg-white/90 shadow-lg backdrop-blur">
+              <div className="mx-auto mb-7 flex h-16 w-16 items-center justify-center rounded-2xl border border-[#039147]/10 bg-white/90 shadow-lg backdrop-blur">
                 <Image src="/images/LOGO-PML.png" alt="PML" width={64} height={40} className="h-8 w-auto" />
               </div>
 
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
-                Work With PML
+              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+                Work with PML
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl">
+              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
                 Ready to discuss your next project?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/75">
+              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68">
                 Share your study, testing, or regulatory needs with our team and we will help
                 identify the right service scope, required information, and next steps.
               </p>
 
-              <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
                 <button
                   type="button"
                   onClick={openProposal}
-                  className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-sm font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
                 >
                   Request a Proposal
                 </button>
 
                 <Link
                   href="/services"
-                  className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147]"
+                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
                 >
                   Explore Services
                 </Link>

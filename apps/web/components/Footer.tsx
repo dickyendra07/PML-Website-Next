@@ -25,7 +25,7 @@ function SocialLink({
       aria-label={label}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noreferrer" : undefined}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-black/70 transition hover:border-[#039147] hover:bg-[#039147] hover:text-white"
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-black/78 transition hover:border-[#039147] hover:bg-[#039147] hover:text-white"
     >
       {children}
     </a>
@@ -63,7 +63,7 @@ export default function Footer() {
       });
   }, []);
 
-  const companyName = getSettingValue(settings, "company.name", "Pharma Metric Labs");
+  const companyName = getSettingValue(settings, "company.name", "PML");
   const companyDescription = getSettingValue(
     settings,
     "company.description",
@@ -81,7 +81,7 @@ export default function Footer() {
   const copyright = getSettingValue(
     settings,
     "footer.copyright",
-    "Pharma Metric Labs. All rights reserved."
+    "PML. All rights reserved."
   );
 
   return (
@@ -106,7 +106,7 @@ export default function Footer() {
                 />
               </Link>
 
-              <p className="mt-6 max-w-md text-sm leading-7 text-black/55">
+              <p className="mt-6 max-w-md text-sm leading-7 text-black/78">
                 {companyDescription}
               </p>
 
@@ -139,7 +139,7 @@ export default function Footer() {
 
             <div>
               <h3 className="text-sm font-black text-black">Pages</h3>
-              <div className="mt-5 grid gap-4 text-sm font-semibold text-black/50">
+              <div className="mt-5 grid gap-4 text-sm font-semibold text-black/68">
                 {pageLinks.map((item) => (
                   <Link key={item.href} href={item.href} className="transition hover:text-[#039147]">
                     {item.label}
@@ -150,7 +150,7 @@ export default function Footer() {
 
             <div>
               <h3 className="text-sm font-black text-black">Services</h3>
-              <div className="mt-5 grid gap-4 text-sm font-semibold text-black/50">
+              <div className="mt-5 grid gap-4 text-sm font-semibold text-black/68">
                 {serviceLinks.map((item) => (
                   <Link key={item.href} href={item.href} className="transition hover:text-[#039147]">
                     {item.label}
@@ -161,7 +161,7 @@ export default function Footer() {
 
             <div>
               <h3 className="text-sm font-black text-black">Contact</h3>
-              <div className="mt-5 grid gap-4 text-sm font-semibold leading-7 text-black/50">
+              <div className="mt-5 grid gap-4 text-sm font-semibold leading-7 text-black/68">
                 <a
                   href={`mailto:${email}`}
                   className="underline decoration-black/20 underline-offset-4 transition hover:text-[#039147] hover:decoration-[#039147]"
