@@ -150,7 +150,7 @@ export default function ClientsPage() {
               <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
                 PML supports a broad client network across pharmaceutical, healthcare, research,
                 and regulated product industries. The collaboration experience includes clinical
-                research, BA/BE studies, contract analysis, regulatory consultation, and project
+                research, BA/BE study, contract analysis, regulatory management, and project
                 documentation support.
               </p>
             </div>
@@ -321,8 +321,8 @@ export default function ClientsPage() {
               </h2>
 
               <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/75">
-                Contact PML to discuss BA/BE studies, clinical trial support, contract analysis,
-                regulatory consultation, or other collaboration opportunities.
+                Contact PML to discuss BA/BE study, clinical trial support, contract analysis,
+                regulatory management, or other collaboration opportunities.
               </p>
 
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">

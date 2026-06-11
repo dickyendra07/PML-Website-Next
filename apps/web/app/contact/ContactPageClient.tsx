@@ -275,10 +275,10 @@ export default function ContactPageClient() {
                   className="h-14 rounded-2xl border border-black/10 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 >
                   <option>General Inquiry</option>
-                  <option>BA/BE Studies</option>
-                  <option>Clinical Trial Services</option>
                   <option>Contract Analysis</option>
-                  <option>Regulatory Consultation</option>
+                  <option>BA/BE Study</option>
+                  <option>Clinical Trial</option>
+                  <option>Regulatory Management</option>
                   <option>Facilities Inquiry</option>
                 </select>
               </label>

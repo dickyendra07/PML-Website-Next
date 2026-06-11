@@ -6,7 +6,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata("/insight", {
     title: "Insight",
     description:
-      "Explore Pharma Metric Labs articles, news, publications, and FAQ content about CRO services, BA/BE studies, clinical trials, and regulatory topics.",
+      "Explore Pharma Metric Labs articles, news, publications, and FAQ content about CRO services, BA/BE study, clinical trials, and regulatory topics.",
   });
 }
 

@@ -30,9 +30,9 @@ const timeline = [
     text: "PML received Foreign Bioequivalence Centre accreditation from the National Pharmaceutical Regulatory Agency Malaysia. This accreditation became an important trust signal for international sponsors and demonstrated PML’s commitment to accepted standards, reliable study conduct, and credible bioequivalence reporting.",
   },
   {
-    year: "20xx",
-    title: "Analytical laboratory expansion to East Jakarta",
-    text: "PML expanded its analytical laboratory operations to East Jakarta as part of its capability development. This transition supported a clearer separation between analytical and bioanalytical laboratory activities, creating a more focused and efficient operational structure for laboratory testing and bioanalysis workflows.",
+    year: "2020",
+    title: "Analytical and bioanalytical laboratory expansion",
+    text: "PML strengthened its analytical and bioanalytical laboratory operations through a clearer facility separation. Analytical laboratory activities were expanded to KBIC East Jakarta, creating a more focused structure for laboratory testing, bioanalysis workflows, and broader testing capacity.",
   },
   {
     year: "2024",
@@ -41,8 +41,8 @@ const timeline = [
   },
   {
     year: "2026",
-    title: "New facility relocation and BA/BE capacity expansion",
-    text: "PML relocated to a new facility to support larger and more efficient study operations. The move includes the expansion of BA/BE clinical site capacity from 40 beds to 70 beds, enabling PML to support bigger study requirements while improving operational flow, facility readiness, and project delivery capacity.",
+    title: "New facility and expanded BA/BE clinical capacity",
+    text: "PML relocated to a new facility and expanded its BA/BE clinical site capacity from 40 beds to 70 beds. This milestone strengthens PML's ability to support larger studies, improve clinical operation flow, and deliver more efficient study execution.",
   },
 ];
 
@@ -274,8 +274,8 @@ export default function AboutUsPage() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-8 text-white/75 md:text-lg">
-              Pharma Metric Labs supports pharmaceutical and healthcare companies with BA/BE studies,
-              clinical trial services, contract analysis, and regulatory consultation.
+              Pharma Metric Labs supports pharmaceutical and healthcare companies with BA/BE study,
+              clinical trial, contract analysis, and regulatory management.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -319,8 +319,8 @@ export default function AboutUsPage() {
                 </p>
 
                 <p>
-                  With experience across bioequivalence studies, clinical trial services,
-                  contract analysis, and regulatory consultation, PML combines scientific
+                  With experience across bioequivalence studies, clinical trial,
+                  contract analysis, and regulatory management, PML combines scientific
                   discipline, quality standards, multidisciplinary expertise, and responsive
                   project collaboration.
                 </p>

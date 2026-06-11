@@ -4,7 +4,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 const faqs = [
   [
     "What services does Pharma Metric Labs provide?",
-    "PML provides integrated CRO services including BA/BE studies, clinical trial services, contract analysis, and regulatory consultation for pharmaceutical and related industries.",
+    "PML provides integrated CRO services including BA/BE study, clinical trial, contract analysis, and regulatory management for pharmaceutical and related industries.",
   ],
   [
     "Can PML support both local and international sponsors?",
@@ -12,15 +12,15 @@ const faqs = [
   ],
   [
     "What types of studies can be discussed with PML?",
-    "Sponsors can discuss BA/BE studies, clinical research projects, analytical testing needs, regulatory strategy, product registration support, and related project requirements.",
+    "Sponsors can discuss BA/BE study, clinical research projects, analytical testing needs, regulatory strategy, product registration support, and related project requirements.",
   ],
   [
     "How do we start a project or request a proposal?",
     "You can submit a request through the proposal form and share your study, testing, registration, or consultation needs. The PML team will review the requirements and recommend the next steps.",
   ],
   [
-    "Does PML provide regulatory consultation?",
-    "Yes. PML provides regulatory consultation support including BPOM-focused guidance, document review, dossier gap analysis, ACTD preparation, and submission readiness support.",
+    "Does PML provide regulatory management?",
+    "Yes. PML provides regulatory management support including BPOM-focused guidance, document review, dossier gap analysis, ACTD preparation, and submission readiness support.",
   ],
 ];
 

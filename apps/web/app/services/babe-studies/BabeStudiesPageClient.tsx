@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import OtherServices from "@/components/OtherServices";
 
 const heroSlides = [
@@ -54,19 +55,71 @@ const clients = [
 ];
 
 const countries = [
-  "Cambodia",
-  "Hong Kong",
-  "Indonesia",
-  "Malaysia",
-  "Maldives",
-  "Mauritius",
-  "Mongolia",
-  "Myanmar",
-  "Nigeria",
-  "Philippines",
-  "Singapore",
-  "Sri Lanka",
-  "Vietnam",
+  {
+    name: "Cambodia",
+    landmark: "Angkor Wat",
+    image: "https://images.unsplash.com/photo-1548625361-58a9b86aa83b?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    name: "Hong Kong",
+    landmark: "Victoria Harbour",
+    image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    name: "Indonesia",
+    landmark: "Jakarta Skyline",
+    image: "https://images.unsplash.com/photo-1555899434-94d1368aa7af?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    name: "Malaysia",
+    landmark: "Kuala Lumpur",
+    image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    name: "Maldives",
+    landmark: "Indian Ocean Atolls",
+    image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    name: "Mauritius",
+    landmark: "Island Coastline",
+    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    name: "Mongolia",
+    landmark: "Ulaanbaatar Region",
+    image: "https://images.unsplash.com/photo-1585482161107-1a653f1d67f4?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    name: "Myanmar",
+    landmark: "Bagan Temples",
+    image: "https://images.unsplash.com/photo-1540611025311-01df3cef54b5?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    name: "Nigeria",
+    landmark: "Lagos Business District",
+    image: "https://images.unsplash.com/photo-1576487248805-cf45a6f9d42f?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    name: "Philippines",
+    landmark: "Manila Bay",
+    image: "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    name: "Singapore",
+    landmark: "Marina Bay",
+    image: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    name: "Sri Lanka",
+    landmark: "Colombo",
+    image: "https://images.unsplash.com/photo-1588259492576-4b63350baf47?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    name: "Vietnam",
+    landmark: "Ho Chi Minh City",
+    image: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1400&q=80",
+  },
 ];
 
 const workflow = [
@@ -87,9 +140,9 @@ const requirements = [
 
 const faqs = [
   {
-    question: "Who needs BA/BE studies?",
+    question: "Who needs BA/BE study?",
     answer:
-      "BA/BE studies are commonly needed by pharmaceutical companies and generic manufacturers to support product registration, equivalence evaluation, and regulatory submission requirements.",
+      "BA/BE study are commonly needed by pharmaceutical companies and generic manufacturers to support product registration, equivalence evaluation, and regulatory submission requirements.",
   },
   {
     question: "How many validated bioanalytical methods does PML have?",
@@ -97,7 +150,7 @@ const faqs = [
       "PML has developed and validated more than 190 bioanalytical methods covering a wide range of pharmaceutical compounds. PML can also develop and validate new bioanalytical methods based on sponsor needs and project requirements.",
   },
   {
-    question: "Can PML support end-to-end BA/BE studies?",
+    question: "Can PML support end-to-end BA/BE study?",
     answer:
       "Yes. PML supports BA/BE study activities from clinical conduct and sample handling to bioanalysis, documentation, and regulatory-ready reporting.",
   },
@@ -147,6 +200,7 @@ function ShieldIcon() {
 }
 
 export default function BabeStudiesPage() {
+  const [activeCountry, setActiveCountry] = useState(countries[0]);
   return (
     <main>
       <section className="relative min-h-[560px] overflow-hidden bg-black text-white md:min-h-[calc(100vh-80px)]">
@@ -180,13 +234,13 @@ export default function BabeStudiesPage() {
               Services
             </Link>
             <span>/</span>
-            <span className="text-white">BA/BE Studies</span>
+            <span className="text-white">BA/BE Study</span>
           </nav>
 
           <div className="max-w-4xl">
             <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.16em] text-white shadow-sm backdrop-blur md:text-xs">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
-              BA/BE Studies
+              BA/BE Study
             </p>
 
             <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] tracking-tight text-white md:mt-6 md:text-6xl lg:text-[68px]">
@@ -305,7 +359,7 @@ export default function BabeStudiesPage() {
               </h2>
 
               <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base">
-                BA/BE studies require coordinated clinical activity, reliable sample handling,
+                BA/BE study require coordinated clinical activity, reliable sample handling,
                 robust bioanalysis, and complete documentation.
               </p>
 
@@ -343,7 +397,7 @@ export default function BabeStudiesPage() {
               </h2>
 
               <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base">
-                BA/BE Studies are most relevant for companies preparing evidence for product registration,
+                BA/BE study is most relevant for companies preparing evidence for product registration,
                 generic drug development, regulatory submission, or equivalence evaluation.
               </p>
             </div>
@@ -365,57 +419,139 @@ export default function BabeStudiesPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#039147] py-16 text-white md:py-28">
-        <Image
-          src="/images/pml/services/babe-global-trust-bg.png"
-          alt=""
-          fill
-          className="object-cover opacity-100"
+      <section className="relative overflow-hidden bg-[#022d1c] px-4 py-20 text-white md:py-28">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-45 transition-all duration-700"
+          style={{ backgroundImage: `url(${activeCountry.image})` }}
+          aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-black/25" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-[#039147]/10 to-black/45" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#022d1c]/92 via-[#034b2f]/84 to-[#021b12]/96" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_20%,rgba(255,255,255,0.16),transparent_28%),radial-gradient(circle_at_78%_32%,rgba(255,255,255,0.12),transparent_30%)]" />
+        <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.08]" />
 
-        <div className="pml-container relative">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/70 md:text-sm">
+        <div className="relative mx-auto w-[min(100%-24px,1280px)]">
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-white/78 backdrop-blur">
+              <span className="h-2 w-2 rounded-full bg-white" />
               Proof & Trust Signals
-            </p>
+            </div>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl">
+            <h2 className="mt-6 text-4xl font-black leading-tight tracking-[-0.04em] md:text-5xl lg:text-6xl">
               Accepted BE reports across global regulatory bodies
             </h2>
 
-            <p className="mt-5 text-sm leading-7 text-white/75 md:mt-6 md:text-base md:leading-8">
-              PML’s BE reports have been accepted by regulatory bodies in multiple countries, supporting
-              client submissions across regional and international contexts.
+            <p className="mx-auto mt-6 max-w-3xl text-sm leading-7 text-white/72 md:text-base md:leading-8">
+              PML’s BE reports have supported client submissions across regional and international contexts,
+              helping sponsors move forward with credible, regulatory-ready documentation.
             </p>
           </div>
 
-          <div className="-mx-4 mt-9 flex snap-x gap-2.5 overflow-x-auto px-4 pb-4 md:mx-auto md:mt-10 md:flex-wrap md:justify-center md:overflow-visible md:px-0 md:pb-0">
-            {countries.map((country) => (
-              <span
-                key={country}
-                className="shrink-0 snap-start rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-extrabold text-white backdrop-blur"
+          <div className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+            <div>
+              <div className="flex flex-wrap items-center justify-center gap-2.5 lg:justify-start">
+                {countries.map((country) => {
+                  const isActive = activeCountry.name === country.name;
+
+                  return (
+                    <button
+                      key={country.name}
+                      type="button"
+                      onMouseEnter={() => setActiveCountry(country)}
+                      onFocus={() => setActiveCountry(country)}
+                      onClick={() => setActiveCountry(country)}
+                      className={`group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-extrabold shadow-[0_12px_35px_rgba(0,0,0,0.18)] backdrop-blur transition duration-300 hover:-translate-y-1 ${
+                        isActive
+                          ? "border-white bg-white text-[#039147]"
+                          : "border-white/14 bg-white/10 text-white/88 hover:border-white/35 hover:bg-white hover:text-[#039147]"
+                      }`}
+                    >
+                      <span
+                        className={`h-1.5 w-1.5 rounded-full transition ${
+                          isActive ? "bg-[#039147]" : "bg-white/55 group-hover:bg-[#039147]"
+                        }`}
+                      />
+                      {country.name}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="mt-8 grid gap-4 md:grid-cols-3">
+                {[
+                  {
+                    value: "190+",
+                    label: "Validated methods",
+                    desc: "Bioanalytical method capability",
+                  },
+                  {
+                    value: "13",
+                    label: "Accepted countries",
+                    desc: "Regional and international contexts",
+                  },
+                  {
+                    value: "End-to-end",
+                    label: "BA/BE support",
+                    desc: "Clinical conduct to reporting",
+                  },
+                ].map((item) => (
+                  <article
+                    key={item.label}
+                    className="rounded-[24px] border border-white/14 bg-white/[0.09] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.20)] backdrop-blur transition duration-300 hover:-translate-y-2 hover:border-white/30 hover:bg-white/[0.14]"
+                  >
+                    <p className="text-3xl font-black tracking-[-0.06em] text-white md:text-4xl">
+                      {item.value}
+                    </p>
+                    <h3 className="mt-3 text-xs font-extrabold uppercase tracking-[0.13em] text-white/86">
+                      {item.label}
+                    </h3>
+                    <p className="mt-3 text-xs leading-6 text-white/58">
+                      {item.desc}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <aside className="group overflow-hidden rounded-[34px] border border-white/16 bg-white/[0.11] p-4 shadow-[0_30px_110px_rgba(0,0,0,0.32)] backdrop-blur transition duration-300 hover:-translate-y-2 hover:bg-white/[0.15]">
+              <div
+                className="relative h-[300px] overflow-hidden rounded-[26px] bg-cover bg-center transition duration-700 group-hover:scale-[1.01]"
+                style={{ backgroundImage: `url(${activeCountry.image})` }}
               >
-                {country}
-              </span>
-            ))}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/10 to-transparent" />
+                <div className="absolute bottom-5 left-5 right-5">
+                  <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-white/70">
+                    Active country
+                  </p>
+                  <h3 className="mt-2 text-3xl font-black tracking-[-0.04em] text-white">
+                    {activeCountry.name}
+                  </h3>
+                  <p className="mt-1 text-sm font-bold text-white/72">
+                    {activeCountry.landmark}
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-3 pt-5">
+                <p className="text-sm leading-7 text-white/68">
+                  BE report acceptance experience in {activeCountry.name} supports PML’s positioning as a
+                  CRO partner with regional and international regulatory readiness.
+                </p>
+
+                <div className="mt-5 flex items-center justify-between rounded-2xl border border-white/12 bg-black/10 px-4 py-3">
+                  <span className="text-xs font-extrabold uppercase tracking-[0.16em] text-white/58">
+                    Submission context
+                  </span>
+                  <span className="rounded-full bg-white px-3 py-1 text-xs font-extrabold text-[#039147]">
+                    Accepted report
+                  </span>
+                </div>
+              </div>
+            </aside>
           </div>
 
-          <div className="mx-auto mt-8 grid max-w-4xl grid-cols-2 gap-3 md:mt-12 md:gap-5">
-            <div className="rounded-[24px] border border-white/15 bg-white/10 p-5 backdrop-blur md:rounded-[30px] md:p-7">
-              <p className="text-4xl font-black md:text-5xl">190+</p>
-              <p className="mt-2 text-xs font-bold leading-5 text-white/75 md:text-sm md:leading-6">
-                validated bioanalytical methods.
-              </p>
-            </div>
-
-            <div className="rounded-[24px] border border-white/15 bg-white/10 p-5 backdrop-blur md:rounded-[30px] md:p-7">
-              <p className="text-4xl font-black md:text-5xl">13</p>
-              <p className="mt-2 text-xs font-bold leading-5 text-white/75 md:text-sm md:leading-6">
-                countries with accepted reports.
-              </p>
-            </div>
+          <div className="mx-auto mt-9 max-w-4xl rounded-[26px] border border-white/12 bg-black/15 px-6 py-5 text-center text-sm leading-7 text-white/66 backdrop-blur">
+            These trust signals are presented to strengthen confidence in PML’s BA/BE study capability,
+            reporting experience, and regulatory submission support.
           </div>
         </div>
       </section>

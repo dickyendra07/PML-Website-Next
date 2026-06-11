@@ -45,7 +45,7 @@ export default function ServicesPageClient() {
 
             <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/75 md:mt-6 md:text-lg md:leading-8">
               Explore PML services across bioequivalence studies, clinical research support,
-              analytical testing, and regulatory consultation.
+              analytical testing, and regulatory management.
             </p>
 
             <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row md:mt-8">

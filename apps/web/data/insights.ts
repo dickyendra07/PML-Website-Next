@@ -17,7 +17,7 @@ export const insightCategories = [
     href: "/insight/articles",
     category: "articles" as const,
     description:
-      "Educational content about CRO services, BA/BE studies, clinical trials, and pharmaceutical development.",
+      "Educational content about CRO services, BA/BE study, clinical trials, and pharmaceutical development.",
   },
   {
     label: "News",
@@ -46,13 +46,13 @@ export const insights: InsightItem[] = [
   {
     slug: "understanding-babe-studies",
     category: "articles",
-    title: "Understanding BA/BE Studies for Pharmaceutical Development",
+    title: "Understanding BA/BE Study for Pharmaceutical Development",
     excerpt:
       "A practical introduction to bioavailability and bioequivalence studies, including when sponsors need BA/BE support and what information should be prepared.",
     date: "2026-01-12",
     readTime: "5 min read",
     image: "/images/pml/services/babe-studies-hero.png",
-    tags: ["BA/BE Studies", "Pharmaceutical Development"],
+    tags: ["BA/BE Study", "Pharmaceutical Development"],
   },
   {
     slug: "clinical-trial-support-indonesia",
@@ -101,13 +101,13 @@ export const insights: InsightItem[] = [
   {
     slug: "regulatory-consultation-overview",
     category: "publications",
-    title: "Regulatory Consultation Overview for Indonesian Product Registration",
+    title: "Regulatory Management Overview for Indonesian Product Registration",
     excerpt:
-      "A reference overview of regulatory consultation topics including BPOM pathway discussion, ACTD documents, dossier gap analysis, and study requirements.",
+      "A reference overview of regulatory management topics including BPOM pathway discussion, ACTD documents, dossier gap analysis, and study requirements.",
     date: "2026-02-16",
     readTime: "7 min read",
     image: "/images/pml/services/clinical-trial-regulatory.png",
-    tags: ["Regulatory Consultation", "BPOM"],
+    tags: ["Regulatory Management", "BPOM"],
   },
 ];
 
@@ -115,7 +115,7 @@ export const insightFaqs = [
   {
     question: "What services does Pharma Metric Labs provide?",
     answer:
-      "PML provides integrated CRO services including BA/BE studies, clinical trial services, contract analysis, and regulatory consultation for pharmaceutical and related industries.",
+      "PML provides integrated CRO services including BA/BE study, clinical trial, contract analysis, and regulatory management for pharmaceutical and related industries.",
   },
   {
     question: "Can PML support both local and international sponsors?",
@@ -128,9 +128,9 @@ export const insightFaqs = [
       "Sponsors can prepare company information, service interest, product or study background, timeline, regulatory context, and available documents.",
   },
   {
-    question: "Does PML provide regulatory consultation?",
+    question: "Does PML provide regulatory management?",
     answer:
-      "Yes. PML provides regulatory consultation including BPOM-focused guidance, document review, dossier gap analysis, ACTD preparation, and submission readiness support.",
+      "Yes. PML provides regulatory management including BPOM-focused guidance, document review, dossier gap analysis, ACTD preparation, and submission readiness support.",
   },
   {
     question: "Can visitors explore PML facilities online?",

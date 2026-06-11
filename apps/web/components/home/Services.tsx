@@ -11,7 +11,7 @@ export default function Services() {
           align="center"
           eyebrow="Services"
           title="Integrated CRO Services for Pharmaceutical Development"
-          description="From BA/BE studies and clinical trials to contract analysis and regulatory consultation, PML provides integrated CRO support for pharmaceutical, biotechnology, healthcare, food, beverage, cosmetic, and medical device companies."
+          description="From BA/BE study and clinical trials to contract analysis and regulatory management, PML provides integrated CRO support for pharmaceutical, biotechnology, healthcare, food, beverage, cosmetic, and medical device companies."
         />
 
         <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-4 md:mx-0 md:mt-14 md:grid md:overflow-visible md:px-0 md:pb-0 md:grid-cols-2 xl:grid-cols-4 xl:gap-6">

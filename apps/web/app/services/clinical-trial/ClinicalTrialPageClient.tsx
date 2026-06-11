@@ -352,13 +352,13 @@ export default function ClinicalTrialPage() {
               Services
             </Link>
             <span aria-hidden="true">/</span>
-            <span className="text-white">Clinical Trial Services</span>
+            <span className="text-white">Clinical Trial</span>
           </nav>
 
           <div className="max-w-4xl">
             <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.16em] md:text-xs text-white shadow-sm backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
-              Clinical Trial Services
+              Clinical Trial
             </p>
 
             <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] tracking-tight text-white md:mt-6 md:text-6xl lg:text-[68px]">
@@ -420,7 +420,7 @@ export default function ClinicalTrialPage() {
 
             <div className="space-y-5 text-sm leading-7 text-black/65 md:text-base md:leading-8">
               <p>
-                PML provides clinical trial services for sponsors that need reliable local
+                PML provides clinical trial for sponsors that need reliable local
                 execution, regulatory coordination, and study management support in Indonesia.
                 The service covers study preparation, site feasibility, ethics and regulatory
                 coordination, monitoring, safety support, data management, and medical writing.
@@ -765,7 +765,7 @@ export default function ClinicalTrialPage() {
                   href="#clinical-overview"
                   className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147]"
                 >
-                  Review Clinical Trial Service
+                  Review Clinical Trial
                 </a>
               </div>
             </div>

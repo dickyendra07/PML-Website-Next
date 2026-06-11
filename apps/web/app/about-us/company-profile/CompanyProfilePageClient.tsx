@@ -153,7 +153,7 @@ export default function CompanyProfilePage() {
 
               <p className="mt-6 max-w-2xl text-base leading-8 text-white/75 md:text-lg">
                 Pharma Metric Labs is an Indonesia-based Contract Research Organization supporting
-                pharmaceutical and healthcare development through BA/BE studies, clinical research,
+                pharmaceutical and healthcare development through BA/BE study, clinical research,
                 contract analysis, and regulatory affairs consultation.
               </p>
 

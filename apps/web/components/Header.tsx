@@ -65,28 +65,28 @@ const aboutItems: MegaItem[] = [
 
 const serviceItems: MegaItem[] = [
   {
-    label: "BA/BE Studies",
-    href: "/services/babe-studies",
-    desc: "End-to-end BA/BE support from clinical conduct and bioanalysis to regulatory-ready reporting.",
-    icon: "babe",
-  },
-  {
-    label: "Clinical Trial Services",
-    href: "/services/clinical-trial",
-    desc: "Clinical trial support with local expertise, hospital partnerships, and global study experience.",
-    icon: "clinical",
-  },
-  {
     label: "Contract Analysis",
     href: "/services/contract-analysis",
-    desc: "Analytical testing for pharma, cosmetic, food, beverage, and medical device industries.",
+    desc: "Analytical testing support for product quality, safety, compliance, and documentation needs.",
     icon: "analysis",
   },
   {
-    label: "Regulatory Consultation",
+    label: "BA/BE Study",
+    href: "/services/babe-studies",
+    desc: "End-to-end bioavailability and bioequivalence study support from clinical conduct and bioanalysis to regulatory-ready reporting.",
+    icon: "babe",
+  },
+  {
+    label: "Clinical Trial",
+    href: "/services/clinical-trial",
+    desc: "Clinical research support with local expertise, hospital partnerships, and reliable study coordination.",
+    icon: "building",
+  },
+  {
+    label: "Regulatory Management",
     href: "/services/regulatory-consultation",
-    desc: "Registration, compliance, documentation, and local submission requirement support.",
-    icon: "regulatory",
+    desc: "Regulatory management support for product registration, ACTD documents, compliance, and submission readiness.",
+    icon: "shield",
   },
 ];
 
@@ -548,7 +548,7 @@ export default function Header({ onOpenProposal }: HeaderProps) {
                 width="1080"
                 items={serviceItems}
                 sideTitle="Integrated CRO support for regulated projects"
-                sideDesc="Explore PML services across BA/BE studies, clinical trials, contract analysis, and regulatory consultation."
+                sideDesc="Explore PML services across BA/BE study, clinical trials, contract analysis, and regulatory management."
                 sideHref="/services"
                 sideCta="View all services"
                 sideIcon="shield"

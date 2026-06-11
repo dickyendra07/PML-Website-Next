@@ -42,7 +42,7 @@ export async function getSeoDefaults() {
     description: getSettingValue(
       settings,
       "seo.defaultDescription",
-      "Integrated CRO services for pharmaceutical development, including BA/BE studies, clinical trial services, contract analysis, and regulatory consultation."
+      "Integrated CRO services for pharmaceutical development, including BA/BE study, clinical trial, contract analysis, and regulatory management."
     ),
     companyName: getSettingValue(settings, "company.name", "Pharma Metric Labs"),
   };

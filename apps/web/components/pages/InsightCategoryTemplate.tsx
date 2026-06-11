@@ -19,7 +19,7 @@ const categoryHero: Record<
     eyebrow: "Articles",
     title: "Educational articles for CRO and pharmaceutical project readiness",
     description:
-      "Read practical content about BA/BE studies, clinical trial support, contract analysis, regulatory preparation, and pharmaceutical development.",
+      "Read practical content about BA/BE study, clinical trial support, contract analysis, regulatory preparation, and pharmaceutical development.",
     image: "/images/pml/services/babe-studies-hero.png",
   },
   news: {

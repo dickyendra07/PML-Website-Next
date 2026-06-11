@@ -4,9 +4,9 @@ import ClinicalTrialPageClient from "./ClinicalTrialPageClient";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata("/services/clinical-trial", {
-    title: "Clinical Trial Services",
+    title: "Clinical Trial",
     description:
-      "Explore Pharma Metric Labs clinical trial services, including study planning, regulatory coordination, site management, monitoring, and medical writing.",
+      "Explore Pharma Metric Labs clinical trial, including study planning, regulatory coordination, site management, monitoring, and medical writing.",
   });
 }
 

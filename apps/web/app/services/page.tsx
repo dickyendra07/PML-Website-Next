@@ -6,7 +6,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata("/services", {
     title: "Services",
     description:
-      "Explore Pharma Metric Labs CRO services, including BA/BE studies, clinical trial services, contract analysis, and regulatory consultation for pharmaceutical development.",
+      "Explore Pharma Metric Labs CRO services, including BA/BE study, clinical trial, contract analysis, and regulatory management for pharmaceutical development.",
   });
 }
 

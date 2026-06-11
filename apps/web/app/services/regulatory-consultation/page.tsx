@@ -4,9 +4,9 @@ import RegulatoryConsultationPageClient from "./RegulatoryConsultationPageClient
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata("/services/regulatory-consultation", {
-    title: "Regulatory Consultation",
+    title: "Regulatory Management",
     description:
-      "Explore Pharma Metric Labs regulatory consultation services for BPOM registration, ACTD documents, compliance, and submission readiness.",
+      "Explore Pharma Metric Labs regulatory management services for BPOM registration, ACTD documents, compliance, and submission readiness.",
   });
 }
 

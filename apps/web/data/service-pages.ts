@@ -17,7 +17,7 @@ export type ServicePageData = {
 export const servicePages: Record<ServiceKey, ServicePageData> = {
   babe: {
     key: "babe",
-    eyebrow: "BA/BE Studies",
+    eyebrow: "BA/BE Study",
     title: "End-to-end BA/BE study support with scientific reliability",
     description:
       "PML supports bioavailability and bioequivalence studies from clinical conduct and sample handling to bioanalysis, documentation, and regulatory-ready reporting.",
@@ -54,7 +54,7 @@ export const servicePages: Record<ServiceKey, ServicePageData> = {
   },
   "clinical-trial": {
     key: "clinical-trial",
-    eyebrow: "Clinical Trial Services",
+    eyebrow: "Clinical Trial",
     title: "End-to-end clinical trial support with local expertise",
     description:
       "PML supports sponsors with clinical research services across study planning, regulatory coordination, site management, monitoring, data management, and medical writing.",
@@ -84,7 +84,7 @@ export const servicePages: Record<ServiceKey, ServicePageData> = {
       "Study close-out and reporting support",
     ],
     faq: [
-      ["What clinical trial services does PML provide?", "PML supports study planning, regulatory coordination, site management, monitoring, data management, and medical writing."],
+      ["What clinical trial does PML provide?", "PML supports study planning, regulatory coordination, site management, monitoring, data management, and medical writing."],
       ["Can PML assist with EC and regulatory submission?", "Yes. PML can support coordination and documentation for EC and regulatory submission workflows."],
       ["Who can use this service?", "Pharmaceutical companies, biotech companies, medical device companies, and sponsors requiring local clinical research execution support."],
     ],
@@ -128,14 +128,14 @@ export const servicePages: Record<ServiceKey, ServicePageData> = {
   },
   "regulatory-consultation": {
     key: "regulatory-consultation",
-    eyebrow: "Regulatory Consultation",
+    eyebrow: "Regulatory Management",
     title: "Regulatory affairs support for BPOM registration and compliance",
     description:
       "PML supports pharmaceutical, biologics, advanced therapy, traditional and quasi-drug, and medical device registration through practical regulatory strategy and documentation review.",
     image: "/images/pml/services/contract-analysis-proof.png",
     overviewTitle: "Regulatory support for product registration in Indonesia",
     overview:
-      "PML’s Regulatory Affairs team helps companies navigate BPOM requirements through practical regulatory consultation, documentation review, and submission preparation support.",
+      "PML’s Regulatory Affairs team helps companies navigate BPOM requirements through practical regulatory management, documentation review, and submission preparation support.",
     scope: [
       "New product registration",
       "Variations and post-approval changes",
@@ -148,7 +148,7 @@ export const servicePages: Record<ServiceKey, ServicePageData> = {
       "Clinical and non-clinical document review",
     ],
     benefits: [
-      "One-stop support for regulatory consultation and documentation",
+      "One-stop support for regulatory management and documentation",
       "Understanding of Indonesian regulatory requirements",
       "Coordination with relevant stakeholders and regulatory bodies",
       "Up-to-date knowledge of current regulations and trends",

@@ -48,11 +48,7 @@ export default function ProposalModal({ open, onClose }: ProposalModalProps) {
   if (!open) return null;
 
   const primaryEmail = getSettingValue(settings, "contact.email", "info@pharmametriclabs.com");
-  const secondaryEmail = getSettingValue(
-    settings,
-    "contact.secondaryEmail",
-    "novida.aristyowati@pharmametriclabs.com"
-  );
+  const secondaryEmail = "";
   const phoneNumber = getSettingValue(settings, "contact.phone", "(+6221) 426 5310 / (+6221) 426 9475");
   const proposalRecipient = getSettingValue(settings, "proposal.recipientEmail", primaryEmail);
 
@@ -217,10 +213,10 @@ export default function ProposalModal({ open, onClose }: ProposalModalProps) {
             required
           >
             <option value="">Choose service</option>
-            <option value="BA/BE Studies">BA/BE Studies</option>
-            <option value="Clinical Trial Services">Clinical Trial Services</option>
             <option value="Contract Analysis">Contract Analysis</option>
-            <option value="Regulatory Consultation">Regulatory Consultation</option>
+            <option value="BA/BE Study">BA/BE Study</option>
+            <option value="Clinical Trial">Clinical Trial</option>
+            <option value="Regulatory Management">Regulatory Management</option>
           </select>
 
           <textarea

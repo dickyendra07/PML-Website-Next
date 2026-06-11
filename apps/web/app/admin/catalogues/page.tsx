@@ -45,10 +45,10 @@ const emptyForm: CatalogueForm = {
 
 const serviceTypes = [
   "Company Profile",
-  "BA/BE Studies",
+  "BA/BE Study",
   "Clinical Trial",
   "Contract Analysis",
-  "Regulatory Consultation",
+  "Regulatory Management",
 ];
 
 function mapCatalogueToForm(item: AdminCatalogueItem): CatalogueForm {

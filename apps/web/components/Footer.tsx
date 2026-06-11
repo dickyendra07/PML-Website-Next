@@ -42,12 +42,11 @@ const pageLinks = [
 ];
 
 const serviceLinks = [
-  { label: "BA/BE Studies", href: "/services/babe-studies" },
-  { label: "Clinical Trials", href: "/services/clinical-trial" },
   { label: "Contract Analysis", href: "/services/contract-analysis" },
-  { label: "Regulatory Consultation", href: "/services/regulatory-consultation" },
+  { label: "BA/BE Study", href: "/services/babe-studies" },
+  { label: "Clinical Trial", href: "/services/clinical-trial" },
+  { label: "Regulatory Management", href: "/services/regulatory-consultation" },
 ];
-
 export default function Footer() {
   const [settings, setSettings] = useState<PublicSettings>(fallbackPublicSettings);
 

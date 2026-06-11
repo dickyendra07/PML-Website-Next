@@ -86,7 +86,7 @@ const clients = [
 const benefits = [
   {
     title: "One-stop regulatory support",
-    text: "Support for regulatory consultation, documentation, and submission-related activities in one coordinated workflow.",
+    text: "Support for regulatory management, documentation, and submission-related activities in one coordinated workflow.",
     icon: "strategy",
   },
   {
@@ -312,13 +312,13 @@ export default function RegulatoryConsultationPage() {
             <span aria-hidden="true">/</span>
             <Link href="/services" className="transition hover:text-white">Services</Link>
             <span aria-hidden="true">/</span>
-            <span className="text-white">Regulatory Consultation</span>
+            <span className="text-white">Regulatory Management</span>
           </nav>
 
           <div className="max-w-4xl">
             <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-white shadow-sm backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
-              Regulatory Consultation
+              Regulatory Management
             </p>
 
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-tight text-white md:text-6xl lg:text-[68px]">
@@ -356,7 +356,7 @@ export default function RegulatoryConsultationPage() {
                 type="button"
                 onClick={() => setActiveSlide(index)}
                 className={`h-2.5 rounded-full transition-all ${index === activeSlide ? "w-8 bg-[#039147]" : "w-2.5 bg-white/45"}`}
-                aria-label={`Go to Regulatory Consultation hero slide ${index + 1}`}
+                aria-label={`Go to Regulatory Management hero slide ${index + 1}`}
               />
             ))}
           </div>
@@ -461,7 +461,7 @@ export default function RegulatoryConsultationPage() {
             </h2>
 
             <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-black/65">
-              Regulatory Consultation supports local companies, overseas principals, manufacturers,
+              Regulatory Management supports local companies, overseas principals, manufacturers,
               and product teams that need clarity on BPOM requirements, local agent needs,
               registration pathways, documentation gaps, and compliance planning.
             </p>
@@ -507,7 +507,7 @@ export default function RegulatoryConsultationPage() {
             <div className="overflow-hidden rounded-[34px] bg-white p-3 shadow-[0_24px_70px_rgba(0,0,0,0.10)]">
               <Image
                 src="/images/pml/services/clinical-trial-regulatory.png"
-                alt="Regulatory consultation documentation workflow"
+                alt="Regulatory management documentation workflow"
                 width={900}
                 height={675}
                 className="aspect-[4/3] w-full rounded-[26px] object-cover"
@@ -655,7 +655,7 @@ export default function RegulatoryConsultationPage() {
               </p>
 
               <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl">
-                Need BPOM regulatory consultation?
+                Need BPOM regulatory management?
               </h2>
 
               <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/75">

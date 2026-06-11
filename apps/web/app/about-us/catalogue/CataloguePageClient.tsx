@@ -137,8 +137,8 @@ export default function CataloguePage() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-8 text-white/75 md:text-lg">
-              Access or request PML catalogue materials for BA/BE Studies, Clinical Trial Services,
-              and Contract Analysis capability.
+              Access or request PML catalogue materials for Contract Analysis, BA/BE Study, Clinical Trial,
+              and Regulatory Management capability.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
