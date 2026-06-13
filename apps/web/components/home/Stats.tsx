@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 
 const stats = [
   ["20", "+", "years experience"],
-  ["1500", "+", "completed projects"],
-  ["3500", "+", "healthy volunteers database"],
-  ["190", "+", "validated bioanalytical methods"],
+  ["6000", "+", "completed projects"],
+  ["300", "+", "sponsors"],
+  ["190", "+", "validated bioanalytical method"],
 ];
 
 function CountUp({ value, suffix }: { value: string; suffix: string }) {

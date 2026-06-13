@@ -86,9 +86,9 @@ const certifications = [
 
 const facts = [
   { number: 20, suffix: "+", label: "years experience" },
-  { number: 1500, suffix: "+", label: "completed projects" },
-  { number: 3500, suffix: "+", label: "healthy volunteers database" },
-  { number: 190, suffix: "+", label: "validated bioanalytical methods" },
+  { number: 6000, suffix: "+", label: "completed projects" },
+  { number: 300, suffix: "+", label: "sponsors" },
+  { number: 190, suffix: "+", label: "validated bioanalytical method" },
 ];
 
 function formatNumber(value: number) {
@@ -216,7 +216,7 @@ function HeroButton({
   const className =
     variant === "white"
       ? "inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
-      : "inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-[#039147] hover:text-white";
+      : "inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white";
 
   if (href) {
     return (
@@ -330,7 +330,7 @@ export default function AboutUsPage() {
                 <h3 className="text-2xl font-black">
                   Innovation, powered by scientific excellence.
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-black/68">
+                <p className="mt-3 text-sm leading-6 text-white/82">
                   The brand essence behind Pharma Metric Labs’ renewed identity and digital direction.
                 </p>
               </div>
@@ -527,16 +527,16 @@ export default function AboutUsPage() {
               </p>
             </article>
 
-            <article className="rounded-[28px] border border-black/5 bg-[#039147] p-6 text-white shadow-[0_24px_70px_rgba(3,145,71,0.20)] md:rounded-[34px] md:p-10">
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-black/64">
-                Mission
-              </p>
+            <article className="rounded-[28px] border border-[#039147]/20 bg-[#039147] p-6 text-white shadow-[0_24px_70px_rgba(3,145,71,0.20)] md:rounded-[34px] md:p-10">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/80 md:text-sm">
+                  Mission
+                </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight">
+              <h2 className="mt-4 text-3xl font-black leading-tight text-white">
                 To ensure good quality healthcare products for the community
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-black/68">
+              <p className="mt-5 text-base leading-8 text-white/82">
                 PML supports this mission through scientific services, reliable data,
                 quality-focused workflows, and collaborative project execution.
               </p>
