@@ -47,11 +47,11 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
             <span>/</span>
             <Link href="/facilities" className="transition hover:text-white">Facilities</Link>
             <span>/</span>
-            <span className="text-white">{data.title}</span>
+            <span className="text-[#039147]">{data.title}</span>
           </nav>
 
           <div className="max-w-4xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-white backdrop-blur">
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/85 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#039147] backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
               {data.eyebrow}
             </p>
@@ -86,7 +86,7 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
 
               <a
                 href="#facility-detail"
-                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white hover:text-[#039147]"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white/85 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-white hover:text-white"
               >
                 Explore Details
               </a>

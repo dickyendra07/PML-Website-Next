@@ -81,30 +81,31 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
 
   return (
     <main>
-      <section className="relative overflow-hidden bg-black text-white">
+      <section className="relative overflow-hidden bg-white text-black">
         <Image
           src={hero.image}
           alt=""
           fill
           priority
-          className="object-cover opacity-80"
+          className="object-cover opacity-64"
         />
-        <div className="absolute inset-0 bg-[#039147]/22" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/66 to-black/24" />
+        <div className="absolute inset-0 bg-white/52" />
+        <div className="absolute inset-0 bg-white/18" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/88 via-white/58 to-[#039147]/16" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/54 via-transparent to-black/20" />
-        <div className="pml-hex-pattern absolute inset-0 opacity-[0.075]" />
+        <div className="pml-hex-pattern absolute inset-0 opacity-[0.045]" />
 
         <div className="pml-container relative py-20 md:py-32">
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-black/58">
-            <Link href="/" className="transition hover:text-white">Home</Link>
+            <Link href="/" className="transition hover:text-black">Home</Link>
             <span>/</span>
-            <Link href="/insight" className="transition hover:text-white">Insight</Link>
+            <Link href="/insight" className="transition hover:text-black">Insight</Link>
             <span>/</span>
-            <span className="text-white">{hero.eyebrow}</span>
+            <span className="text-[#039147]">{hero.eyebrow}</span>
           </nav>
 
           <div className="max-w-5xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-white backdrop-blur">
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#039147] backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
               {hero.eyebrow}
             </p>
@@ -277,27 +278,27 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
 
       <section className="bg-[#f6faf7] pb-20 pt-4 md:pb-32">
         <div className="pml-container">
-          <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:rounded-[36px] md:px-14 md:py-20">
+          <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-black shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:rounded-[36px] md:px-14 md:py-20">
             <Image
               src="/images/pml/cta-lab-background.png"
               alt=""
               fill
-              className="object-cover opacity-80"
+              className="object-cover opacity-48"
             />
-            <div className="absolute inset-0 bg-[#039147]/22" />
-            <div className="absolute inset-0 bg-gradient-to-r from-white/82 via-white/46 to-[#039147]/24" />
+            <div className="absolute inset-0 bg-white/34" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/78 via-white/48 to-[#039147]/12" />
             <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
 
             <div className="relative mx-auto max-w-3xl">
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-black/64">
+              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
                 Start a Project
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl">
+              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl text-black">
                 Need support for your next project?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68">
+              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/72 text-black/72 text-black/72">
                 Share your study, testing, or regulatory needs with our team and we will help
                 identify the right service scope, required information, and next steps.
               </p>
