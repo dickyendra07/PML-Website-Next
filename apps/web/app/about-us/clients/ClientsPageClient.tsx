@@ -85,7 +85,7 @@ export default function ClientsPage() {
           alt=""
           fill
           priority
-          className="object-cover opacity-80"
+          className="object-cover opacity-55"
         />
         <div className="absolute inset-0 bg-[#039147]/24" />
         <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/62 to-[#039147]/20" />
@@ -97,11 +97,11 @@ export default function ClientsPage() {
             <span>/</span>
             <Link href="/about-us" className="transition hover:text-[#039147]">About Us</Link>
             <span>/</span>
-            <span className="text-white">Our Clients</span>
+            <span className="text-[#039147]">Our Clients</span>
           </nav>
 
           <div className="max-w-5xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/15 bg-white/80 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-white backdrop-blur">
+            <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/20 bg-white/95 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#039147] backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
               Clients & Network
             </p>
@@ -126,7 +126,7 @@ export default function ClientsPage() {
               <button
                 type="button"
                 onClick={openProposal}
-                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-[#039147] hover:text-white"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white/85 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
               >
                 Start Collaboration
               </button>
@@ -264,20 +264,20 @@ export default function ClientsPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#039147] py-16 text-white md:py-28">
+      <section className="relative overflow-hidden bg-[#039147] py-16 text-black md:py-28">
         <Image
           src="/images/pml/facilities-gallery/clinical-main.jpg"
           alt=""
           fill
-          className="object-cover opacity-80"
+          className="object-cover opacity-35"
         />
-        <div className="absolute inset-0 bg-[#039147]/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/82 via-white/46 to-[#039147]/24" />
+        <div className="absolute inset-0 bg-white/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/96 via-white/82 to-[#039147]/10" />
         <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
 
         <div className="pml-container relative">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-black/64 md:text-sm">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
               Client Testimonial
             </p>
 
@@ -288,7 +288,7 @@ export default function ClientsPage() {
 
             <div className="mx-auto mt-8 h-px w-20 bg-white/30" />
 
-            <p className="mt-6 text-base font-extrabold text-white">
+            <p className="mt-6 text-base font-extrabold text-black">
               Vitania Rebecca
             </p>
             <p className="mt-2 text-sm font-bold text-black/62">
@@ -300,7 +300,7 @@ export default function ClientsPage() {
 
       <section className="bg-white py-16 md:py-28">
         <div className="pml-container">
-          <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:rounded-[36px] md:px-14 md:py-20">
+          <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-black shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:rounded-[36px] md:px-14 md:py-20">
             <Image
               src="/images/pml/cta-lab-background.png"
               alt=""
@@ -308,15 +308,15 @@ export default function ClientsPage() {
               className="object-cover opacity-80"
             />
             <div className="absolute inset-0 bg-[#039147]/22" />
-            <div className="absolute inset-0 bg-gradient-to-r from-white/82 via-white/46 to-[#039147]/24" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/74 to-[#039147]/14" />
             <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
 
             <div className="relative mx-auto max-w-3xl">
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-black/64">
+              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
                 Business Opportunity
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl">
+              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
                 Looking for a reliable CRO partner in Indonesia?
               </h2>
 
@@ -336,7 +336,7 @@ export default function ClientsPage() {
 
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-[#039147] hover:text-white"
+                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white/85 px-8 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
                 >
                   Contact PML
                 </Link>
