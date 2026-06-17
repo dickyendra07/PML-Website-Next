@@ -123,11 +123,11 @@ export default function CataloguePage() {
             <span>/</span>
             <Link href="/about-us" className="transition hover:text-[#039147]">About Us</Link>
             <span>/</span>
-            <span className="text-white">Catalogue</span>
+            <span className="text-[#039147]">Catalogue</span>
           </nav>
 
           <div className="max-w-5xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/15 bg-white/80 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-white backdrop-blur">
+            <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/20 bg-white/95 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#039147] backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
               Catalogue
             </p>
@@ -152,7 +152,7 @@ export default function CataloguePage() {
               <button
                 type="button"
                 onClick={openProposal}
-                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-[#039147] hover:text-white"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white/85 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
               >
                 Request a Proposal
               </button>
@@ -372,27 +372,27 @@ export default function CataloguePage() {
 
       <section className="bg-white py-16 md:py-28">
         <div className="pml-container">
-          <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-white shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:rounded-[36px] md:px-14 md:py-20">
+          <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-black shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:rounded-[36px] md:px-14 md:py-20">
             <Image
               src="/images/pml/facilities-gallery/analytical-lab-1.jpg"
               alt=""
               fill
-              className="object-cover opacity-80"
+              className="object-cover opacity-52"
             />
-            <div className="absolute inset-0 bg-[#039147]/22" />
-            <div className="absolute inset-0 bg-gradient-to-r from-white/82 via-white/46 to-[#039147]/24" />
+            <div className="absolute inset-0 bg-white/38" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/78 via-white/46 to-[#039147]/10" />
             <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
 
             <div className="relative mx-auto max-w-3xl">
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-black/64">
+              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
                 Updated Catalogue Request
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl">
+              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl text-black">
                 Need the latest official catalogue from PML?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68">
+              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/72">
                 Contact the PML team to request the latest catalogue, discuss project needs,
                 or prepare a proposal discussion.
               </p>
