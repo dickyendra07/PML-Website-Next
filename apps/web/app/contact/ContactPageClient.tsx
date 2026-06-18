@@ -15,6 +15,8 @@ function ContactIcon({ type }: { type: string }) {
   if (type === "phone") {
     return (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M8.5 5.5L10.4 9.6L8.7 11.1C9.7 13.2 11.3 14.8 13.4 15.8L14.9 14.1L19 16L18.2 19.5C18 20.3 17.3 20.9 16.5 20.8C9.3 20.2 3.8 14.7 3.2 7.5C3.1 6.7 3.7 6 4.5 5.8L8.5 5.5Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      </svg>
     );
   }
 
@@ -22,12 +24,16 @@ function ContactIcon({ type }: { type: string }) {
     return (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <rect x="4" y="6" width="16" height="12" rx="3" stroke="currentColor" strokeWidth="2" />
+        <path d="M5.5 8L12 13L18.5 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
     );
   }
 
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path d="M12 21C12 21 19 15.8 19 9.8C19 5.9 15.9 3 12 3C8.1 3 5 5.9 5 9.8C5 15.8 12 21 12 21Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      <circle cx="12" cy="10" r="2.5" stroke="currentColor" strokeWidth="2" />
+    </svg>
   );
 }
 
@@ -177,7 +183,12 @@ export default function ContactPageClient() {
                 className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white/85 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
               >
                 Call PML
+              </a>
+            </div>
           </div>
+        </div>
+      </section>
+
       <section id="contact-form" className="bg-[#f6faf7] py-16 md:py-28">
         <div className="pml-container grid gap-9 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-10">
           <div>
@@ -197,6 +208,9 @@ export default function ContactPageClient() {
               {contactCards.map((card) => (
                 <div key={card.title} className="flex gap-3 rounded-[22px] border border-black/5 bg-white p-4 shadow-sm md:gap-4 md:rounded-[26px] md:p-5">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] md:h-12 md:w-12">
+                    <ContactIcon type={card.icon} />
+                  </div>
+
                   <div>
                     <h3 className="text-sm font-black uppercase tracking-[0.12em] text-black/45">
                       {card.title}
@@ -209,7 +223,12 @@ export default function ContactPageClient() {
                         {card.secondValue}
                       </p>
                     ) : null}
+                  </div>
+                </div>
               ))}
+            </div>
+          </div>
+
           <form
             onSubmit={handleSubmit}
             className="rounded-[28px] border border-black/5 bg-white p-5 shadow-[0_24px_70px_rgba(0,0,0,0.08)] md:rounded-[36px] md:p-8"
@@ -261,6 +280,9 @@ export default function ContactPageClient() {
                   <option>Clinical Trial</option>
                   <option>Regulatory Management</option>
                   <option>Facilities Inquiry</option>
+                </select>
+              </label>
+
               <label className="grid gap-2 md:col-span-2">
                 <span className="text-sm font-black text-black">Your Message*</span>
                 <textarea
@@ -271,6 +293,9 @@ export default function ContactPageClient() {
                   className="resize-none rounded-2xl border border-black/10 bg-white px-4 py-4 text-sm font-bold leading-7 text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                   placeholder="Tell us about your inquiry, project needs, timeline, or questions..."
                 />
+              </label>
+            </div>
+
             {submitMessage ? (
               <div
                 className={`mt-6 rounded-2xl p-4 text-sm font-bold ${
@@ -293,6 +318,8 @@ export default function ContactPageClient() {
 
             <p className="mt-5 text-xs font-semibold leading-6 text-black/45">
               This form is connected to the PML NestJS backend and stored securely for follow-up.
+            </p>
+          </form>
         </div>
       </section>
 
@@ -327,10 +354,23 @@ export default function ContactPageClient() {
                   className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-7 py-4 text-sm font-extrabold text-[#039147] transition hover:bg-[#039147] hover:text-[#039147]"
                 >
                   Call Before Visit
+                </a>
+              </div>
             </div>
 
             <div className="overflow-hidden rounded-[30px] border border-black/5 bg-white p-2 shadow-[0_24px_70px_rgba(0,0,0,0.10)] md:rounded-[36px] md:p-3">
+              <iframe
+                title="Pharma Metric Labs Location Map"
+                src={`https://www.google.com/maps?q=${mapsQuery}&output=embed`}
+                className="h-[320px] w-full rounded-[24px] border-0 md:h-full md:min-h-[470px] md:rounded-[28px]"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
           </div>
+        </div>
+      </section>
+
       <section className="bg-white py-16 md:py-28">
         <div className="pml-container">
           <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-black shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:rounded-[36px] md:px-14 md:py-20">
@@ -362,7 +402,11 @@ export default function ContactPageClient() {
                 className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
               >
                 Email PML
+              </a>
+            </div>
           </div>
+        </div>
+      </section>
     </main>
   );
 }
