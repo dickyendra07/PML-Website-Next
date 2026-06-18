@@ -258,18 +258,18 @@ export default function AdminSettingsPage() {
   return (
     <AdminShell>
       <div className="mb-8">
-        <p className="text-xs font-black uppercase tracking-[0.18em] text-[#76d69f]">
+        <p className="text-xs font-black uppercase tracking-[0.18em] text-[#039147]">
           CMS Configuration
         </p>
-        <h1 className="mt-3 text-4xl font-black tracking-tight text-white md:text-5xl">
+        <h1 className="mt-3 text-4xl font-black tracking-tight text-black md:text-5xl">
           Website Settings
         </h1>
-        <p className="mt-4 max-w-3xl text-sm leading-7 text-white/50">
+        <p className="mt-4 max-w-3xl text-sm leading-7 text-black/50">
           Manage global website information and page-level SEO metadata from one polished admin area.
         </p>
       </div>
 
-      <div className="mb-7 flex flex-col gap-3 rounded-[28px] border border-white/10 bg-white/[0.06] p-3 backdrop-blur md:flex-row md:items-center md:justify-between">
+      <div className="mb-7 flex flex-col gap-3 rounded-[28px] border border-black/5 bg-white p-3 backdrop-blur md:flex-row md:items-center md:justify-between">
         <div className="grid grid-cols-2 gap-2">
           <button
             type="button"
@@ -277,7 +277,7 @@ export default function AdminSettingsPage() {
             className={`rounded-2xl px-5 py-3 text-sm font-black transition ${
               activeTab === "settings"
                 ? "bg-[#039147] text-white shadow-[0_14px_35px_rgba(3,145,71,0.22)]"
-                : "text-white/45 hover:bg-white/10 hover:text-white"
+                : "text-black/45 hover:bg-white/10 hover:text-black"
             }`}
           >
             Global Settings
@@ -289,7 +289,7 @@ export default function AdminSettingsPage() {
             className={`rounded-2xl px-5 py-3 text-sm font-black transition ${
               activeTab === "seo"
                 ? "bg-[#039147] text-white shadow-[0_14px_35px_rgba(3,145,71,0.22)]"
-                : "text-white/45 hover:bg-white/10 hover:text-white"
+                : "text-black/45 hover:bg-white/10 hover:text-black"
             }`}
           >
             Page SEO
@@ -298,16 +298,16 @@ export default function AdminSettingsPage() {
 
         {activeTab === "seo" ? (
           <div className="flex flex-wrap gap-2 text-xs font-black uppercase tracking-[0.12em]">
-            <span className="rounded-full border border-white/10 bg-black/20 px-3 py-2 text-white/40">
+            <span className="rounded-full border border-black/5 bg-white5 px-3 py-2 text-black/50">
               {seoStats.total} pages
             </span>
-            <span className="rounded-full border border-[#039147]/25 bg-[#039147]/10 px-3 py-2 text-[#76d69f]">
+            <span className="rounded-full border border-[#039147]/25 bg-[#039147]/10 px-3 py-2 text-[#039147]">
               {seoStats.published} published
             </span>
-            <span className="rounded-full border border-white/10 bg-black/20 px-3 py-2 text-white/40">
+            <span className="rounded-full border border-black/5 bg-white5 px-3 py-2 text-black/50">
               {seoStats.draft} draft
             </span>
-            <span className="rounded-full border border-white/10 bg-black/20 px-3 py-2 text-white/40">
+            <span className="rounded-full border border-black/5 bg-white5 px-3 py-2 text-black/50">
               {seoStats.archived} archived
             </span>
           </div>
@@ -327,19 +327,19 @@ export default function AdminSettingsPage() {
           {Object.entries(groupedSettings).map(([group, settings]) => (
             <section
               key={group}
-              className="rounded-[30px] border border-white/10 bg-white/[0.06] p-5 shadow-2xl backdrop-blur md:p-7"
+              className="rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur md:p-7"
             >
               <div className="mb-6 flex flex-col justify-between gap-2 md:flex-row md:items-end">
                 <div>
-                  <p className="text-xs font-black uppercase tracking-[0.16em] text-[#76d69f]">
+                  <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                     {groupLabels[group] || group}
                   </p>
-                  <h2 className="mt-2 text-2xl font-black text-white">
+                  <h2 className="mt-2 text-2xl font-black text-black">
                     {groupLabels[group] || group} Settings
                   </h2>
                 </div>
 
-                <span className="w-fit rounded-full border border-white/10 bg-black/20 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-white/40">
+                <span className="w-fit rounded-full border border-black/5 bg-white5 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-black/50">
                   {settings.length} fields
                 </span>
               </div>
@@ -356,9 +356,9 @@ export default function AdminSettingsPage() {
                       key={setting.key}
                       className={isLong ? "grid gap-2 md:col-span-2" : "grid gap-2"}
                     >
-                      <span className="text-sm font-black text-white">{setting.label}</span>
+                      <span className="text-sm font-black text-black">{setting.label}</span>
 
-                      <span className="text-xs font-semibold leading-5 text-white/35">
+                      <span className="text-xs font-semibold leading-5 text-black/50">
                         {setting.description || setting.key}
                       </span>
 
@@ -367,17 +367,17 @@ export default function AdminSettingsPage() {
                           rows={4}
                           value={formValues[setting.key] || ""}
                           onChange={(event) => updateField(setting.key, event.target.value)}
-                          className="resize-none rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm font-bold leading-7 text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                          className="resize-none rounded-2xl border border-black/5 bg-white px-4 py-3 text-sm font-bold leading-7 text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                         />
                       ) : (
                         <input
                           value={formValues[setting.key] || ""}
                           onChange={(event) => updateField(setting.key, event.target.value)}
-                          className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                          className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                         />
                       )}
 
-                      <span className="font-mono text-[11px] text-white/25">
+                      <span className="font-mono text-[11px] text-black/45">
                         {setting.key} {setting.isPublic ? "· public" : "· admin only"}
                       </span>
                     </label>
@@ -388,7 +388,7 @@ export default function AdminSettingsPage() {
           ))}
 
           {message ? (
-            <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-4 text-sm font-bold text-white/70">
+            <div className="rounded-2xl border border-black/5 bg-white p-4 text-sm font-bold text-black/70">
               {message}
             </div>
           ) : null}
@@ -397,7 +397,7 @@ export default function AdminSettingsPage() {
             <button
               type="submit"
               disabled={saving}
-              className="rounded-full bg-[#039147] px-8 py-4 text-sm font-black text-white shadow-[0_18px_50px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+              className="rounded-full bg-[#039147] px-8 py-4 text-sm font-black text-black shadow-[0_18px_50px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {saving ? "Saving Settings..." : "Save Website Settings"}
             </button>
@@ -407,16 +407,16 @@ export default function AdminSettingsPage() {
 
       {status === "success" && activeTab === "seo" ? (
         <div className="grid gap-6">
-          <section className="rounded-[30px] border border-white/10 bg-white/[0.06] p-5 shadow-2xl backdrop-blur md:p-7">
+          <section className="rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur md:p-7">
             <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#76d69f]">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                   Page SEO Manager
                 </p>
-                <h2 className="mt-2 text-2xl font-black text-white">
+                <h2 className="mt-2 text-2xl font-black text-black">
                   Manage metadata for every public page
                 </h2>
-                <p className="mt-3 max-w-3xl text-sm leading-7 text-white/45">
+                <p className="mt-3 max-w-3xl text-sm leading-7 text-black/45">
                   Keep title around 25–65 characters and description around 120–170 characters for cleaner search snippets.
                 </p>
               </div>
@@ -425,7 +425,7 @@ export default function AdminSettingsPage() {
                 type="button"
                 onClick={handleSeedSeoDefaults}
                 disabled={saving}
-                className="w-fit rounded-full border border-white/10 bg-black/20 px-5 py-3 text-xs font-black uppercase tracking-[0.12em] text-white/60 transition hover:border-[#039147] hover:text-white disabled:opacity-50"
+                className="w-fit rounded-full border border-black/5 bg-white5 px-5 py-3 text-xs font-black uppercase tracking-[0.12em] text-black/60 transition hover:border-[#039147] hover:text-black disabled:opacity-50"
               >
                 {saving ? "Checking..." : "Check Defaults"}
               </button>
@@ -439,25 +439,25 @@ export default function AdminSettingsPage() {
             return (
               <section
                 key={item.id}
-                className="overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.06] shadow-2xl backdrop-blur"
+                className="overflow-hidden rounded-[30px] border border-black/5 bg-white shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur"
               >
-                <div className="border-b border-white/10 bg-black/20 p-5 md:p-6">
+                <div className="border-b border-black/5 bg-white5 p-5 md:p-6">
                   <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
                     <div>
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="rounded-full bg-[#039147]/15 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.12em] text-[#76d69f]">
+                        <span className="rounded-full bg-[#eaf8f0] px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.12em] text-[#039147]">
                           {formItem.status}
                         </span>
-                        <span className="rounded-full border border-white/10 px-3 py-1.5 font-mono text-[11px] font-bold text-white/35">
+                        <span className="rounded-full border border-black/5 px-3 py-1.5 font-mono text-[11px] font-bold text-black/50">
                           {formItem.path}
                         </span>
                       </div>
 
-                      <h3 className="mt-3 text-2xl font-black text-white">{formItem.label}</h3>
+                      <h3 className="mt-3 text-2xl font-black text-black">{formItem.label}</h3>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-3">
-                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-black text-white/45">
+                      <span className="rounded-full border border-black/5 bg-white/[0.04] px-4 py-2 text-xs font-black text-black/45">
                         SEO Score {score}/100
                       </span>
 
@@ -466,7 +466,7 @@ export default function AdminSettingsPage() {
                         onClick={() =>
                           setExpandedSeoId((current) => (current === item.id ? null : item.id))
                         }
-                        className="rounded-full border border-white/10 bg-white/[0.04] px-6 py-3 text-xs font-black uppercase tracking-[0.12em] text-white/70 transition hover:border-[#039147] hover:text-white"
+                        className="rounded-full border border-black/5 bg-white/[0.04] px-6 py-3 text-xs font-black uppercase tracking-[0.12em] text-black/70 transition hover:border-[#039147] hover:text-black"
                       >
                         {expandedSeoId === item.id ? "Close" : "Edit SEO"}
                       </button>
@@ -475,7 +475,7 @@ export default function AdminSettingsPage() {
                         type="button"
                         onClick={() => handleSaveSeo(item)}
                         disabled={savingSeoId === item.id}
-                        className="rounded-full bg-[#039147] px-6 py-3 text-xs font-black uppercase tracking-[0.12em] text-white shadow-[0_16px_40px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+                        className="rounded-full bg-[#039147] px-6 py-3 text-xs font-black uppercase tracking-[0.12em] text-black shadow-[0_16px_40px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         {savingSeoId === item.id ? "Saving..." : "Save SEO"}
                       </button>
@@ -486,22 +486,22 @@ export default function AdminSettingsPage() {
                 {expandedSeoId === item.id ? (
                   <div className="grid gap-5 p-5 md:grid-cols-2 md:p-6">
                   <label className="grid gap-2">
-                    <span className="text-sm font-black text-white">Page Label</span>
+                    <span className="text-sm font-black text-black">Page Label</span>
                     <input
                       value={formItem.label}
                       onChange={(event) => updateSeoField(item.id, "label", event.target.value)}
-                      className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                      className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                     />
                   </label>
 
                   <label className="grid gap-2">
-                    <span className="text-sm font-black text-white">Status</span>
+                    <span className="text-sm font-black text-black">Status</span>
                     <select
                       value={formItem.status}
                       onChange={(event) =>
                         updateSeoField(item.id, "status", event.target.value as PageSeoStatus)
                       }
-                      className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                      className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                     >
                       {statusOptions.map((option) => (
                         <option key={option} value={option}>
@@ -512,23 +512,23 @@ export default function AdminSettingsPage() {
                   </label>
 
                   <label className="grid gap-2 md:col-span-2">
-                    <span className="flex items-center justify-between gap-3 text-sm font-black text-white">
+                    <span className="flex items-center justify-between gap-3 text-sm font-black text-black">
                       Meta Title
-                      <span className="font-mono text-[11px] text-white/30">
+                      <span className="font-mono text-[11px] text-black/45">
                         {countCharacters(formItem.title)} chars
                       </span>
                     </span>
                     <input
                       value={formItem.title}
                       onChange={(event) => updateSeoField(item.id, "title", event.target.value)}
-                      className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                      className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                     />
                   </label>
 
                   <label className="grid gap-2 md:col-span-2">
-                    <span className="flex items-center justify-between gap-3 text-sm font-black text-white">
+                    <span className="flex items-center justify-between gap-3 text-sm font-black text-black">
                       Meta Description
-                      <span className="font-mono text-[11px] text-white/30">
+                      <span className="font-mono text-[11px] text-black/45">
                         {countCharacters(formItem.description)} chars
                       </span>
                     </span>
@@ -536,34 +536,34 @@ export default function AdminSettingsPage() {
                       rows={4}
                       value={formItem.description}
                       onChange={(event) => updateSeoField(item.id, "description", event.target.value)}
-                      className="resize-none rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm font-bold leading-7 text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                      className="resize-none rounded-2xl border border-black/5 bg-white px-4 py-3 text-sm font-bold leading-7 text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                     />
                   </label>
 
                   <label className="grid gap-2">
-                    <span className="text-sm font-black text-white">OG Title</span>
+                    <span className="text-sm font-black text-black">OG Title</span>
                     <input
                       value={formItem.ogTitle || ""}
                       placeholder="Fallbacks to meta title"
                       onChange={(event) => updateSeoField(item.id, "ogTitle", event.target.value)}
-                      className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition placeholder:text-white/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                      className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition placeholder:text-black/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                     />
                   </label>
 
                   <label className="grid gap-2">
-                    <span className="text-sm font-black text-white">OG Image</span>
+                    <span className="text-sm font-black text-black">OG Image</span>
                     <input
                       value={formItem.ogImage || ""}
                       placeholder="/images/pml/hero-lab-hexagon.png"
                       onChange={(event) => updateSeoField(item.id, "ogImage", event.target.value)}
-                      className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition placeholder:text-white/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                      className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition placeholder:text-black/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                     />
                   </label>
 
                   <label className="grid gap-2 md:col-span-2">
-                    <span className="flex items-center justify-between gap-3 text-sm font-black text-white">
+                    <span className="flex items-center justify-between gap-3 text-sm font-black text-black">
                       OG Description
-                      <span className="font-mono text-[11px] text-white/30">
+                      <span className="font-mono text-[11px] text-black/45">
                         {countCharacters(formItem.ogDescription)} chars
                       </span>
                     </span>
@@ -574,17 +574,17 @@ export default function AdminSettingsPage() {
                       onChange={(event) =>
                         updateSeoField(item.id, "ogDescription", event.target.value)
                       }
-                      className="resize-none rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm font-bold leading-7 text-white outline-none transition placeholder:text-white/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                      className="resize-none rounded-2xl border border-black/5 bg-white px-4 py-3 text-sm font-bold leading-7 text-black outline-none transition placeholder:text-black/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                     />
                   </label>
 
                   <label className="grid gap-2 md:col-span-2">
-                    <span className="text-sm font-black text-white">Canonical URL</span>
+                    <span className="text-sm font-black text-black">Canonical URL</span>
                     <input
                       value={formItem.canonicalUrl || ""}
                       placeholder="Leave empty to use default canonical URL"
                       onChange={(event) => updateSeoField(item.id, "canonicalUrl", event.target.value)}
-                      className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition placeholder:text-white/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                      className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition placeholder:text-black/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                     />
                   </label>
                 </div>
@@ -594,7 +594,7 @@ export default function AdminSettingsPage() {
           })}
 
           {message ? (
-            <div className="sticky bottom-4 z-20 rounded-2xl border border-white/10 bg-[#111] p-4 text-sm font-bold text-white/70 shadow-2xl">
+            <div className="sticky bottom-4 z-20 rounded-2xl border border-black/5 bg-[#111] p-4 text-sm font-bold text-black/70 shadow-2xl">
               {message}
             </div>
           ) : null}

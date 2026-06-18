@@ -81,7 +81,7 @@ export default function AdminShell({ children }: AdminShellProps) {
       <div className="pml-hex-pattern fixed inset-0 opacity-[0.035]" />
 
       <div className="relative grid min-h-screen lg:grid-cols-[300px_1fr]">
-        <aside className="border-b border-black/5 bg-white/82 p-5 shadow-[12px_0_50px_rgba(0,0,0,0.04)] backdrop-blur-xl lg:border-b-0 lg:border-r lg:p-6">
+        <aside className="border-b border-black/5 bg-white2 p-5 shadow-[12px_0_50px_rgba(0,0,0,0.04)] backdrop-blur-xl lg:border-b-0 lg:border-r lg:p-6">
           <div className="flex items-center gap-3 rounded-[24px] border border-black/5 bg-[#f6faf7] p-4 shadow-sm">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-lg">
               <Image src="/images/LOGO-PML.png" alt="PML" width={74} height={44} className="h-7 w-auto" />
@@ -112,7 +112,7 @@ export default function AdminShell({ children }: AdminShellProps) {
                 >
                   <span
                     className={`flex h-9 w-9 items-center justify-center rounded-xl text-xs ${
-                      active ? "bg-white/18 text-white" : "bg-[#eaf8f0] text-[#039147]"
+                      active ? "bg-white/18 text-black" : "bg-[#eaf8f0] text-[#039147]"
                     }`}
                   >
                     {item.icon}
@@ -124,7 +124,7 @@ export default function AdminShell({ children }: AdminShellProps) {
           </nav>
 
           <div className="mt-6 rounded-[24px] border border-black/5 bg-white p-4 shadow-sm">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-black/35">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-black/45">
               Signed in as
             </p>
             <p className="mt-2 text-sm font-black text-black">{admin?.name}</p>

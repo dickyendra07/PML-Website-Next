@@ -136,13 +136,13 @@ export default function AdminInquiriesPage() {
     <AdminShell>
       <div className="mb-8 flex flex-col justify-between gap-5 xl:flex-row xl:items-end">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-[#76d69f]">
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-[#039147]">
             Inquiry Management
           </p>
-          <h1 className="mt-3 text-4xl font-black tracking-tight text-white md:text-5xl">
+          <h1 className="mt-3 text-4xl font-black tracking-tight text-black md:text-5xl">
             Website Inquiries
           </h1>
-          <p className="mt-4 max-w-2xl text-sm leading-7 text-white/50">
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-black/50">
             Search, filter, review, update status, add internal notes, mark spam, and export website inquiries.
           </p>
         </div>
@@ -151,7 +151,7 @@ export default function AdminInquiriesPage() {
           type="button"
           onClick={() => exportCsv(filteredItems)}
           disabled={filteredItems.length === 0}
-          className="w-fit rounded-full border border-[#039147]/30 bg-[#039147]/15 px-6 py-3 text-sm font-black text-[#76d69f] transition hover:bg-[#039147] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-fit rounded-full border border-[#039147]/20 bg-[#eaf8f0] px-6 py-3 text-sm font-black text-[#039147] transition hover:bg-[#039147] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
           Export CSV
         </button>
@@ -164,25 +164,25 @@ export default function AdminInquiriesPage() {
           ["New", counts.newItems],
           ["Spam", counts.spam],
         ].map(([label, value]) => (
-          <article key={label} className="rounded-[24px] border border-white/10 bg-white/[0.06] p-5">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-white/35">{label}</p>
-            <p className="mt-2 text-3xl font-black text-white">{value}</p>
+          <article key={label} className="rounded-[24px] border border-black/5 bg-white p-5">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-black/50">{label}</p>
+            <p className="mt-2 text-3xl font-black text-black">{value}</p>
           </article>
         ))}
       </div>
 
-      <div className="mb-6 grid gap-3 rounded-[28px] border border-white/10 bg-white/[0.06] p-4 md:grid-cols-[1fr_220px_220px]">
+      <div className="mb-6 grid gap-3 rounded-[28px] border border-black/5 bg-white p-4 md:grid-cols-[1fr_220px_220px]">
         <input
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          className="h-12 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none placeholder:text-white/25 focus:border-[#039147]"
+          className="h-12 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none placeholder:text-black/45 focus:border-[#039147]"
           placeholder="Search name, company, email, service, or message..."
         />
 
         <select
           value={statusFilter}
           onChange={(event) => setStatusFilter(event.target.value as "ALL" | InquiryStatus)}
-          className="h-12 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none focus:border-[#039147]"
+          className="h-12 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none focus:border-[#039147]"
         >
           {statusOptions.map((option) => (
             <option key={option} value={option} className="bg-[#07170f]">
@@ -194,7 +194,7 @@ export default function AdminInquiriesPage() {
         <select
           value={typeFilter}
           onChange={(event) => setTypeFilter(event.target.value)}
-          className="h-12 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none focus:border-[#039147]"
+          className="h-12 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none focus:border-[#039147]"
         >
           {serviceTypes.map((option) => (
             <option key={option} value={option} className="bg-[#07170f]">

@@ -280,13 +280,13 @@ export default function AdminPopupsPage() {
     <AdminShell>
       <div className="mb-8 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-[#76d69f]">
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-[#039147]">
             Popup / Announcement CMS
           </p>
-          <h1 className="mt-3 text-4xl font-black tracking-tight text-white md:text-5xl">
+          <h1 className="mt-3 text-4xl font-black tracking-tight text-black md:text-5xl">
             Popup Announcements
           </h1>
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-white/50">
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-black/50">
             Manage homepage popup content, CTA button, schedule, active status, and once-per-session frequency.
           </p>
         </div>
@@ -310,18 +310,18 @@ export default function AdminPopupsPage() {
 
       {status === "success" ? (
         <div className="grid gap-6 xl:grid-cols-[0.9fr_1.3fr]">
-          <section className="rounded-[30px] border border-white/10 bg-white/[0.06] p-5 shadow-2xl backdrop-blur md:p-7">
+          <section className="rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur md:p-7">
             <div className="mb-5 flex items-center justify-between gap-3">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#76d69f]">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                   Popup List
                 </p>
-                <h2 className="mt-2 text-2xl font-black text-white">
+                <h2 className="mt-2 text-2xl font-black text-black">
                   Existing Popups
                 </h2>
               </div>
 
-              <span className="rounded-full border border-white/10 bg-black/20 px-4 py-2 text-xs font-black text-white/40">
+              <span className="rounded-full border border-black/5 bg-white5 px-4 py-2 text-xs font-black text-black/50">
                 {items.length} items
               </span>
             </div>
@@ -334,14 +334,14 @@ export default function AdminPopupsPage() {
                   onClick={() => selectPopup(item)}
                   className={`rounded-2xl border p-4 text-left transition ${
                     item.id === form.id
-                      ? "border-[#039147] bg-[#039147]/15"
-                      : "border-white/10 bg-black/20 hover:border-white/20 hover:bg-white/[0.08]"
+                      ? "border-[#039147] bg-[#eaf8f0]"
+                      : "border-black/5 bg-white5 hover:border-white/20 hover:bg-white"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <h3 className="text-sm font-black text-white">{item.title}</h3>
-                      <p className="mt-2 line-clamp-2 text-xs leading-5 text-white/45">
+                      <h3 className="text-sm font-black text-black">{item.title}</h3>
+                      <p className="mt-2 line-clamp-2 text-xs leading-5 text-black/45">
                         {item.description || "No description"}
                       </p>
                     </div>
@@ -349,15 +349,15 @@ export default function AdminPopupsPage() {
                     <span
                       className={`rounded-full px-3 py-1 text-[10px] font-black ${
                         item.status === "PUBLISHED"
-                          ? "bg-[#039147]/20 text-[#76d69f]"
-                          : "bg-white/10 text-white/45"
+                          ? "bg-[#039147]/20 text-[#039147]"
+                          : "bg-white/10 text-black/45"
                       }`}
                     >
                       {item.status}
                     </span>
                   </div>
 
-                  <div className="mt-4 flex flex-wrap gap-2 text-[10px] font-black uppercase tracking-[0.1em] text-white/35">
+                  <div className="mt-4 flex flex-wrap gap-2 text-[10px] font-black uppercase tracking-[0.1em] text-black/50">
                     <span>{item.type}</span>
                     <span>•</span>
                     <span>{item.frequency}</span>
@@ -368,7 +368,7 @@ export default function AdminPopupsPage() {
               ))}
 
               {items.length === 0 ? (
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-5 text-sm font-bold text-white/45">
+                <div className="rounded-2xl border border-black/5 bg-white5 p-5 text-sm font-bold text-black/45">
                   No popup yet. Create the first homepage announcement.
                 </div>
               ) : null}
@@ -377,64 +377,64 @@ export default function AdminPopupsPage() {
 
           <form
             onSubmit={handleSubmit}
-            className="rounded-[30px] border border-white/10 bg-white/[0.06] p-5 shadow-2xl backdrop-blur md:p-7"
+            className="rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur md:p-7"
           >
             <div className="mb-6 flex flex-col justify-between gap-2 md:flex-row md:items-end">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#76d69f]">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                   {selectedPopup ? "Edit Popup" : "Create Popup"}
                 </p>
-                <h2 className="mt-2 text-2xl font-black text-white">
+                <h2 className="mt-2 text-2xl font-black text-black">
                   Popup Content
                 </h2>
               </div>
 
-              <span className="w-fit rounded-full border border-white/10 bg-black/20 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-white/40">
+              <span className="w-fit rounded-full border border-black/5 bg-white5 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-black/50">
                 Homepage only
               </span>
             </div>
 
             <div className="grid gap-5 md:grid-cols-2">
               <label className="grid gap-2 md:col-span-2">
-                <span className="text-sm font-black text-white">Title</span>
+                <span className="text-sm font-black text-black">Title</span>
                 <input
                   value={form.title}
                   onChange={(event) => updateField("title", event.target.value)}
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                   required
                 />
               </label>
 
               <label className="grid gap-2 md:col-span-2">
-                <span className="text-sm font-black text-white">Description</span>
+                <span className="text-sm font-black text-black">Description</span>
                 <textarea
                   rows={5}
                   value={form.description}
                   onChange={(event) => updateField("description", event.target.value)}
-                  className="resize-none rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm font-bold leading-7 text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="resize-none rounded-2xl border border-black/5 bg-white px-4 py-3 text-sm font-bold leading-7 text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 />
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-black text-white">Button Label</span>
+                <span className="text-sm font-black text-black">Button Label</span>
                 <input
                   value={form.buttonLabel}
                   onChange={(event) => updateField("buttonLabel", event.target.value)}
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 />
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-black text-white">Button URL</span>
+                <span className="text-sm font-black text-black">Button URL</span>
                 <input
                   value={form.buttonUrl}
                   onChange={(event) => updateField("buttonUrl", event.target.value)}
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 />
               </label>
 
-              <div className="grid gap-4 rounded-[26px] border border-white/10 bg-black/20 p-4 md:col-span-2 md:grid-cols-[0.9fr_1.1fr] md:p-5">
-                <div className="overflow-hidden rounded-[22px] border border-white/10 bg-black/30">
+              <div className="grid gap-4 rounded-[26px] border border-black/5 bg-white5 p-4 md:col-span-2 md:grid-cols-[0.9fr_1.1fr] md:p-5">
+                <div className="overflow-hidden rounded-[22px] border border-black/5 bg-black/30">
                   {form.imageUrl && form.layout !== "TEXT_ONLY" ? (
                     <div className="relative h-56 w-full">
                       <Image
@@ -447,7 +447,7 @@ export default function AdminPopupsPage() {
                       />
                     </div>
                   ) : (
-                    <div className="flex h-56 items-center justify-center px-6 text-center text-sm font-bold text-white/35">
+                    <div className="flex h-56 items-center justify-center px-6 text-center text-sm font-bold text-black/50">
                       {form.layout === "TEXT_ONLY"
                         ? "Text only layout tidak memakai gambar."
                         : "Upload atau isi Image URL untuk preview popup."}
@@ -457,8 +457,8 @@ export default function AdminPopupsPage() {
 
                 <div className="grid gap-4">
                   <label className="grid gap-2">
-                    <span className="text-sm font-black text-white">Popup Image</span>
-                    <span className="text-xs font-semibold leading-5 text-white/35">
+                    <span className="text-sm font-black text-black">Popup Image</span>
+                    <span className="text-xs font-semibold leading-5 text-black/50">
                       Upload gambar JPG, PNG, atau WEBP. Idealnya landscape agar rapi di desktop dan mobile.
                     </span>
 
@@ -469,17 +469,17 @@ export default function AdminPopupsPage() {
                         void handleImageUpload(event.target.files?.[0] || null);
                         event.target.value = "";
                       }}
-                      className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm font-bold text-white file:mr-4 file:rounded-full file:border-0 file:bg-[#039147] file:px-4 file:py-2 file:text-xs file:font-black file:text-white"
+                      className="rounded-2xl border border-black/5 bg-white px-4 py-3 text-sm font-bold text-black file:mr-4 file:rounded-full file:border-0 file:bg-[#039147] file:px-4 file:py-2 file:text-xs file:font-black file:text-black"
                     />
 
                     <input
                       value={form.imageUrl}
                       onChange={(event) => updateField("imageUrl", event.target.value)}
                       placeholder="/uploads/popups/image.png"
-                      className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition placeholder:text-white/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                      className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition placeholder:text-black/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                     />
 
-                    <span className="text-xs font-semibold text-white/35">
+                    <span className="text-xs font-semibold text-black/50">
                       {uploading ? "Uploading image..." : "Bisa upload dari CMS atau paste URL manual."}
                     </span>
                   </label>
@@ -488,8 +488,8 @@ export default function AdminPopupsPage() {
 
               <div className="grid gap-3 md:col-span-2">
                 <div>
-                  <span className="text-sm font-black text-white">Popup Layout</span>
-                  <p className="mt-1 text-xs font-semibold leading-5 text-white/35">
+                  <span className="text-sm font-black text-black">Popup Layout</span>
+                  <p className="mt-1 text-xs font-semibold leading-5 text-black/50">
                     Pilih komposisi popup. Di mobile layout akan otomatis dibuat stack agar tetap aman.
                   </p>
                 </div>
@@ -502,8 +502,8 @@ export default function AdminPopupsPage() {
                       onClick={() => updateField("layout", layout.value)}
                       className={`rounded-2xl border p-4 text-left transition ${
                         form.layout === layout.value
-                          ? "border-[#039147] bg-[#039147]/15 text-white"
-                          : "border-white/10 bg-black/20 text-white/50 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+                          ? "border-[#039147] bg-[#eaf8f0] text-black"
+                          : "border-black/5 bg-white5 text-black/50 hover:border-white/20 hover:bg-white hover:text-black"
                       }`}
                     >
                       <span className="text-sm font-black">{layout.title}</span>
@@ -516,11 +516,11 @@ export default function AdminPopupsPage() {
               </div>
 
               <label className="grid gap-2">
-                <span className="text-sm font-black text-white">Type</span>
+                <span className="text-sm font-black text-black">Type</span>
                 <select
                   value={form.type}
                   onChange={(event) => updateField("type", event.target.value)}
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 >
                   <option value="ANNOUNCEMENT">Announcement</option>
                   <option value="PROMOTION">Promotion</option>
@@ -530,11 +530,11 @@ export default function AdminPopupsPage() {
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-black text-white">Status</span>
+                <span className="text-sm font-black text-black">Status</span>
                 <select
                   value={form.status}
                   onChange={(event) => updateField("status", event.target.value)}
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 >
                   <option value="DRAFT">Draft</option>
                   <option value="PUBLISHED">Published</option>
@@ -543,43 +543,43 @@ export default function AdminPopupsPage() {
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-black text-white">Starts At</span>
+                <span className="text-sm font-black text-black">Starts At</span>
                 <input
                   type="datetime-local"
                   value={form.startsAt}
                   onChange={(event) => updateField("startsAt", event.target.value)}
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 />
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-black text-white">Ends At</span>
+                <span className="text-sm font-black text-black">Ends At</span>
                 <input
                   type="datetime-local"
                   value={form.endsAt}
                   onChange={(event) => updateField("endsAt", event.target.value)}
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 />
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-black text-white">Priority</span>
+                <span className="text-sm font-black text-black">Priority</span>
                 <input
                   type="number"
                   value={form.priority}
                   onChange={(event) => updateField("priority", event.target.value)}
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 />
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-black text-white">Frequency</span>
+                <span className="text-sm font-black text-black">Frequency</span>
                 <select
                   value={form.frequency}
                   onChange={(event) =>
                     updateField("frequency", event.target.value as PopupForm["frequency"])
                   }
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 >
                   <option value="ONCE_PER_SESSION">Once per session</option>
                   <option value="ONCE_PER_DAY">Once per day</option>
@@ -588,21 +588,21 @@ export default function AdminPopupsPage() {
               </label>
 
               <label className="grid gap-2 md:col-span-2">
-                <span className="text-sm font-black text-white">Placement Pages</span>
+                <span className="text-sm font-black text-black">Placement Pages</span>
                 <textarea
                   rows={3}
                   value={form.placementPages}
                   onChange={(event) => updateField("placementPages", event.target.value)}
-                  className="resize-none rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm font-bold leading-7 text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="resize-none rounded-2xl border border-black/5 bg-white px-4 py-3 text-sm font-bold leading-7 text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 />
-                <span className="text-xs font-semibold text-white/35">
-                  Untuk Batch J8 ini isi <span className="font-mono text-[#76d69f]">/</span> saja supaya tampil hanya di homepage.
+                <span className="text-xs font-semibold text-black/50">
+                  Untuk Batch J8 ini isi <span className="font-mono text-[#039147]">/</span> saja supaya tampil hanya di homepage.
                 </span>
               </label>
             </div>
 
             {message ? (
-              <div className="mt-6 rounded-2xl border border-white/10 bg-black/20 p-4 text-sm font-bold text-white/70">
+              <div className="mt-6 rounded-2xl border border-black/5 bg-white5 p-4 text-sm font-bold text-black/70">
                 {message}
               </div>
             ) : null}
@@ -611,7 +611,7 @@ export default function AdminPopupsPage() {
               <button
                 type="submit"
                 disabled={saving}
-                className="rounded-full bg-[#039147] px-8 py-4 text-sm font-black text-white shadow-[0_18px_50px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+                className="rounded-full bg-[#039147] px-8 py-4 text-sm font-black text-black shadow-[0_18px_50px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {saving ? "Saving Popup..." : "Save Popup"}
               </button>

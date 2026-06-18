@@ -121,16 +121,16 @@ export default function AdminDashboardPage() {
         {summary.map((item) => (
           <article
             key={item.label}
-            className="rounded-[26px] border border-black/5 bg-white p-6 shadow-xl backdrop-blur"
+            className="rounded-[26px] border border-black/5 bg-white p-6 shadow-[0_18px_50px_rgba(0,0,0,0.07)] backdrop-blur"
           >
             <p className="text-sm font-bold text-black/55">{item.label}</p>
             <p className="mt-3 text-4xl font-black text-black">{item.value}</p>
-            <p className="mt-2 text-xs font-semibold text-black/40">{item.desc}</p>
+            <p className="mt-2 text-xs font-semibold text-black/50">{item.desc}</p>
           </article>
         ))}
       </div>
 
-      <section className="mb-8 rounded-[30px] border border-black/5 bg-white p-5 shadow-2xl backdrop-blur md:p-7">
+      <section className="mb-8 rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur md:p-7">
         <div className="mb-6 flex flex-col justify-between gap-3 md:flex-row md:items-end">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
@@ -141,7 +141,7 @@ export default function AdminDashboardPage() {
             </h2>
           </div>
 
-          <span className="w-fit rounded-full border border-black/5 bg-[#f6faf7] px-4 py-2 text-xs font-black text-black/40">
+          <span className="w-fit rounded-full border border-black/5 bg-[#f6faf7] px-4 py-2 text-xs font-black text-black/50">
             {cmsModules.length} modules active
           </span>
         </div>
@@ -156,7 +156,7 @@ export default function AdminDashboardPage() {
               <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-[#eaf8f0] transition group-hover:scale-125" />
 
               <div className="relative flex items-start gap-4">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-sm font-black text-[#039147] ring-1 ring-[#039147]/10 transition group-hover:bg-[#039147] group-hover:text-white">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-sm font-black text-[#039147] ring-1 ring-[#039147]/10 transition group-hover:bg-[#039147] group-hover:text-black">
                   {module.icon}
                 </span>
 
@@ -178,7 +178,7 @@ export default function AdminDashboardPage() {
         </div>
       </section>
 
-      <section className="rounded-[30px] border border-black/5 bg-white p-5 shadow-2xl backdrop-blur md:p-7">
+      <section className="rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur md:p-7">
         <div className="mb-6 flex flex-col justify-between gap-3 md:flex-row md:items-end">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
@@ -191,7 +191,7 @@ export default function AdminDashboardPage() {
 
           <Link
             href="/admin/inquiries"
-            className="w-fit rounded-full border border-black/5 bg-[#f6faf7] px-5 py-3 text-xs font-black text-white/55 transition hover:bg-[#039147] hover:text-white"
+            className="w-fit rounded-full border border-black/5 bg-[#f6faf7] px-5 py-3 text-xs font-black text-black/55 transition hover:bg-[#039147] hover:text-white"
           >
             View All Inquiries
           </Link>

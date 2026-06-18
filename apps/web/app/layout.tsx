@@ -89,7 +89,12 @@ export async function generateMetadata(): Promise<Metadata> {
       images: ["/images/pml/hero-lab-hexagon.png"],
     },
     icons: {
-      icon: "/favicon.ico",
+      icon: [
+        { url: "/icon.png", type: "image/png" },
+      ],
+      apple: [
+        { url: "/apple-icon.png", type: "image/png" },
+      ],
     },
     robots: {
       index: true,

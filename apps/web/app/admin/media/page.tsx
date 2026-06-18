@@ -227,26 +227,26 @@ export default function AdminMediaPage() {
     <AdminShell>
       <div className="mb-8 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-[#76d69f]">
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-[#039147]">
             Media Library
           </p>
-          <h1 className="mt-3 text-4xl font-black tracking-tight text-white md:text-5xl">
+          <h1 className="mt-3 text-4xl font-black tracking-tight text-black md:text-5xl">
             Media Assets
           </h1>
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-white/50">
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-black/50">
             Upload, organize, preview, and copy media URLs for popup, catalogue, insight, homepage, and other CMS content.
           </p>
         </div>
 
-        <div className="grid gap-3 rounded-[24px] border border-white/10 bg-white/[0.06] p-4">
+        <div className="grid gap-3 rounded-[24px] border border-black/5 bg-white p-4">
           <label className="grid gap-2">
-            <span className="text-xs font-black uppercase tracking-[0.14em] text-white/40">
+            <span className="text-xs font-black uppercase tracking-[0.14em] text-black/50">
               Upload Folder
             </span>
             <input
               value={uploadFolder}
               onChange={(event) => setUploadFolder(event.target.value)}
-              className="h-11 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none"
+              className="h-11 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none"
             />
           </label>
 
@@ -273,18 +273,18 @@ export default function AdminMediaPage() {
 
       {status === "success" ? (
         <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-          <section className="rounded-[30px] border border-white/10 bg-white/[0.06] p-5 shadow-2xl backdrop-blur md:p-7">
+          <section className="rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur md:p-7">
             <div className="mb-5 flex items-center justify-between gap-3">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#76d69f]">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                   Library
                 </p>
-                <h2 className="mt-2 text-2xl font-black text-white">
+                <h2 className="mt-2 text-2xl font-black text-black">
                   Uploaded Media
                 </h2>
               </div>
 
-              <span className="rounded-full border border-white/10 bg-black/20 px-4 py-2 text-xs font-black text-white/40">
+              <span className="rounded-full border border-black/5 bg-white5 px-4 py-2 text-xs font-black text-black/50">
                 {items.length} assets
               </span>
             </div>
@@ -301,8 +301,8 @@ export default function AdminMediaPage() {
                     }}
                     className={`overflow-hidden rounded-[24px] border text-left transition ${
                       item.id === form.id
-                        ? "border-[#039147] bg-[#039147]/15"
-                        : "border-white/10 bg-black/20 hover:border-white/20 hover:bg-white/[0.08]"
+                        ? "border-[#039147] bg-[#eaf8f0]"
+                        : "border-black/5 bg-white5 hover:border-white/20 hover:bg-white"
                     }`}
                   >
                     <div className="relative h-36 bg-black/40">
@@ -316,17 +316,17 @@ export default function AdminMediaPage() {
                           unoptimized
                         />
                       ) : (
-                        <div className="flex h-full items-center justify-center px-4 text-center text-xs font-black uppercase tracking-[0.14em] text-white/45">
+                        <div className="flex h-full items-center justify-center px-4 text-center text-xs font-black uppercase tracking-[0.14em] text-black/45">
                           {item.type}
                         </div>
                       )}
                     </div>
 
                     <div className="p-4">
-                      <p className="line-clamp-1 text-sm font-black text-white">
+                      <p className="line-clamp-1 text-sm font-black text-black">
                         {item.originalName || item.filename}
                       </p>
-                      <div className="mt-3 flex flex-wrap gap-2 text-[10px] font-black uppercase tracking-[0.1em] text-white/35">
+                      <div className="mt-3 flex flex-wrap gap-2 text-[10px] font-black uppercase tracking-[0.1em] text-black/50">
                         <span>{item.type}</span>
                         <span>•</span>
                         <span>{formatSize(item.size)}</span>
@@ -338,25 +338,25 @@ export default function AdminMediaPage() {
                 ))}
               </div>
             ) : (
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-8 text-center text-sm font-bold text-white/45">
+              <div className="rounded-2xl border border-black/5 bg-white5 p-8 text-center text-sm font-bold text-black/45">
                 No media uploaded yet. Upload the first image, PDF, or document.
               </div>
             )}
           </section>
 
-          <section className="rounded-[30px] border border-white/10 bg-white/[0.06] p-5 shadow-2xl backdrop-blur md:p-7">
+          <section className="rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur md:p-7">
             <div className="mb-6">
-              <p className="text-xs font-black uppercase tracking-[0.16em] text-[#76d69f]">
+              <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                 Media Detail
               </p>
-              <h2 className="mt-2 text-2xl font-black text-white">
+              <h2 className="mt-2 text-2xl font-black text-black">
                 Asset Metadata
               </h2>
             </div>
 
             {selectedMedia ? (
               <>
-                <div className="mb-5 overflow-hidden rounded-[24px] border border-white/10 bg-black/25">
+                <div className="mb-5 overflow-hidden rounded-[24px] border border-black/5 bg-white">
                   {selectedMedia.type === "IMAGE" ? (
                     <div className="relative h-64">
                       <Image
@@ -369,26 +369,26 @@ export default function AdminMediaPage() {
                       />
                     </div>
                   ) : (
-                    <div className="flex h-40 items-center justify-center text-sm font-black uppercase tracking-[0.16em] text-white/45">
+                    <div className="flex h-40 items-center justify-center text-sm font-black uppercase tracking-[0.16em] text-black/45">
                       {selectedMedia.type}
                     </div>
                   )}
 
                   <div className="p-4">
-                    <p className="break-all text-sm font-black text-white">
+                    <p className="break-all text-sm font-black text-black">
                       {selectedMedia.originalName || selectedMedia.filename}
                     </p>
-                    <p className="mt-2 text-xs font-semibold text-white/40">
+                    <p className="mt-2 text-xs font-semibold text-black/50">
                       {selectedMedia.mimeType || "-"} • {formatSize(selectedMedia.size)}
                     </p>
                   </div>
                 </div>
 
-                <div className="mb-5 rounded-[20px] border border-white/10 bg-black/20 p-4">
-                  <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-white/35">
+                <div className="mb-5 rounded-[20px] border border-black/5 bg-white5 p-4">
+                  <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-black/50">
                     Media URL
                   </p>
-                  <p className="break-all rounded-2xl bg-black/25 p-3 font-mono text-xs text-[#76d69f]">
+                  <p className="break-all rounded-2xl bg-white p-3 font-mono text-xs text-[#039147]">
                     {selectedMedia.url}
                   </p>
                   <button
@@ -402,40 +402,40 @@ export default function AdminMediaPage() {
 
                 <form onSubmit={handleSave} className="grid gap-5">
                   <label className="grid gap-2">
-                    <span className="text-sm font-black text-white">Alt Text</span>
+                    <span className="text-sm font-black text-black">Alt Text</span>
                     <input
                       value={form.altText}
                       onChange={(event) => updateField("altText", event.target.value)}
-                      className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                      className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                     />
                   </label>
 
                   <label className="grid gap-2">
-                    <span className="text-sm font-black text-white">Caption</span>
+                    <span className="text-sm font-black text-black">Caption</span>
                     <textarea
                       rows={3}
                       value={form.caption}
                       onChange={(event) => updateField("caption", event.target.value)}
-                      className="resize-none rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm font-bold leading-7 text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                      className="resize-none rounded-2xl border border-black/5 bg-white px-4 py-3 text-sm font-bold leading-7 text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                     />
                   </label>
 
                   <div className="grid gap-5 md:grid-cols-2">
                     <label className="grid gap-2">
-                      <span className="text-sm font-black text-white">Folder</span>
+                      <span className="text-sm font-black text-black">Folder</span>
                       <input
                         value={form.folder}
                         onChange={(event) => updateField("folder", event.target.value)}
-                        className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                        className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                       />
                     </label>
 
                     <label className="grid gap-2">
-                      <span className="text-sm font-black text-white">Type</span>
+                      <span className="text-sm font-black text-black">Type</span>
                       <select
                         value={form.type}
                         onChange={(event) => updateField("type", event.target.value)}
-                        className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                        className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                       >
                         <option value="IMAGE">Image</option>
                         <option value="DOCUMENT">Document</option>
@@ -446,7 +446,7 @@ export default function AdminMediaPage() {
                   </div>
 
                   {message ? (
-                    <div className="rounded-2xl border border-white/10 bg-black/20 p-4 text-sm font-bold text-white/70">
+                    <div className="rounded-2xl border border-black/5 bg-white5 p-4 text-sm font-bold text-black/70">
                       {message}
                     </div>
                   ) : null}
@@ -456,7 +456,7 @@ export default function AdminMediaPage() {
                       type="button"
                       onClick={handleDelete}
                       disabled={saving}
-                      className="rounded-full border border-red-400/30 bg-red-500/10 px-7 py-3.5 text-sm font-black text-red-200 transition hover:bg-red-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
+                      className="rounded-full border border-red-400/30 bg-red-500/10 px-7 py-3.5 text-sm font-black text-red-200 transition hover:bg-red-500 hover:text-black disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       Delete Record
                     </button>
@@ -464,7 +464,7 @@ export default function AdminMediaPage() {
                     <button
                       type="submit"
                       disabled={saving}
-                      className="rounded-full bg-[#039147] px-7 py-3.5 text-sm font-black text-white shadow-[0_18px_50px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+                      className="rounded-full bg-[#039147] px-7 py-3.5 text-sm font-black text-black shadow-[0_18px_50px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       {saving ? "Saving..." : "Save Metadata"}
                     </button>
@@ -472,7 +472,7 @@ export default function AdminMediaPage() {
                 </form>
               </>
             ) : (
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-8 text-center text-sm font-bold text-white/45">
+              <div className="rounded-2xl border border-black/5 bg-white5 p-8 text-center text-sm font-bold text-black/45">
                 Select a media asset to preview and edit metadata.
               </div>
             )}

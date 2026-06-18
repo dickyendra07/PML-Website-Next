@@ -246,13 +246,13 @@ export default function AdminHomepageFeaturesPage() {
     <AdminShell>
       <div className="mb-8 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-[#76d69f]">
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-[#039147]">
             Homepage CMS
           </p>
-          <h1 className="mt-3 text-4xl font-black tracking-tight text-white md:text-5xl">
+          <h1 className="mt-3 text-4xl font-black tracking-tight text-black md:text-5xl">
             Homepage Features
           </h1>
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-white/50">
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-black/50">
             Manage homepage highlights, CTA blocks, featured insight, campaign cards, and homepage promotional content.
           </p>
         </div>
@@ -276,18 +276,18 @@ export default function AdminHomepageFeaturesPage() {
 
       {status === "success" ? (
         <div className="grid gap-6 xl:grid-cols-[0.9fr_1.3fr]">
-          <section className="rounded-[30px] border border-white/10 bg-white/[0.06] p-5 shadow-2xl backdrop-blur md:p-7">
+          <section className="rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur md:p-7">
             <div className="mb-5 flex items-center justify-between gap-3">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#76d69f]">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                   Feature List
                 </p>
-                <h2 className="mt-2 text-2xl font-black text-white">
+                <h2 className="mt-2 text-2xl font-black text-black">
                   Existing Features
                 </h2>
               </div>
 
-              <span className="rounded-full border border-white/10 bg-black/20 px-4 py-2 text-xs font-black text-white/40">
+              <span className="rounded-full border border-black/5 bg-white5 px-4 py-2 text-xs font-black text-black/50">
                 {items.length} items
               </span>
             </div>
@@ -300,14 +300,14 @@ export default function AdminHomepageFeaturesPage() {
                   onClick={() => selectFeature(item)}
                   className={`rounded-2xl border p-4 text-left transition ${
                     item.id === form.id
-                      ? "border-[#039147] bg-[#039147]/15"
-                      : "border-white/10 bg-black/20 hover:border-white/20 hover:bg-white/[0.08]"
+                      ? "border-[#039147] bg-[#eaf8f0]"
+                      : "border-black/5 bg-white5 hover:border-white/20 hover:bg-white"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <h3 className="text-sm font-black text-white">{item.title}</h3>
-                      <p className="mt-2 line-clamp-2 text-xs leading-5 text-white/45">
+                      <h3 className="text-sm font-black text-black">{item.title}</h3>
+                      <p className="mt-2 line-clamp-2 text-xs leading-5 text-black/45">
                         {item.description || "No description"}
                       </p>
                     </div>
@@ -315,15 +315,15 @@ export default function AdminHomepageFeaturesPage() {
                     <span
                       className={`rounded-full px-3 py-1 text-[10px] font-black ${
                         item.status === "PUBLISHED"
-                          ? "bg-[#039147]/20 text-[#76d69f]"
-                          : "bg-white/10 text-white/45"
+                          ? "bg-[#039147]/20 text-[#039147]"
+                          : "bg-white/10 text-black/45"
                       }`}
                     >
                       {item.status}
                     </span>
                   </div>
 
-                  <div className="mt-4 flex flex-wrap gap-2 text-[10px] font-black uppercase tracking-[0.1em] text-white/35">
+                  <div className="mt-4 flex flex-wrap gap-2 text-[10px] font-black uppercase tracking-[0.1em] text-black/50">
                     <span>{item.type}</span>
                     <span>•</span>
                     <span>Order {item.sortOrder}</span>
@@ -332,7 +332,7 @@ export default function AdminHomepageFeaturesPage() {
               ))}
 
               {items.length === 0 ? (
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-5 text-sm font-bold text-white/45">
+                <div className="rounded-2xl border border-black/5 bg-white5 p-5 text-sm font-bold text-black/45">
                   No homepage feature yet. Create the first homepage content block.
                 </div>
               ) : null}
@@ -341,50 +341,50 @@ export default function AdminHomepageFeaturesPage() {
 
           <form
             onSubmit={handleSubmit}
-            className="rounded-[30px] border border-white/10 bg-white/[0.06] p-5 shadow-2xl backdrop-blur md:p-7"
+            className="rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur md:p-7"
           >
             <div className="mb-6 flex flex-col justify-between gap-2 md:flex-row md:items-end">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#76d69f]">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                   {selectedFeature ? "Edit Feature" : "Create Feature"}
                 </p>
-                <h2 className="mt-2 text-2xl font-black text-white">
+                <h2 className="mt-2 text-2xl font-black text-black">
                   Homepage Feature Content
                 </h2>
               </div>
 
-              <span className="w-fit rounded-full border border-white/10 bg-black/20 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-white/40">
+              <span className="w-fit rounded-full border border-black/5 bg-white5 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-black/50">
                 {form.type}
               </span>
             </div>
 
             <div className="grid gap-5 md:grid-cols-2">
               <label className="grid gap-2 md:col-span-2">
-                <span className="text-sm font-black text-white">Title</span>
+                <span className="text-sm font-black text-black">Title</span>
                 <input
                   value={form.title}
                   onChange={(event) => updateField("title", event.target.value)}
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                   required
                 />
               </label>
 
               <label className="grid gap-2 md:col-span-2">
-                <span className="text-sm font-black text-white">Description</span>
+                <span className="text-sm font-black text-black">Description</span>
                 <textarea
                   rows={4}
                   value={form.description}
                   onChange={(event) => updateField("description", event.target.value)}
-                  className="resize-none rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm font-bold leading-7 text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="resize-none rounded-2xl border border-black/5 bg-white px-4 py-3 text-sm font-bold leading-7 text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 />
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-black text-white">Feature Type</span>
+                <span className="text-sm font-black text-black">Feature Type</span>
                 <select
                   value={form.type}
                   onChange={(event) => updateField("type", event.target.value)}
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 >
                   {featureTypes.map((type) => (
                     <option key={type.value} value={type.value}>
@@ -395,17 +395,17 @@ export default function AdminHomepageFeaturesPage() {
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-black text-white">Reference ID</span>
+                <span className="text-sm font-black text-black">Reference ID</span>
                 <input
                   value={form.referenceId}
                   onChange={(event) => updateField("referenceId", event.target.value)}
                   placeholder="services / insight / proposal"
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition placeholder:text-white/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition placeholder:text-black/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 />
               </label>
 
-              <div className="grid gap-4 rounded-[26px] border border-white/10 bg-black/20 p-4 md:col-span-2 md:grid-cols-[0.9fr_1.1fr] md:p-5">
-                <div className="overflow-hidden rounded-[22px] border border-white/10 bg-black/30">
+              <div className="grid gap-4 rounded-[26px] border border-black/5 bg-white5 p-4 md:col-span-2 md:grid-cols-[0.9fr_1.1fr] md:p-5">
+                <div className="overflow-hidden rounded-[22px] border border-black/5 bg-black/30">
                   {form.imageUrl ? (
                     <div className="relative h-56 w-full">
                       <Image
@@ -418,14 +418,14 @@ export default function AdminHomepageFeaturesPage() {
                       />
                     </div>
                   ) : (
-                    <div className="flex h-56 items-center justify-center px-6 text-center text-sm font-bold text-white/35">
+                    <div className="flex h-56 items-center justify-center px-6 text-center text-sm font-bold text-black/50">
                       Upload image to preview homepage feature.
                     </div>
                   )}
                 </div>
 
                 <label className="grid gap-2">
-                  <span className="text-sm font-black text-white">Image</span>
+                  <span className="text-sm font-black text-black">Image</span>
                   <input
                     type="file"
                     accept="image/png,image/jpeg,image/webp"
@@ -433,48 +433,48 @@ export default function AdminHomepageFeaturesPage() {
                       void handleImageUpload(event.target.files?.[0] || null);
                       event.target.value = "";
                     }}
-                    className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm font-bold text-white file:mr-4 file:rounded-full file:border-0 file:bg-[#039147] file:px-4 file:py-2 file:text-xs file:font-black file:text-white"
+                    className="rounded-2xl border border-black/5 bg-white px-4 py-3 text-sm font-bold text-black file:mr-4 file:rounded-full file:border-0 file:bg-[#039147] file:px-4 file:py-2 file:text-xs file:font-black file:text-black"
                   />
 
                   <input
                     value={form.imageUrl}
                     onChange={(event) => updateField("imageUrl", event.target.value)}
                     placeholder="/uploads/homepage-features/image.png"
-                    className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition placeholder:text-white/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                    className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition placeholder:text-black/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                   />
 
-                  <span className="text-xs font-semibold text-white/35">
+                  <span className="text-xs font-semibold text-black/50">
                     {uploadingImage ? "Uploading image..." : "Upload image or paste image URL manually."}
                   </span>
                 </label>
               </div>
 
               <label className="grid gap-2">
-                <span className="text-sm font-black text-white">Button Label</span>
+                <span className="text-sm font-black text-black">Button Label</span>
                 <input
                   value={form.buttonLabel}
                   onChange={(event) => updateField("buttonLabel", event.target.value)}
                   placeholder="Explore Services"
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition placeholder:text-white/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition placeholder:text-black/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 />
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-black text-white">Button URL</span>
+                <span className="text-sm font-black text-black">Button URL</span>
                 <input
                   value={form.buttonUrl}
                   onChange={(event) => updateField("buttonUrl", event.target.value)}
                   placeholder="/services"
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition placeholder:text-white/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition placeholder:text-black/20 focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 />
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-black text-white">Status</span>
+                <span className="text-sm font-black text-black">Status</span>
                 <select
                   value={form.status}
                   onChange={(event) => updateField("status", event.target.value as PageSeoStatus)}
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 >
                   <option value="DRAFT">Draft</option>
                   <option value="PUBLISHED">Published</option>
@@ -483,18 +483,18 @@ export default function AdminHomepageFeaturesPage() {
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-black text-white">Sort Order</span>
+                <span className="text-sm font-black text-black">Sort Order</span>
                 <input
                   type="number"
                   value={form.sortOrder}
                   onChange={(event) => updateField("sortOrder", event.target.value)}
-                  className="h-13 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm font-bold text-white outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 />
               </label>
             </div>
 
             {message ? (
-              <div className="mt-6 rounded-2xl border border-white/10 bg-black/20 p-4 text-sm font-bold text-white/70">
+              <div className="mt-6 rounded-2xl border border-black/5 bg-white5 p-4 text-sm font-bold text-black/70">
                 {message}
               </div>
             ) : null}
@@ -505,7 +505,7 @@ export default function AdminHomepageFeaturesPage() {
                   type="button"
                   onClick={handleArchive}
                   disabled={saving}
-                  className="rounded-full border border-red-400/30 bg-red-500/10 px-8 py-4 text-sm font-black text-red-200 transition hover:bg-red-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
+                  className="rounded-full border border-red-400/30 bg-red-500/10 px-8 py-4 text-sm font-black text-red-200 transition hover:bg-red-500 hover:text-black disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   Archive
                 </button>
@@ -514,7 +514,7 @@ export default function AdminHomepageFeaturesPage() {
               <button
                 type="submit"
                 disabled={saving || uploadingImage}
-                className="rounded-full bg-[#039147] px-8 py-4 text-sm font-black text-white shadow-[0_18px_50px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+                className="rounded-full bg-[#039147] px-8 py-4 text-sm font-black text-black shadow-[0_18px_50px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {saving ? "Saving Feature..." : "Save Feature"}
               </button>
