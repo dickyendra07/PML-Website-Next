@@ -13,7 +13,7 @@ export default function FacilitiesPage() {
     <main>
       <section className="relative overflow-hidden bg-black text-white">
         <Image
-          src="/images/pml/hero-lab-hexagon.png"
+          src="/images/pml/facilities/photos/pml-facility-photo-01.png"
           alt=""
           fill
           priority
@@ -112,7 +112,7 @@ export default function FacilitiesPage() {
         <div className="pml-container">
           <div className="relative overflow-hidden rounded-[30px] bg-black px-6 py-14 text-center text-black shadow-[0_28px_90px_rgba(0,0,0,0.18)] md:rounded-[36px] md:px-14 md:py-20">
             <Image
-              src="/images/pml/cta-lab-background.png"
+              src="/images/pml/facilities/photos/pml-facility-photo-17.png"
               alt=""
               fill
               className="object-cover opacity-52"

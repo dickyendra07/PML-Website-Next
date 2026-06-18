@@ -79,7 +79,7 @@ export default function Facilities() {
 
             <div className="relative z-10 mx-auto flex min-h-[560px] items-center justify-center">
               <Image
-                src="/images/pml/hero-lab-hexagon.png"
+                src="/images/pml/facilities/photos/pml-facility-photo-01.png"
                 alt="Pharma Metric Labs laboratory facility"
                 width={620}
                 height={620}
