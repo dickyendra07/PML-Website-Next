@@ -90,6 +90,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     icons: {
       icon: [
+        { url: "/favicon.ico", sizes: "64x64", type: "image/x-icon" },
         { url: "/icon.png", type: "image/png" },
       ],
       apple: [
