@@ -112,10 +112,11 @@ const benefits = [
 
 const workflow = [
   "Initial consultation and clinical research requirement review",
-  "Study planning, feasibility assessment, and site/laboratory selection",
-  "Regulatory preparation, EC/BPOM submission, and document coordination",
-  "Clinical monitoring, safety monitoring, and study site management",
-  "Data management, statistics, medical writing, and study close-out support",
+  "Study planning, study document development and/or review, site feasibility",
+  "Site selection, EC submission, regulatory (BPOM / Kemenkes) submission",
+  "EC approval, regulatory (BPOM / Kemenkes) approval, and study initiation",
+  "Clinical monitoring, safety monitoring, project management, and study site management",
+  "Study close-out, data management, analytical statistics, final report writing",
 ];
 
 const therapeuticAreas = [
