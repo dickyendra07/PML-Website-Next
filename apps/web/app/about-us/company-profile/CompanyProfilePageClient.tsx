@@ -698,7 +698,7 @@ export default function CompanyProfilePage() {
 
                 <div className="relative flex gap-5">
                   <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] ring-1 ring-[#039147]/10 transition duration-300 group-hover:bg-[#039147] group-hover:text-white group-hover:shadow-[0_18px_44px_rgba(3,145,71,0.22)]">
-                    <AccreditationIcon name={item.icon} />
+                    <AccreditationIcon name="shield" />
                   </div>
 
                   <div>
@@ -707,7 +707,7 @@ export default function CompanyProfilePage() {
                         0{index + 1}
                       </span>
                       <span className="rounded-full border border-[#039147]/12 bg-white px-3 py-1 text-[11px] font-black uppercase tracking-[0.12em] text-black/45">
-                        {item.label}
+                        Recognition
                       </span>
                     </div>
 

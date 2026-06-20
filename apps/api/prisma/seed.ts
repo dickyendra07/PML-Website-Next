@@ -6,7 +6,11 @@ const prisma = new PrismaClient();
 
 async function main() {
   const email = 'admin@pharmametriclabs.com';
-  const password = 'PmlAdmin123!';
+  const password = process.env.ADMIN_SEED_PASSWORD;
+
+  if (!password) {
+    throw new Error('ADMIN_SEED_PASSWORD is required to run database seed.');
+  }
   const passwordHash = await bcrypt.hash(password, 12);
 
   const admin = await prisma.adminUser.upsert({

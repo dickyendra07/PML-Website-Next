@@ -8,3 +8,7 @@ build/
 .DS_Store
 coverage/
 *.log
+
+# Runtime uploads should not be committed
+apps/api/public/uploads/*
+!apps/api/public/uploads/.gitkeep

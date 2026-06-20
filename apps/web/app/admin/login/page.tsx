@@ -7,7 +7,7 @@ import { getAdminToken, loginAdmin, setAdminToken } from "@/lib/admin-api";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("admin@pharmametriclabs.com");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -29,25 +29,6 @@ export default function AdminLoginPage() {
       setAdminToken(result.accessToken);
       router.replace("/admin");
     } catch (error) {
-      const isStagingAdmin =
-        email.trim().toLowerCase() === "admin@pharmametriclabs.com" &&
-        password === "PmlAdmin123!";
-
-      if (isStagingAdmin) {
-        setAdminToken("pml-staging-preview-token");
-        window.localStorage.setItem(
-          "pml_admin_preview_user",
-          JSON.stringify({
-            name: "PML Admin",
-            email: "admin@pharmametriclabs.com",
-            role: "SUPER_ADMIN",
-            mode: "STAGING_PREVIEW",
-          })
-        );
-        router.replace("/admin");
-        return;
-      }
-
       setStatus("error");
       setMessage(error instanceof Error ? error.message : "Login failed. Please try again.");
     }
