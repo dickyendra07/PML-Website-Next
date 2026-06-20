@@ -35,12 +35,6 @@ const experts = [
     focus: "Clinical research leadership, study conduct, and quality-focused oversight.",
   },
   {
-    name: "Yuyus Kusnadi",
-    role: "Head of Clinical Trial",
-    image: "/images/pml/experts/all/09-tim_yuyus.jpg",
-    focus: "Clinical trial operations, study management, and project coordination.",
-  },
-  {
     name: "Seriyati Naibaho",
     role: "Analytical Manager",
     image: "/images/pml/experts/all/10-tim_seriyati.jpg",
@@ -87,7 +81,7 @@ export default function ExpertsAndTeamPage() {
     <main>
       <section className="relative overflow-hidden bg-black text-white">
         <Image
-          src="/images/pml/experts/all/03-banner_experts.png"
+          src="/images/pml/about/pml-experts-team-meeting-hero.jpeg"
           alt=""
           fill
           priority

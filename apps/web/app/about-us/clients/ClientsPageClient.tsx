@@ -5,40 +5,72 @@ import Link from "next/link";
 
 const clientLogos = [
   {
-    name: "Client Partner",
-    image: "/images/pml/clients/all/04-Logo11-929842ffe52e9f9acefa4d9b7d299b2c.png",
+    name: "Danone",
+    image: "/images/pml/clients/all/11-LogoDanone-2e319fffe365090c3d87c9b0ccb495c2.png",
   },
   {
-    name: "Client Partner",
-    image: "/images/pml/clients/all/05-Logo23-9f1c4cebb16627a1c8863f0217589ff1.png",
+    name: "Draeger",
+    image: "/images/pml/clients/logos/draeger-logo.png",
   },
   {
-    name: "Client Partner",
-    image: "/images/pml/clients/all/06-Logo48-50c461fc9ee60d8979787ca5b6f2d069.png",
+    name: "GSK",
+    image: "/images/pml/clients/logos/gsk-logo.png",
   },
   {
-    name: "Client Partner",
-    image: "/images/pml/clients/all/07-Logo101-a4c1e7f5d80057508f3a0c8b6044fb5d.png",
+    name: "Sanofi",
+    image: "/images/pml/clients/all/09-Logo103-040273d3342defd193fcd90856ea4ec1.png",
   },
   {
-    name: "Client Partner",
+    name: "Anika",
+    image: "/images/pml/clients/logos/anika-logo.jpg",
+  },
+  {
+    name: "Novotech",
+    image: "/images/pml/clients/all/12-novotech-393598700a2884f3470db0f718de44e7.jpeg",
+  },
+  {
+    name: "TTY Biopharm",
     image: "/images/pml/clients/all/08-Logo102-21e882f6bea598ffb0b9850bd0d1be94.png",
   },
   {
-    name: "Client Partner",
-    image: "/images/pml/clients/all/09-Logo103-040273d3342defd193fcd90856ea4ec1.png",
+    name: "Daewoong",
+    image: "/images/pml/clients/logos/daewoong-logo.png",
+  },
+  {
+    name: "Genexine",
+    image: "/images/pml/clients/logos/genexine-logo.jpg",
+  },
+  {
+    name: "De La Salle",
+    image: "/images/pml/clients/all/06-Logo48-50c461fc9ee60d8979787ca5b6f2d069.png",
+  },
+  {
+    name: "Nano Medic",
+    image: "/images/pml/clients/logos/nano-medic-logo.png",
+  },
+  {
+    name: "Kementerian Kesehatan",
+    image: "/images/pml/clients/logos/kemenkes-logo.png",
   },
   {
     name: "BRIN",
     image: "/images/pml/clients/all/10-LogoBrin-ce0b45219c32eb5f45bf40280107e319.png",
   },
   {
-    name: "Danone",
-    image: "/images/pml/clients/all/11-LogoDanone-2e319fffe365090c3d87c9b0ccb495c2.png",
+    name: "Kimia Farma",
+    image: "/images/pml/clients/all/05-Logo23-9f1c4cebb16627a1c8863f0217589ff1.png",
   },
   {
-    name: "Novotech",
-    image: "/images/pml/clients/all/12-novotech-393598700a2884f3470db0f718de44e7.jpeg",
+    name: "Darya Varia",
+    image: "/images/pml/clients/all/04-Logo11-929842ffe52e9f9acefa4d9b7d299b2c.png",
+  },
+  {
+    name: "Endo",
+    image: "/images/pml/clients/logos/endo-logo.png",
+  },
+  {
+    name: "Bernofarm",
+    image: "/images/pml/clients/logos/bernofarm-logo.png",
   },
 ];
 
@@ -135,62 +167,58 @@ export default function ClientsPage() {
         </div>
       </section>
 
-      <section id="client-network" className="bg-white py-16 md:py-28">
+            <section className="bg-white py-16 md:py-28">
         <div className="pml-container">
-          <div className="grid gap-9 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-12">
-            <div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Client Network
-              </p>
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
+              Client Network
+            </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
-                More than 400 clients globally have worked with PML
-              </h2>
+            <h2 className="mt-4 text-4xl font-black leading-tight tracking-tight text-black md:text-6xl">
+              More than 400 clients globally have worked with PML
+            </h2>
 
-              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
-                PML supports a broad client network across pharmaceutical, healthcare, research,
-                and regulated product industries. The collaboration experience includes clinical
-                research, BA/BE study, contract analysis, regulatory management, and project
-                documentation support.
-              </p>
-            </div>
+            <p className="mx-auto mt-6 max-w-3xl text-sm leading-7 text-black/64 md:text-base md:leading-8">
+              PML supports a broad client network across pharmaceutical, healthcare, research,
+              and regulated product industries. The collaboration experience includes clinical
+              research, BA/BE study, contract analysis, regulatory management, and project
+              documentation support.
+            </p>
+          </div>
 
-            <div className="rounded-[28px] border border-black/5 bg-[#f6faf7] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.08)] md:rounded-[34px] md:p-7">
-              <div className="grid grid-cols-3 gap-3 md:gap-4">
-                {clientLogos.map((client, index) => (
+          <div className="mt-12 overflow-hidden rounded-[34px] border border-[#039147]/10 bg-[#f6faf7] px-4 py-6 shadow-[0_24px_80px_rgba(0,0,0,0.06)] md:mt-14 md:px-6 md:py-8">
+            <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+              <div className="flex w-max gap-5 will-change-transform [animation:clientLogoMarquee_46s_linear_infinite] hover:[animation-play-state:paused]">
+                {[...clientLogos, ...clientLogos].map((client, index) => (
                   <div
-                    key={`${client.image}-${index}`}
-                    className="flex h-24 items-center justify-center rounded-[18px] border border-black/5 bg-white p-4 shadow-sm md:h-28 md:rounded-[22px] md:p-5"
+                    key={`${client.name}-${index}`}
+                    className="flex h-28 w-[230px] shrink-0 items-center justify-center rounded-[24px] border border-black/5 bg-white px-7 py-5 shadow-sm md:h-32 md:w-[270px]"
                   >
                     <Image
                       src={client.image}
                       alt={client.name}
                       width={220}
-                      height={110}
-                      className="max-h-16 w-auto object-contain"
+                      height={92}
+                      className="max-h-16 w-auto object-contain md:max-h-20"
                     />
                   </div>
                 ))}
               </div>
-
             </div>
           </div>
 
-          <div className="mt-10 grid grid-cols-2 gap-3 md:mt-14 md:grid-cols-4 md:gap-4">
-            {clientSegments.map((segment) => (
-              <div key={segment} className="rounded-[20px] border border-black/5 bg-[#f6faf7] p-4 shadow-sm md:rounded-[24px] md:p-5">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
-                  ✓
-                </span>
-                <p className="mt-3 text-xs font-bold leading-5 text-black/65 md:mt-4 md:text-sm md:leading-6">
-                  {segment}
-                </p>
-              </div>
-            ))}
-          </div>
+          <style>{`
+            @keyframes clientLogoMarquee {
+              from {
+                transform: translateX(0);
+              }
+              to {
+                transform: translateX(-50%);
+              }
+            }
+          `}</style>
         </div>
       </section>
-
       <section className="bg-[#eaf8f0] py-16 md:py-28">
         <div className="pml-container">
           <div className="mx-auto max-w-4xl text-center">
@@ -198,34 +226,39 @@ export default function ClientsPage() {
               Client Logo Wall
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight tracking-tight text-black md:text-6xl">
               Collaboration across industry, research, and clinical development
             </h2>
 
-            <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+            <p className="mx-auto mt-6 max-w-3xl text-sm leading-7 text-black/64 md:text-base md:leading-8">
               Selected client and partner logos are shown as visual references for PML’s broader
               collaboration network.
             </p>
           </div>
 
-          <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-5 lg:grid-cols-5">
+          <div className="mt-12 grid w-full grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7">
             {clientLogos.map((client, index) => (
-              <article
-                key={`${client.name}-${index}`}
-                className="group flex min-h-[120px] items-center justify-center rounded-[24px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:min-h-[150px] md:rounded-[28px]"
+              <div
+                key={`${client.name}-wall-${index}`}
+                className="flex h-28 items-center justify-center rounded-[24px] border border-black/5 bg-white px-6 py-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:h-32 md:rounded-[28px]"
               >
                 <Image
                   src={client.image}
                   alt={client.name}
-                  width={240}
-                  height={120}
-                  className="max-h-20 w-auto object-contain transition duration-300 group-hover:scale-105"
+                  width={220}
+                  height={92}
+                  className="max-h-16 w-auto object-contain md:max-h-20"
                 />
-              </article>
+              </div>
             ))}
           </div>
         </div>
       </section>
+
+
+
+
+      
 
       <section className="bg-white py-16 md:py-28">
         <div className="pml-container">
