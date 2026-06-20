@@ -16,14 +16,14 @@ const corporateStats = [
     desc: "Completed projects across clinical, analytical, and regulatory service areas.",
   },
   {
-    value: "300+",
-    label: "Sponsors",
-    desc: "Sponsors supported across local and international project needs.",
+    value: "150+",
+    label: "Ongoing Projects",
+    desc: "Current project pipeline supported by PML teams.",
   },
   {
-    value: "190+",
-    label: "Validated Bioanalytical Method",
-    desc: "Validated bioanalytical method capability for study and laboratory support.",
+    value: "300+",
+    label: "Sponsors",
+    desc: "Trusted by local and international sponsors across regulated industries.",
   },
 ];
 
@@ -415,8 +415,8 @@ export default function CompanyProfilePage() {
                 </p>
 
                 <p>
-                  PML has completed more than 6000+ projects and continues to manage an active project
-                  pipeline with clients worldwide. Its expertise spans pharmaceuticals, biotechnology,
+                  PML has completed more than 6,000 projects and continues to manage an active project
+                  pipeline with sponsors worldwide. Its expertise spans pharmaceuticals, biotechnology,
                   medical devices, food and beverage, cosmetics, and traditional medicines.
                 </p>
               </div>
