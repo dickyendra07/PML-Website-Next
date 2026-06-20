@@ -81,62 +81,62 @@ const countries = [
 
 const landmarkByCountry: Record<string, { landmark: string; image: string }> = {
   Cambodia: {
-    landmark: "Angkor Wat",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1600431117492-7e5e1c7263c0?auto=format&fit=crop&w=1200&q=80",
   },
   "Hong Kong": {
-    landmark: "Victoria Harbour",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?auto=format&fit=crop&w=1200&q=80",
   },
   Indonesia: {
-    landmark: "Borobudur Temple",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=1200&q=80",
   },
   Malaysia: {
-    landmark: "Petronas Twin Towers",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1200&q=80",
   },
   Maldives: {
-    landmark: "Maldives Atolls",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=80",
   },
   Mauritius: {
-    landmark: "Le Morne Brabant",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1589308454676-22fbe0b9f9cb?auto=format&fit=crop&w=1200&q=80",
   },
   Mongolia: {
-    landmark: "Gobi Desert",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=1200&q=80",
   },
   Myanmar: {
-    landmark: "Shwedagon Pagoda",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1583499871880-de841d1ace2a?auto=format&fit=crop&w=1200&q=80",
   },
   Nigeria: {
-    landmark: "Lagos City",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1576085898323-218337e3e43c?auto=format&fit=crop&w=1200&q=80",
   },
   Philippines: {
-    landmark: "Manila Bay",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1200&q=80",
   },
   Singapore: {
-    landmark: "Marina Bay Sands",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1200&q=80",
   },
   "Sri Lanka": {
-    landmark: "Sigiriya Rock",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1588255255721-5b7f8a1f1c8b?auto=format&fit=crop&w=1200&q=80",
   },
   Vietnam: {
-    landmark: "Ha Long Bay",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1509030450996-dd1a26dda07a?auto=format&fit=crop&w=1200&q=80",
   },
 };
 
 const countryDetails = countries.map((country) => {
   const landmark = landmarkByCountry[country] ?? {
-    landmark: country,
+    landmark: "",
     image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
   };
 

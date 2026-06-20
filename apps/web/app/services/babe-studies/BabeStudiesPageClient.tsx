@@ -57,67 +57,67 @@ const clients = [
 const countries = [
   {
     name: "Cambodia",
-    landmark: "Angkor Wat",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1548625361-58a9b86aa83b?auto=format&fit=crop&w=1400&q=80",
   },
   {
     name: "Hong Kong",
-    landmark: "Victoria Harbour",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?auto=format&fit=crop&w=1400&q=80",
   },
   {
     name: "Indonesia",
-    landmark: "Jakarta Skyline",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1555899434-94d1368aa7af?auto=format&fit=crop&w=1400&q=80",
   },
   {
     name: "Malaysia",
-    landmark: "Kuala Lumpur",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1400&q=80",
   },
   {
     name: "Maldives",
-    landmark: "Indian Ocean Atolls",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1400&q=80",
   },
   {
     name: "Mauritius",
-    landmark: "Island Coastline",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1400&q=80",
   },
   {
     name: "Mongolia",
-    landmark: "Ulaanbaatar Region",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1585482161107-1a653f1d67f4?auto=format&fit=crop&w=1400&q=80",
   },
   {
     name: "Myanmar",
-    landmark: "Bagan Temples",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1540611025311-01df3cef54b5?auto=format&fit=crop&w=1400&q=80",
   },
   {
     name: "Nigeria",
-    landmark: "Lagos Business District",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1576487248805-cf45a6f9d42f?auto=format&fit=crop&w=1400&q=80",
   },
   {
     name: "Philippines",
-    landmark: "Manila Bay",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1400&q=80",
   },
   {
     name: "Singapore",
-    landmark: "Marina Bay",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1400&q=80",
   },
   {
     name: "Sri Lanka",
-    landmark: "Colombo",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1588259492576-4b63350baf47?auto=format&fit=crop&w=1400&q=80",
   },
   {
     name: "Vietnam",
-    landmark: "Ho Chi Minh City",
+    landmark: "",
     image: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1400&q=80",
   },
 ];
@@ -531,13 +531,13 @@ export default function BabeStudiesPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/10 to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5">
                   <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-black/64">
-                    Active country
+                    
                   </p>
                   <h3 className="mt-2 text-3xl font-black tracking-[-0.04em] text-white">
                     {activeCountry.name}
                   </h3>
                   <p className="mt-1 text-sm font-bold text-white/72">
-                    {activeCountry.landmark}
+                    
                   </p>
                 </div>
               </div>
