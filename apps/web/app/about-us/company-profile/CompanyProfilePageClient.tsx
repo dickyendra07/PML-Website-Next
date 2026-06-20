@@ -726,13 +726,13 @@ export default function CompanyProfilePage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white py-16 md:py-28">
+            <section className="relative overflow-hidden bg-white py-16 md:py-28">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(3,145,71,0.10),transparent_32%),radial-gradient(circle_at_88%_40%,rgba(3,145,71,0.08),transparent_30%)]" />
         <div className="pml-hex-pattern absolute inset-0 opacity-[0.035]" />
 
         <div className="pml-container relative">
           <div className="overflow-hidden rounded-[38px] border border-black/5 bg-[#f4fbf7] shadow-[0_28px_90px_rgba(3,145,71,0.10)] md:rounded-[48px]">
-            <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="grid lg:grid-cols-[1.02fr_0.98fr]">
               <div className="flex flex-col justify-center p-7 md:p-12 lg:p-14">
                 <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#039147]/15 bg-white px-4 py-2 shadow-sm">
                   <span className="h-2 w-2 rounded-full bg-[#039147]" />
@@ -742,20 +742,20 @@ export default function CompanyProfilePage() {
                 </div>
 
                 <h2 className="mt-6 max-w-3xl text-3xl font-black leading-tight tracking-[-0.04em] text-black md:text-5xl">
-                  Trusted national BA/BE study support for public healthcare development
+                  Chosen partner for Indonesia Ministry of Health BA/BE Project
                 </h2>
 
                 <p className="mt-5 max-w-2xl text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
-                  PML has supported a national BA/BE study project with the Indonesian Ministry of
-                  Health, strengthening its position as a credible research partner for clinical,
-                  bioanalytical, and regulatory-ready study execution.
+                  PML has been trusted to perform bioequivalence studies supporting the transition
+                  from imported to locally manufactured active pharmaceutical ingredients (APIs)
+                  for Azithromycin and Bisoprolol products.
                 </p>
 
                 <div className="mt-8 grid gap-3 sm:grid-cols-3">
                   {[
-                    ["National", "Public healthcare project context"],
-                    ["BA/BE", "Study conduct and reporting"],
-                    ["Trusted", "Government-level collaboration"],
+                    ["BA/BE", "Bioequivalence study"],
+                    ["APIs", "Azithromycin and Bisoprolol"],
+                    ["Trusted", "Ministry-level project support"],
                   ].map(([title, desc]) => (
                     <div key={title} className="rounded-[22px] border border-black/5 bg-white p-4 shadow-sm">
                       <p className="text-lg font-black text-[#039147]">{title}</p>
@@ -765,65 +765,105 @@ export default function CompanyProfilePage() {
                 </div>
               </div>
 
-              <div className="relative min-h-[440px] overflow-hidden bg-[#039147]">
+              <div className="relative min-h-[520px] overflow-hidden bg-[#039147] p-6 md:p-10">
                 <Image
-                  src="/images/pml/hero-lab-hexagon.png"
-                  alt="PML national BA/BE study support"
+                  src="/images/pml/services/contract-analysis-cta.png"
+                  alt=""
                   fill
-                  className="object-cover opacity-42"
+                  className="object-cover opacity-20"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#039147]/94 via-[#039147]/82 to-[#075e34]/94" />
+                <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(3,145,71,0.92),rgba(1,74,43,0.92))]" />
                 <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" />
 
-                <div className="relative flex h-full min-h-[440px] items-center p-7 md:p-10">
-                  <div className="w-full rounded-[32px] border border-white/18 bg-white/14 p-6 text-white shadow-[0_24px_70px_rgba(0,0,0,0.16)] backdrop-blur-md md:p-8">
-                    <span className="inline-flex rounded-full bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#039147]">
+                <div className="relative h-full min-h-[430px]">
+                  <article className="absolute inset-0 flex animate-[pmlProjectSlideOne_12s_ease-in-out_infinite] flex-col justify-center rounded-[34px] border border-white/18 bg-white/14 p-7 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl md:p-9">
+                    <div className="inline-flex w-fit rounded-full bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#039147]">
                       Case Highlight
-                    </span>
-
-                    <div className="mt-8">
-                      <p className="text-6xl font-black leading-none tracking-[-0.06em] md:text-7xl">
-                        BA/BE
-                      </p>
-
-                      <p className="mt-4 text-sm font-semibold leading-7 text-white/84 md:text-base md:leading-8">
-                        National project support covering study readiness, clinical capability,
-                        bioanalytical workflow, and regulatory-oriented documentation.
-                      </p>
                     </div>
 
-                    <div className="mt-8 grid grid-cols-2 gap-3">
-                      <div className="rounded-[22px] border border-white/16 bg-white/14 p-4">
-                        <p className="text-xs font-black uppercase tracking-[0.14em] text-white/58">
-                          Scope
-                        </p>
-                        <p className="mt-2 text-lg font-black text-white">End-to-end</p>
-                      </div>
+                    <h3 className="mt-7 text-6xl font-black leading-none tracking-[-0.06em] text-white md:text-7xl">
+                      BA/BE
+                    </h3>
 
-                      <div className="rounded-[22px] border border-white/16 bg-white/14 p-4">
-                        <p className="text-xs font-black uppercase tracking-[0.14em] text-white/58">
-                          Output
-                        </p>
-                        <p className="mt-2 text-lg font-black text-white">Report-ready</p>
-                      </div>
-                    </div>
+                    <p className="mt-5 max-w-xl text-sm font-semibold leading-7 text-white/86 md:text-base md:leading-8">
+                      Chosen partner for Indonesia Ministry of Health BA/BE Project.
+                    </p>
 
-                    <div className="mt-3 rounded-[22px] bg-white p-4">
-                      <p className="text-xs font-black uppercase tracking-[0.14em] text-[#039147]">
+                    <div className="mt-7 rounded-[24px] bg-white p-6 text-black shadow-xl">
+                      <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                         Project Relevance
                       </p>
-                      <p className="mt-2 text-sm font-bold leading-6 text-black/62">
-                        Supporting credible healthcare product development through reliable
-                        study execution and accountable documentation.
+                      <p className="mt-3 text-sm font-bold leading-7 text-black/72">
+                        Bioequivalence studies supporting the transition from imported to locally
+                        manufactured APIs for Azithromycin and Bisoprolol products.
                       </p>
                     </div>
-                  </div>
+                  </article>
+
+                  <article className="absolute inset-0 flex animate-[pmlProjectSlideTwo_12s_ease-in-out_infinite] flex-col justify-center rounded-[34px] border border-white/18 bg-white/14 p-7 opacity-0 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl md:p-9">
+                    <div className="inline-flex w-fit rounded-full bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#039147]">
+                      Case Highlight
+                    </div>
+
+                    <h3 className="mt-7 text-4xl font-black leading-tight tracking-[-0.05em] text-white md:text-5xl">
+                      Clinical Trial and Regulatory Management
+                    </h3>
+
+                    <p className="mt-5 max-w-xl text-sm font-semibold leading-7 text-white/86 md:text-base md:leading-8">
+                      Reliable partner for an innovator nephrology product.
+                    </p>
+
+                    <div className="mt-7 rounded-[24px] bg-white p-6 text-black shadow-xl">
+                      <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
+                        CT & Regulatory Management
+                      </p>
+                      <p className="mt-3 text-sm font-bold leading-7 text-black/72">
+                        PML supported the successful clinical development and regulatory approval
+                        of an innovative nephrology product through end-to-end research and
+                        regulatory services, including clinical trial management, regulatory
+                        coordination, and product registration support for innovative therapies.
+                      </p>
+                    </div>
+                  </article>
                 </div>
               </div>
             </div>
           </div>
+
+          <style>{`
+            @keyframes pmlProjectSlideOne {
+              0%, 42% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+              }
+              50%, 92% {
+                opacity: 0;
+                transform: translateX(-16px) scale(0.98);
+              }
+              100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+              }
+            }
+
+            @keyframes pmlProjectSlideTwo {
+              0%, 42% {
+                opacity: 0;
+                transform: translateX(16px) scale(0.98);
+              }
+              50%, 92% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+              }
+              100% {
+                opacity: 0;
+                transform: translateX(16px) scale(0.98);
+              }
+            }
+          `}</style>
         </div>
       </section>
+
 
       <section className="bg-[#f6faf7] py-16 md:py-28">
         <div className="pml-container">
