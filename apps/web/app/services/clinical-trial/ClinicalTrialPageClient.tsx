@@ -265,8 +265,9 @@ function ClientIcon({ index }: { index: number }) {
   if (index === 1) {
     return (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <rect x="5" y="4" width="14" height="16" rx="3" stroke="currentColor" strokeWidth="2" />
-        <path d="M9 8H15M9 12H15M10 16H14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <rect x="4" y="7" width="16" height="12" rx="3" stroke="currentColor" strokeWidth="2" />
+        <path d="M12 10V16M9 13H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M8 7V5.5C8 4.7 8.7 4 9.5 4H14.5C15.3 4 16 4.7 16 5.5V7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       </svg>
     );
   }
@@ -284,9 +285,11 @@ function ClientIcon({ index }: { index: number }) {
   if (index === 3) {
     return (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <path d="M7 11H17V20H7V11Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-        <path d="M9 11V8C9 6.3 10.3 5 12 5C13.7 5 15 6.3 15 8V11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <path d="M10 15H14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M7 4V11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M5 4V8C5 9.7 6.3 11 8 11C9.7 11 11 9.7 11 8V4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M8 11V20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M16 4V20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M16 4C18 5.2 19 7.2 19 10V12H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     );
   }
@@ -294,9 +297,10 @@ function ClientIcon({ index }: { index: number }) {
   if (index === 4) {
     return (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <path d="M7 4H17L19 9C19 12.9 15.9 16 12 16C8.1 16 5 12.9 5 9L7 4Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-        <path d="M9 20H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <path d="M12 16V20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M9 10H15V20H9V10Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        <path d="M10 10V7.5L12 4L14 7.5V10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M9 14H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M17.5 6.5L18.5 8.5L20.5 9.5L18.5 10.5L17.5 12.5L16.5 10.5L14.5 9.5L16.5 8.5L17.5 6.5Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
       </svg>
     );
   }
