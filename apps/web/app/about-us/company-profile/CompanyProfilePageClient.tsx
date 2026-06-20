@@ -61,6 +61,8 @@ const industryCards = [
 ];
 
 const countries = [
+  "United States of America",
+  "South Korea",
   "Cambodia",
   "Hong Kong",
   "Indonesia",
@@ -149,6 +151,11 @@ const countryDetails = countries.map((country) => {
 
 const serviceEcosystem = [
   {
+    title: "Contract Analysis",
+    desc: "Analytical Development Center PML provides laboratory analysis support for product quality, safety, compliance, analytical method development, validation, and documentation needs.",
+    href: "/services/contract-analysis",
+  },
+  {
     title: "BA/BE Study",
     desc: "Bioavailability and bioequivalence study support from clinical conduct and bioanalysis to regulatory-ready reporting.",
     href: "/services/babe-studies",
@@ -159,12 +166,7 @@ const serviceEcosystem = [
     href: "/services/clinical-trial",
   },
   {
-    title: "Contract Analysis",
-    desc: "Laboratory analysis support for product quality, safety, compliance, and documentation needs.",
-    href: "/services/contract-analysis",
-  },
-  {
-    title: "Regulatory Affairs Consultation",
+    title: "Regulatory Management",
     desc: "Regulatory strategy, submission preparation, product review, and post-market compliance support.",
     href: "/services/regulatory-consultation",
   },
