@@ -174,28 +174,20 @@ const serviceEcosystem = [
 
 const accreditations = [
   {
-    title: "Testing Laboratory – SNI ISO/IEC 17025:2017",
-    label: "Laboratory Accreditation",
-    desc: "Demonstrates our commitment to technical competence, quality, and reliable testing results.",
-    icon: "lab",
+    title: "Malaysian NPRA",
+    desc: "PML is listed under the Bioequivalence Centre Compliance Programme of the National Pharmaceutical Regulatory Agency (NPRA), Ministry of Health Malaysia.",
   },
   {
     title: "Kemenkes (Ministry of Health of Republic of Indonesia)",
-    label: "Regulatory Inspection",
     desc: "Recommended by Kemenkes to conduct medical device studies.",
-    icon: "shield",
-  },
-  {
-    title: "Malaysian NPRA",
-    label: "International Recognition",
-    desc: "PML is listed under the Bioequivalence Centre Compliance Programme of the National Pharmaceutical Regulatory Agency (NPRA), Ministry of Health Malaysia.",
-    icon: "global",
   },
   {
     title: "Plenary Accreditation",
-    label: "Clinical Site Readiness",
     desc: "The highest level of certification awarded to primary clinics by Kemenkes. It proves that our clinic consistently complies with strict national health regulations.",
-    icon: "clinical",
+  },
+  {
+    title: "Testing Laboratory – SNI ISO/IEC 17025:2017",
+    desc: "Demonstrates our commitment to technical competence, quality, and reliable testing results.",
   },
 ];
 
