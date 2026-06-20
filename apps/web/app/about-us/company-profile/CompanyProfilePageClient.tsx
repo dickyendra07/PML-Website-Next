@@ -11,7 +11,7 @@ const corporateStats = [
     desc: "Long-term CRO experience for local and international sponsors.",
   },
   {
-    value: "6,000+",
+    value: "6000+",
     label: "Completed Projects",
     desc: "Completed projects across clinical, analytical, and regulatory service areas.",
   },
@@ -415,7 +415,7 @@ export default function CompanyProfilePage() {
                 </p>
 
                 <p>
-                  PML has completed more than 6,000 projects and continues to manage an active project
+                  PML has completed more than 6000+ projects and continues to manage an active project
                   pipeline with clients worldwide. Its expertise spans pharmaceuticals, biotechnology,
                   medical devices, food and beverage, cosmetics, and traditional medicines.
                 </p>

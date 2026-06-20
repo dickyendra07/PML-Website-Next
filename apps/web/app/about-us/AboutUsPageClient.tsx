@@ -522,7 +522,7 @@ export default function AboutUsPage() {
               </h2>
 
               <p className="mt-5 text-base leading-8 text-black/65">
-                PML aims to be recognized by local and international customers as a reliable
+                PML aims to be recognized by local and international sponsors as a reliable
                 CRO partner for pharmaceutical and healthcare development.
               </p>
             </article>
