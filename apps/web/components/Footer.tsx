@@ -38,6 +38,7 @@ const pageLinks = [
   { label: "Services", href: "/services" },
   { label: "Facilities", href: "/facilities" },
   { label: "Insight", href: "/insight" },
+  { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
 ];
 
