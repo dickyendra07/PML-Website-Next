@@ -815,13 +815,13 @@ export default function ClinicalTrialPage() {
           src="/images/pml/services/clinical-trial-proof.png"
           alt=""
           fill
-          className="object-cover opacity-24"
+          className="object-cover opacity-[0.18]"
         />
-        <div className="absolute inset-0 bg-white/72" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/96 via-white/84 to-[#039147]/12" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-white/92 to-[#eaf8f0]/78" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(3,145,71,0.10),transparent_28%),radial-gradient(circle_at_84%_18%,rgba(3,145,71,0.12),transparent_30%)]" />
 
         <svg
-          className="absolute right-[-120px] top-[-90px] h-[400px] w-[400px] text-[#039147]/10"
+          className="absolute right-[-130px] top-[-110px] h-[430px] w-[430px] text-[#039147]/10"
           viewBox="0 0 400 400"
           fill="none"
           aria-hidden="true"
@@ -829,37 +829,91 @@ export default function ClinicalTrialPage() {
           <path d="M200 20L356 110V290L200 380L44 290V110L200 20Z" stroke="currentColor" strokeWidth="4" />
         </svg>
 
+        <svg
+          className="absolute bottom-[-150px] left-[-110px] h-[360px] w-[360px] text-[#039147]/8"
+          viewBox="0 0 400 400"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path d="M200 28L348 114V286L200 372L52 286V114L200 28Z" stroke="currentColor" strokeWidth="4" />
+        </svg>
+
         <div className="pml-container relative">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-              Proof & Trust Signals
-            </p>
+          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div>
+              <p className="inline-flex rounded-full border border-[#039147]/12 bg-white/82 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#039147] shadow-sm backdrop-blur">
+                Proof & Trust Signals
+              </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
-              Local CRO support for Indonesia and multi-country clinical trials
-            </h2>
+              <h2 className="mt-6 max-w-3xl text-4xl font-black leading-[1.05] tracking-[-0.045em] text-black md:text-6xl">
+                Local CRO support for Indonesia and multi-country clinical trials
+              </h2>
 
-            <p className="mt-6 text-base leading-8 text-black/68">
-              PML has experience participating as the local CRO partner for Indonesia in
-              multi-country clinical trials led by global sponsors or global CROs, supporting
-              local execution while maintaining regulatory and GCP alignment.
-            </p>
-          </div>
+              <p className="mt-6 max-w-2xl text-base font-medium leading-8 text-black/62 md:text-lg">
+                PML has experience participating as the local CRO partner for Indonesia in
+                multi-country clinical trials led by global sponsors or global CROs, supporting
+                local execution while maintaining regulatory and GCP alignment.
+              </p>
 
-          <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-3">
-            {[
-              ["Local CRO", "Indonesia-based coordination for clinical research execution."],
-              ["GCP", "Study support aligned with Good Clinical Practice standards."],
-              ["Multi-country", "Experience supporting studies led by global sponsors and CROs."],
-            ].map(([title, desc]) => (
-              <div
-                key={title}
-                className="rounded-[30px] border border-black/5 bg-white/92 p-7 shadow-[0_18px_55px_rgba(0,0,0,0.07)] backdrop-blur transition hover:-translate-y-1 hover:border-[#039147]/20 hover:shadow-[0_26px_70px_rgba(3,145,71,0.12)]"
-              >
-                <p className="text-3xl font-black text-black md:text-4xl">{title}</p>
-                <p className="mt-4 text-sm font-bold leading-7 text-black/62">{desc}</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                {["Indonesia-based CRO", "GCP-aligned support", "Multi-country coordination"].map((label) => (
+                  <span
+                    key={label}
+                    className="rounded-full border border-[#039147]/12 bg-white/82 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-[#039147] shadow-sm backdrop-blur"
+                  >
+                    {label}
+                  </span>
+                ))}
               </div>
-            ))}
+            </div>
+
+            <div className="relative">
+              <div className="absolute -inset-5 rounded-[44px] bg-[#039147]/10 blur-3xl" />
+
+              <div className="relative overflow-hidden rounded-[38px] border border-white/80 bg-white/86 p-5 shadow-[0_34px_110px_rgba(3,145,71,0.16)] backdrop-blur-xl md:p-6">
+                <div className="rounded-[30px] border border-[#039147]/10 bg-[#f4fbf7] p-5 md:p-6">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
+                        Evidence profile
+                      </p>
+                      <h3 className="mt-2 text-2xl font-black leading-tight text-black md:text-3xl">
+                        Trusted execution signals for sponsors
+                      </h3>
+                    </div>
+
+                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-3xl bg-[#039147] text-white shadow-[0_20px_44px_rgba(3,145,71,0.28)]">
+                      <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 3L19 6V11C19 15.8 16 19.2 12 21C8 19.2 5 15.8 5 11V6L12 3Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+                        <path d="M9 12L11 14L15.5 9.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 grid gap-3">
+                    {[
+                      ["Local CRO", "Indonesia-based coordination for clinical research execution.", "01"],
+                      ["GCP", "Study support aligned with Good Clinical Practice standards.", "02"],
+                      ["Multi-country", "Experience supporting studies led by global sponsors and CROs.", "03"],
+                    ].map(([title, desc, number]) => (
+                      <div
+                        key={title}
+                        className="group flex items-start gap-4 rounded-[24px] border border-black/5 bg-white p-4 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-[#039147]/20 hover:shadow-[0_18px_55px_rgba(3,145,71,0.12)]"
+                      >
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#039147] text-xs font-black text-white shadow-[0_14px_30px_rgba(3,145,71,0.22)]">
+                          {number}
+                        </div>
+
+                        <div>
+                          <h4 className="text-xl font-black leading-tight text-black">{title}</h4>
+                          <p className="mt-2 text-sm font-semibold leading-7 text-black/58">{desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
