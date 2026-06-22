@@ -13,14 +13,15 @@ const heroSlides = [
 
 const scopeGroups = [
   {
-    title: "Analytical Testing",
+    title: "Analytical Development Center",
     icon: "lab",
+    featured: true,
     items: [
-      "Product quality testing",
-      "Assay and content analysis",
-      "Impurity and related substance testing",
-      "Method-based laboratory analysis",
-      "Stability and release testing support",
+      "Method Development: Trial, Verification and Validation",
+      "Pharmacopoeial and In-House Method Development & Implementation",
+      "Comparative Dissolution Testing",
+      "Stability Sample Storage in Qualified Stability Chambers",
+      "Analytical Method Transfer Support",
     ],
   },
   {
@@ -184,6 +185,29 @@ function Icon({ name }: { name: string }) {
     );
   }
 
+  if (name === "food") {
+    return (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M7 4V11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M5 4V8C5 9.7 6.3 11 8 11C9.7 11 11 9.7 11 8V4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M8 11V20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M16 4V20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M16 4C18 5.2 19 7.2 19 10V12H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  if (name === "cosmetic") {
+    return (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M9 10H15V20H9V10Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        <path d="M10 10V7.5L12 4L14 7.5V10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M9 14H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M17.5 5.5L18.5 7.5L20.5 8.5L18.5 9.5L17.5 11.5L16.5 9.5L14.5 8.5L16.5 7.5L17.5 5.5Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
   if (name === "sample") {
     return (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -249,21 +273,10 @@ function ClientIcon({ index }: { index: number }) {
   }
 
   if (index === 2) {
-    return (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <path d="M6 20V10L12 6L18 10V20" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-        <path d="M9 14H15M9 17H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      </svg>
-    );
+    return <Icon name="food" />;
   }
 
-  return (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-      <path d="M7 4H17L19 9C19 12.9 15.9 16 12 16C8.1 16 5 12.9 5 9L7 4Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-      <path d="M9 20H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M12 16V20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
+  return <Icon name="cosmetic" />;
 }
 
 export default function ContractAnalysisPage() {
@@ -420,21 +433,59 @@ export default function ContractAnalysisPage() {
 
           <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:mt-12 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3">
             {scopeGroups.map((group) => (
-              <article key={group.title} className="w-[78vw] max-w-[320px] shrink-0 snap-start rounded-[26px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:w-auto md:max-w-none md:rounded-[30px] md:p-7">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#039147]/10 bg-[#eaf8f0] text-[#039147] transition group-hover:scale-105">
-                  <Icon name={group.icon} />
+              <article
+                key={group.title}
+                className={`group relative w-[78vw] max-w-[340px] shrink-0 snap-start overflow-hidden rounded-[30px] border p-6 shadow-sm transition duration-300 hover:-translate-y-1 md:w-auto md:max-w-none md:rounded-[34px] md:p-8 ${
+                  group.featured
+                    ? "border-[#039147]/22 bg-white shadow-[0_34px_110px_rgba(3,145,71,0.18)] lg:col-span-3"
+                    : "border-black/5 bg-white/96 hover:border-[#039147]/18 hover:shadow-[0_24px_70px_rgba(3,145,71,0.12)]"
+                }`}
+              >
+                <div className="absolute -right-14 -top-14 h-32 w-32 rounded-full bg-[#eaf8f0] transition duration-500 group-hover:scale-125" />
+
+                <div className={`relative ${group.featured ? "grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center" : ""}`}>
+                  <div>
+                    <div className={`mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#039147]/10 transition group-hover:scale-105 ${
+                      group.featured
+                        ? "bg-[#039147] text-white shadow-[0_18px_42px_rgba(3,145,71,0.26)]"
+                        : "bg-[#eaf8f0] text-[#039147]"
+                    }`}>
+                      <Icon name={group.icon} />
+                    </div>
+
+                    {group.featured && (
+                      <p className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-[#039147]">
+                        Analytical Development Services
+                      </p>
+                    )}
+
+                    <h3 className={`text-xl font-black leading-tight text-black ${
+                      group.featured ? "md:text-4xl" : "md:text-2xl"
+                    }`}>
+                      {group.title}
+                    </h3>
+
+                    {group.featured && (
+                      <p className="mt-4 max-w-xl text-sm font-semibold leading-7 text-black/58">
+                        Dedicated analytical development support for method readiness, verification,
+                        validation, dissolution comparison, stability storage, and method transfer.
+                      </p>
+                    )}
+                  </div>
+
+                  <ul className={`space-y-3 ${
+                    group.featured
+                      ? "rounded-[28px] border border-[#039147]/10 bg-[#f4fbf7] p-5 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-3 md:space-y-0 md:p-6"
+                      : "mt-5 md:mt-6"
+                  }`}>
+                    {group.items.map((item) => (
+                      <li key={item} className="flex gap-3 text-sm font-bold leading-6 text-black/65">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#039147]" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-
-                <h3 className="text-lg font-black leading-tight text-black md:text-xl">{group.title}</h3>
-
-                <ul className="mt-4 space-y-2.5 md:mt-5 md:space-y-3">
-                  {group.items.map((item) => (
-                    <li key={item} className="flex gap-2 text-xs font-bold leading-5 text-black/65 md:gap-3 md:text-sm md:leading-6">
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#039147]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
               </article>
             ))}
           </div>
