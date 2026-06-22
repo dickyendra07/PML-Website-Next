@@ -119,15 +119,25 @@ const workflow = [
   "Study close-out, data management, analytical statistics, final report writing",
 ];
 
-const therapeuticAreas = [
-  "Acne",
-  "Oncology",
-  "Nutrition",
-  "Pediatrics",
-  "Nephrology",
-  "Orthopedics",
-  "Medical devices",
-  "Stem cells and derivatives",
+const coreTherapeuticAreas = [
+  { title: "Oncology", icon: "oncology" },
+  { title: "Nutrition", icon: "nutrition" },
+  { title: "Pediatrics", icon: "pediatrics" },
+  { title: "Medical Device", icon: "medical-device" },
+  { title: "Orthopedic", icon: "orthopedic" },
+  { title: "Stem Cell and Derivatives", icon: "stem-cell" },
+  { title: "Nephrology", icon: "nephrology" },
+];
+
+const extendedTherapeuticAreas = [
+  { title: "Cardiology", icon: "cardiology" },
+  { title: "Psychology", icon: "psychology" },
+  { title: "Respiratory", icon: "respiratory" },
+  { title: "Hormonal", icon: "hormonal" },
+  { title: "Endocrinology", icon: "endocrinology" },
+  { title: "Gastroenterology", icon: "gastroenterology" },
+  { title: "Immunomodulator", icon: "immunomodulator" },
+  { title: "Herbal / Standardized Herbal Medicine / Phytopharma", icon: "herbal" },
 ];
 
 const requirements = [
@@ -309,8 +319,136 @@ function ClientIcon({ index }: { index: number }) {
   return <ServiceIcon name="network" />;
 }
 
+
+function TherapeuticAreaIcon({ name }: { name: string }) {
+  if (name === "cardiology") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M12 20S5 15.8 5 9.5C5 6.8 7.1 5 9.4 5C10.7 5 11.7 5.6 12 6.3C12.3 5.6 13.3 5 14.6 5C16.9 5 19 6.8 19 9.5C19 15.8 12 20 12 20Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        <path d="M7 12H10L11 10L13 15L14.5 12H17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  if (name === "oncology") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="7" stroke="currentColor" strokeWidth="2" />
+        <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" />
+        <path d="M12 5V3M12 21V19M5 12H3M21 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "nutrition" || name === "herbal") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M6 13C6 8 10 5 18 5C18 13 15 18 10 18C7.6 18 6 16.1 6 13Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        <path d="M10 15C12 11.5 14 9.5 18 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M7 19C9 18.2 10.6 17.1 12 15.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "psychology") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M9 20V17H8C6.3 17 5 15.7 5 14V11C5 7.1 8.1 4 12 4C15.9 4 19 7.1 19 11C19 14 17.3 16.6 15 17.8V20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M9 11C9.8 10.2 10.7 10.2 11.5 11C12.3 10.2 13.2 10.2 14 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "pediatrics") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="2" />
+        <path d="M5 21C5.8 17.6 8.3 15.5 12 15.5C15.7 15.5 18.2 17.6 19 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M9.5 8.5H9.6M14.4 8.5H14.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "respiratory") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M12 4V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M12 12C10 10 7 9 5.5 11.5C4.2 13.7 4 17 4 20C7.5 20 10 18.5 10.5 15L12 12Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        <path d="M12 12C14 10 17 9 18.5 11.5C19.8 13.7 20 17 20 20C16.5 20 14 18.5 13.5 15L12 12Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  if (name === "medical-device") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <rect x="4" y="5" width="16" height="12" rx="3" stroke="currentColor" strokeWidth="2" />
+        <path d="M8 20H16M12 17V20M12 8V14M9 11H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "orthopedic") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M7.5 7.5L16.5 16.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M6.2 10C4.8 9.8 4 8.8 4 7.6C4 6.3 5 5.3 6.3 5.3C6.5 4 7.5 3.2 8.7 3.2C10 3.2 11 4.2 11 5.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M17.8 14C19.2 14.2 20 15.2 20 16.4C20 17.7 19 18.7 17.7 18.7C17.5 20 16.5 20.8 15.3 20.8C14 20.8 13 19.8 13 18.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  if (name === "stem-cell") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M7 4C12 4 12 20 17 20M17 4C12 4 12 20 7 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M8 8H16M8 12H16M8 16H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "hormonal" || name === "endocrinology") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M12 4C14.8 7.2 17 10.2 17 13.5C17 16.8 14.8 19 12 19C9.2 19 7 16.8 7 13.5C7 10.2 9.2 7.2 12 4Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        <path d="M9.5 14H14.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "gastroenterology") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M13 4C16 4.8 18 7 18 10C18 12.7 16.2 14 14 14H11.5C9.6 14 8 15.6 8 17.5C8 19 9 20 10.5 20C13.5 20 16 18 16 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M10 4C8 5.2 7 6.9 7 9C7 11 8.2 12.3 10 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "immunomodulator") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M12 3L19 6V11C19 15.8 16 19.2 12 21C8 19.2 5 15.8 5 11V6L12 3Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        <path d="M12 8V15M8.5 11.5H15.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "nephrology") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M9 5C6.5 5 5 7.3 5 10.5C5 15 7.2 19 10 19C12 19 12 16.5 12 14V10C12 7.2 11 5 9 5Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        <path d="M15 5C17.5 5 19 7.3 19 10.5C19 15 16.8 19 14 19C12 19 12 16.5 12 14" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  return <CheckIcon size={24} />;
+}
+
 export default function ClinicalTrialPage() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [activeTherapeuticTab, setActiveTherapeuticTab] = useState<"core" | "all">("core");
 
   const openProposal = () => {
     window.dispatchEvent(new CustomEvent("open-proposal-modal"));
@@ -599,15 +737,75 @@ export default function ClinicalTrialPage() {
             </p>
           </div>
 
-          <div className="mx-auto mt-10 flex max-w-5xl flex-wrap gap-3">
-            {therapeuticAreas.map((area) => (
-              <span
-                key={area}
-                className="rounded-full border border-[#039147]/15 bg-[#eaf8f0] px-5 py-2.5 text-sm font-extrabold text-[#039147]"
-              >
-                {area}
-              </span>
-            ))}
+          <div className="mt-12 w-full">
+            <div className="mx-auto flex w-fit rounded-full border border-[#039147]/12 bg-[#f4fbf7] p-1 shadow-sm">
+              {[
+                ["core", "Core Experiences"],
+                ["all", "All Study Areas"],
+              ].map(([value, label]) => {
+                const active = activeTherapeuticTab === value;
+
+                return (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={() => setActiveTherapeuticTab(value as "core" | "all")}
+                    className={`rounded-full px-5 py-2.5 text-xs font-black uppercase tracking-[0.12em] transition md:px-6 ${
+                      active
+                        ? "bg-[#039147] text-white shadow-[0_14px_30px_rgba(3,145,71,0.22)]"
+                        : "text-[#039147] hover:bg-white"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="mt-8 rounded-[36px] border border-black/5 bg-white p-4 shadow-[0_30px_90px_rgba(0,0,0,0.06)] md:p-6">
+              <div className="mb-6 flex flex-col gap-3 rounded-[28px] bg-[#f4fbf7] px-5 py-5 md:flex-row md:items-center md:justify-between md:px-6">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
+                    {activeTherapeuticTab === "core" ? "Highlighted capability" : "Extended capability"}
+                  </p>
+                  <h3 className="mt-2 text-xl font-black text-black md:text-2xl">
+                    {activeTherapeuticTab === "core"
+                      ? "PML core clinical trial experience areas"
+                      : "Additional clinical research study areas"}
+                  </h3>
+                </div>
+
+                <p className="max-w-xl text-sm font-medium leading-7 text-black/58">
+                  {activeTherapeuticTab === "core"
+                    ? "Key areas with stronger experience signals are presented first for clearer sponsor understanding."
+                    : "The complete list reflects therapeutic and product areas that may be discussed based on project needs."}
+                </p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
+                {(activeTherapeuticTab === "core" ? coreTherapeuticAreas : extendedTherapeuticAreas).map((area) => (
+                  <article
+                    key={area.title}
+                    className="group flex min-h-[104px] items-center gap-4 rounded-[26px] border border-black/5 bg-white p-4 text-left shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#039147]/20 hover:shadow-[0_20px_60px_rgba(3,145,71,0.12)]"
+                  >
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] transition duration-300 group-hover:bg-[#039147] group-hover:text-white group-hover:shadow-[0_16px_34px_rgba(3,145,71,0.22)]">
+                      <TherapeuticAreaIcon name={area.icon} />
+                    </div>
+
+                    <div className="min-w-0">
+                      <h4 className="text-base font-black leading-snug text-black">
+                        {area.title}
+                      </h4>
+                      {activeTherapeuticTab === "core" && (
+                        <p className="mt-2 text-[10px] font-black uppercase tracking-[0.13em] text-[#039147]">
+                          Core experience
+                        </p>
+                      )}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
