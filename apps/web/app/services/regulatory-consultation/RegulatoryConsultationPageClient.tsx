@@ -325,7 +325,7 @@ export default function RegulatoryConsultationPage() {
               Regulatory affairs support for BPOM registration and compliance
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-black/68 md:text-lg">
+            <p className="mt-6 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9 md:text-lg">
               PML supports pharmaceutical, biologics, advanced therapy, traditional and quasi-drug,
               and medical device registration through practical regulatory strategy,
               documentation review, and BPOM-focused compliance guidance.
@@ -335,14 +335,14 @@ export default function RegulatoryConsultationPage() {
               <button
                 type="button"
                 onClick={openProposal}
-                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
+                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-base font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
               >
                 Request a Proposal
               </button>
 
               <a
                 href="#regulatory-overview"
-                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-4 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
               >
                 Explore Service
               </a>
@@ -371,12 +371,12 @@ export default function RegulatoryConsultationPage() {
                 Service Overview
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Regulatory affairs expertise across multiple product categories
               </h2>
             </div>
 
-            <div className="space-y-5 text-base leading-8 text-black/65">
+            <div className="space-y-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9">
               <p>
                 PML’s Regulatory Affairs team supports companies with experience across
                 pharmaceutical products, biologics, advanced therapy products, traditional and
@@ -400,8 +400,8 @@ export default function RegulatoryConsultationPage() {
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147]">
                   <Icon name={benefit.icon} />
                 </div>
-                <h3 className="text-lg font-black leading-tight text-black">{benefit.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-black/60">{benefit.text}</p>
+                <h3 className="text-xl font-black leading-tight text-black">{benefit.title}</h3>
+                <p className="mt-4 text-base leading-7 text-black/60">{benefit.text}</p>
               </article>
             ))}
           </div>
@@ -415,11 +415,11 @@ export default function RegulatoryConsultationPage() {
               Scope of Service
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Support for BPOM registration, ACTD documents, and regulatory strategy
             </h2>
 
-            <p className="mt-6 text-base leading-7 text-black/65">
+            <p className="mt-6 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:text-lg">
               PML helps clients review registration pathways, identify dossier gaps, prepare
               ACTD-related documentation, assess study requirements, and align compliance needs
               with BPOM expectations.
@@ -433,11 +433,11 @@ export default function RegulatoryConsultationPage() {
                   <Icon name={group.icon} />
                 </div>
 
-                <h3 className="text-lg font-black leading-tight text-black md:text-xl">{group.title}</h3>
+                <h3 className="text-xl font-black leading-tight text-black md:text-xl">{group.title}</h3>
 
                 <ul className="mt-4 space-y-2.5 md:mt-5 md:space-y-3">
                   {group.items.map((item) => (
-                    <li key={item} className="flex gap-2 text-xs font-bold leading-5 text-black/65 md:gap-3 md:text-sm md:leading-6">
+                    <li key={item} className="flex gap-2 text-base font-bold leading-7 text-black/65 md:gap-3 md:text-base md:leading-7">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#039147]" />
                       {item}
                     </li>
@@ -467,7 +467,7 @@ export default function RegulatoryConsultationPage() {
               Target Client
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Built for local and overseas companies preparing Indonesian registration
             </h2>
 
@@ -507,17 +507,17 @@ export default function RegulatoryConsultationPage() {
                 Process / Workflow
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 From regulatory question to submission readiness plan
               </h2>
 
               <div className="mt-8 space-y-4">
                 {workflow.map((step, index) => (
                   <div key={step} className="flex gap-4 rounded-[24px] border border-black/5 bg-white p-5 shadow-sm">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#039147] text-sm font-black text-white">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#039147] text-base font-black text-white">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <p className="pt-2 text-sm font-bold leading-6 text-black/70">{step}</p>
+                    <p className="pt-2 text-base font-bold leading-7 text-black/70">{step}</p>
                   </div>
                 ))}
               </div>
@@ -562,11 +562,11 @@ export default function RegulatoryConsultationPage() {
               Proof & Trust Signals
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Regulatory affairs support backed by BPOM-focused execution
             </h2>
 
-            <p className="mt-6 text-base leading-8 text-black/68">
+            <p className="mt-6 text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9">
               PML combines regulatory affairs experience, BPOM requirement understanding,
               documentation support, and coordination with scientific CRO services to help
               clients prepare stronger registration strategies.
@@ -584,7 +584,7 @@ export default function RegulatoryConsultationPage() {
                 className="rounded-[30px] border border-black/5 bg-white/92 p-7 shadow-[0_18px_55px_rgba(0,0,0,0.07)] backdrop-blur transition hover:-translate-y-1 hover:border-[#039147]/20 hover:shadow-[0_26px_70px_rgba(3,145,71,0.12)]"
               >
                 <p className="text-3xl font-black text-black md:text-4xl">{title}</p>
-                <p className="mt-4 text-sm font-bold leading-7 text-black/62">{desc}</p>
+                <p className="mt-4 text-base font-bold leading-8 text-black/62">{desc}</p>
               </div>
             ))}
           </div>
@@ -599,11 +599,11 @@ export default function RegulatoryConsultationPage() {
                 Required Information
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 What we need to start BPOM registration discussion
               </h2>
 
-              <p className="mt-6 text-base leading-7 text-black/65">
+              <p className="mt-6 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:text-lg">
                 To provide relevant regulatory direction, clients can share product category,
                 registration objective, available dossier or technical documents, previous
                 approvals, and questions about BPOM pathway, local agent, or study requirements.
@@ -612,7 +612,7 @@ export default function RegulatoryConsultationPage() {
               <button
                 type="button"
                 onClick={openProposal}
-                className="mt-8 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)]"
+                className="mt-8 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-base font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)]"
               >
                 Discuss This Service
               </button>
@@ -624,7 +624,7 @@ export default function RegulatoryConsultationPage() {
                   <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-[#039147]">
                     <CheckIcon />
                   </span>
-                  <p className="text-sm font-bold leading-6 text-black/70">{item}</p>
+                  <p className="text-base font-bold leading-7 text-black/70">{item}</p>
                 </div>
               ))}
             </div>
@@ -639,7 +639,7 @@ export default function RegulatoryConsultationPage() {
               Regulatory FAQ
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Frequently asked questions
             </h2>
           </div>
@@ -647,13 +647,13 @@ export default function RegulatoryConsultationPage() {
           <div className="mx-auto mt-10 max-w-4xl space-y-4">
             {faqs.map((faq) => (
               <details key={faq.question} className="group rounded-[24px] border border-black/5 bg-white p-6 shadow-sm">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-black text-black">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-xl font-black text-black">
                   {faq.question}
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-[#039147] transition group-open:rotate-45">
                     +
                   </span>
                 </summary>
-                <p className="mt-4 text-sm leading-7 text-black/60">{faq.answer}</p>
+                <p className="mt-4 text-base leading-8 text-black/60">{faq.answer}</p>
               </details>
             ))}
           </div>
@@ -685,11 +685,11 @@ export default function RegulatoryConsultationPage() {
                 Start a Project
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Need BPOM regulatory management?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68">
+              <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9">
                 Share your product registration, documentation, local agent, or study requirement
                 questions with our team and we will help identify the right regulatory next steps.
               </p>
@@ -698,14 +698,14 @@ export default function RegulatoryConsultationPage() {
                 <button
                   type="button"
                   onClick={openProposal}
-                  className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-sm font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
+                  className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
                 >
                   Request a Proposal
                 </button>
 
                 <a
                   href="#regulatory-overview"
-                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
+                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
                 >
                   Review Regulatory Service
                 </a>

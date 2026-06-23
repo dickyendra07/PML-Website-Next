@@ -67,7 +67,7 @@ export default function HomepageFeatures() {
             </h2>
           </div>
 
-          <p className="max-w-xl text-sm leading-7 text-black/55">
+          <p className="max-w-xl text-base leading-8 text-black/60">
             This section is managed from the admin CMS and can be updated for homepage highlights, CTA campaigns, and selected resources.
           </p>
         </div>
@@ -98,7 +98,7 @@ export default function HomepageFeatures() {
                 </h3>
 
                 {item.description ? (
-                  <p className="mt-4 text-sm leading-7 text-black/60">
+                  <p className="mt-4 text-base leading-8 text-black/62">
                     {item.description}
                   </p>
                 ) : null}
@@ -106,7 +106,7 @@ export default function HomepageFeatures() {
                 {item.buttonLabel && item.buttonUrl ? (
                   <Link
                     href={item.buttonUrl}
-                    className="mt-auto inline-flex w-fit items-center gap-2 pt-7 text-sm font-extrabold text-[#039147]"
+                    className="mt-auto inline-flex w-fit items-center gap-2 pt-7 text-base font-extrabold text-[#039147]"
                   >
                     {item.buttonLabel}
                     <span className="transition group-hover:translate-x-1">→</span>

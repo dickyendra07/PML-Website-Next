@@ -143,11 +143,11 @@ export default function ExpertsAndTeamPage() {
                 Team Capability
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Experienced team for clinical, analytical, regulatory, and project workflows
               </h2>
 
-              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+              <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
                 PML’s team structure supports the complete project journey, from study discussion,
                 planning, clinical execution, analysis, documentation, reporting, and regulatory-oriented
                 preparation. This multidisciplinary capability helps sponsors work with clearer direction
@@ -161,7 +161,7 @@ export default function ExpertsAndTeamPage() {
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
                     ✓
                   </span>
-                  <p className="mt-3 text-xs font-bold leading-5 text-black/65 md:mt-4 md:text-sm md:leading-6">
+                  <p className="mt-3 text-base font-bold leading-7 text-black/65 md:mt-4 md:text-base md:leading-7">
                     {area}
                   </p>
                 </div>
@@ -178,11 +178,11 @@ export default function ExpertsAndTeamPage() {
               Our Experts
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Principal investigators and operational leaders
             </h2>
 
-            <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+            <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
               Meet selected experts and team leaders supporting PML’s clinical, analytical,
               and research service capability.
             </p>
@@ -216,7 +216,7 @@ export default function ExpertsAndTeamPage() {
                     {expert.name}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-7 text-black/60">
+                  <p className="mt-3 text-base leading-8 text-black/60">
                     {expert.focus}
                   </p>
                 </div>
@@ -238,11 +238,11 @@ export default function ExpertsAndTeamPage() {
                 Team Strength
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Built to support sponsors from planning to reporting
               </h2>
 
-              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+              <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
                 PML’s team capability is designed to support project clarity, operational reliability,
                 scientific credibility, and documentation readiness.
               </p>
@@ -254,10 +254,10 @@ export default function ExpertsAndTeamPage() {
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
                     ✓
                   </span>
-                  <h3 className="mt-3 text-sm font-black leading-tight text-black md:mt-4 md:text-base">
+                  <h3 className="mt-3 text-base font-black leading-tight text-black md:mt-4 md:text-lg">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-xs leading-5 text-black/55 md:text-sm md:leading-6">
+                  <p className="mt-3 text-sm leading-6 text-black/58 md:text-base md:leading-7">
                     {item.desc}
                   </p>
                 </div>
@@ -284,11 +284,11 @@ export default function ExpertsAndTeamPage() {
               Work With PML Experts
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Need clinical, analytical, regulatory, or project support?
             </h2>
 
-            <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-black/68 md:mt-6 md:text-base md:leading-8">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68 md:mt-6 md:text-lg md:leading-9">
               Share your project needs with PML and our team will help identify the right service
               scope, required information, and next steps.
             </p>

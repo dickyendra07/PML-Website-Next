@@ -525,7 +525,7 @@ export default function ClinicalTrialPage() {
 
               <a
                 href="#clinical-overview"
-                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-3.5 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white md:py-4"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-3.5 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white md:py-4"
               >
                 Explore Service
               </a>
@@ -556,12 +556,12 @@ export default function ClinicalTrialPage() {
                 Service Overview
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Clinical research support from planning to close-out
               </h2>
             </div>
 
-            <div className="space-y-5 text-sm leading-7 text-black/65 md:text-base md:leading-8">
+            <div className="space-y-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:text-base md:leading-8">
               <p>
                 PML provides clinical trial for sponsors that need reliable local
                 execution, regulatory coordination, and study management support in Indonesia.
@@ -588,8 +588,8 @@ export default function ClinicalTrialPage() {
                   <ServiceIcon name={benefit.icon} />
                 </div>
 
-                <h3 className="text-lg font-black leading-tight text-black">{benefit.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-black/60">{benefit.text}</p>
+                <h3 className="text-xl font-black leading-tight text-black">{benefit.title}</h3>
+                <p className="mt-4 text-base leading-7 text-black/60">{benefit.text}</p>
               </article>
             ))}
           </div>
@@ -607,11 +607,11 @@ export default function ClinicalTrialPage() {
               Scope of Service
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Complete clinical trial service coverage
             </h2>
 
-            <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base">
+            <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
               PML supports multiple areas of clinical research execution, from medical writing
               and site readiness to monitoring, regulatory coordination, data management, and
               statistical analysis.
@@ -628,11 +628,11 @@ export default function ClinicalTrialPage() {
                   <ServiceIcon name={group.icon} />
                 </div>
 
-                <h3 className="text-lg font-black leading-tight text-black md:text-xl">{group.title}</h3>
+                <h3 className="text-xl font-black leading-tight text-black md:text-xl">{group.title}</h3>
 
                 <ul className="mt-4 space-y-2.5 md:mt-5 md:space-y-3">
                   {group.items.map((item) => (
-                    <li key={item} className="flex gap-2 text-xs font-bold leading-5 text-black/65 md:gap-3 md:text-sm md:leading-6">
+                    <li key={item} className="flex gap-2 text-base font-bold leading-7 text-black/65 md:gap-3 md:text-base md:leading-7">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#039147]" />
                       {item}
                     </li>
@@ -655,11 +655,11 @@ export default function ClinicalTrialPage() {
               Target Client
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Built for sponsors that need reliable clinical research execution
             </h2>
 
-            <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-black/65">
+            <p className="mx-auto mt-6 max-w-3xl text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:text-lg">
               PML supports clinical research needs for pharmaceutical companies, medical device
               companies, biotechnology companies, food and beverage companies, cosmetic companies,
               and CRO partners from other regions or countries.
@@ -691,17 +691,17 @@ export default function ClinicalTrialPage() {
                 Process / Workflow
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 A structured workflow from study preparation to close-out
               </h2>
 
               <div className="mt-8 space-y-4">
                 {workflow.map((step, index) => (
                   <div key={step} className="flex gap-4 rounded-[24px] border border-black/5 bg-white p-5 shadow-sm">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#039147] text-sm font-black text-white">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#039147] text-base font-black text-white">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <p className="pt-2 text-sm font-bold leading-6 text-black/70">{step}</p>
+                    <p className="pt-2 text-base font-bold leading-7 text-black/70">{step}</p>
                   </div>
                 ))}
               </div>
@@ -727,11 +727,11 @@ export default function ClinicalTrialPage() {
               Therapeutic Areas
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Experience across multiple clinical research areas
             </h2>
 
-            <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base">
+            <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
               PML has experience supporting clinical trials and related clinical research
               activities across a wide range of therapeutic and product areas.
             </p>
@@ -775,7 +775,7 @@ export default function ClinicalTrialPage() {
                   </h3>
                 </div>
 
-                <p className="max-w-xl text-sm font-medium leading-7 text-black/58">
+                <p className="max-w-xl text-base font-medium leading-8 text-black/58">
                   {activeTherapeuticTab === "core"
                     ? "Key areas with stronger experience signals are presented first for clearer sponsor understanding."
                     : "The complete list reflects therapeutic and product areas that may be discussed based on project needs."}
@@ -906,7 +906,7 @@ export default function ClinicalTrialPage() {
 
                         <div>
                           <h4 className="text-xl font-black leading-tight text-black">{title}</h4>
-                          <p className="mt-2 text-sm font-semibold leading-7 text-black/58">{desc}</p>
+                          <p className="mt-2 text-base font-semibold leading-8 text-black/58">{desc}</p>
                         </div>
                       </div>
                     ))}
@@ -926,11 +926,11 @@ export default function ClinicalTrialPage() {
                 Required Information
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 What we need to start clinical trial discussion
               </h2>
 
-              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base">
+              <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
                 To prepare a relevant proposal or consultation, sponsors can share available
                 study, product, regulatory, timeline, and site-related information.
               </p>
@@ -938,7 +938,7 @@ export default function ClinicalTrialPage() {
               <button
                 type="button"
                 onClick={openProposal}
-                className="mt-8 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)]"
+                className="mt-8 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-base font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)]"
               >
                 Discuss This Service
               </button>
@@ -950,7 +950,7 @@ export default function ClinicalTrialPage() {
                   <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-[#039147]">
                     <CheckIcon />
                   </span>
-                  <p className="text-sm font-bold leading-6 text-black/70">{item}</p>
+                  <p className="text-base font-bold leading-7 text-black/70">{item}</p>
                 </div>
               ))}
             </div>
@@ -965,7 +965,7 @@ export default function ClinicalTrialPage() {
               Clinical Trial FAQ
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Frequently asked questions
             </h2>
           </div>
@@ -979,7 +979,7 @@ export default function ClinicalTrialPage() {
                     +
                   </span>
                 </summary>
-                <p className="mt-4 text-sm leading-7 text-black/60">{faq.answer}</p>
+                <p className="mt-4 text-base leading-8 text-black/60">{faq.answer}</p>
               </details>
             ))}
           </div>
@@ -1011,11 +1011,11 @@ export default function ClinicalTrialPage() {
                 Start a Project
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Need clinical trial support in Indonesia?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68">
+              <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9">
                 Share your clinical research requirements with our team and we will help identify
                 the right service scope, required information, and next steps.
               </p>
@@ -1024,14 +1024,14 @@ export default function ClinicalTrialPage() {
                 <button
                   type="button"
                   onClick={openProposal}
-                  className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-sm font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
+                  className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
                 >
                   Request a Proposal
                 </button>
 
                 <a
                   href="#clinical-overview"
-                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
+                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
                 >
                   Review Clinical Trial
                 </a>

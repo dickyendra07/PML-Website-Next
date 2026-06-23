@@ -334,7 +334,7 @@ export default function ContractAnalysisPage() {
               Reliable analytical testing for product quality and compliance
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-black/68 md:text-lg">
+            <p className="mt-6 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9 md:text-lg">
               PML supports pharmaceutical, biotechnology, food and beverage, and cosmetic companies
               with contract analysis services for product quality, safety, and regulatory compliance needs.
             </p>
@@ -343,14 +343,14 @@ export default function ContractAnalysisPage() {
               <button
                 type="button"
                 onClick={openProposal}
-                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
+                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-base font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
               >
                 Request a Proposal
               </button>
 
               <a
                 href="#contract-overview"
-                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-4 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
               >
                 Explore Service
               </a>
@@ -379,12 +379,12 @@ export default function ContractAnalysisPage() {
                 Service Overview
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Laboratory analysis support for multiple product categories
               </h2>
             </div>
 
-            <div className="space-y-5 text-base leading-8 text-black/65">
+            <div className="space-y-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9">
               <p>
                 PML provides contract analysis services for companies that need reliable
                 laboratory testing support for product quality, safety, and compliance needs.
@@ -406,8 +406,8 @@ export default function ContractAnalysisPage() {
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#039147]/10 bg-[#eaf8f0] text-[#039147] transition group-hover:scale-105">
                   <Icon name={benefit.icon} />
                 </div>
-                <h3 className="text-lg font-black leading-tight text-black">{benefit.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-black/60">{benefit.text}</p>
+                <h3 className="text-xl font-black leading-tight text-black">{benefit.title}</h3>
+                <p className="mt-4 text-base leading-7 text-black/60">{benefit.text}</p>
               </article>
             ))}
           </div>
@@ -421,11 +421,11 @@ export default function ContractAnalysisPage() {
               Scope of Service
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Contract analysis services for quality, safety, and documentation
             </h2>
 
-            <p className="mt-6 text-base leading-7 text-black/65">
+            <p className="mt-6 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:text-lg">
               PML supports selected analytical, microbiology, sample handling, documentation,
               and urgent analysis needs through a structured laboratory workflow.
             </p>
@@ -466,7 +466,7 @@ export default function ContractAnalysisPage() {
                     </h3>
 
                     {group.featured && (
-                      <p className="mt-4 max-w-xl text-sm font-semibold leading-7 text-black/58">
+                      <p className="mt-4 max-w-xl text-base font-semibold leading-8 text-black/58">
                         Dedicated analytical development support for method readiness, verification,
                         validation, dissolution comparison, stability storage, and method transfer.
                       </p>
@@ -479,7 +479,7 @@ export default function ContractAnalysisPage() {
                       : "mt-5 md:mt-6"
                   }`}>
                     {group.items.map((item) => (
-                      <li key={item} className="flex gap-3 text-sm font-bold leading-6 text-black/65">
+                      <li key={item} className="flex gap-3 text-base font-bold leading-7 text-black/65">
                         <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#039147]" />
                         <span>{item}</span>
                       </li>
@@ -499,11 +499,11 @@ export default function ContractAnalysisPage() {
               Target Client
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Built for companies that need reliable product testing support
             </h2>
 
-            <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-black/65">
+            <p className="mx-auto mt-6 max-w-3xl text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:text-lg">
               Contract Analysis services are relevant for companies that need product quality,
               safety, compliance, or laboratory testing support across multiple product categories.
             </p>
@@ -515,7 +515,7 @@ export default function ContractAnalysisPage() {
                 <div className="mx-auto mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] transition group-hover:bg-[#eaf8f0] group-hover:text-[#039147] md:mb-5 md:h-14 md:w-14">
                   <ClientIcon index={index} />
                 </div>
-                <h3 className="text-xs font-black leading-tight text-black md:text-base">{client}</h3>
+                <h3 className="text-sm font-black leading-tight text-black md:text-lg">{client}</h3>
               </article>
             ))}
           </div>
@@ -530,17 +530,17 @@ export default function ContractAnalysisPage() {
                 Process / Workflow
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 From sample inquiry to laboratory report
               </h2>
 
               <div className="mt-8 space-y-4">
                 {workflow.map((step, index) => (
                   <div key={step} className="flex gap-4 rounded-[24px] border border-black/5 bg-white p-5 shadow-sm">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#039147] text-sm font-black text-white">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#039147] text-base font-black text-white">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <p className="pt-2 text-sm font-bold leading-6 text-black/70">{step}</p>
+                    <p className="pt-2 text-base font-bold leading-7 text-black/70">{step}</p>
                   </div>
                 ))}
               </div>
@@ -584,11 +584,11 @@ export default function ContractAnalysisPage() {
               Proof & Trust Signals
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Analytical support backed by laboratory capability and structured reporting
             </h2>
 
-            <p className="mt-6 text-base leading-8 text-black/68">
+            <p className="mt-6 text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9">
               PML supports clients with analytical testing workflows designed to help evaluate
               product quality, safety, documentation, and compliance-related requirements.
             </p>
@@ -605,7 +605,7 @@ export default function ContractAnalysisPage() {
                 className="rounded-[30px] border border-black/5 bg-white/92 p-7 shadow-[0_18px_55px_rgba(0,0,0,0.07)] backdrop-blur transition hover:-translate-y-1 hover:border-[#039147]/20 hover:shadow-[0_26px_70px_rgba(3,145,71,0.12)]"
               >
                 <p className="text-3xl font-black text-black md:text-4xl">{title}</p>
-                <p className="mt-4 text-sm font-bold leading-7 text-black/62">{desc}</p>
+                <p className="mt-4 text-base font-bold leading-8 text-black/62">{desc}</p>
               </div>
             ))}
           </div>
@@ -620,11 +620,11 @@ export default function ContractAnalysisPage() {
                 Required Information
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 What we need to start analysis discussion
               </h2>
 
-              <p className="mt-6 text-base leading-7 text-black/65">
+              <p className="mt-6 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:text-lg">
                 To prepare accurate testing support, clients can share sample, parameter,
                 timeline, and method-related information before requesting a proposal.
               </p>
@@ -632,7 +632,7 @@ export default function ContractAnalysisPage() {
               <button
                 type="button"
                 onClick={openProposal}
-                className="mt-8 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)]"
+                className="mt-8 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-base font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)]"
               >
                 Discuss This Service
               </button>
@@ -644,7 +644,7 @@ export default function ContractAnalysisPage() {
                   <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-[#039147]">
                     <CheckIcon />
                   </span>
-                  <p className="text-sm font-bold leading-6 text-black/70">{item}</p>
+                  <p className="text-base font-bold leading-7 text-black/70">{item}</p>
                 </div>
               ))}
             </div>
@@ -659,7 +659,7 @@ export default function ContractAnalysisPage() {
               Contract Analysis FAQ
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Frequently asked questions
             </h2>
           </div>
@@ -667,13 +667,13 @@ export default function ContractAnalysisPage() {
           <div className="mx-auto mt-10 max-w-4xl space-y-4">
             {faqs.map((faq) => (
               <details key={faq.question} className="group rounded-[24px] border border-black/5 bg-white p-6 shadow-sm">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-black text-black">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-xl font-black text-black">
                   {faq.question}
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-[#039147] transition group-open:rotate-45">
                     +
                   </span>
                 </summary>
-                <p className="mt-4 text-sm leading-7 text-black/60">{faq.answer}</p>
+                <p className="mt-4 text-base leading-8 text-black/60">{faq.answer}</p>
               </details>
             ))}
           </div>
@@ -705,11 +705,11 @@ export default function ContractAnalysisPage() {
                 Start a Project
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Need contract analysis support?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68">
+              <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9">
                 Share your sample and testing requirements with our team and we will help identify
                 the right service scope, required information, and next steps.
               </p>
@@ -718,14 +718,14 @@ export default function ContractAnalysisPage() {
                 <button
                   type="button"
                   onClick={openProposal}
-                  className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-sm font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
+                  className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
                 >
                   Request a Proposal
                 </button>
 
                 <a
                   href="#contract-overview"
-                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
+                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
                 >
                   Review Contract Analysis
                 </a>

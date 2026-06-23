@@ -41,7 +41,7 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              <p className="flex-1 text-sm leading-7 text-black/65 md:text-base md:leading-8">
+              <p className="flex-1 text-base leading-8 text-black/65 md:text-lg md:leading-9">
                 “{quote}”
               </p>
 
@@ -51,8 +51,8 @@ export default function Testimonials() {
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-black leading-tight text-black">{name}</h3>
-                  <p className="mt-1 text-xs font-bold leading-tight text-black/45">{role}</p>
+                  <h3 className="text-base font-black leading-tight text-black">{name}</h3>
+                  <p className="mt-1 text-sm font-bold leading-tight text-black/48">{role}</p>
                 </div>
               </div>
             </article>

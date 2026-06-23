@@ -166,21 +166,21 @@ export default function ContactPageClient() {
               We are here for you, reach us for any enquiries
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-black/68 md:text-lg">
+            <p className="mt-6 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9 md:text-lg">
               Let’s talk about your project. Share your inquiry and the PML team will help identify the right service, required information, and next steps.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#contact-form"
-                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-xl"
+                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-base font-extrabold text-[#039147] shadow-xl"
               >
                 Send an Inquiry
               </a>
 
               <a
                 href={phoneHref}
-                className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white/85 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white/85 px-7 py-4 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
               >
                 Call PML
               </a>
@@ -196,11 +196,11 @@ export default function ContactPageClient() {
               Get in Touch
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Complete the details below and our team will follow up
             </h2>
 
-            <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+            <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
               Please share your name, contact details, service interest, and message. Your inquiry will be submitted directly to the PML backend system.
             </p>
 
@@ -215,11 +215,11 @@ export default function ContactPageClient() {
                     <h3 className="text-sm font-black uppercase tracking-[0.12em] text-black/45">
                       {card.title}
                     </h3>
-                    <p className="mt-2 text-sm font-bold leading-6 text-black/70 md:leading-7">
+                    <p className="mt-2 text-base font-bold leading-7 text-black/70 md:leading-7">
                       {card.value}
                     </p>
                     {card.secondValue ? (
-                      <p className="mt-1 text-sm font-bold leading-6 text-black/70 md:leading-7">
+                      <p className="mt-1 text-base font-bold leading-7 text-black/70 md:leading-7">
                         {card.secondValue}
                       </p>
                     ) : null}
@@ -311,7 +311,7 @@ export default function ContactPageClient() {
             <button
               type="submit"
               disabled={submitStatus === "loading"}
-              className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 md:w-auto"
+              className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 md:w-auto"
             >
               {submitStatus === "loading" ? "Sending..." : "Send Inquiry"}
             </button>
@@ -331,11 +331,11 @@ export default function ContactPageClient() {
                 Location Map
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Visit Pharma Metric Labs office
               </h2>
 
-              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+              <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
                 PML is located at the address listed in the contact information. Use the map to find the office location and plan your visit.
               </p>
 
@@ -344,14 +344,14 @@ export default function ContactPageClient() {
                   href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-base font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5"
                 >
                   Open in Google Maps
                 </a>
 
                 <a
                   href={phoneHref}
-                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-7 py-4 text-sm font-extrabold text-[#039147] transition hover:bg-[#039147] hover:text-[#039147]"
+                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-7 py-4 text-base font-extrabold text-[#039147] transition hover:bg-[#039147] hover:text-[#039147]"
                 >
                   Call Before Visit
                 </a>
@@ -389,7 +389,7 @@ export default function ContactPageClient() {
                 Business Opportunity
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl text-black">
+              <h2 className="mt-4 text-4xl font-black leading-tight md:text-[52px] text-black">
                 Looking for business opportunity?
               </h2>
 
@@ -399,7 +399,7 @@ export default function ContactPageClient() {
 
               <a
                 href={`mailto:${primaryEmail}`}
-                className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
+                className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-base font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
               >
                 Email PML
               </a>

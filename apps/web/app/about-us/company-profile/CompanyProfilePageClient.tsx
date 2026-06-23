@@ -397,11 +397,11 @@ export default function CompanyProfilePage() {
                 About PML
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 High-quality research solutions aligned with international standards
               </h2>
 
-              <div className="mt-5 space-y-4 text-sm leading-7 text-black/65 md:mt-6 md:space-y-5 md:text-base md:leading-8">
+              <div className="mt-5 space-y-4 text-base leading-8 text-black/65 md:mt-6 md:space-y-5 md:text-base md:leading-8">
                 <p>
                   Since its establishment in 2005, PML has delivered research services that support
                   pharmaceutical and healthcare development. The company combines scientific discipline,
@@ -434,7 +434,7 @@ export default function CompanyProfilePage() {
                 <p className="mt-2 text-xs font-black uppercase tracking-[0.10em] text-black/40">
                   {item.label}
                 </p>
-                <p className="mt-3 text-xs font-bold leading-5 text-black/55 md:text-sm md:leading-6">
+                <p className="mt-3 text-base font-bold leading-7 text-black/58 md:text-[17px] md:leading-8">
                   {item.desc}
                 </p>
               </div>
@@ -454,12 +454,12 @@ export default function CompanyProfilePage() {
                 Industries Served
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight tracking-[-0.04em] text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight tracking-[-0.04em] text-black md:text-[52px]">
                 Supporting regulated industries with CRO and laboratory capability
               </h2>
             </div>
 
-            <p className="max-w-xl text-sm leading-7 text-black/60 md:text-base md:leading-8">
+            <p className="max-w-xl text-base leading-8 text-black/60 md:text-base md:leading-8">
               PML supports organizations that need research, testing, regulatory, and documentation
               support across science-driven product categories.
             </p>
@@ -483,7 +483,7 @@ export default function CompanyProfilePage() {
                     {industry.title}
                   </h3>
 
-                  <p className="mt-3 text-sm font-medium leading-7 text-black/58">
+                  <p className="mt-3 text-base font-medium leading-8 text-black/58">
                     {industry.desc}
                   </p>
 
@@ -505,11 +505,11 @@ export default function CompanyProfilePage() {
               Services Ecosystem
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Driving progress through integrated service excellence
             </h2>
 
-            <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+            <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
               PML connects clinical, laboratory, and regulatory capabilities to support project
               delivery from early discussion through execution and reporting.
             </p>
@@ -526,11 +526,11 @@ export default function CompanyProfilePage() {
                   ✓
                 </div>
 
-                <h3 className="text-lg font-black leading-tight text-black">
+                <h3 className="text-xl font-black leading-tight text-black">
                   {service.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-6 text-black/60">
+                <p className="mt-4 text-base leading-7 text-black/60">
                   {service.desc}
                 </p>
 
@@ -558,11 +558,11 @@ export default function CompanyProfilePage() {
                 Regulatory Acceptance
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Study reports accepted across multiple regulatory bodies
               </h2>
 
-              <p className="mt-5 max-w-2xl text-sm leading-7 text-black/62 md:mt-6 md:text-base md:leading-8">
+              <p className="mt-5 max-w-2xl text-base leading-8 text-black/62 md:mt-6 md:text-lg md:leading-9">
                 PML’s study reports have supported submissions across multiple global regulatory
                 bodies, strengthening its position as a trusted CRO partner for local and
                 international sponsors.
@@ -658,11 +658,11 @@ export default function CompanyProfilePage() {
                 Accreditations & Recognitions
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight tracking-[-0.04em] text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight tracking-[-0.04em] text-black md:text-[52px]">
                 Quality credentials that strengthen clinical and laboratory trust
               </h2>
 
-              <p className="mt-5 max-w-2xl text-sm leading-7 text-black/62 md:mt-6 md:text-base md:leading-8">
+              <p className="mt-5 max-w-2xl text-base leading-8 text-black/62 md:mt-6 md:text-lg md:leading-9">
                 PML’s accreditation and inspection records help demonstrate study readiness,
                 laboratory reliability, and regulatory confidence across clinical and analytical
                 project delivery.
@@ -715,7 +715,7 @@ export default function CompanyProfilePage() {
                       {item.title}
                     </h3>
 
-                    <p className="mt-3 text-sm font-medium leading-7 text-black/58">
+                    <p className="mt-3 text-base font-medium leading-8 text-black/58">
                       {item.desc}
                     </p>
                   </div>
@@ -741,11 +741,11 @@ export default function CompanyProfilePage() {
                   </span>
                 </div>
 
-                <h2 className="mt-6 max-w-3xl text-3xl font-black leading-tight tracking-[-0.04em] text-black md:text-5xl">
+                <h2 className="mt-6 max-w-3xl text-4xl font-black leading-tight tracking-[-0.04em] text-black md:text-[52px]">
                   Chosen partner for Indonesia Ministry of Health BA/BE Project
                 </h2>
 
-                <p className="mt-5 max-w-2xl text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+                <p className="mt-5 max-w-2xl text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
                   PML has been trusted to perform bioequivalence studies supporting the transition
                   from imported to locally manufactured active pharmaceutical ingredients (APIs)
                   for Azithromycin and Bisoprolol products.
@@ -759,7 +759,7 @@ export default function CompanyProfilePage() {
                   ].map(([title, desc]) => (
                     <div key={title} className="rounded-[22px] border border-black/5 bg-white p-4 shadow-sm">
                       <p className="text-lg font-black text-[#039147]">{title}</p>
-                      <p className="mt-2 text-xs font-bold leading-5 text-black/55">{desc}</p>
+                      <p className="mt-3 text-base font-bold leading-7 text-black/58">{desc}</p>
                     </div>
                   ))}
                 </div>
@@ -785,7 +785,7 @@ export default function CompanyProfilePage() {
                       BA/BE
                     </h3>
 
-                    <p className="mt-5 max-w-xl text-sm font-semibold leading-7 text-white/86 md:text-base md:leading-8">
+                    <p className="mt-5 max-w-xl text-base font-semibold leading-8 text-white/86 md:text-lg md:leading-9">
                       Chosen partner for Indonesia Ministry of Health BA/BE Project.
                     </p>
 
@@ -793,7 +793,7 @@ export default function CompanyProfilePage() {
                       <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                         Project Relevance
                       </p>
-                      <p className="mt-3 text-sm font-bold leading-7 text-black/72">
+                      <p className="mt-3 text-base font-bold leading-8 text-black/72">
                         Bioequivalence studies supporting the transition from imported to locally
                         manufactured APIs for Azithromycin and Bisoprolol products.
                       </p>
@@ -809,7 +809,7 @@ export default function CompanyProfilePage() {
                       Clinical Trial and Regulatory Management
                     </h3>
 
-                    <p className="mt-5 max-w-xl text-sm font-semibold leading-7 text-white/86 md:text-base md:leading-8">
+                    <p className="mt-5 max-w-xl text-base font-semibold leading-8 text-white/86 md:text-lg md:leading-9">
                       Reliable partner for an innovator nephrology product.
                     </p>
 
@@ -817,7 +817,7 @@ export default function CompanyProfilePage() {
                       <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                         CT & Regulatory Management
                       </p>
-                      <p className="mt-3 text-sm font-bold leading-7 text-black/72">
+                      <p className="mt-3 text-base font-bold leading-8 text-black/72">
                         PML supported the successful clinical development and regulatory approval
                         of an innovative nephrology product through end-to-end research and
                         regulatory services, including clinical trial management, regulatory
@@ -873,11 +873,11 @@ export default function CompanyProfilePage() {
                 Company Contact
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Reach Pharma Metric Labs for company, service, and project discussions
               </h2>
 
-              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+              <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
                 Use the official company contact information below for catalogue requests,
                 project discussions, proposal inquiries, or service clarification.
               </p>
@@ -905,7 +905,7 @@ export default function CompanyProfilePage() {
                   <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#039147]">
                     {item.title}
                   </p>
-                  <p className="mt-3 text-sm font-bold leading-7 text-black/70">
+                  <p className="mt-3 text-base font-bold leading-8 text-black/70">
                     {item.value}
                   </p>
                 </div>
@@ -933,7 +933,7 @@ export default function CompanyProfilePage() {
                 Company Materials
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Need the latest official company profile or service catalogue?
               </h2>
 

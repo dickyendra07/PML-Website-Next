@@ -71,7 +71,7 @@ export default function CTACard({
               {title}
             </h2>
 
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68">
+            <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9">
               {description}
             </p>
 
@@ -79,14 +79,14 @@ export default function CTACard({
               <button
                 type="button"
                 onClick={openProposal}
-                className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-sm font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
+                className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
               >
                 {primaryLabel}
               </button>
 
               <Link
                 href={secondaryHref}
-                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
               >
                 {secondaryLabel}
               </Link>

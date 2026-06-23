@@ -257,14 +257,14 @@ export default function BabeStudiesPage() {
               <button
                 type="button"
                 onClick={openProposal}
-                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)] transition hover:-translate-y-0.5 md:py-4"
+                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-base font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)] transition hover:-translate-y-0.5 md:py-4"
               >
                 Request a Proposal
               </button>
 
               <a
                 href="#babe-overview"
-                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-3.5 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white md:py-4"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-3.5 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white md:py-4"
               >
                 Explore Service
               </a>
@@ -292,12 +292,12 @@ export default function BabeStudiesPage() {
                 Service Overview
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Integrated BA/BE study services in one place
               </h2>
             </div>
 
-            <div className="space-y-4 text-sm leading-7 text-black/65 md:space-y-5 md:text-base md:leading-8">
+            <div className="space-y-4 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:space-y-5 md:text-base md:leading-8">
               <p>
                 PML provides end-to-end BA/BE study support for pharmaceutical companies and generic
                 manufacturers that need reliable study execution and regulatory-ready documentation.
@@ -323,7 +323,7 @@ export default function BabeStudiesPage() {
                 <h3 className="text-base font-black leading-tight text-black md:text-lg">
                   {benefit.title}
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-black/60">{benefit.text}</p>
+                <p className="mt-4 text-base leading-7 text-black/60">{benefit.text}</p>
               </article>
             ))}
           </div>
@@ -354,11 +354,11 @@ export default function BabeStudiesPage() {
                 Scope of Service
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 From clinical conduct to bioanalytical reporting
               </h2>
 
-              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base">
+              <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
                 BA/BE study require coordinated clinical activity, reliable sample handling,
                 robust bioanalysis, and complete documentation.
               </p>
@@ -372,7 +372,7 @@ export default function BabeStudiesPage() {
                     <span className="mb-3 flex h-6 w-6 items-center justify-center rounded-full bg-[#eaf8f0] text-[#039147]">
                       <CheckIcon />
                     </span>
-                    <p className="text-xs font-bold leading-5 text-black/70 md:text-sm md:leading-6">
+                    <p className="text-base font-bold leading-7 text-black/70 md:text-base md:leading-7">
                       {item}
                     </p>
                   </div>
@@ -392,11 +392,11 @@ export default function BabeStudiesPage() {
                 Target Client
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Built for pharmaceutical sponsors and generic manufacturers
               </h2>
 
-              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base">
+              <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
                 BA/BE study is most relevant for companies preparing evidence for product registration,
                 generic drug development, regulatory submission, or equivalence evaluation.
               </p>
@@ -410,8 +410,8 @@ export default function BabeStudiesPage() {
                     index === 2 ? "md:col-span-2" : ""
                   }`}
                 >
-                  <h3 className="text-lg font-black text-black md:text-xl">{client.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-black/60">{client.text}</p>
+                  <h3 className="text-xl font-black text-black md:text-xl">{client.title}</h3>
+                  <p className="mt-4 text-base leading-7 text-black/60">{client.text}</p>
                 </article>
               ))}
             </div>
@@ -451,7 +451,7 @@ export default function BabeStudiesPage() {
               Accepted BE reports across global regulatory bodies
             </h2>
 
-            <p className="mx-auto mt-6 max-w-3xl text-sm leading-7 text-black/64 md:text-base md:leading-8">
+            <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-black/64 md:text-lg md:leading-9">
               PML’s BE reports have supported client submissions across regional and international contexts,
               helping sponsors move forward with credible, regulatory-ready documentation.
             </p>
@@ -543,7 +543,7 @@ export default function BabeStudiesPage() {
               </div>
 
               <div className="p-3 pt-5">
-                <p className="text-sm leading-7 text-black/62">
+                <p className="text-base leading-8 text-black/62">
                   BE report acceptance experience in {activeCountry.name} supports PML’s positioning as a
                   CRO partner with regional and international regulatory readiness.
                 </p>
@@ -560,7 +560,7 @@ export default function BabeStudiesPage() {
             </aside>
           </div>
 
-          <div className="mx-auto mt-9 max-w-4xl rounded-[26px] border border-[#039147]/10 bg-white/80 px-6 py-5 text-center text-sm leading-7 text-black/58 shadow-sm backdrop-blur">
+          <div className="mx-auto mt-9 max-w-4xl rounded-[26px] border border-[#039147]/10 bg-white/80 px-6 py-5 text-center text-base leading-8 text-black/58 shadow-sm backdrop-blur">
             These trust signals are presented to strengthen confidence in PML’s BA/BE study capability,
             reporting experience, and regulatory submission support.
           </div>
@@ -575,7 +575,7 @@ export default function BabeStudiesPage() {
                 Process / Workflow
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 A clear workflow from discussion to report completion
               </h2>
 
@@ -588,7 +588,7 @@ export default function BabeStudiesPage() {
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-[#039147] text-xs font-black text-white md:h-10 md:w-10 md:text-sm">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <p className="pt-1 text-sm font-bold leading-6 text-black/70 md:pt-2">
+                    <p className="pt-1 text-base font-bold leading-7 text-black/70 md:pt-2">
                       {step}
                     </p>
                   </div>
@@ -617,11 +617,11 @@ export default function BabeStudiesPage() {
                 Required Information
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 What we need to start the discussion
               </h2>
 
-              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base">
+              <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
                 To prepare a better proposal or consultation, sponsors can share available product,
                 study, timeline, and regulatory information.
               </p>
@@ -629,7 +629,7 @@ export default function BabeStudiesPage() {
               <button
                 type="button"
                 onClick={openProposal}
-                className="mt-7 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-3.5 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] md:mt-8 md:py-4"
+                className="mt-7 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-3.5 text-base font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] md:mt-8 md:py-4"
               >
                 Discuss This Service
               </button>
@@ -644,7 +644,7 @@ export default function BabeStudiesPage() {
                   <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-[#039147]">
                     <CheckIcon />
                   </span>
-                  <p className="text-sm font-bold leading-6 text-black/70">{item}</p>
+                  <p className="text-base font-bold leading-7 text-black/70">{item}</p>
                 </div>
               ))}
             </div>
@@ -659,7 +659,7 @@ export default function BabeStudiesPage() {
               BA/BE FAQ
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Frequently asked questions
             </h2>
           </div>
@@ -676,7 +676,7 @@ export default function BabeStudiesPage() {
                     +
                   </span>
                 </summary>
-                <p className="mt-4 text-sm leading-7 text-black/60">{faq.answer}</p>
+                <p className="mt-4 text-base leading-8 text-black/60">{faq.answer}</p>
               </details>
             ))}
           </div>
@@ -714,11 +714,11 @@ export default function BabeStudiesPage() {
                 Start a Project
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight md:text-[52px]">
                 Need BA/BE study support?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-black/68 md:text-base md:leading-8">
+              <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9 md:text-lg md:leading-9">
                 Share your study requirements with our team and we will help identify the right service
                 scope, required information, and next steps.
               </p>
@@ -727,14 +727,14 @@ export default function BabeStudiesPage() {
                 <button
                   type="button"
                   onClick={openProposal}
-                  className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5 md:py-4"
+                  className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-base font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5 md:py-4"
                 >
                   Request a Proposal
                 </button>
 
                 <a
                   href="#babe-overview"
-                  className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-3.5 text-sm font-extrabold text-white backdrop-blur transition hover:bg-[#039147] hover:text-white md:py-4"
+                  className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-3.5 text-base font-extrabold text-white backdrop-blur transition hover:bg-[#039147] hover:text-white md:py-4"
                 >
                   Review BA/BE Service
                 </a>

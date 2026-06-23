@@ -27,7 +27,7 @@ export default function OtherServices({
             Explore other CRO services from PML
           </h2>
 
-          <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-black/60 md:mt-6 md:text-base">
+          <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-black/62 md:mt-6 md:text-lg">
             Discover related services that can support your study, testing, regulatory,
             and pharmaceutical development needs.
           </p>
@@ -61,11 +61,11 @@ export default function OtherServices({
                   {service.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-6 text-black/60 md:mt-4 md:leading-7">
+                <p className="mt-4 text-base leading-7 text-black/62 md:leading-8">
                   {service.summary}
                 </p>
 
-                <span className="mt-auto inline-flex items-center pt-6 text-sm font-extrabold text-[#039147]">
+                <span className="mt-auto inline-flex items-center pt-6 text-base font-extrabold text-[#039147]">
                   Learn more
                   <span className="ml-2 transition group-hover:translate-x-1">→</span>
                 </span>

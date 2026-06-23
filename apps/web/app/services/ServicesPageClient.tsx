@@ -77,7 +77,7 @@ export default function ServicesPageClient() {
             <div className="mt-7 flex flex-col gap-3 sm:flex-row md:mt-8">
               <a
                 href="#services-list"
-                className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-3.5 text-sm font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c] md:py-4"
+                className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-3.5 text-base font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c] md:py-4"
               >
                 Explore Services
               </a>
@@ -85,7 +85,7 @@ export default function ServicesPageClient() {
               <button
                 type="button"
                 onClick={openProposal}
-                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/78 px-7 py-3.5 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white md:py-4"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/78 px-7 py-3.5 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white md:py-4"
               >
                 Request a Proposal
               </button>
@@ -101,11 +101,11 @@ export default function ServicesPageClient() {
               Service Overview
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Choose the service that fits your project needs
             </h2>
 
-            <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-black/65 md:mt-6 md:text-base">
+            <p className="mx-auto mt-5 max-w-3xl text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
               PML combines clinical, analytical, and regulatory capabilities to support study
               planning, reliable execution, laboratory analysis, and submission readiness.
             </p>
@@ -142,11 +142,11 @@ export default function ServicesPageClient() {
                     {service.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-6 text-black/60 md:mt-4 md:leading-7">
+                  <p className="mt-4 text-base leading-7 text-black/60 md:leading-8">
                     {service.summary}
                   </p>
 
-                  <span className="mt-auto inline-flex items-center pt-6 text-sm font-extrabold text-[#039147] md:pt-7">
+                  <span className="mt-auto inline-flex items-center pt-6 text-base font-extrabold text-[#039147] md:pt-7">
                     Learn more
                     <span className="ml-2 transition group-hover:translate-x-1" aria-hidden="true">→</span>
                   </span>
@@ -168,12 +168,12 @@ export default function ServicesPageClient() {
               src="/images/pml/services/contract-analysis-cta.png"
               alt=""
               fill
-              className="object-cover opacity-80"
+              className="object-cover opacity-[0.42]"
             />
 
-            <div className="absolute inset-0 bg-[#039147]/22" aria-hidden="true" />
-            <div className="absolute inset-0 bg-gradient-to-r from-white/82 via-white/46 to-[#039147]/24" aria-hidden="true" />
-            <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.10]" aria-hidden="true" />
+            <div className="absolute inset-0 bg-white/58" aria-hidden="true" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/72 to-[#eaf8f0]/48" aria-hidden="true" />
+            <div className="pml-hex-pattern-light absolute inset-0 opacity-[0.045]" aria-hidden="true" />
 
             <div className="relative mx-auto max-w-3xl">
               <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/25 bg-white/90 shadow-lg backdrop-blur md:mb-7 md:h-16 md:w-16">
@@ -186,15 +186,15 @@ export default function ServicesPageClient() {
                 />
               </div>
 
-              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-black/64 md:text-sm">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
                 Start a Project
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight tracking-[-0.04em] text-black md:text-[52px]">
                 Need support for your next project?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-black/68 md:text-base md:leading-8">
+              <p className="mx-auto mt-5 max-w-2xl text-[17px] font-medium leading-8 text-black/72 md:text-[19px] md:leading-9 md:text-[19px] md:leading-9">
                 Share your project needs with our team and we will help identify the right
                 service scope, required information, and next steps.
               </p>
@@ -203,14 +203,14 @@ export default function ServicesPageClient() {
                 <button
                   type="button"
                   onClick={openProposal}
-                  className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5 md:py-4"
+                  className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-3.5 text-base font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 hover:bg-[#027a3d] md:py-4"
                 >
                   Request a Proposal
                 </button>
 
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-3.5 text-sm font-extrabold text-white backdrop-blur transition hover:bg-[#039147] hover:text-white md:py-4"
+                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/18 bg-white px-8 py-3.5 text-base font-extrabold text-[#039147] shadow-sm transition hover:-translate-y-0.5 hover:border-[#039147] hover:bg-[#f4fbf7] md:py-4"
                 >
                   Contact PML
                 </Link>

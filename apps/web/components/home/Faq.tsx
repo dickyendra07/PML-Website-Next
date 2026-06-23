@@ -61,7 +61,7 @@ export default function Faq() {
                 </span>
               </summary>
 
-              <p className="mt-5 max-w-3xl text-sm leading-7 text-black/65 md:text-base">
+              <p className="mt-5 max-w-3xl text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:text-lg">
                 {answer}
               </p>
             </details>

@@ -154,30 +154,30 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
                 FAQ Center
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Answers to common sponsor questions
               </h2>
 
-              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+              <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
                 Use this section as a quick guide before contacting PML. More detailed answers can be discussed directly with the team.
               </p>
             </div>
 
             <div className="space-y-3 md:space-y-4">
               {status === "loading" ? (
-                <div className="rounded-[26px] border border-black/5 bg-[#f6faf7] p-6 text-sm font-bold text-black/45">
+                <div className="rounded-[26px] border border-black/5 bg-[#f6faf7] p-6 text-base font-bold text-black/48">
                   Loading FAQ from CMS...
                 </div>
               ) : null}
 
               {status === "error" ? (
-                <div className="rounded-[26px] border border-red-100 bg-red-50 p-6 text-sm font-bold text-red-700">
+                <div className="rounded-[26px] border border-red-100 bg-red-50 p-6 text-base font-bold text-red-700">
                   Unable to load FAQ. Please try again later.
                 </div>
               ) : null}
 
               {status === "success" && items.length === 0 ? (
-                <div className="rounded-[26px] border border-black/5 bg-[#f6faf7] p-6 text-sm font-bold text-black/45">
+                <div className="rounded-[26px] border border-black/5 bg-[#f6faf7] p-6 text-base font-bold text-black/48">
                   No FAQ available yet.
                 </div>
               ) : null}
@@ -193,7 +193,7 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
                       +
                     </span>
                   </summary>
-                  <p className="mt-4 text-sm leading-7 text-black/60">
+                  <p className="mt-4 text-base leading-8 text-black/60">
                     {faq.excerpt || faq.content || "Answer will be available soon."}
                   </p>
                 </details>
@@ -210,12 +210,12 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
                   {hero.eyebrow} Collection
                 </p>
 
-                <h2 className="mt-4 max-w-3xl text-3xl font-black leading-tight text-black md:text-5xl">
+                <h2 className="mt-4 max-w-3xl text-4xl font-black leading-tight text-black md:text-[52px]">
                   Latest {hero.eyebrow.toLowerCase()} from Pharma Metric Labs
                 </h2>
               </div>
 
-              <p className="max-w-xl text-sm leading-7 text-black/55">
+              <p className="max-w-xl text-base leading-8 text-black/55">
                 This section is connected to the CMS and can be updated from the admin panel.
               </p>
             </div>
@@ -294,11 +294,11 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
                 Start a Project
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl text-black">
+              <h2 className="mt-4 text-4xl font-black leading-tight md:text-[52px] text-black">
                 Need support for your next project?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/72 text-black/72 text-black/72">
+              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/72">
                 Share your study, testing, or regulatory needs with our team and we will help
                 identify the right service scope, required information, and next steps.
               </p>

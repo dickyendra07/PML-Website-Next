@@ -215,8 +215,8 @@ function HeroButton({
 }) {
   const className =
     variant === "white"
-      ? "inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
-      : "inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white";
+      ? "inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-base font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
+      : "inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-4 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white";
 
   if (href) {
     return (
@@ -230,6 +230,127 @@ function HeroButton({
     <button type="button" onClick={onClick} className={className}>
       {children}
     </button>
+  );
+}
+
+
+function AboutSectionIcon({ name }: { name: string }) {
+  const common = "currentColor";
+
+  if (name === "clinical") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M8 4H16V7H8V4Z" stroke={common} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M6 7H18V20H6V7Z" stroke={common} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M9 13H15M12 10V16" stroke={common} strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "lab") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M9 3H15" stroke={common} strokeWidth="2" strokeLinecap="round" />
+        <path d="M10 3V8L6 17.5C5.4 19 6.5 20.5 8.2 20.5H15.8C17.5 20.5 18.6 19 18 17.5L14 8V3" stroke={common} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M8.5 16H15.5" stroke={common} strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "regulatory") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M12 3L19 6V11C19 15.8 16 19.2 12 21C8 19.2 5 15.8 5 11V6L12 3Z" stroke={common} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M9 12L11 14L15.5 9.5" stroke={common} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  if (name === "project") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <circle cx="6" cy="7" r="2.2" stroke={common} strokeWidth="2" />
+        <circle cx="18" cy="7" r="2.2" stroke={common} strokeWidth="2" />
+        <circle cx="12" cy="17" r="2.2" stroke={common} strokeWidth="2" />
+        <path d="M8 8.5L10.8 15M16 8.5L13.2 15" stroke={common} strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "quality") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M7 3H14L18 7V21H7V3Z" stroke={common} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M14 3V7H18" stroke={common} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M9.5 14L11.3 15.8L15 12" stroke={common} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  if (name === "communication") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M5 6.5C5 5.1 6.1 4 7.5 4H16.5C17.9 4 19 5.1 19 6.5V13.5C19 14.9 17.9 16 16.5 16H10L6 20V16.2C5.4 15.8 5 15.2 5 14.5V6.5Z" stroke={common} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M8.5 8.5H15.5M8.5 12H13" stroke={common} strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "pharma") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M5 20V8L10 5L15 8V20" stroke={common} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M15 20V10H20V20" stroke={common} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M8 12H12M8 16H12M17 14H18" stroke={common} strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "globe") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="8.5" stroke={common} strokeWidth="2" />
+        <path d="M3.5 12H20.5" stroke={common} strokeWidth="2" strokeLinecap="round" />
+        <path d="M12 3.5C14.2 6 15.2 8.8 15.2 12C15.2 15.2 14.2 18 12 20.5C9.8 18 8.8 15.2 8.8 12C8.8 8.8 9.8 6 12 3.5Z" stroke={common} strokeWidth="2" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  if (name === "hospital") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M5 20V6H19V20" stroke={common} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M9 20V15H15V20" stroke={common} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M12 8V13M9.5 10.5H14.5" stroke={common} strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "research") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <circle cx="9" cy="9" r="3" stroke={common} strokeWidth="2" />
+        <path d="M11.2 11.2L18.5 18.5" stroke={common} strokeWidth="2" strokeLinecap="round" />
+        <path d="M15 18.5H20" stroke={common} strokeWidth="2" strokeLinecap="round" />
+        <path d="M18.5 15V20" stroke={common} strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "approval") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M7 3H14L18 7V21H7V3Z" stroke={common} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M14 3V7H18" stroke={common} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M9.5 15L11.5 17L15.5 12.5" stroke={common} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+      <path d="M5 12L10 17L20 7" stroke={common} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }
 
@@ -273,7 +394,7 @@ export default function AboutUsPage() {
               Indonesia-based CRO partner built for scientific excellence
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-black/68 md:text-lg">
+            <p className="mt-6 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9 md:text-lg">
               Pharma Metric Labs supports pharmaceutical and healthcare companies with BA/BE study,
               clinical trial, contract analysis, and regulatory management.
             </p>
@@ -310,7 +431,7 @@ export default function AboutUsPage() {
                 Scientific CRO support for reliable pharmaceutical development
               </h2>
 
-              <div className="mt-5 space-y-4 text-sm leading-7 text-black/65 md:mt-6 md:space-y-5 md:text-base md:leading-8">
+              <div className="mt-5 space-y-4 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:space-y-5 md:text-base md:leading-8">
                 <p>
                   Pharma Metric Labs is an Indonesia-based Contract Research Organization
                   supporting sponsors through integrated clinical, analytical, and regulatory
@@ -330,7 +451,7 @@ export default function AboutUsPage() {
                 <h3 className="text-2xl font-black">
                   Innovation, powered by scientific excellence.
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-white/82">
+                <p className="mt-4 text-[17px] leading-8 text-white/86">
                   The brand essence behind Pharma Metric Labs’ renewed identity and digital direction.
                 </p>
               </div>
@@ -359,11 +480,11 @@ export default function AboutUsPage() {
                 Experts & Team
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Multidisciplinary expertise across clinical, laboratory, regulatory, and project workflows
               </h2>
 
-              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+              <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
                 PML is supported by professionals with experience across clinical study operations,
                 bioanalysis, laboratory testing, regulatory affairs, documentation, and project
                 coordination. This multidisciplinary structure helps sponsors move from inquiry to
@@ -371,23 +492,60 @@ export default function AboutUsPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 md:gap-4">
+            <div className="grid gap-4 sm:grid-cols-2">
               {[
-                "Clinical operations team",
-                "Bioanalytical laboratory team",
-                "Regulatory affairs support",
-                "Project coordination team",
-                "Quality and documentation workflow",
-                "Sponsor communication support",
+                {
+                  title: "Clinical operations team",
+                  desc: "Study execution, site coordination, and clinical workflow support.",
+                  icon: "clinical",
+                },
+                {
+                  title: "Bioanalytical laboratory team",
+                  desc: "Laboratory capability for reliable analysis and scientific documentation.",
+                  icon: "lab",
+                },
+                {
+                  title: "Regulatory affairs support",
+                  desc: "Submission readiness, compliance alignment, and regulatory coordination.",
+                  icon: "regulatory",
+                },
+                {
+                  title: "Project coordination team",
+                  desc: "Cross-functional coordination to keep project delivery clear and responsive.",
+                  icon: "project",
+                },
+                {
+                  title: "Quality and documentation workflow",
+                  desc: "Traceable documentation standards for accountable project outcomes.",
+                  icon: "quality",
+                },
+                {
+                  title: "Sponsor communication support",
+                  desc: "Clear communication between sponsors, internal teams, and stakeholders.",
+                  icon: "communication",
+                },
               ].map((item) => (
-                <div key={item} className="rounded-[20px] border border-black/5 bg-white p-4 shadow-sm md:rounded-[24px] md:p-5">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
-                    ✓
-                  </span>
-                  <p className="mt-3 text-xs font-bold leading-5 text-black/65 md:mt-4 md:text-sm md:leading-6">
-                    {item}
-                  </p>
-                </div>
+                <article
+                  key={item.title}
+                  className="group relative overflow-hidden rounded-[28px] border border-black/5 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#039147]/20 hover:shadow-[0_24px_70px_rgba(3,145,71,0.12)]"
+                >
+                  <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#eaf8f0] transition duration-500 group-hover:scale-125 group-hover:bg-[#039147]/12" />
+
+                  <div className="relative flex items-start gap-4">
+                    <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] ring-1 ring-[#039147]/10 transition duration-300 group-hover:bg-[#039147] group-hover:text-white group-hover:shadow-[0_18px_44px_rgba(3,145,71,0.22)]">
+                      <AboutSectionIcon name={item.icon} />
+                    </span>
+
+                    <div>
+                      <h3 className="text-xl font-black leading-tight tracking-[-0.02em] text-black">
+                        {item.title}
+                      </h3>
+                      <p className="mt-3 text-base font-medium leading-7 text-black/62">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
@@ -401,11 +559,11 @@ export default function AboutUsPage() {
               History / Milestones
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               A growing CRO journey built through experience and accreditation
             </h2>
 
-            <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-black/65">
+            <p className="mx-auto mt-6 max-w-3xl text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:text-lg">
               From early bioequivalence projects to expanded facilities and national accreditation,
               PML continues to strengthen its capability for local and international sponsors.
             </p>
@@ -460,11 +618,11 @@ export default function AboutUsPage() {
                       {activeItem.year}
                     </p>
 
-                    <h3 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+                    <h3 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                       {activeItem.title}
                     </h3>
 
-                    <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+                    <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
                       {activeItem.text}
                     </p>
                   </div>
@@ -490,7 +648,7 @@ export default function AboutUsPage() {
               <button
                 type="button"
                 onClick={() => goTimeline(activeTimeline - 1)}
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white text-lg font-black text-black/45 transition hover:border-[#039147] hover:text-[#039147]"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white text-xl font-black text-black/45 transition hover:border-[#039147] hover:text-[#039147]"
                 aria-label="Previous milestone"
               >
                 ←
@@ -521,7 +679,7 @@ export default function AboutUsPage() {
                 To become a world-class Contract Research Organization
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-black/65">
+              <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9">
                 PML aims to be recognized by local and international sponsors as a reliable
                 CRO partner for pharmaceutical and healthcare development.
               </p>
@@ -532,11 +690,11 @@ export default function AboutUsPage() {
                   Mission
                 </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-white">
+              <h2 className="mt-4 text-4xl font-black leading-tight tracking-[-0.035em] text-white">
                 To ensure good quality healthcare products for the community
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-white/82">
+              <p className="mt-5 text-[17px] leading-8 text-white/86 md:text-lg md:leading-9">
                 PML supports this mission through scientific services, reliable data,
                 quality-focused workflows, and collaborative project execution.
               </p>
@@ -549,7 +707,7 @@ export default function AboutUsPage() {
                 Core Values
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Built on quality, collaboration, and scientific rigor
               </h2>
             </div>
@@ -561,11 +719,11 @@ export default function AboutUsPage() {
                     <Icon name={value.icon} />
                   </div>
 
-                  <h3 className="text-lg font-black leading-tight text-black">
+                  <h3 className="text-2xl font-black leading-tight tracking-[-0.025em] text-black">
                     {value.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-6 text-black/60">
+                  <p className="mt-4 text-[17px] leading-8 text-black/62">
                     {value.text}
                   </p>
                 </article>
@@ -604,11 +762,11 @@ export default function AboutUsPage() {
               Certifications / Compliance
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Accredited support for reliable study and laboratory services
             </h2>
 
-            <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-black/68">
+            <p className="mx-auto mt-6 max-w-3xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9">
               PML’s certification and accreditation records strengthen trust in its scientific,
               clinical, and laboratory service delivery.
             </p>
@@ -634,7 +792,7 @@ export default function AboutUsPage() {
                   <Icon name="shield" />
                 </div>
 
-                <h3 className="mt-4 text-lg font-black leading-tight text-black md:text-xl">
+                <h3 className="mt-4 text-2xl font-black leading-tight tracking-[-0.025em] text-black md:text-xl">
                   {item.title}
                 </h3>
 
@@ -652,34 +810,71 @@ export default function AboutUsPage() {
                 Clients & Network
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Supporting local and international sponsors through reliable collaboration
               </h2>
 
-              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+              <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
                 PML supports pharmaceutical companies, healthcare organizations, research partners,
                 hospitals, investigators, and overseas sponsors that require clinical, analytical,
                 regulatory, and documentation support in Indonesia.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 md:gap-4">
+            <div className="grid gap-4 sm:grid-cols-2">
               {[
-                "Local pharmaceutical companies",
-                "International sponsors",
-                "Hospital and investigator network",
-                "Healthcare and research partners",
-                "Regulatory and documentation teams",
-                "Clinical and laboratory collaborators",
+                {
+                  title: "Local pharmaceutical companies",
+                  desc: "Support for Indonesia-based sponsors preparing clinical, analytical, and regulatory needs.",
+                  icon: "pharma",
+                },
+                {
+                  title: "International sponsors",
+                  desc: "Collaboration support for overseas partners requiring local CRO execution in Indonesia.",
+                  icon: "globe",
+                },
+                {
+                  title: "Hospital and investigator network",
+                  desc: "Clinical coordination with healthcare sites, investigators, and operational stakeholders.",
+                  icon: "hospital",
+                },
+                {
+                  title: "Healthcare and research partners",
+                  desc: "Research collaboration across healthcare organizations, institutions, and study partners.",
+                  icon: "research",
+                },
+                {
+                  title: "Regulatory and documentation teams",
+                  desc: "Submission, compliance, and documentation support for project readiness.",
+                  icon: "approval",
+                },
+                {
+                  title: "Clinical and laboratory collaborators",
+                  desc: "Integrated collaboration between clinical operations and laboratory workflows.",
+                  icon: "lab",
+                },
               ].map((item) => (
-                <div key={item} className="rounded-[20px] border border-black/5 bg-[#f6faf7] p-4 shadow-sm md:rounded-[24px] md:p-5">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
-                    ✓
-                  </span>
-                  <p className="mt-3 text-xs font-bold leading-5 text-black/65 md:mt-4 md:text-sm md:leading-6">
-                    {item}
-                  </p>
-                </div>
+                <article
+                  key={item.title}
+                  className="group relative overflow-hidden rounded-[28px] border border-black/5 bg-[#f6faf7] p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#039147]/20 hover:bg-white hover:shadow-[0_24px_70px_rgba(3,145,71,0.12)]"
+                >
+                  <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-white transition duration-500 group-hover:scale-125 group-hover:bg-[#eaf8f0]" />
+
+                  <div className="relative flex items-start gap-4">
+                    <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-[#039147] ring-1 ring-[#039147]/10 transition duration-300 group-hover:bg-[#039147] group-hover:text-white group-hover:shadow-[0_18px_44px_rgba(3,145,71,0.22)]">
+                      <AboutSectionIcon name={item.icon} />
+                    </span>
+
+                    <div>
+                      <h3 className="text-xl font-black leading-tight tracking-[-0.02em] text-black">
+                        {item.title}
+                      </h3>
+                      <p className="mt-3 text-base font-medium leading-7 text-black/62">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
@@ -697,11 +892,11 @@ export default function AboutUsPage() {
                   Catalogue
                 </p>
 
-                <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+                <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                   Company materials and service references
                 </h2>
 
-                <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+                <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
                   This section is prepared for future company profile, service catalogue,
                   certificates, and downloadable business materials. For now, visitors can contact
                   PML directly to request the latest official documents.
@@ -709,7 +904,7 @@ export default function AboutUsPage() {
 
                 <Link
                   href="/contact"
-                  className="mt-7 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5"
+                  className="mt-7 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-base font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5"
                 >
                   Request Catalogue
                 </Link>
@@ -724,7 +919,7 @@ export default function AboutUsPage() {
                 ].map((item) => (
                   <div key={item} className="rounded-[22px] border border-black/5 bg-[#f6faf7] p-5 text-center shadow-sm md:rounded-[26px] md:p-6">
                     <p className="text-sm font-black leading-tight text-black">{item}</p>
-                    <p className="mt-2 text-xs font-bold text-black/45">Available by request</p>
+                    <p className="mt-2 text-sm font-bold text-black/48">Available by request</p>
                   </div>
                 ))}
               </div>
@@ -758,11 +953,11 @@ export default function AboutUsPage() {
                 Work with PML
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Ready to discuss your next project?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68">
+              <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9">
                 Share your study, testing, or regulatory needs with our team and we will help
                 identify the right service scope, required information, and next steps.
               </p>
@@ -771,14 +966,14 @@ export default function AboutUsPage() {
                 <button
                   type="button"
                   onClick={openProposal}
-                  className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-sm font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
+                  className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
                 >
                   Request a Proposal
                 </button>
 
                 <Link
                   href="/services"
-                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
+                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
                 >
                   Explore Services
                 </Link>

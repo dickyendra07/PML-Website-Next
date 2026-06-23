@@ -130,12 +130,12 @@ export default function CareersPage() {
               <h2 className="mt-3 text-2xl font-black leading-tight text-black">
                 Send your CV to PML Recruitment
               </h2>
-              <p className="mt-4 text-sm font-semibold leading-7 text-black/60">
+              <p className="mt-4 text-base font-semibold leading-8 text-black/62">
                 Candidates may send their CV and relevant supporting documents to the recruitment email below.
               </p>
               <a
                 href="mailto:recruitment@pharmametriclabs.com"
-                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#039147] px-6 py-4 text-sm font-black text-white shadow-[0_18px_44px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 hover:bg-[#027a3d]"
+                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#039147] px-6 py-4 text-base font-black text-white shadow-[0_18px_44px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 hover:bg-[#027a3d]"
               >
                 recruitment@pharmametriclabs.com
               </a>
@@ -150,7 +150,7 @@ export default function CareersPage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
               Why Work at PML
             </p>
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               A workplace for scientific growth and meaningful collaboration
             </h2>
             <p className="mt-6 text-base leading-8 text-black/62">
@@ -172,7 +172,7 @@ export default function CareersPage() {
                 <h3 className="relative mt-6 text-xl font-black leading-tight text-black">
                   {item.title}
                 </h3>
-                <p className="relative mt-4 text-sm font-medium leading-7 text-black/60">
+                <p className="relative mt-4 text-base font-medium leading-8 text-black/60">
                   {item.desc}
                 </p>
               </article>
@@ -188,7 +188,7 @@ export default function CareersPage() {
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
                 Open Roles
               </p>
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Career opportunities at PML
               </h2>
               <p className="mt-6 text-base leading-8 text-black/62">
@@ -205,8 +205,8 @@ export default function CareersPage() {
                     <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                       0{index + 1}
                     </p>
-                    <h3 className="mt-3 text-lg font-black text-black">{field}</h3>
-                    <p className="mt-3 text-sm font-medium leading-6 text-black/58">
+                    <h3 className="mt-3 text-xl font-black text-black">{field}</h3>
+                    <p className="mt-3 text-base font-medium leading-7 text-black/60">
                       To be provided based on the active recruitment needs.
                     </p>
                   </div>
@@ -220,7 +220,7 @@ export default function CareersPage() {
                 <h3 className="mt-3 text-2xl font-black">
                   Send your CV and supporting documents by email
                 </h3>
-                <p className="mt-4 text-sm font-semibold leading-7 text-white/78">
+                <p className="mt-4 text-base font-semibold leading-8 text-white/82">
                   The recruitment team will review submitted applications based on role availability,
                   department requirements, and candidate qualifications.
                 </p>
@@ -242,10 +242,10 @@ export default function CareersPage() {
                 <p className="inline-flex rounded-full border border-[#039147]/12 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#039147] shadow-sm">
                   HR Contact
                 </p>
-                <h2 className="mt-5 max-w-3xl text-3xl font-black leading-tight text-black md:text-5xl">
+                <h2 className="mt-5 max-w-3xl text-4xl font-black leading-tight text-black md:text-[52px]">
                   Interested in joining PML?
                 </h2>
-                <p className="mt-5 max-w-2xl text-sm font-semibold leading-7 text-black/62 md:text-base">
+                <p className="mt-5 max-w-2xl text-base font-semibold leading-8 text-black/62 md:text-base">
                   Submit your CV to the official recruitment email and include your intended role,
                   department interest, and supporting documents if available.
                 </p>
@@ -253,7 +253,7 @@ export default function CareersPage() {
 
               <a
                 href="mailto:recruitment@pharmametriclabs.com"
-                className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-sm font-black text-white shadow-[0_18px_44px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 hover:bg-[#027a3d]"
+                className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-base font-black text-white shadow-[0_18px_44px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 hover:bg-[#027a3d]"
               >
                 Email Recruitment
               </a>

@@ -168,11 +168,11 @@ export default function CataloguePage() {
               Catalogue Library
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Select the catalogue material you need
             </h2>
 
-            <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+            <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
               These catalogue items are prepared for sponsors and partners who want to understand
               PML capability before starting a project discussion.
             </p>
@@ -180,19 +180,19 @@ export default function CataloguePage() {
 
           <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
             {catalogueStatus === "loading" ? (
-              <div className="col-span-full rounded-[30px] border border-black/5 bg-white p-8 text-center text-sm font-bold text-black/45">
+              <div className="col-span-full rounded-[30px] border border-black/5 bg-white p-8 text-center text-base font-bold text-black/48">
                 Loading catalogue data from CMS...
               </div>
             ) : null}
 
             {catalogueStatus === "error" ? (
-              <div className="col-span-full rounded-[30px] border border-red-100 bg-red-50 p-8 text-center text-sm font-bold text-red-700">
+              <div className="col-span-full rounded-[30px] border border-red-100 bg-red-50 p-8 text-center text-base font-bold text-red-700">
                 Unable to load catalogue data. Please try again later.
               </div>
             ) : null}
 
             {catalogueStatus === "success" && catalogues.length === 0 ? (
-              <div className="col-span-full rounded-[30px] border border-black/5 bg-white p-8 text-center text-sm font-bold text-black/45">
+              <div className="col-span-full rounded-[30px] border border-black/5 bg-white p-8 text-center text-base font-bold text-black/48">
                 No catalogue available yet.
               </div>
             ) : null}
@@ -218,7 +218,7 @@ export default function CataloguePage() {
                     {catalogue.title}
                   </h3>
 
-                  <p className="mt-4 text-sm leading-7 text-black/60">
+                  <p className="mt-4 text-base leading-8 text-black/60">
                     {catalogue.description}
                   </p>
 
@@ -388,7 +388,7 @@ export default function CataloguePage() {
                 Updated Catalogue Request
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl text-black">
+              <h2 className="mt-4 text-4xl font-black leading-tight md:text-[52px] text-black">
                 Need the latest official catalogue from PML?
               </h2>
 

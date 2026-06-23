@@ -11,7 +11,7 @@ export default function FacilityCardGrid() {
             Facilities Overview
           </p>
 
-          <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+          <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
             Integrated facilities for clinical, analytical, and operational needs
           </h2>
 
@@ -46,7 +46,7 @@ export default function FacilityCardGrid() {
                   {facility.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-6 text-black/60 md:mt-4 md:leading-7">
+                <p className="mt-4 text-base leading-7 text-black/60 md:leading-8">
                   {facility.summary}
                 </p>
 

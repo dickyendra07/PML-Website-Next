@@ -38,7 +38,7 @@ export default function WhyPml() {
             <p className="text-xl font-black leading-tight md:text-2xl">
               Innovation, powered by scientific excellence.
             </p>
-            <p className="mt-3 text-sm leading-6 text-white/75 md:mt-4">
+            <p className="mt-4 text-base leading-8 text-white/78 md:text-lg">
               A renewed digital direction that reflects PML’s commitment to credible, compliant, and customer-oriented CRO support.
             </p>
           </div>
@@ -56,11 +56,11 @@ export default function WhyPml() {
                 ✓
               </div>
 
-              <h3 className="text-sm font-black leading-tight text-black md:text-lg">
+              <h3 className="text-xl font-black leading-tight tracking-[-0.02em] text-black md:text-2xl">
                 {title}
               </h3>
 
-              <p className="mt-2 text-xs leading-5 text-black/60 md:mt-3 md:text-sm md:leading-6">
+              <p className="mt-3 text-base leading-7 text-black/62 md:leading-8">
                 {desc}
               </p>
             </article>

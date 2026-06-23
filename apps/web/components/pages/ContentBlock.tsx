@@ -37,7 +37,7 @@ export default function ContentBlock({
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
                 ✓
               </span>
-              <p className="text-sm font-bold leading-7 text-black/65">
+              <p className="text-base font-bold leading-8 text-black/65">
                 {item}
               </p>
             </div>

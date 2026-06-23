@@ -118,7 +118,7 @@ export default function InsightCard({ item, featured = false }: InsightCardProps
           {item.title}
         </h3>
 
-        <p className={`${featured ? "mt-4 text-sm leading-7 md:mt-5 md:text-base md:leading-8" : "mt-3 text-sm leading-6 md:mt-4 md:leading-7"} text-black/60`}>
+        <p className={`${featured ? "mt-4 text-base leading-8 md:mt-5 md:text-lg md:leading-9" : "mt-3 text-base leading-7 md:mt-4 md:leading-8"} text-black/60`}>
           {getExcerpt(item)}
         </p>
 

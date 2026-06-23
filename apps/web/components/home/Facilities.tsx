@@ -113,11 +113,11 @@ export default function Facilities() {
                     </div>
 
                     <div>
-                      <h3 className="text-xs font-black leading-tight text-black md:text-base">
+                      <h3 className="text-base font-black leading-tight text-black md:text-xl">
                         {item.title}
                       </h3>
 
-                      <p className="mt-2 text-xs leading-5 text-black/55 md:mt-1 md:text-sm md:leading-6">
+                      <p className="mt-3 text-sm leading-6 text-black/60 md:text-base md:leading-7">
                         {item.desc}
                       </p>
                     </div>

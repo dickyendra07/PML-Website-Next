@@ -178,7 +178,7 @@ export default function ClientsPage() {
               More than 400 clients globally have worked with PML
             </h2>
 
-            <p className="mx-auto mt-6 max-w-3xl text-sm leading-7 text-black/64 md:text-base md:leading-8">
+            <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-black/64 md:text-lg md:leading-9">
               PML supports a broad client network across pharmaceutical, healthcare, research,
               and regulated product industries. The collaboration experience includes clinical
               research, BA/BE study, contract analysis, regulatory management, and project
@@ -230,7 +230,7 @@ export default function ClientsPage() {
               Collaboration across industry, research, and clinical development
             </h2>
 
-            <p className="mx-auto mt-6 max-w-3xl text-sm leading-7 text-black/64 md:text-base md:leading-8">
+            <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-black/64 md:text-lg md:leading-9">
               Selected client and partner logos are shown as visual references for PML’s broader
               collaboration network.
             </p>
@@ -268,11 +268,11 @@ export default function ClientsPage() {
                 Why Clients Work With PML
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 A reliable partner for scientific, clinical, analytical, and regulatory needs
               </h2>
 
-              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+              <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
                 PML combines project coordination, facility capability, scientific discipline,
                 and documentation-oriented workflows to help sponsors move with confidence.
               </p>
@@ -284,10 +284,10 @@ export default function ClientsPage() {
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
                     ✓
                   </span>
-                  <h3 className="mt-3 text-sm font-black leading-tight text-black md:mt-4 md:text-base">
+                  <h3 className="mt-3 text-base font-black leading-tight text-black md:mt-4 md:text-lg">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-xs leading-5 text-black/55 md:text-sm md:leading-6">
+                  <p className="mt-3 text-sm leading-6 text-black/58 md:text-base md:leading-7">
                     {item.desc}
                   </p>
                 </div>
@@ -349,7 +349,7 @@ export default function ClientsPage() {
                 Business Opportunity
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Looking for a reliable CRO partner in Indonesia?
               </h2>
 

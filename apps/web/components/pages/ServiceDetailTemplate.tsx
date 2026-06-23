@@ -41,7 +41,7 @@ export default function ServiceDetailTemplate({ data }: ServiceDetailTemplatePro
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
                     ✓
                   </span>
-                  <p className="text-sm font-bold leading-7 text-black/65">{benefit}</p>
+                  <p className="text-base font-bold leading-8 text-black/65">{benefit}</p>
                 </div>
               ))}
             </div>
@@ -61,7 +61,7 @@ export default function ServiceDetailTemplate({ data }: ServiceDetailTemplatePro
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#039147] text-sm font-black text-white">
                     {index + 1}
                   </span>
-                  <p className="text-sm font-bold leading-7 text-black/65">{step}</p>
+                  <p className="text-base font-bold leading-8 text-black/65">{step}</p>
                 </div>
               ))}
             </div>
@@ -89,7 +89,7 @@ export default function ServiceDetailTemplate({ data }: ServiceDetailTemplatePro
                     +
                   </span>
                 </summary>
-                <p className="mt-5 max-w-3xl text-sm leading-7 text-black/65 md:text-base">{answer}</p>
+                <p className="mt-5 max-w-3xl text-base leading-8 text-black/65 md:text-base">{answer}</p>
               </details>
             ))}
           </div>

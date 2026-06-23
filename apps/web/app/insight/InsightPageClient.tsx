@@ -124,7 +124,7 @@ export default function InsightPage() {
                 ].map(([title, desc]) => (
                   <div key={title} className="rounded-[20px] border border-black/5 bg-white/10 p-4 md:rounded-[24px] md:p-5">
                     <h3 className="text-base font-black text-black">{title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-black/62">{desc}</p>
+                    <p className="mt-3 text-base leading-7 text-black/62">{desc}</p>
                   </div>
                 ))}
               </div>
@@ -141,12 +141,12 @@ export default function InsightPage() {
                 Resource Categories
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Choose the resource type you need
               </h2>
             </div>
 
-            <p className="max-w-3xl text-sm leading-7 text-black/65 md:text-base md:leading-8 lg:justify-self-end">
+            <p className="max-w-3xl text-base leading-8 text-black/65 md:text-base md:leading-8 lg:justify-self-end">
               PML resources are organized to help sponsors understand services, prepare inquiries,
               follow company updates, and review technical or regulatory references.
             </p>
@@ -169,7 +169,7 @@ export default function InsightPage() {
                   {category.label}
                 </h3>
 
-                <p className="relative mt-4 text-sm leading-7 text-black/60">
+                <p className="relative mt-4 text-base leading-8 text-black/60">
                   {category.description}
                 </p>
 
@@ -195,7 +195,7 @@ export default function InsightPage() {
                 Featured Insight
               </p>
 
-              <h2 className="mt-4 max-w-3xl text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 max-w-3xl text-4xl font-black leading-tight text-black md:text-[52px]">
                 Practical content for sponsors and project teams
               </h2>
             </div>
@@ -209,19 +209,19 @@ export default function InsightPage() {
           </div>
 
           {insightStatus === "loading" ? (
-            <div className="rounded-[30px] border border-black/5 bg-[#f6faf7] p-8 text-center text-sm font-bold text-black/45">
+            <div className="rounded-[30px] border border-black/5 bg-[#f6faf7] p-8 text-center text-base font-bold text-black/48">
               Loading insights from CMS...
             </div>
           ) : null}
 
           {insightStatus === "error" ? (
-            <div className="rounded-[30px] border border-red-100 bg-red-50 p-8 text-center text-sm font-bold text-red-700">
+            <div className="rounded-[30px] border border-red-100 bg-red-50 p-8 text-center text-base font-bold text-red-700">
               Unable to load insights. Please try again later.
             </div>
           ) : null}
 
           {insightStatus === "success" && !featured ? (
-            <div className="rounded-[30px] border border-black/5 bg-[#f6faf7] p-8 text-center text-sm font-bold text-black/45">
+            <div className="rounded-[30px] border border-black/5 bg-[#f6faf7] p-8 text-center text-base font-bold text-black/48">
               No insight available yet.
             </div>
           ) : null}
@@ -250,11 +250,11 @@ export default function InsightPage() {
                 FAQ Preview
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+              <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Common questions before starting with PML
               </h2>
 
-              <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+              <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
                 Quick answers about services, project preparation, regulatory support, and facility access.
               </p>
 
@@ -278,7 +278,7 @@ export default function InsightPage() {
                       +
                     </span>
                   </summary>
-                  <p className="mt-4 text-sm leading-7 text-black/60">
+                  <p className="mt-4 text-base leading-8 text-black/60">
                     {faq.answer}
                   </p>
                 </details>
@@ -306,11 +306,11 @@ export default function InsightPage() {
                 Start a Project
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl text-black">
+              <h2 className="mt-4 text-4xl font-black leading-tight md:text-[52px] text-black">
                 Need scientific, clinical, analytical, or regulatory support?
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/75 text-black/72 text-black/72">
+              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/72">
                 Share your project needs with PML and our team will help identify the right service scope,
                 required information, and next steps.
               </p>

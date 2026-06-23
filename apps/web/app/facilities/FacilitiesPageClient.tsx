@@ -77,11 +77,11 @@ export default function FacilitiesPage() {
               Facility Trust
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Built for reliable study execution and laboratory support
             </h2>
 
-            <p className="mt-5 text-sm leading-7 text-black/65 md:mt-6 md:text-base md:leading-8">
+            <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
               PML facilities are designed to support clinical conduct, sample handling,
               analytical work, study documentation, and project coordination. This gives sponsors
               a clearer operational foundation from early discussion to final reporting.
@@ -101,7 +101,7 @@ export default function FacilitiesPage() {
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
                   ✓
                 </span>
-                <p className="mt-3 text-xs font-bold leading-5 text-black/65 md:mt-4 md:text-sm md:leading-6">{item}</p>
+                <p className="mt-3 text-base font-bold leading-7 text-black/65 md:mt-4 md:text-base md:leading-7">{item}</p>
               </div>
             ))}
           </div>
@@ -126,7 +126,7 @@ export default function FacilitiesPage() {
                 Facility Discussion
               </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl text-black">
+              <h2 className="mt-4 text-4xl font-black leading-tight md:text-[52px] text-black">
                 Need to understand PML facility capability?
               </h2>
 

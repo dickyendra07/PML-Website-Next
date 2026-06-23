@@ -102,7 +102,7 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
               Facility Detail
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               {isVrGallery
                 ? "Explore PML facilities through an interactive VR experience"
                 : `Capability overview for ${data.title.toLowerCase()}`}
@@ -140,7 +140,7 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
                     <path d="M5 12L10 17L20 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
-                <p className="text-xs font-bold leading-5 text-black/70 md:text-sm md:leading-6">{point}</p>
+                <p className="text-base font-bold leading-7 text-black/70 md:text-base md:leading-7">{point}</p>
               </div>
             ))}
           </div>
@@ -154,7 +154,7 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
               Facility Gallery
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Real facility visuals from Pharma Metric Labs
             </h2>
 
@@ -246,7 +246,7 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
               Other Facilities
             </p>
 
-            <h2 className="mt-4 text-3xl font-black leading-tight text-black md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               Explore related facility capabilities
             </h2>
           </div>
@@ -277,7 +277,7 @@ export default function FacilityDetailTemplate({ data }: FacilityDetailTemplateP
                     {facility.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-6 text-black/60">
+                  <p className="mt-4 text-base leading-7 text-black/60">
                     {facility.summary}
                   </p>
                 </div>

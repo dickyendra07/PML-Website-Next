@@ -34,13 +34,13 @@ export default function Services() {
                 {service.title}
               </h3>
 
-              <p className="mt-3 line-clamp-4 text-sm leading-7 text-black/65 md:mt-4">
+              <p className="mt-4 line-clamp-4 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-5">
                 {service.summary}
               </p>
 
               <Link
                 href={service.href}
-                className="mt-auto inline-flex items-center pt-6 text-sm font-extrabold text-[#039147] md:pt-7"
+                className="mt-auto inline-flex items-center pt-6 text-base font-extrabold text-[#039147] md:pt-7"
               >
                 Learn more
                 <span className="ml-2 transition group-hover:translate-x-1">→</span>
