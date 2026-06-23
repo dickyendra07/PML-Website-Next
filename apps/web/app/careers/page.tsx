@@ -127,7 +127,7 @@ export default function CareersPage() {
               <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                 How to apply
               </p>
-              <h2 className="mt-3 text-2xl font-black leading-tight text-black">
+              <h2 className="mt-3 text-[26px] font-black leading-tight tracking-[-0.025em] text-black">
                 Send your CV to PML Recruitment
               </h2>
               <p className="mt-4 text-base font-semibold leading-8 text-black/62">
@@ -153,7 +153,7 @@ export default function CareersPage() {
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
               A workplace for scientific growth and meaningful collaboration
             </h2>
-            <p className="mt-6 text-base leading-8 text-black/62">
+            <p className="mt-6 text-[17px] leading-8 text-black/66 md:text-[19px] md:leading-9">
               PML provides a professional environment where teams can work across clinical,
               laboratory, regulatory, and documentation-focused projects.
             </p>
@@ -191,7 +191,7 @@ export default function CareersPage() {
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
                 Career opportunities at PML
               </h2>
-              <p className="mt-6 text-base leading-8 text-black/62">
+              <p className="mt-6 text-[17px] leading-8 text-black/66 md:text-[19px] md:leading-9">
                 Available roles may vary based on departmental needs. Candidates can submit their
                 CV for recruitment consideration and include relevant experience, requirements,
                 or position interest when applying.
