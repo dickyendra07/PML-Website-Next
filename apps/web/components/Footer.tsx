@@ -107,7 +107,7 @@ export default function Footer() {
                 />
               </Link>
 
-              <p className="mt-6 max-w-md text-sm leading-7 text-black/78">
+              <p className="mt-6 max-w-md text-base leading-8 text-black/72 md:text-[17px]">
                 {companyDescription}
               </p>
 
@@ -139,8 +139,8 @@ export default function Footer() {
             </div>
 
             <div>
-              <h3 className="text-sm font-black text-black">Pages</h3>
-              <div className="mt-5 grid gap-4 text-sm font-semibold text-black/68">
+              <h3 className="text-base font-black text-black md:text-lg">Pages</h3>
+              <div className="mt-5 grid gap-4 text-base font-semibold text-black/70 md:text-[17px]">
                 {pageLinks.map((item) => (
                   <Link key={item.href} href={item.href} className="transition hover:text-[#039147]">
                     {item.label}
@@ -150,8 +150,8 @@ export default function Footer() {
             </div>
 
             <div>
-              <h3 className="text-sm font-black text-black">Services</h3>
-              <div className="mt-5 grid gap-4 text-sm font-semibold text-black/68">
+              <h3 className="text-base font-black text-black md:text-lg">Services</h3>
+              <div className="mt-5 grid gap-4 text-base font-semibold text-black/70 md:text-[17px]">
                 {serviceLinks.map((item) => (
                   <Link key={item.href} href={item.href} className="transition hover:text-[#039147]">
                     {item.label}
@@ -161,8 +161,8 @@ export default function Footer() {
             </div>
 
             <div>
-              <h3 className="text-sm font-black text-black">Contact</h3>
-              <div className="mt-5 grid gap-4 text-sm font-semibold leading-7 text-black/68">
+              <h3 className="text-base font-black text-black md:text-lg">Contact</h3>
+              <div className="mt-5 grid gap-4 text-base font-semibold leading-8 text-black/70 md:text-[17px]">
                 <a
                   href={`mailto:${email}`}
                   className="underline decoration-black/20 underline-offset-4 transition hover:text-[#039147] hover:decoration-[#039147]"
@@ -178,7 +178,7 @@ export default function Footer() {
           </div>
 
           <div className="mt-12 border-t border-black/10 pt-7">
-            <div className="flex flex-col justify-between gap-5 text-xs font-semibold text-black/40 md:flex-row md:items-center">
+            <div className="flex flex-col justify-between gap-5 text-sm font-semibold text-black/45 md:flex-row md:items-center">
               <p>© {new Date().getFullYear()} {copyright}</p>
 
               <div className="flex flex-wrap gap-5">
