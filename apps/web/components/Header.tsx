@@ -266,9 +266,125 @@ function Icon({ type }: { type: IconType }) {
   );
 }
 
+
+function ServicesMegaPanel({ items }: { items: MegaItem[] }) {
+  return (
+    <div className="invisible fixed left-1/2 top-[66px] z-50 w-[min(1180px,calc(100vw-48px))] -translate-x-1/2 pt-6 opacity-0 transition duration-300 ease-out group-hover/menu:visible group-hover/menu:opacity-100">
+      <div className="absolute left-0 right-0 top-0 h-6" aria-hidden="true" />
+
+      <div className="relative overflow-hidden rounded-[36px] border border-black/5 bg-white/97 shadow-[0_34px_110px_rgba(0,0,0,0.20)] ring-1 ring-black/[0.04] backdrop-blur-xl">
+        <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[#039147]/40 to-transparent" />
+        <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[#eaf8f0]/80 blur-3xl" />
+        <div className="absolute right-[-110px] bottom-[-130px] h-80 w-80 rounded-full bg-[#039147]/10 blur-3xl" />
+
+        <div className="relative grid grid-cols-[1.52fr_0.78fr]">
+          <div className="p-8">
+            <div className="flex items-end justify-between gap-8">
+              <div>
+                <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/10 bg-[#eaf8f0]/80 px-4 py-2 text-[13px] font-black uppercase tracking-[0.18em] text-[#039147]">
+                  <span className="h-2 w-2 rounded-full bg-[#039147]" />
+                  CRO Services
+                </p>
+
+                <h3 className="mt-5 max-w-2xl text-[30px] font-black leading-[1.05] tracking-[-0.045em] text-black">
+                  End-to-end CRO support for regulated healthcare projects
+                </h3>
+              </div>
+
+              <Link
+                href="/services"
+                className="hidden shrink-0 rounded-full border border-[#039147]/20 bg-white px-5 py-3 text-[14px] font-black text-[#039147] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white lg:inline-flex"
+              >
+                View all services
+              </Link>
+            </div>
+
+            <div className="mt-7 grid grid-cols-2 gap-4">
+              {items.map((item, index) => (
+                <Link
+                  key={`service-feature-${item.label}`}
+                  href={item.href}
+                  className={`group/item relative overflow-hidden rounded-[28px] border border-black/5 bg-white p-6 shadow-[0_16px_48px_rgba(0,0,0,0.065)] transition duration-300 hover:-translate-y-1 hover:border-[#039147]/25 hover:shadow-[0_28px_80px_rgba(3,145,71,0.15)] ${
+                    index === 0 ? "bg-gradient-to-br from-white via-white to-[#f4fbf7]" : ""
+                  }`}
+                >
+                  <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#eaf8f0] transition duration-500 group-hover/item:scale-125 group-hover/item:bg-[#039147]/12" />
+                  <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#039147] transition-all duration-500 group-hover/item:w-full" />
+
+                  <div className="relative flex gap-5">
+                    <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-[22px] bg-[#eaf8f0] text-[#039147] ring-1 ring-[#039147]/10 transition duration-300 group-hover/item:bg-[#039147] group-hover/item:text-white group-hover/item:shadow-[0_18px_44px_rgba(3,145,71,0.22)]">
+                      <Icon type={item.icon} />
+                    </span>
+
+                    <span className="block">
+                      <span className="block text-[20px] font-black leading-tight tracking-[-0.03em] text-black">
+                        {item.label}
+                      </span>
+                      <span className="mt-3 block text-[14.5px] font-semibold leading-7 text-black/60">
+                        {item.desc}
+                      </span>
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <aside className="relative overflow-hidden bg-[#039147] p-8 text-white">
+            <div className="pml-hex-pattern absolute inset-0 opacity-[0.10]" aria-hidden="true" />
+            <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-white/12" />
+            <div className="absolute -bottom-24 left-8 h-60 w-60 rounded-full bg-white/10 blur-xl" />
+
+            <div className="relative flex h-full flex-col justify-between">
+              <div>
+                <div className="mb-7 flex h-16 w-16 items-center justify-center rounded-[22px] bg-white/14 text-white ring-1 ring-white/20">
+                  <Icon type="shield" />
+                </div>
+
+                <p className="text-[13px] font-black uppercase tracking-[0.18em] text-white/70">
+                  Integrated Service Model
+                </p>
+
+                <h3 className="mt-4 text-[30px] font-black leading-[1.06] tracking-[-0.045em] text-white">
+                  One partner for study, analysis, and regulatory readiness.
+                </h3>
+
+                <p className="mt-5 text-[15px] font-semibold leading-7 text-white/78">
+                  PML connects BA/BE study, clinical trial, contract analysis, and regulatory management into a coordinated CRO workflow.
+                </p>
+              </div>
+
+              <div className="mt-8 rounded-[26px] border border-white/12 bg-white/10 p-5 backdrop-blur">
+                <p className="text-[14px] font-black text-white">
+                  Built for sponsors who need:
+                </p>
+
+                <div className="mt-4 grid gap-3 text-[14px] font-semibold leading-6 text-white/78">
+                  <p>• Clear project scope and documentation</p>
+                  <p>• Reliable technical execution</p>
+                  <p>• Regulatory-ready study outputs</p>
+                </div>
+
+                <Link
+                  href="/services"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 text-[14px] font-black text-[#039147] shadow-[0_18px_44px_rgba(0,0,0,0.16)] transition hover:-translate-y-0.5"
+                >
+                  Explore services
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 function MegaPanel({
   label,
-  width = "980",
+  width = "1180",
   items,
   sideTitle,
   sideDesc,
@@ -288,58 +404,108 @@ function MegaPanel({
   grid?: string;
 }) {
   return (
-    <div className={`invisible fixed left-1/2 top-[66px] z-50 w-[min(${width}px,calc(100vw-56px))] -translate-x-1/2 pt-5 opacity-0 transition duration-200 group-hover/menu:visible group-hover/menu:opacity-100`}>
-      <div className="absolute left-0 right-0 top-0 h-5" aria-hidden="true" />
+    <div className={`invisible fixed left-1/2 top-[66px] z-50 w-[min(${width}px,calc(100vw-48px))] -translate-x-1/2 pt-6 opacity-0 transition duration-300 ease-out group-hover/menu:visible group-hover/menu:opacity-100`}>
+      <div className="absolute left-0 right-0 top-0 h-6" aria-hidden="true" />
 
-      <div className="overflow-hidden rounded-[26px] border border-black/5 bg-white shadow-[0_22px_70px_rgba(0,0,0,0.13)] ring-1 ring-black/[0.02]">
-        <div className="grid grid-cols-[1.45fr_0.75fr]">
-          <div className="p-6">
-            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-              {label}
-            </p>
+      <div className="relative overflow-hidden rounded-[36px] border border-black/5 bg-white/97 shadow-[0_34px_110px_rgba(0,0,0,0.20)] ring-1 ring-black/[0.04] backdrop-blur-xl">
+        <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[#039147]/40 to-transparent" />
+        <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[#eaf8f0]/80 blur-3xl" />
+        <div className="absolute right-[-110px] bottom-[-130px] h-80 w-80 rounded-full bg-[#039147]/10 blur-3xl" />
 
-            <div className={`mt-4 grid ${grid} gap-3`}>
+        <div className="relative grid grid-cols-[1.52fr_0.78fr]">
+          <div className="p-8">
+            <div className="flex items-end justify-between gap-8">
+              <div>
+                <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/10 bg-[#eaf8f0]/80 px-4 py-2 text-[13px] font-black uppercase tracking-[0.18em] text-[#039147]">
+                  <span className="h-2 w-2 rounded-full bg-[#039147]" />
+                  {label}
+                </p>
+
+                <h3 className="mt-5 max-w-2xl text-[30px] font-black leading-[1.05] tracking-[-0.045em] text-black">
+                  Explore {label.toLowerCase()} with clearer direction and reliable support
+                </h3>
+              </div>
+
+              <Link
+                href={sideHref}
+                className="hidden shrink-0 rounded-full border border-[#039147]/20 bg-white px-5 py-3 text-[14px] font-black text-[#039147] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white lg:inline-flex"
+              >
+                {sideCta}
+              </Link>
+            </div>
+
+            <div className={`mt-7 grid ${grid} gap-4`}>
               {items.map((item) => (
-                <Link key={`${label}-${item.label}`} href={item.href} className="group/item flex min-h-[104px] gap-3 rounded-[20px] border border-black/5 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:bg-[#eaf8f0] hover:shadow-[0_16px_40px_rgba(0,0,0,0.09)]">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] transition group-hover/item:bg-[#039147] group-hover/item:text-white">
-                    <Icon type={item.icon} />
-                  </span>
+                <Link
+                  key={`${label}-${item.label}`}
+                  href={item.href}
+                  className="group/item relative overflow-hidden rounded-[28px] border border-black/5 bg-white p-6 shadow-[0_16px_48px_rgba(0,0,0,0.065)] transition duration-300 hover:-translate-y-1 hover:border-[#039147]/25 hover:shadow-[0_28px_80px_rgba(3,145,71,0.15)]"
+                >
+                  <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#eaf8f0] transition duration-500 group-hover/item:scale-125 group-hover/item:bg-[#039147]/12" />
+                  <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#039147] transition-all duration-500 group-hover/item:w-full" />
 
-                  <span>
-                    <span className="block text-[13px] font-black leading-tight text-black">
-                      {item.label}
+                  <div className="relative flex gap-5">
+                    <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-[22px] bg-[#eaf8f0] text-[#039147] ring-1 ring-[#039147]/10 transition duration-300 group-hover/item:bg-[#039147] group-hover/item:text-white group-hover/item:shadow-[0_18px_44px_rgba(3,145,71,0.22)]">
+                      <Icon type={item.icon} />
                     </span>
-                    <span className="mt-1.5 block text-[11px] font-semibold leading-5 text-black/52">
-                      {item.desc}
+
+                    <span className="block">
+                      <span className="block text-[20px] font-black leading-tight tracking-[-0.03em] text-black">
+                        {item.label}
+                      </span>
+                      <span className="mt-3 block line-clamp-4 text-[14.5px] font-semibold leading-7 text-black/60">
+                        {item.desc}
+                      </span>
                     </span>
-                  </span>
+                  </div>
                 </Link>
               ))}
             </div>
           </div>
 
-          <div className="relative overflow-hidden bg-gradient-to-br from-[#eaf8f0] via-[#f4fbf7] to-white p-6">
+          <aside className="relative overflow-hidden bg-[#039147] p-8 text-white">
             <div className="pml-hex-pattern absolute inset-0 opacity-[0.10]" aria-hidden="true" />
+            <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-white/12" />
+            <div className="absolute -bottom-24 left-8 h-60 w-60 rounded-full bg-white/10 blur-xl" />
 
-            <div className="relative">
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-[#039147] shadow-sm">
-                <Icon type={sideIcon} />
+            <div className="relative flex h-full flex-col justify-between">
+              <div>
+                <div className="mb-7 flex h-16 w-16 items-center justify-center rounded-[22px] bg-white/14 text-white ring-1 ring-white/20">
+                  <Icon type={sideIcon} />
+                </div>
+
+                <p className="text-[13px] font-black uppercase tracking-[0.18em] text-white/70">
+                  Featured Direction
+                </p>
+
+                <h3 className="mt-4 text-[30px] font-black leading-[1.06] tracking-[-0.045em] text-white">
+                  {sideTitle}
+                </h3>
+
+                <p className="mt-5 text-[15px] font-semibold leading-7 text-white/78">
+                  {sideDesc}
+                </p>
               </div>
 
-              <h3 className="text-lg font-black leading-tight text-black">
-                {sideTitle}
-              </h3>
+              <div className="mt-8 rounded-[26px] border border-white/12 bg-white/10 p-5 backdrop-blur">
+                <p className="text-[14px] font-black text-white">
+                  Recommended next step
+                </p>
 
-              <p className="mt-3 text-xs font-semibold leading-6 text-black/56">
-                {sideDesc}
-              </p>
+                <p className="mt-3 text-[14px] font-semibold leading-6 text-white/76">
+                  Open the full section to review detailed information, capabilities, and related pages.
+                </p>
 
-              <Link href={sideHref} className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#039147] px-5 py-3 text-xs font-extrabold text-white shadow-[0_14px_32px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5">
-                {sideCta}
-                <span aria-hidden="true">→</span>
-              </Link>
+                <Link
+                  href={sideHref}
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 text-[14px] font-black text-[#039147] shadow-[0_18px_44px_rgba(0,0,0,0.16)] transition hover:-translate-y-0.5"
+                >
+                  {sideCta}
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </div>
@@ -527,6 +693,7 @@ export default function Header({ onOpenProposal }: HeaderProps) {
             panel={
               <MegaPanel
                 label="About PML"
+                width="1180"
                 items={aboutItems}
                 sideTitle="Independent CRO support with scientific integrity"
                 sideDesc="PML combines quality, compliance, multidisciplinary expertise, and responsive project support for reliable study delivery."
@@ -542,19 +709,7 @@ export default function Header({ onOpenProposal }: HeaderProps) {
           <NavMega
             href="/services"
             className={navMegaClass("/services", serviceItems)}
-            panel={
-              <MegaPanel
-                label="CRO Services"
-                width="1080"
-                items={serviceItems}
-                sideTitle="Integrated CRO support for regulated projects"
-                sideDesc="Explore PML services across BA/BE study, clinical trials, contract analysis, and regulatory management."
-                sideHref="/services"
-                sideCta="View all services"
-                sideIcon="shield"
-                grid="grid-cols-2"
-              />
-            }
+            panel={<ServicesMegaPanel items={serviceItems} />}
           >
             Services
           </NavMega>
@@ -565,6 +720,7 @@ export default function Header({ onOpenProposal }: HeaderProps) {
             panel={
               <MegaPanel
                 label="Facilities & Capability"
+                width="1180"
                 items={facilityItems}
                 sideTitle="Facilities for reliable study execution"
                 sideDesc="PML supports clinical, analytical, and operational needs through integrated facilities and documentation workflows."
@@ -587,6 +743,7 @@ export default function Header({ onOpenProposal }: HeaderProps) {
             panel={
               <MegaPanel
                 label="Latest Insight"
+                width="1180"
                 items={insightItems}
                 sideTitle="Educational resources for better project readiness"
                 sideDesc="Explore articles, news, publications, and FAQ content to better understand PML services."
