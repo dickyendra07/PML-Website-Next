@@ -4,13 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
-import {
-  AdminUser,
-  clearAdminToken,
-  getAdminToken,
-  getCurrentAdmin,
-  logoutAdmin,
-} from "@/lib/admin-api";
+import { AdminUser, clearAdminToken } from "@/lib/admin-api";
 
 const navItems = [
   { label: "Dashboard", href: "/admin", icon: "D" },
@@ -34,33 +28,18 @@ export default function AdminShell({ children }: AdminShellProps) {
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
-    const token = getAdminToken();
-
-    if (!token) {
-      router.replace("/admin/login");
-      return;
-    }
-
-    getCurrentAdmin(token)
-      .then((user) => {
-        setAdmin(user);
-        setChecking(false);
-      })
-      .catch(() => {
-        clearAdminToken();
-        router.replace("/admin/login");
-      });
-  }, [router]);
+    setAdmin({
+      id: "cms-preview-user",
+      name: "PML CMS Preview Preview",
+      email: "preview@pharmametriclabs.com",
+      role: "Preview Mode",
+    });
+    setChecking(false);
+  }, []);
 
   const handleLogout = async () => {
-    const token = getAdminToken();
-
-    if (token) {
-      await logoutAdmin(token).catch(() => null);
-    }
-
     clearAdminToken();
-    router.replace("/admin/login");
+    router.replace("/admin");
   };
 
   if (checking) {
@@ -68,7 +47,7 @@ export default function AdminShell({ children }: AdminShellProps) {
       <main className="min-h-screen bg-[#f6faf7] text-black">
         <div className="flex min-h-screen items-center justify-center">
           <div className="rounded-[28px] border border-black/5 bg-white px-8 py-6 text-sm font-bold text-black/60 shadow-xl">
-            Loading secure admin area...
+            Loading CMS preview area...
           </div>
         </div>
       </main>
@@ -91,7 +70,7 @@ export default function AdminShell({ children }: AdminShellProps) {
                 PML CMS
               </p>
               <h1 className="text-lg font-black leading-tight text-black">
-                Admin Panel
+                Preview Panel
               </h1>
             </div>
           </div>
