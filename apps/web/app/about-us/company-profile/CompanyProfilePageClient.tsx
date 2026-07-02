@@ -216,8 +216,24 @@ function IndustryIcon({ name }: { name: string }) {
   if (name === "pharma") {
     return (
       <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M8 21V8.5a4 4 0 0 1 8 0V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <path d="M6 21h12M8 12h8M10 5h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path
+          d="M8.5 14.5 14.5 8.5a3.2 3.2 0 0 1 4.5 4.5l-6 6a3.2 3.2 0 0 1-4.5-4.5Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+        <path
+          d="m11.5 11.5 5 5"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M4 7.5h6M4 11h4M4 14.5h3"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
       </svg>
     );
   }
@@ -225,8 +241,18 @@ function IndustryIcon({ name }: { name: string }) {
   if (name === "bio") {
     return (
       <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M8 4c4 2 4 6 0 8s-4 6 0 8M16 4c-4 2-4 6 0 8s4 6 0 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <path d="M8 7h8M8 12h8M8 17h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path
+          d="M8 4c4 2 8 2 8 8s-4 6-8 8M16 4c-4 2-8 2-8 8s4 6 8 8"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M8.5 7h7M7.5 12h9M8.5 17h7"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
       </svg>
     );
   }
@@ -234,8 +260,19 @@ function IndustryIcon({ name }: { name: string }) {
   if (name === "device") {
     return (
       <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <rect x="7" y="3" width="10" height="18" rx="3" stroke="currentColor" strokeWidth="2" />
-        <path d="M10 7h4M10 17h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path
+          d="M14 4 20 10M13 5l-7.5 7.5a3 3 0 0 0 0 4.2l1.8 1.8a3 3 0 0 0 4.2 0L19 11"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M5 19 3 21M9 9l6 6M16 3l5 5"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
       </svg>
     );
   }
@@ -258,10 +295,40 @@ function IndustryIcon({ name }: { name: string }) {
     );
   }
 
+  if (name === "traditional") {
+    return (
+      <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M5 12h14l-1.2 5.2A4 4 0 0 1 13.9 20H10a4 4 0 0 1-3.9-2.8L5 12Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M8 12c-.5-3 1.2-5.2 4-6M16 12c2.5-1.7 3.2-4 2.2-7M12 6c2.5.2 4.2 1.7 4.8 4.5"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M11.5 6.2c-1.8-2-4.2-2.4-6.2-.8 1.2 2.3 3.4 3.1 6.2.8ZM16.8 5c1.8-1.4 3.6-1.5 5.2-.2-.8 2-2.5 2.8-5.2.2Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M8 20h8"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </svg>
+    );
+  }
+
   return (
     <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M12 21c4.5-3 7-6.5 7-10a7 7 0 0 0-14 0c0 3.5 2.5 7 7 10Z" stroke="currentColor" strokeWidth="2" />
-      <path d="M9 11c2.5 0 4-1.5 4-4 2.5 1 4 3 4 5.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M4 12h16M12 4v16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }
@@ -269,37 +336,68 @@ function IndustryIcon({ name }: { name: string }) {
 function AccreditationIcon({ name }: { name: string }) {
   const common = "h-6 w-6";
 
-  if (name === "lab") {
-    return (
-      <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M9 3h6M10 3v5l-4.4 9.2A2.6 2.6 0 0 0 8 21h8a2.6 2.6 0 0 0 2.4-3.8L14 8V3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M8 15h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      </svg>
-    );
-  }
-
   if (name === "shield") {
     return (
       <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 3 19 6v5c0 4.8-2.8 8.2-7 10-4.2-1.8-7-5.2-7-10V6l7-3Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-        <path d="m9 12 2 2 4-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M12 3 19 6v5c0 4.6-2.9 8.2-7 10-4.1-1.8-7-5.4-7-10V6l7-3Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+        <path
+          d="m8.8 12 2.1 2.1 4.5-4.8"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     );
   }
 
-  if (name === "global") {
+  if (name === "lab") {
     return (
       <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
-        <path d="M3 12h18M12 3c2.2 2.4 3.3 5.4 3.3 9S14.2 18.6 12 21M12 3C9.8 5.4 8.7 8.4 8.7 12S9.8 18.6 12 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path
+          d="M9 3h6M10 3v6l-5 8a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 17l-5-8V3"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M8 15h8"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </svg>
+    );
+  }
+
+  if (name === "document") {
+    return (
+      <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M7 3h7l4 4v14H7V3Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M14 3v5h5M9 12h6M9 16h6"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
       </svg>
     );
   }
 
   return (
     <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M8 21V7a4 4 0 0 1 8 0v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M6 21h12M9 11h6M10 4h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M4 12h16M12 4v16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }

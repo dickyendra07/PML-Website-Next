@@ -3,42 +3,51 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const experts = [
+const regulatoryTeam = [
   {
-    name: "Arini Setiawati",
-    role: "Principal Investigator",
-    image: "/images/pml/experts/all/04-tim_arini.jpg",
-    focus: "Clinical research leadership, study supervision, and scientific direction.",
+    name: "Annisa Patimah",
+    role: "Regulatory Affairs Team",
+    image: "/images/pml/team/annisa-patimah.jpg",
   },
   {
-    name: "Fransciscus D. Suyatna",
-    role: "Principal Investigator",
-    image: "/images/pml/experts/all/05-tim_franciscus.jpg",
-    focus: "Clinical study expertise, investigator guidance, and research quality support.",
+    name: "Anton Hidayat",
+    role: "Regulatory Affairs Team",
+    image: "/images/pml/team/anton-hidayat.jpg",
   },
   {
-    name: "Hedi R. Suwoto",
-    role: "Principal Investigator",
-    image: "/images/pml/experts/all/06-tim_hedi.jpg",
-    focus: "Study oversight, medical research capability, and investigator-level support.",
+    name: "Fathi",
+    role: "Regulatory Affairs Team",
+    image: "/images/pml/team/fathi.jpg",
   },
   {
-    name: "Metta Sinta Sari Wiria",
-    role: "Principal Investigator",
-    image: "/images/pml/experts/all/07-tim_metta.jpg",
-    focus: "Clinical study execution, medical supervision, and scientific collaboration.",
+    name: "Gabriella",
+    role: "Regulatory Affairs Team",
+    image: "/images/pml/team/gabriella.jpg",
   },
   {
-    name: "Suharti K. Suherman",
-    role: "Principal Investigator",
-    image: "/images/pml/experts/all/08-tim_suharti.jpg",
-    focus: "Clinical research leadership, study conduct, and quality-focused oversight.",
+    name: "Hikmah",
+    role: "Regulatory Affairs Team",
+    image: "/images/pml/team/hikmah.jpg",
   },
   {
-    name: "Seriyati Naibaho",
-    role: "Analytical Manager",
-    image: "/images/pml/experts/all/10-tim_seriyati.jpg",
-    focus: "Analytical laboratory management, testing workflow, and data reliability.",
+    name: "Jessica",
+    role: "Regulatory Affairs Team",
+    image: "/images/pml/team/jessica.jpg",
+  },
+  {
+    name: "Kristin Theresia",
+    role: "Regulatory Affairs Team",
+    image: "/images/pml/team/kristin-theresia.jpg",
+  },
+  {
+    name: "Rini Hayati",
+    role: "Regulatory Affairs Team",
+    image: "/images/pml/team/rini-hayati.jpg",
+  },
+  {
+    name: "Silviana",
+    role: "Regulatory Affairs Team",
+    image: "/images/pml/team/silviana.jpg",
   },
 ];
 
@@ -55,20 +64,20 @@ const expertiseAreas = [
 
 const teamStrengths = [
   {
-    title: "Multidisciplinary expertise",
-    desc: "PML combines clinical, analytical, regulatory, project, and documentation capability in one integrated team.",
+    title: "Regulatory coordination",
+    desc: "Supporting regulatory-oriented preparation, documentation flow, and communication across project stakeholders.",
   },
   {
-    title: "Investigator-led research support",
-    desc: "Principal investigators support study supervision, medical oversight, and scientific quality.",
+    title: "Project documentation",
+    desc: "Helping maintain organized study records, submission-related materials, and project documentation readiness.",
   },
   {
-    title: "Responsive project coordination",
-    desc: "Teams are structured to help sponsors move from inquiry to execution with clear communication.",
+    title: "Sponsor communication",
+    desc: "Supporting clearer coordination between sponsors, internal teams, and related project functions.",
   },
   {
-    title: "Quality-focused delivery",
-    desc: "Clinical and analytical work is supported by quality, documentation, and compliance-oriented workflows.",
+    title: "Integrated project support",
+    desc: "Working alongside clinical, analytical, and operational teams to support reliable CRO project delivery.",
   },
 ];
 
@@ -79,23 +88,27 @@ export default function ExpertsAndTeamPage() {
 
   return (
     <main>
-      <section className="relative overflow-hidden bg-black text-white">
+      <section className="relative overflow-hidden bg-white text-black">
         <Image
-          src="/images/pml/about/pml-experts-team-meeting-hero.jpeg"
-          alt=""
+          src="/images/pml/team/ra-team-pml.png"
+          alt="PML Regulatory Affairs Team"
           fill
           priority
           className="object-cover opacity-85"
         />
-        <div className="absolute inset-0 bg-[#039147]/24" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/62 to-[#039147]/20" />
-        <div className="pml-hex-pattern absolute inset-0 opacity-[0.075]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/96 via-white/78 to-white/22" />
+        <div className="absolute inset-0 bg-[#039147]/10" />
+        <div className="pml-hex-pattern absolute inset-0 opacity-[0.06]" />
 
         <div className="pml-container relative py-20 md:py-32">
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-black/58">
-            <Link href="/" className="transition hover:text-[#039147]">Home</Link>
+            <Link href="/" className="transition hover:text-[#039147]">
+              Home
+            </Link>
             <span>/</span>
-            <Link href="/about-us" className="transition hover:text-[#039147]">About Us</Link>
+            <Link href="/about-us" className="transition hover:text-[#039147]">
+              About Us
+            </Link>
             <span>/</span>
             <span className="text-[#039147]">Experts & Team</span>
           </nav>
@@ -107,26 +120,27 @@ export default function ExpertsAndTeamPage() {
             </p>
 
             <h1 className="mt-6 max-w-5xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-6xl lg:text-[68px]">
-              Multidisciplinary experts supporting reliable CRO project delivery
+              Regulatory affairs team supporting reliable CRO project delivery
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-8 text-black/68 md:text-lg">
-              PML is supported by professionals across clinical research, analytical laboratory,
-              regulatory affairs, project management, data management, and quality assurance.
+              PML is supported by professionals across regulatory affairs, project coordination,
+              documentation, and sponsor communication to support smoother research and service
+              delivery.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
-                href="#experts-list"
-                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-xl"
+                href="#regulatory-team"
+                className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-sm font-extrabold text-white shadow-xl shadow-[#039147]/20 transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
               >
-                Meet the Experts
+                Meet the Team
               </a>
 
               <button
                 type="button"
                 onClick={openProposal}
-                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/88 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
               >
                 Request a Proposal
               </button>
@@ -144,20 +158,23 @@ export default function ExpertsAndTeamPage() {
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Experienced team for clinical, analytical, regulatory, and project workflows
+                Experienced support for regulatory, documentation, and project workflows
               </h2>
 
               <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
                 PML’s team structure supports the complete project journey, from study discussion,
-                planning, clinical execution, analysis, documentation, reporting, and regulatory-oriented
-                preparation. This multidisciplinary capability helps sponsors work with clearer direction
-                and stronger technical support.
+                planning, documentation, regulatory-oriented preparation, coordination, and reporting.
+                This multidisciplinary capability helps sponsors work with clearer direction and
+                stronger operational support.
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-3 md:gap-4">
               {expertiseAreas.map((area) => (
-                <div key={area} className="rounded-[20px] border border-black/5 bg-[#f6faf7] p-4 shadow-sm md:rounded-[24px] md:p-5">
+                <div
+                  key={area}
+                  className="rounded-[20px] border border-black/5 bg-[#f6faf7] p-4 shadow-sm md:rounded-[24px] md:p-5"
+                >
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
                     ✓
                   </span>
@@ -171,53 +188,54 @@ export default function ExpertsAndTeamPage() {
         </div>
       </section>
 
-      <section id="experts-list" className="bg-[#eaf8f0] py-16 md:py-28">
+      <section id="regulatory-team" className="bg-[#eaf8f0] py-16 md:py-28">
         <div className="pml-container">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-              Our Experts
+              Regulatory Affairs Team
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Principal investigators and operational leaders
+              Meet PML’s regulatory affairs team
             </h2>
 
             <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
-              Meet selected experts and team leaders supporting PML’s clinical, analytical,
-              and research service capability.
+              Selected team members supporting regulatory affairs, project coordination, and
+              documentation readiness. Detailed team narratives will be updated after final client
+              review.
             </p>
           </div>
 
           <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-5 md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3">
-            {experts.map((expert) => (
+            {regulatoryTeam.map((member) => (
               <article
-                key={expert.name}
+                key={member.name}
                 className="group w-[82vw] max-w-[350px] shrink-0 snap-start overflow-hidden rounded-[30px] border border-black/5 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,0,0,0.12)] md:w-auto md:max-w-none md:rounded-[34px]"
               >
-                <div className="relative aspect-[4/4.4] overflow-hidden bg-[#f6faf7]">
+                <div className="relative aspect-[4/4.35] overflow-hidden bg-[#f6faf7]">
                   <Image
-                    src={expert.image}
-                    alt={expert.name}
+                    src={member.image}
+                    alt={member.name}
                     fill
                     className="object-cover object-top transition duration-700 group-hover:scale-105"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/36 via-black/4 to-transparent" />
 
                   <div className="absolute bottom-5 left-5 right-5">
-                    <p className="rounded-full bg-white/90 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-[#039147] backdrop-blur">
-                      {expert.role}
+                    <p className="rounded-full bg-white/92 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-[#039147] backdrop-blur">
+                      {member.role}
                     </p>
                   </div>
                 </div>
 
                 <div className="p-6 md:p-7">
                   <h3 className="text-2xl font-black leading-tight text-black">
-                    {expert.name}
+                    {member.name}
                   </h3>
 
                   <p className="mt-3 text-base leading-8 text-black/60">
-                    {expert.focus}
+                    Supporting PML’s regulatory affairs and project documentation workflows.
                   </p>
                 </div>
               </article>
@@ -225,7 +243,7 @@ export default function ExpertsAndTeamPage() {
           </div>
 
           <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
-            Swipe to explore experts
+            Swipe to explore team members
           </p>
         </div>
       </section>
@@ -239,18 +257,21 @@ export default function ExpertsAndTeamPage() {
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Built to support sponsors from planning to reporting
+                Built to support sponsors from planning to documentation
               </h2>
 
               <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
                 PML’s team capability is designed to support project clarity, operational reliability,
-                scientific credibility, and documentation readiness.
+                communication flow, and documentation readiness.
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-3 md:gap-4">
               {teamStrengths.map((item) => (
-                <div key={item.title} className="rounded-[20px] border border-black/5 bg-[#f6faf7] p-4 shadow-sm md:rounded-[24px] md:p-5">
+                <div
+                  key={item.title}
+                  className="rounded-[20px] border border-black/5 bg-[#f6faf7] p-4 shadow-sm md:rounded-[24px] md:p-5"
+                >
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
                     ✓
                   </span>

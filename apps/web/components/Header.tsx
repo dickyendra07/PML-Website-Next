@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ReactNode, useState } from "react";
+import { ReactNode, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 type HeaderProps = {
@@ -269,7 +269,7 @@ function Icon({ type }: { type: IconType }) {
 
 function ServicesMegaPanel({ items }: { items: MegaItem[] }) {
   return (
-    <div className="invisible fixed left-1/2 top-[66px] z-50 w-[min(980px,calc(100vw-48px))] -translate-x-1/2 pt-5 opacity-0 transition duration-300 ease-out group-hover/menu:visible group-hover/menu:opacity-100">
+    <div className="w-[min(980px,calc(100vw-48px))]">
       <div className="absolute left-0 right-0 top-0 h-5" aria-hidden="true" />
 
       <div className="relative overflow-hidden rounded-[30px] border border-black/5 bg-white/97 p-6 shadow-[0_26px_80px_rgba(0,0,0,0.16)] ring-1 ring-black/[0.04] backdrop-blur-xl">
@@ -367,7 +367,7 @@ function MegaPanel({
   grid?: string;
 }) {
   return (
-    <div className={`invisible fixed left-1/2 top-[66px] z-50 w-[min(${width}px,calc(100vw-48px))] -translate-x-1/2 pt-5 opacity-0 transition duration-300 ease-out group-hover/menu:visible group-hover/menu:opacity-100`}>
+    <div className={`w-[min(${width}px,calc(100vw-48px))]`}>
       <div className="absolute left-0 right-0 top-0 h-5" aria-hidden="true" />
 
       <div className="relative overflow-hidden rounded-[30px] border border-black/5 bg-white/97 p-6 shadow-[0_26px_80px_rgba(0,0,0,0.16)] ring-1 ring-black/[0.04] backdrop-blur-xl">
@@ -444,16 +444,65 @@ function NavMega({
   panel: ReactNode;
   className: string;
 }) {
+  const [open, setOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openMenu = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+
+    setOpen(true);
+  };
+
+  const closeMenu = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+    }
+
+    closeTimer.current = setTimeout(() => {
+      setOpen(false);
+      closeTimer.current = null;
+    }, 180);
+  };
+
   return (
-    <div className="group/menu relative">
+    <div
+      className={`group/menu relative ${open ? "is-open" : ""}`}
+      onMouseEnter={openMenu}
+      onMouseLeave={closeMenu}
+      onFocus={openMenu}
+      onBlur={closeMenu}
+    >
       <Link href={href} className={className}>
         {children}
-        <svg className="h-3.5 w-3.5 transition group-hover/menu:rotate-180" viewBox="0 0 20 20" fill="none">
-          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <svg
+          className={`h-3.5 w-3.5 transition ${open ? "rotate-180" : ""}`}
+          viewBox="0 0 20 20"
+          fill="none"
+        >
+          <path
+            d="M5 7.5L10 12.5L15 7.5"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       </Link>
 
-      {panel}
+      <div
+        className={`absolute left-1/2 top-full z-[80] -translate-x-1/2 pt-4 transition duration-150 ${
+          open
+            ? "pointer-events-auto translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-2 opacity-0"
+        }`}
+        onMouseEnter={openMenu}
+      >
+        <div className="absolute -top-3 left-0 right-0 h-5" aria-hidden="true" />
+        {panel}
+      </div>
     </div>
   );
 }

@@ -158,7 +158,7 @@ export default function ClientsPage() {
               <button
                 type="button"
                 onClick={openProposal}
-                className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white/85 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-xl backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white"
               >
                 Start Collaboration
               </button>
@@ -175,7 +175,7 @@ export default function ClientsPage() {
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight tracking-tight text-black md:text-6xl">
-              More than 400 clients globally have worked with PML
+              More than 300 clients globally have worked with PML
             </h2>
 
             <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-black/64 md:text-lg md:leading-9">
@@ -252,6 +252,10 @@ export default function ClientsPage() {
               </div>
             ))}
           </div>
+
+          <p className="mt-6 text-center text-base font-extrabold text-[#039147] md:text-lg">
+            and many more...
+          </p>
         </div>
       </section>
 
@@ -369,7 +373,7 @@ export default function ClientsPage() {
 
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white/85 px-8 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
+                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-8 py-4 text-sm font-extrabold text-[#039147] shadow-xl backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white"
                 >
                   Contact PML
                 </Link>
