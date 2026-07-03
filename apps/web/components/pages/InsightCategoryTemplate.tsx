@@ -31,9 +31,9 @@ const categoryHero: Record<
   },
   publications: {
     eyebrow: "Publications",
-    title: "Scientific and regulatory references for sponsors and partners",
+    title: "Our Scientific Publications",
     description:
-      "Explore selected technical, regulatory, and documentation-oriented references to support better project discussions.",
+      "Explore peer-reviewed publications and scientific contributions by PML, demonstrating our expertise in clinical research, analytical testing, and regulatory science.",
     image: "/images/pml/services/clinical-trial-regulatory.png",
   },
   faq: {
@@ -155,11 +155,11 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Answers to common sponsor questions
+                Frequently Asked Questions
               </h2>
 
               <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
-                Use this section as a quick guide before contacting PML. More detailed answers can be discussed directly with the team.
+                Find answers to common questions about PML's services, processes, and capabilities. If you need further assistance, our team is here to help.
               </p>
             </div>
 

@@ -15,8 +15,8 @@ export const fallbackPublicSettings: PublicSettings = {
   "proposal.recipientEmail": "info@pharmametriclabs.com",
   "seo.defaultTitle": "Pharma Metric Labs | Contract Research Organization in Indonesia",
   "seo.defaultDescription": "Integrated CRO services for pharmaceutical development, including BA/BE study, clinical trial, contract analysis, and regulatory management.",
-  "social.instagram": "https://www.instagram.com",
-  "social.linkedin": "https://www.linkedin.com",
+  "social.instagram": "https://www.instagram.com/pharmametriclabs/",
+  "social.linkedin": "https://www.linkedin.com/company/pharma-metric-labs/",
 };
 
 export function getSettingValue(

@@ -84,7 +84,7 @@ export default function ContactPageClient() {
     "Novida.aristyowati@pharmametriclabs.com"
   );
 
-  const mapsQuery = encodeURIComponent(officeAddress);
+  const mapsQuery = encodeURIComponent("PharmaMetric Labs, Jl. Let. Jend. Suprapto No. 60, Cempaka Putih, Jakarta Pusat 10520, Indonesia");
   const phoneHref = `tel:${phoneNumber.replace(/[^0-9+]/g, "")}`;
 
   const contactCards = [
@@ -163,11 +163,11 @@ export default function ContactPageClient() {
             </p>
 
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-6xl lg:text-[68px]">
-              We are here for you, reach us for any enquiries
+              We are here to help!
             </h1>
 
             <p className="mt-6 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9 md:text-lg">
-              Let’s talk about your project. Share your inquiry and the PML team will help identify the right service, required information, and next steps.
+              Let's discuss your project! Share your inquiry and our team will help you identify the right solution and next steps.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -180,7 +180,7 @@ export default function ContactPageClient() {
 
               <a
                 href={phoneHref}
-                className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white/85 px-7 py-4 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
+                className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-7 py-4 text-base font-extrabold text-[#039147] shadow-xl backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white"
               >
                 Call PML
               </a>
@@ -197,11 +197,11 @@ export default function ContactPageClient() {
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Complete the details below and our team will follow up
+              Complete the form below and our team will be in touch
             </h2>
 
             <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
-              Please share your name, contact details, service interest, and message. Your inquiry will be submitted directly to the PML backend system.
+              Please provide your name, contact details, service of interest, and a brief message so we can assist you effectively.
             </p>
 
             <div className="mt-8 grid gap-3 md:gap-4">
@@ -279,7 +279,6 @@ export default function ContactPageClient() {
                   <option>BA/BE Study</option>
                   <option>Clinical Trial</option>
                   <option>Regulatory Management</option>
-                  <option>Facilities Inquiry</option>
                 </select>
               </label>
 
@@ -332,11 +331,11 @@ export default function ContactPageClient() {
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Visit Pharma Metric Labs office
+                Visit Pharma Metric Labs’ Head Office
               </h2>
 
               <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
-                PML is located at the address listed in the contact information. Use the map to find the office location and plan your visit.
+                We'd be happy to welcome you to our Head Office. Find our location using the map below and plan your visit.
               </p>
 
               <div className="mt-7 grid gap-3">
@@ -351,7 +350,7 @@ export default function ContactPageClient() {
 
                 <a
                   href={phoneHref}
-                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-7 py-4 text-base font-extrabold text-[#039147] transition hover:bg-[#039147] hover:text-[#039147]"
+                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-7 py-4 text-base font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5 hover:bg-[#eaf8f0] hover:text-[#039147]"
                 >
                   Call Before Visit
                 </a>

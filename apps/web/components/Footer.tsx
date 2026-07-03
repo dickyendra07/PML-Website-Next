@@ -77,8 +77,8 @@ export default function Footer() {
     "contact.address",
     "Gedung Indra Sentral Unit R & T, Jakarta Pusat, Indonesia"
   );
-  const instagram = getSettingValue(settings, "social.instagram", "https://www.instagram.com");
-  const linkedin = getSettingValue(settings, "social.linkedin", "https://www.linkedin.com");
+  const instagram = "https://www.instagram.com/pharmametriclabs/";
+  const linkedin = "https://www.linkedin.com/company/pharma-metric-labs/";
   const copyright = getSettingValue(
     settings,
     "footer.copyright",

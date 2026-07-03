@@ -30,7 +30,7 @@ const securityHeaders = [
       "img-src 'self' data: blob: https:",
       "font-src 'self' data:",
       "connect-src 'self' https: wss:",
-      "frame-src 'self' https://vercel.live",
+      "frame-src 'self' https://vercel.live https://www.google.com https://maps.google.com",
       "upgrade-insecure-requests",
     ].join("; "),
   },
