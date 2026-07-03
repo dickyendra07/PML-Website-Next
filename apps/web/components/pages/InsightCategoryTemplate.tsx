@@ -11,6 +11,34 @@ type InsightCategoryTemplateProps = {
   category: InsightCategory;
 };
 
+const mockFaqItems = [
+  {
+    question: "What services does PML provide?",
+    answer:
+      "PML provides integrated CRO services including BA/BE study support, clinical trial support, contract analysis, regulatory management, and project documentation support.",
+  },
+  {
+    question: "Can PML support both local and international sponsors?",
+    answer:
+      "Yes. PML supports local and international sponsors across pharmaceutical, healthcare, research, and regulated product industries.",
+  },
+  {
+    question: "What information should sponsors prepare before contacting PML?",
+    answer:
+      "Sponsors can prepare the product or study background, service of interest, project timeline, available documents, and expected regulatory or analytical requirements.",
+  },
+  {
+    question: "Does PML provide regulatory management support?",
+    answer:
+      "Yes. PML supports regulatory-oriented preparation, document review, ACTD-related documentation, and submission readiness based on project requirements.",
+  },
+  {
+    question: "How can sponsors start a project discussion with PML?",
+    answer:
+      "Sponsors can submit an inquiry through the contact form or request a proposal. The PML team will review the information and follow up with the recommended next steps.",
+  },
+];
+
 const categoryHero: Record<
   InsightCategory,
   { title: string; eyebrow: string; description: string; image: string }
@@ -164,37 +192,25 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
             </div>
 
             <div className="space-y-3 md:space-y-4">
-              {status === "loading" ? (
-                <div className="rounded-[26px] border border-black/5 bg-[#f6faf7] p-6 text-base font-bold text-black/48">
-                  Loading FAQ from CMS...
-                </div>
-              ) : null}
-
-              {status === "error" ? (
-                <div className="rounded-[26px] border border-red-100 bg-red-50 p-6 text-base font-bold text-red-700">
-                  Unable to load FAQ. Please try again later.
-                </div>
-              ) : null}
-
-              {status === "success" && items.length === 0 ? (
-                <div className="rounded-[26px] border border-black/5 bg-[#f6faf7] p-6 text-base font-bold text-black/48">
-                  No FAQ available yet.
-                </div>
-              ) : null}
-
-              {items.map((faq) => (
+              {(items.length > 0
+                ? items.map((faq) => ({
+                    question: faq.title,
+                    answer: faq.excerpt || faq.content || "Answer will be available soon.",
+                  }))
+                : mockFaqItems
+              ).map((faq) => (
                 <details
-                  key={faq.id}
+                  key={faq.question}
                   className="group rounded-[22px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-xl md:rounded-[26px] md:p-6"
                 >
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-base font-black text-black md:gap-6 md:text-lg">
-                    {faq.title}
+                    {faq.question}
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-xl text-[#039147] transition group-open:rotate-45">
                       +
                     </span>
                   </summary>
                   <p className="mt-4 text-base leading-8 text-black/60">
-                    {faq.excerpt || faq.content || "Answer will be available soon."}
+                    {faq.answer}
                   </p>
                 </details>
               ))}
