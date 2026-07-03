@@ -1,26 +1,98 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import FacilityCardGrid from "@/components/pages/FacilityCardGrid";
 
+const facilityHeroSlides = [
+  {
+    eyebrow: "Clinical Study Support",
+    title: "Clinical facilities for reliable study execution",
+    description:
+      "Explore PML clinical facilities designed to support controlled study activities, volunteer coordination, screening, dining areas, and medical support.",
+    image: "/images/pml/facilities/photos/pml-facility-photo-01.png",
+    href: "/facilities/clinical-facilities",
+    cta: "Explore Clinical Facilities",
+  },
+  {
+    eyebrow: "Laboratory Capability",
+    title: "Analytical facilities for testing and bioanalysis",
+    description:
+      "Discover analytical laboratory capability supported by instruments and workflows for bioanalysis, contract analysis, product testing, documentation, and reporting.",
+    image: "/images/pml/facilities/photos/pml-facility-photo-17.png",
+    href: "/facilities/analytical-facilities",
+    cta: "Explore Analytical Facilities",
+  },
+  {
+    eyebrow: "Operational Support",
+    title: "Supporting facilities for complete project workflow",
+    description:
+      "Review supporting infrastructure for drug storage, archive management, sample handling, study operations, and project documentation readiness.",
+    image: "/images/pml/facilities/photos/pml-facility-photo-11.png",
+    href: "/facilities/supporting-facilities",
+    cta: "Explore Supporting Facilities",
+  },
+  {
+    eyebrow: "Facility Experience",
+    title: "Explore PML facilities through the VR Gallery",
+    description:
+      "Access the facility experience and visual references through PML’s VR Gallery for a clearer view of selected facility areas.",
+    image: "/images/pml/facilities/photos/pml-facility-photo-18.png",
+    href: "/facilities/vr-gallery",
+    cta: "Open VR Gallery",
+  },
+];
+
 export default function FacilitiesPage() {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const currentSlide = facilityHeroSlides[activeSlide];
+
   const openProposal = () => {
     window.dispatchEvent(new CustomEvent("open-proposal-modal"));
   };
 
+  const goToPreviousSlide = () => {
+    setActiveSlide((current) =>
+      current === 0 ? facilityHeroSlides.length - 1 : current - 1
+    );
+  };
+
+  const goToNextSlide = () => {
+    setActiveSlide((current) =>
+      current === facilityHeroSlides.length - 1 ? 0 : current + 1
+    );
+  };
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveSlide((current) =>
+        current === facilityHeroSlides.length - 1 ? 0 : current + 1
+      );
+    }, 6000);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
   return (
     <main>
       <section className="relative overflow-hidden bg-black text-white">
-        <Image
-          src="/images/pml/facilities/photos/pml-facility-photo-01.png"
-          alt=""
-          fill
-          priority
-          className="object-cover opacity-80"
-        />
+        {facilityHeroSlides.map((slide, index) => (
+          <Image
+            key={slide.title}
+            src={slide.image}
+            alt=""
+            fill
+            priority={index === 0}
+            className={`object-cover transition duration-700 ${
+              activeSlide === index ? "opacity-80" : "opacity-0"
+            }`}
+          />
+        ))}
+
         <div className="absolute inset-0 bg-[#039147]/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/62 to-[#039147]/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/94 via-white/68 to-[#039147]/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent" />
         <div className="pml-hex-pattern absolute inset-0 opacity-[0.075]" />
 
         <div className="pml-container relative py-20 md:py-32">
@@ -30,37 +102,101 @@ export default function FacilitiesPage() {
             <span className="text-[#039147]">Facilities</span>
           </nav>
 
-          <div className="max-w-4xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/20 bg-white/95 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#039147] backdrop-blur">
-              <span className="h-2 w-2 rounded-full bg-[#039147]" />
-              Facilities & Capability
-            </p>
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.46fr] lg:items-end">
+            <div className="max-w-4xl">
+              <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/20 bg-white/95 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#039147] shadow-sm backdrop-blur">
+                <span className="h-2 w-2 rounded-full bg-[#039147]" />
+                {currentSlide.eyebrow}
+              </p>
 
-            <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-6xl lg:text-[68px]">
-              Facilities designed to support clinical, analytical, and operational needs
-            </h1>
+              <h1 className="mt-6 max-w-5xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-6xl lg:text-[68px]">
+                {currentSlide.title}
+              </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-black/68 md:text-lg">
-              PML provides integrated facilities to support reliable CRO project delivery,
-              including clinical facilities, analytical instruments, supporting infrastructure,
-              and facility experience access through VR Gallery.
-            </p>
+              <p className="mt-6 max-w-2xl text-base leading-8 text-black/68 md:text-lg">
+                {currentSlide.description}
+              </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#facilities-list"
-                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-xl"
-              >
-                Explore Facilities
-              </a>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href={currentSlide.href}
+                  className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
+                >
+                  {currentSlide.cta}
+                </Link>
 
-              <button
-                type="button"
-                onClick={openProposal}
-                className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white/85 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
-              >
-                Request a Proposal
-              </button>
+                <button
+                  type="button"
+                  onClick={openProposal}
+                  className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-xl backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white"
+                >
+                  Request a Proposal
+                </button>
+              </div>
+            </div>
+
+            <div className="rounded-[30px] border border-white/35 bg-white/70 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.08)] backdrop-blur-xl md:rounded-[36px] md:p-6">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#039147]">
+                Facility Highlight
+              </p>
+
+              <div className="mt-5 grid gap-3">
+                {facilityHeroSlides.map((slide, index) => (
+                  <button
+                    key={slide.title}
+                    type="button"
+                    onClick={() => setActiveSlide(index)}
+                    className={`rounded-2xl border px-4 py-3 text-left transition ${
+                      activeSlide === index
+                        ? "border-[#039147]/20 bg-[#039147] text-white shadow-[0_16px_40px_rgba(3,145,71,0.18)]"
+                        : "border-black/5 bg-white/75 text-black/62 hover:bg-white hover:text-[#039147]"
+                    }`}
+                  >
+                    <span className={`block text-[11px] font-black uppercase tracking-[0.14em] ${
+                      activeSlide === index ? "text-white/70" : "text-[#039147]"
+                    }`}>
+                      0{index + 1}
+                    </span>
+                    <span className="mt-1 block text-sm font-black leading-tight">
+                      {slide.eyebrow}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={goToPreviousSlide}
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-xl font-black text-[#039147] shadow-xl transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white"
+              aria-label="Previous facility slide"
+            >
+              ←
+            </button>
+
+            <button
+              type="button"
+              onClick={goToNextSlide}
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-xl font-black text-[#039147] shadow-xl transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white"
+              aria-label="Next facility slide"
+            >
+              →
+            </button>
+
+            <div className="ml-1 flex items-center gap-2">
+              {facilityHeroSlides.map((slide, index) => (
+                <button
+                  key={`${slide.title}-dot`}
+                  type="button"
+                  onClick={() => setActiveSlide(index)}
+                  className={`h-2.5 rounded-full transition ${
+                    activeSlide === index ? "w-9 bg-[#039147]" : "w-2.5 bg-black/18 hover:bg-[#039147]/60"
+                  }`}
+                  aria-label={`Go to ${slide.eyebrow} slide`}
+                />
+              ))}
             </div>
           </div>
         </div>
