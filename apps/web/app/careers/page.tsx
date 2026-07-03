@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata = {
   title: "Careers | Pharma Metric Labs",
   description:
-    "Explore career opportunities at Pharma Metric Labs and learn how to apply by sending your CV to the PML recruitment team.",
+    "Explore career opportunities at Pharma Metric Labs across clinical, analytical, regulatory, and project support departments.",
 };
 
 const values = [
@@ -30,11 +30,82 @@ const values = [
   },
 ];
 
-const openRoleFields = [
-  "Role Title",
-  "Department",
-  "Job Requirements",
-  "Job Description",
+const careerDepartments = [
+  {
+    department: "Clinical Operations",
+    roles: [
+      {
+        title: "Clinical Research Coordinator",
+        type: "Open Opportunity",
+        description:
+          "Supports clinical study preparation, subject coordination, documentation flow, and communication with internal study teams.",
+        requirements: [
+          "Background in health sciences, pharmacy, nursing, medicine, or related fields.",
+          "Strong documentation, coordination, and communication skills.",
+          "Able to work with structured clinical research workflows.",
+        ],
+      },
+      {
+        title: "Clinical Research Assistant",
+        type: "Open Opportunity",
+        description:
+          "Assists clinical project execution, data collection support, study administration, and operational preparation.",
+        requirements: [
+          "Detail-oriented and comfortable working with study documents.",
+          "Able to coordinate with multidisciplinary teams.",
+          "Interest in clinical research and regulated project environments.",
+        ],
+      },
+    ],
+  },
+  {
+    department: "Analytical Laboratory",
+    roles: [
+      {
+        title: "Laboratory Analyst",
+        type: "Open Opportunity",
+        description:
+          "Supports analytical testing activities, sample handling, laboratory documentation, and method-related workflows.",
+        requirements: [
+          "Background in chemistry, pharmacy, biotechnology, or related laboratory fields.",
+          "Understanding of laboratory procedures and documentation practices.",
+          "Careful, organized, and quality-oriented.",
+        ],
+      },
+    ],
+  },
+  {
+    department: "Regulatory Affairs",
+    roles: [
+      {
+        title: "Regulatory Affairs Staff",
+        type: "Open Opportunity",
+        description:
+          "Supports regulatory document preparation, submission-oriented coordination, and project documentation readiness.",
+        requirements: [
+          "Background in pharmacy, life sciences, public health, or related fields.",
+          "Familiarity with regulatory documentation is preferred.",
+          "Strong written communication and document control skills.",
+        ],
+      },
+    ],
+  },
+  {
+    department: "Project & Documentation",
+    roles: [
+      {
+        title: "Project Administration Staff",
+        type: "Open Opportunity",
+        description:
+          "Supports project administration, internal coordination, document tracking, and communication between teams.",
+        requirements: [
+          "Strong administrative and organizational skills.",
+          "Comfortable working with timelines, records, and project documentation.",
+          "Able to communicate clearly with internal and external stakeholders.",
+        ],
+      },
+    ],
+  },
 ];
 
 function CareerIcon({ name }: { name: string }) {
@@ -91,15 +162,6 @@ export default function CareersPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(3,145,71,0.08),transparent_30%),radial-gradient(circle_at_84%_12%,rgba(3,145,71,0.07),transparent_32%)]" />
         <div className="pml-hex-pattern absolute inset-0 opacity-[0.04]" />
 
-        <svg
-          className="absolute right-[-130px] top-[-110px] h-[420px] w-[420px] text-[#039147]/10"
-          viewBox="0 0 400 400"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path d="M200 20L356 110V290L200 380L44 290V110L200 20Z" stroke="currentColor" strokeWidth="4" />
-        </svg>
-
         <div className="pml-container relative">
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-black/58" aria-label="Breadcrumb">
             <Link href="/" className="transition hover:text-[#039147]">Home</Link>
@@ -113,7 +175,7 @@ export default function CareersPage() {
                 Careers at PML
               </p>
 
-              <h1 className="mt-6 max-w-5xl text-5xl font-black leading-[1.02] tracking-[-0.055em] text-black md:text-7xl">
+              <h1 className="mt-6 max-w-5xl text-5xl font-black leading-[1.06] tracking-[-0.018em] text-black md:text-7xl md:leading-[1.04]">
                 Build your career in a trusted clinical and laboratory environment
               </h1>
 
@@ -127,18 +189,13 @@ export default function CareersPage() {
               <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                 How to apply
               </p>
-              <h2 className="mt-3 text-[26px] font-black leading-tight tracking-[-0.025em] text-black">
-                Send your CV to PML Recruitment
+              <h2 className="mt-3 text-[26px] font-black leading-tight tracking-[-0.015em] text-black">
+                Recruitment information
               </h2>
               <p className="mt-4 text-base font-semibold leading-8 text-black/62">
-                Candidates may send their CV and relevant supporting documents to the recruitment email below.
+                Candidates can review available opportunities and prepare their CV, supporting
+                documents, department interest, and relevant qualifications.
               </p>
-              <a
-                href="mailto:recruitment@pharmametriclabs.com"
-                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#039147] px-6 py-4 text-base font-black text-white shadow-[0_18px_44px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 hover:bg-[#027a3d]"
-              >
-                recruitment@pharmametriclabs.com
-              </a>
             </div>
           </div>
         </div>
@@ -183,80 +240,84 @@ export default function CareersPage() {
 
       <section className="bg-[#eaf8f0] px-4 py-16 md:py-24">
         <div className="pml-container">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
             <div>
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
                 Open Roles
               </p>
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Career opportunities at PML
+                Career opportunities by department
               </h2>
               <p className="mt-6 text-[17px] leading-8 text-black/66 md:text-[19px] md:leading-9">
-                Available roles may vary based on departmental needs. Candidates can submit their
-                CV for recruitment consideration and include relevant experience, requirements,
-                or position interest when applying.
+                Explore available opportunities based on department. Select a role to view the job
+                description, expected requirements, and relevant qualification details.
               </p>
             </div>
 
-            <div className="rounded-[38px] border border-[#039147]/10 bg-white p-6 shadow-[0_30px_90px_rgba(3,145,71,0.10)] md:p-8">
-              <div className="grid gap-4 md:grid-cols-2">
-                {openRoleFields.map((field, index) => (
-                  <div key={field} className="rounded-[24px] border border-black/5 bg-[#f8fbf9] p-5">
+            <div className="rounded-[38px] border border-[#039147]/10 bg-white p-5 shadow-[0_30px_90px_rgba(3,145,71,0.10)] md:p-8">
+              <div className="grid gap-5">
+                {careerDepartments.map((department) => (
+                  <div
+                    key={department.department}
+                    className="rounded-[28px] border border-black/5 bg-[#f8fbf9] p-5 md:p-6"
+                  >
                     <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
-                      0{index + 1}
+                      Department
                     </p>
-                    <h3 className="mt-3 text-xl font-black text-black">{field}</h3>
-                    <p className="mt-3 text-base font-medium leading-7 text-black/60">
-                      To be provided based on the active recruitment needs.
-                    </p>
+                    <h3 className="mt-2 text-2xl font-black leading-tight text-black">
+                      {department.department}
+                    </h3>
+
+                    <div className="mt-5 grid gap-3">
+                      {department.roles.map((role) => (
+                        <details
+                          key={role.title}
+                          className="group overflow-hidden rounded-[22px] border border-black/5 bg-white shadow-sm transition open:border-[#039147]/18 open:shadow-[0_18px_50px_rgba(3,145,71,0.10)]"
+                        >
+                          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5">
+                            <span>
+                              <span className="block text-xs font-black uppercase tracking-[0.14em] text-[#039147]">
+                                {role.type}
+                              </span>
+                              <span className="mt-2 block text-xl font-black leading-tight text-black">
+                                {role.title}
+                              </span>
+                            </span>
+
+                            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-xl font-black text-[#039147] transition group-open:rotate-45 group-open:bg-[#039147] group-open:text-white">
+                              +
+                            </span>
+                          </summary>
+
+                          <div className="border-t border-black/5 px-5 pb-5 pt-4">
+                            <p className="text-sm font-black uppercase tracking-[0.14em] text-black/45">
+                              Job Description
+                            </p>
+                            <p className="mt-2 text-base font-medium leading-8 text-black/64">
+                              {role.description}
+                            </p>
+
+                            <p className="mt-5 text-sm font-black uppercase tracking-[0.14em] text-black/45">
+                              Requirements
+                            </p>
+                            <ul className="mt-3 grid gap-2">
+                              {role.requirements.map((item) => (
+                                <li
+                                  key={item}
+                                  className="flex gap-3 text-base font-medium leading-7 text-black/64"
+                                >
+                                  <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#039147]" />
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </details>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
-
-              <div className="mt-6 rounded-[26px] bg-[#039147] p-6 text-white">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-white/72">
-                  Application process
-                </p>
-                <h3 className="mt-3 text-2xl font-black">
-                  Send your CV and supporting documents by email
-                </h3>
-                <p className="mt-4 text-base font-semibold leading-8 text-white/82">
-                  The recruitment team will review submitted applications based on role availability,
-                  department requirements, and candidate qualifications.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-4 py-16 md:py-24">
-        <div className="pml-container">
-          <div className="relative overflow-hidden rounded-[42px] border border-[#039147]/12 bg-[#f4fbf7] p-8 text-black shadow-[0_34px_110px_rgba(3,145,71,0.13)] md:p-12">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(3,145,71,0.13),transparent_34%),radial-gradient(circle_at_88%_20%,rgba(3,145,71,0.10),transparent_34%)]" />
-            <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-white/70 blur-2xl" />
-            <div className="absolute -bottom-28 -left-16 h-72 w-72 rounded-full bg-[#039147]/10 blur-2xl" />
-
-            <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-              <div>
-                <p className="inline-flex rounded-full border border-[#039147]/12 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#039147] shadow-sm">
-                  HR Contact
-                </p>
-                <h2 className="mt-5 max-w-3xl text-4xl font-black leading-tight text-black md:text-[52px]">
-                  Interested in joining PML?
-                </h2>
-                <p className="mt-5 max-w-2xl text-base font-semibold leading-8 text-black/62 md:text-base">
-                  Submit your CV to the official recruitment email and include your intended role,
-                  department interest, and supporting documents if available.
-                </p>
-              </div>
-
-              <a
-                href="mailto:recruitment@pharmametriclabs.com"
-                className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-base font-black text-white shadow-[0_18px_44px_rgba(3,145,71,0.24)] transition hover:-translate-y-0.5 hover:bg-[#027a3d]"
-              >
-                Email Recruitment
-              </a>
             </div>
           </div>
         </div>

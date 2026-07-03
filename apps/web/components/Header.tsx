@@ -725,6 +725,10 @@ export default function Header({ onOpenProposal }: HeaderProps) {
           >
             Insight
           </NavMega>
+
+          <Link className={navClass("/careers")} href="/careers">
+            Careers
+          </Link>
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
