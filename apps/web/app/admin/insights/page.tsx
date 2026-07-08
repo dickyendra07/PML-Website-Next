@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import AdminShell from "@/components/admin/AdminShell";
 import AdminState from "@/components/admin/AdminState";
+import RichTextEditor from "@/components/admin/RichTextEditor";
 import {
   AdminInsightItem,
   PageSeoStatus,
@@ -116,6 +117,7 @@ export default function AdminInsightsPage() {
   const [saving, setSaving] = useState(false);
   const [uploadingCover, setUploadingCover] = useState(false);
   const [message, setMessage] = useState("");
+  const [isWritingMode, setIsWritingMode] = useState(false);
 
   const selectedInsight = useMemo(() => {
     return items.find((item) => item.id === form.id) || null;
@@ -289,7 +291,10 @@ export default function AdminInsightsPage() {
 
         <button
           type="button"
-          onClick={resetForm}
+          onClick={() => {
+            resetForm();
+            setIsWritingMode(true);
+          }}
           className="w-fit rounded-full bg-[#039147] px-6 py-3 text-sm font-black text-white shadow-[0_18px_50px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5"
         >
           Create New Insight
@@ -305,14 +310,15 @@ export default function AdminInsightsPage() {
       ) : null}
 
       {status === "success" ? (
-        <div className="grid gap-6 xl:grid-cols-[0.9fr_1.3fr]">
-          <section className="rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur md:p-7">
+        <div className="grid gap-6">
+          {!isWritingMode ? (
+            <section className="rounded-[30px] border border-black/5 bg-white p-4 shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur md:p-5">
             <div className="mb-5 flex items-center justify-between gap-3">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                   Insight List
                 </p>
-                <h2 className="mt-2 text-2xl font-black text-black">
+                <h2 className="mt-2 text-xl font-black text-black">
                   Existing Insights
                 </h2>
               </div>
@@ -322,12 +328,15 @@ export default function AdminInsightsPage() {
               </span>
             </div>
 
-            <div className="grid gap-3">
+            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
               {items.map((item) => (
                 <button
                   key={item.id}
                   type="button"
-                  onClick={() => selectInsight(item)}
+                  onClick={() => {
+                    selectInsight(item);
+                    setIsWritingMode(true);
+                  }}
                   className={`rounded-2xl border p-4 text-left transition ${
                     item.id === form.id
                       ? "border-[#039147] bg-[#eaf8f0]"
@@ -353,7 +362,7 @@ export default function AdminInsightsPage() {
                     </span>
                   </div>
 
-                  <div className="mt-4 flex flex-wrap gap-2 text-[10px] font-black uppercase tracking-[0.1em] text-black/50">
+                  <div className="mt-3 flex flex-wrap gap-1.5 text-[9px] font-black uppercase tracking-[0.1em] text-black/50">
                     <span>{item.category}</span>
                     <span>•</span>
                     <span>{item.isFeatured ? "Featured" : "Standard"}</span>
@@ -369,11 +378,13 @@ export default function AdminInsightsPage() {
                 </div>
               ) : null}
             </div>
-          </section>
+            </section>
+          ) : null}
 
-          <form
-            onSubmit={handleSubmit}
-            className="rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur md:p-7"
+          {isWritingMode ? (
+            <form
+              onSubmit={handleSubmit}
+            className="min-w-0 rounded-[34px] border border-black/5 bg-white p-5 shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur md:p-8 xl:p-10"
           >
             <div className="mb-6 flex flex-col justify-between gap-2 md:flex-row md:items-end">
               <div>
@@ -385,18 +396,28 @@ export default function AdminInsightsPage() {
                 </h2>
               </div>
 
-              <span className="w-fit rounded-full border border-black/5 bg-white5 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-black/50">
-                {form.category}
-              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsWritingMode(false)}
+                  className="rounded-full border border-black/5 bg-white5 px-4 py-2 text-xs font-black text-black/55 transition hover:border-[#039147]/30 hover:bg-[#eaf8f0] hover:text-[#039147]"
+                >
+                  Back to Insight List
+                </button>
+
+                <span className="w-fit rounded-full border border-black/5 bg-white5 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-black/50">
+                  {form.category}
+                </span>
+              </div>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-2">
+            <div className="grid gap-6 md:grid-cols-2">
               <label className="grid gap-2 md:col-span-2">
                 <span className="text-sm font-black text-black">Title</span>
                 <input
                   value={form.title}
                   onChange={(event) => updateField("title", event.target.value)}
-                  className="h-13 rounded-2xl border border-black/5 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  className="h-14 rounded-2xl border border-black/5 bg-white px-5 text-base font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                   required
                 />
               </label>
@@ -436,15 +457,27 @@ export default function AdminInsightsPage() {
                 />
               </label>
 
-              <label className="grid gap-2 md:col-span-2">
-                <span className="text-sm font-black text-black">Content</span>
-                <textarea
-                  rows={8}
+              <div className="grid gap-2 md:col-span-2">
+                <div>
+                  <div className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
+                  <div>
+                    <span className="text-sm font-black text-black">Article Body</span>
+                    <p className="mt-1 text-xs font-bold leading-5 text-black/45">
+                      Dedicated writing space for SEO articles. Use headings, internal links, quotes, and lists.
+                    </p>
+                  </div>
+
+                  <span className="w-fit rounded-full bg-[#eaf8f0] px-4 py-2 text-xs font-black text-[#039147]">
+                    WordPress-like writing mode
+                  </span>
+                </div>
+                </div>
+
+                <RichTextEditor
                   value={form.content}
-                  onChange={(event) => updateField("content", event.target.value)}
-                  className="resize-none rounded-2xl border border-black/5 bg-white px-4 py-3 text-sm font-bold leading-7 text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
+                  onChange={(value) => updateField("content", value)}
                 />
-              </label>
+              </div>
 
               <div className="grid gap-4 rounded-[26px] border border-black/5 bg-white5 p-4 md:col-span-2 md:grid-cols-[0.9fr_1.1fr] md:p-5">
                 <div className="overflow-hidden rounded-[22px] border border-black/5 bg-black/30">
@@ -541,7 +574,7 @@ export default function AdminInsightsPage() {
               </div>
             ) : null}
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-end">
+            <div className="mt-8 flex flex-col gap-3 rounded-[24px] border border-black/5 bg-white5 p-3 sm:flex-row sm:justify-end">
               {form.id ? (
                 <button
                   type="button"
@@ -561,7 +594,8 @@ export default function AdminInsightsPage() {
                 {saving ? "Saving Insight..." : "Save Insight"}
               </button>
             </div>
-          </form>
+            </form>
+          ) : null}
         </div>
       ) : null}
     </AdminShell>
