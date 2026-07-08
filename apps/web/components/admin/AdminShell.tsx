@@ -4,7 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
-import { AdminUser, clearAdminToken } from "@/lib/admin-api";
+import {
+  AdminUser,
+  clearAdminToken,
+  getAdminToken,
+  getCurrentAdmin,
+  logoutAdmin,
+} from "@/lib/admin-api";
 
 const navItems = [
   { label: "Dashboard", href: "/admin", icon: "D" },
@@ -28,18 +34,52 @@ export default function AdminShell({ children }: AdminShellProps) {
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
-    setAdmin({
-      id: "cms-preview-user",
-      name: "PML CMS Preview Preview",
-      email: "preview@pharmametriclabs.com",
-      role: "Preview Mode",
-    });
-    setChecking(false);
-  }, []);
+    let mounted = true;
+
+    async function checkSession() {
+      const token = getAdminToken();
+
+      if (!token) {
+        router.replace("/admin/login");
+        return;
+      }
+
+      try {
+        const user = await getCurrentAdmin(token);
+
+        if (!mounted) return;
+
+        setAdmin(user);
+        setChecking(false);
+      } catch {
+        clearAdminToken();
+
+        if (!mounted) return;
+
+        router.replace("/admin/login");
+      }
+    }
+
+    void checkSession();
+
+    return () => {
+      mounted = false;
+    };
+  }, [router]);
 
   const handleLogout = async () => {
+    const token = getAdminToken();
+
+    try {
+      if (token) {
+        await logoutAdmin(token);
+      }
+    } catch {
+      // Ignore logout API failure and clear local session.
+    }
+
     clearAdminToken();
-    router.replace("/admin");
+    router.replace("/admin/login");
   };
 
   if (checking) {
@@ -47,7 +87,7 @@ export default function AdminShell({ children }: AdminShellProps) {
       <main className="min-h-screen bg-[#f6faf7] text-black">
         <div className="flex min-h-screen items-center justify-center">
           <div className="rounded-[28px] border border-black/5 bg-white px-8 py-6 text-sm font-bold text-black/60 shadow-xl">
-            Loading CMS preview area...
+            Checking CMS session...
           </div>
         </div>
       </main>
@@ -60,7 +100,7 @@ export default function AdminShell({ children }: AdminShellProps) {
       <div className="pml-hex-pattern fixed inset-0 opacity-[0.035]" />
 
       <div className="relative grid min-h-screen lg:grid-cols-[300px_1fr]">
-        <aside className="border-b border-black/5 bg-white2 p-5 shadow-[12px_0_50px_rgba(0,0,0,0.04)] backdrop-blur-xl lg:border-b-0 lg:border-r lg:p-6">
+        <aside className="border-b border-black/5 bg-white/80 p-5 shadow-[12px_0_50px_rgba(0,0,0,0.04)] backdrop-blur-xl lg:border-b-0 lg:border-r lg:p-6">
           <div className="flex items-center gap-3 rounded-[24px] border border-black/5 bg-[#f6faf7] p-4 shadow-sm">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-lg">
               <Image src="/images/LOGO-PML.png" alt="PML" width={74} height={44} className="h-7 w-auto" />
@@ -70,7 +110,7 @@ export default function AdminShell({ children }: AdminShellProps) {
                 PML CMS
               </p>
               <h1 className="text-lg font-black leading-tight text-black">
-                Preview Panel
+                Admin Panel
               </h1>
             </div>
           </div>
@@ -91,7 +131,7 @@ export default function AdminShell({ children }: AdminShellProps) {
                 >
                   <span
                     className={`flex h-9 w-9 items-center justify-center rounded-xl text-xs ${
-                      active ? "bg-white/18 text-black" : "bg-[#eaf8f0] text-[#039147]"
+                      active ? "bg-white/18 text-white" : "bg-[#eaf8f0] text-[#039147]"
                     }`}
                   >
                     {item.icon}
@@ -122,9 +162,7 @@ export default function AdminShell({ children }: AdminShellProps) {
           </button>
         </aside>
 
-        <section className="min-w-0 p-5 lg:p-8">
-          {children}
-        </section>
+        <section className="min-w-0 p-5 lg:p-8">{children}</section>
       </div>
     </main>
   );

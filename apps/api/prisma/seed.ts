@@ -19,6 +19,7 @@ async function main() {
     },
     update: {
       name: 'PML Admin',
+      passwordHash,
       role: 'SUPER_ADMIN',
       isActive: true,
     },
