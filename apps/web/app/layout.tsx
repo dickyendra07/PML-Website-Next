@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import ClientShell from "@/components/ClientShell";
 import { getSeoDefaults } from "@/lib/server-settings";
+import CookieConsent from "@/components/CookieConsent";
 
 const kalbeHelix = localFont({
   src: [
@@ -120,6 +121,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${kalbeHelix.className} ${kalbeHelix.variable}`}>
         <ClientShell>{children}</ClientShell>
+              <CookieConsent />
       </body>
     </html>
   );

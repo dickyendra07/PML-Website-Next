@@ -85,6 +85,12 @@ export default function Footer() {
     "PML. All rights reserved."
   );
 
+  const openCookieSettings = () => {
+    window.localStorage.removeItem("pml_cookie_consent_v1");
+    window.localStorage.removeItem("pml_cookie_consent_v1_date");
+    window.location.reload();
+  };
+
   return (
     <footer className="relative overflow-hidden bg-[#f7f8f7] px-4 py-16">
       <div className="absolute inset-x-0 bottom-0 -z-0 overflow-hidden text-center" aria-hidden="true">
@@ -182,15 +188,19 @@ export default function Footer() {
               <p>© {new Date().getFullYear()} {copyright}</p>
 
               <div className="flex flex-wrap gap-5">
-                <Link href="/contact" className="underline decoration-black/20 underline-offset-4 transition hover:text-[#039147] hover:decoration-[#039147]">
+                <Link href="/privacy-policy" className="underline decoration-black/20 underline-offset-4 transition hover:text-[#039147] hover:decoration-[#039147]">
                   Privacy Policy
                 </Link>
-                <Link href="/contact" className="underline decoration-black/20 underline-offset-4 transition hover:text-[#039147] hover:decoration-[#039147]">
-                  Terms of Service
+                <Link href="/cookie-policy" className="underline decoration-black/20 underline-offset-4 transition hover:text-[#039147] hover:decoration-[#039147]">
+                  Cookie Policy
                 </Link>
-                <Link href="/contact" className="underline decoration-black/20 underline-offset-4 transition hover:text-[#039147] hover:decoration-[#039147]">
+                <button
+                  type="button"
+                  onClick={openCookieSettings}
+                  className="underline decoration-black/20 underline-offset-4 transition hover:text-[#039147] hover:decoration-[#039147]"
+                >
                   Cookie Settings
-                </Link>
+                </button>
               </div>
             </div>
           </div>
