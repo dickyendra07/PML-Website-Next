@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CareerItem, getCareers } from "@/lib/api";
 
 export const metadata = {
   title: "Careers | Pharma Metric Labs",
@@ -27,84 +28,6 @@ const values = [
     title: "Career Growth",
     desc: "Build practical experience through real project exposure, structured coordination, and continuous professional learning.",
     icon: "growth",
-  },
-];
-
-const careerDepartments = [
-  {
-    department: "Clinical Operations",
-    roles: [
-      {
-        title: "Clinical Research Coordinator",
-        type: "Open Opportunity",
-        description:
-          "Supports clinical study preparation, subject coordination, documentation flow, and communication with internal study teams.",
-        requirements: [
-          "Background in health sciences, pharmacy, nursing, medicine, or related fields.",
-          "Strong documentation, coordination, and communication skills.",
-          "Able to work with structured clinical research workflows.",
-        ],
-      },
-      {
-        title: "Clinical Research Assistant",
-        type: "Open Opportunity",
-        description:
-          "Assists clinical project execution, data collection support, study administration, and operational preparation.",
-        requirements: [
-          "Detail-oriented and comfortable working with study documents.",
-          "Able to coordinate with multidisciplinary teams.",
-          "Interest in clinical research and regulated project environments.",
-        ],
-      },
-    ],
-  },
-  {
-    department: "Analytical Laboratory",
-    roles: [
-      {
-        title: "Laboratory Analyst",
-        type: "Open Opportunity",
-        description:
-          "Supports analytical testing activities, sample handling, laboratory documentation, and method-related workflows.",
-        requirements: [
-          "Background in chemistry, pharmacy, biotechnology, or related laboratory fields.",
-          "Understanding of laboratory procedures and documentation practices.",
-          "Careful, organized, and quality-oriented.",
-        ],
-      },
-    ],
-  },
-  {
-    department: "Regulatory Affairs",
-    roles: [
-      {
-        title: "Regulatory Affairs Staff",
-        type: "Open Opportunity",
-        description:
-          "Supports regulatory document preparation, submission-oriented coordination, and project documentation readiness.",
-        requirements: [
-          "Background in pharmacy, life sciences, public health, or related fields.",
-          "Familiarity with regulatory documentation is preferred.",
-          "Strong written communication and document control skills.",
-        ],
-      },
-    ],
-  },
-  {
-    department: "Project & Documentation",
-    roles: [
-      {
-        title: "Project Administration Staff",
-        type: "Open Opportunity",
-        description:
-          "Supports project administration, internal coordination, document tracking, and communication between teams.",
-        requirements: [
-          "Strong administrative and organizational skills.",
-          "Comfortable working with timelines, records, and project documentation.",
-          "Able to communicate clearly with internal and external stakeholders.",
-        ],
-      },
-    ],
   },
 ];
 
@@ -147,7 +70,36 @@ function CareerIcon({ name }: { name: string }) {
   );
 }
 
-export default function CareersPage() {
+function splitLines(value: string | null) {
+  return (value || "")
+    .split(/\r?\n/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function getApplyHref(item: CareerItem) {
+  if (item.applyUrl) return item.applyUrl;
+  if (item.applyEmail) {
+    return `mailto:${item.applyEmail}?subject=Application for ${encodeURIComponent(item.title)}`;
+  }
+
+  return "/contact";
+}
+
+function getApplyLabel(item: CareerItem) {
+  if (item.applyUrl || item.applyEmail) return "Apply for this role";
+  return "Contact PML";
+}
+
+export default async function CareersPage() {
+  let careers: CareerItem[] = [];
+
+  try {
+    careers = await getCareers();
+  } catch {
+    careers = [];
+  }
+
   return (
     <main className="bg-white text-black">
       <section className="relative overflow-hidden bg-[#f4fbf7] px-4 py-20 md:py-28">
@@ -240,84 +192,153 @@ export default function CareersPage() {
 
       <section className="bg-[#eaf8f0] px-4 py-16 md:py-24">
         <div className="pml-container">
-          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
             <div>
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
                 Open Roles
               </p>
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Career opportunities by department
+                Current opportunities from PML
               </h2>
               <p className="mt-6 text-[17px] leading-8 text-black/66 md:text-[19px] md:leading-9">
-                Explore available opportunities based on department. Select a role to view the job
-                description, expected requirements, and relevant qualification details.
+                This section is connected to the CMS. Published job openings can be managed directly from the PML admin panel.
               </p>
             </div>
 
             <div className="rounded-[38px] border border-[#039147]/10 bg-white p-5 shadow-[0_30px_90px_rgba(3,145,71,0.10)] md:p-8">
-              <div className="grid gap-5">
-                {careerDepartments.map((department) => (
-                  <div
-                    key={department.department}
-                    className="rounded-[28px] border border-black/5 bg-[#f8fbf9] p-5 md:p-6"
+              {careers.length > 0 ? (
+                <div className="grid gap-5">
+                  {careers.map((career) => {
+                    const responsibilities = splitLines(career.responsibilities);
+                    const requirements = splitLines(career.requirements);
+                    const benefits = splitLines(career.benefits);
+
+                    return (
+                      <details
+                        key={career.id}
+                        className="group overflow-hidden rounded-[28px] border border-black/5 bg-[#f8fbf9] shadow-sm transition open:border-[#039147]/18 open:shadow-[0_18px_50px_rgba(3,145,71,0.10)]"
+                      >
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-5 p-5 md:p-6">
+                          <span>
+                            <span className="flex flex-wrap gap-2">
+                              <span className="rounded-full bg-[#eaf8f0] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.12em] text-[#039147]">
+                                {career.department || "General"}
+                              </span>
+                              <span className="rounded-full bg-white px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.12em] text-black/45">
+                                {career.employmentType || "Open Role"}
+                              </span>
+                            </span>
+
+                            <span className="mt-4 block text-2xl font-black leading-tight text-black">
+                              {career.title}
+                            </span>
+
+                            <span className="mt-3 block text-base font-semibold leading-7 text-black/58">
+                              {career.summary || career.description || "More details will be available soon."}
+                            </span>
+
+                            <span className="mt-4 flex flex-wrap gap-2 text-xs font-black uppercase tracking-[0.12em] text-black/40">
+                              <span>{career.location || "Location TBA"}</span>
+                              <span>•</span>
+                              <span>{career.experienceLevel || "Experience TBA"}</span>
+                            </span>
+                          </span>
+
+                          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-xl font-black text-[#039147] transition group-open:rotate-45 group-open:bg-[#039147] group-open:text-white">
+                            +
+                          </span>
+                        </summary>
+
+                        <div className="border-t border-black/5 px-5 pb-5 pt-5 md:px-6 md:pb-6">
+                          {career.description ? (
+                            <>
+                              <p className="text-sm font-black uppercase tracking-[0.14em] text-black/45">
+                                Job Description
+                              </p>
+                              <p className="mt-2 text-base font-medium leading-8 text-black/64">
+                                {career.description}
+                              </p>
+                            </>
+                          ) : null}
+
+                          {responsibilities.length > 0 ? (
+                            <>
+                              <p className="mt-6 text-sm font-black uppercase tracking-[0.14em] text-black/45">
+                                Responsibilities
+                              </p>
+                              <ul className="mt-3 grid gap-2">
+                                {responsibilities.map((item) => (
+                                  <li key={item} className="flex gap-3 text-base font-medium leading-7 text-black/64">
+                                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#039147]" />
+                                    <span>{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </>
+                          ) : null}
+
+                          {requirements.length > 0 ? (
+                            <>
+                              <p className="mt-6 text-sm font-black uppercase tracking-[0.14em] text-black/45">
+                                Requirements
+                              </p>
+                              <ul className="mt-3 grid gap-2">
+                                {requirements.map((item) => (
+                                  <li key={item} className="flex gap-3 text-base font-medium leading-7 text-black/64">
+                                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#039147]" />
+                                    <span>{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </>
+                          ) : null}
+
+                          {benefits.length > 0 ? (
+                            <>
+                              <p className="mt-6 text-sm font-black uppercase tracking-[0.14em] text-black/45">
+                                Benefits
+                              </p>
+                              <ul className="mt-3 grid gap-2">
+                                {benefits.map((item) => (
+                                  <li key={item} className="flex gap-3 text-base font-medium leading-7 text-black/64">
+                                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#039147]" />
+                                    <span>{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </>
+                          ) : null}
+
+                          <Link
+                            href={getApplyHref(career)}
+                            className="mt-7 inline-flex rounded-full bg-[#039147] px-6 py-3 text-sm font-black text-white shadow-[0_18px_50px_rgba(3,145,71,0.20)] transition hover:-translate-y-0.5"
+                          >
+                            {getApplyLabel(career)}
+                          </Link>
+                        </div>
+                      </details>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="rounded-[28px] border border-black/5 bg-[#f8fbf9] p-8 text-center">
+                  <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
+                    No Open Roles
+                  </p>
+                  <h3 className="mt-4 text-3xl font-black leading-tight text-black">
+                    Career opportunities will be updated soon
+                  </h3>
+                  <p className="mx-auto mt-4 max-w-xl text-base font-medium leading-8 text-black/60">
+                    Please check this page again later or contact PML for general recruitment information.
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="mt-7 inline-flex rounded-full bg-[#039147] px-6 py-3 text-sm font-black text-white"
                   >
-                    <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
-                      Department
-                    </p>
-                    <h3 className="mt-2 text-2xl font-black leading-tight text-black">
-                      {department.department}
-                    </h3>
-
-                    <div className="mt-5 grid gap-3">
-                      {department.roles.map((role) => (
-                        <details
-                          key={role.title}
-                          className="group overflow-hidden rounded-[22px] border border-black/5 bg-white shadow-sm transition open:border-[#039147]/18 open:shadow-[0_18px_50px_rgba(3,145,71,0.10)]"
-                        >
-                          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5">
-                            <span>
-                              <span className="block text-xs font-black uppercase tracking-[0.14em] text-[#039147]">
-                                {role.type}
-                              </span>
-                              <span className="mt-2 block text-xl font-black leading-tight text-black">
-                                {role.title}
-                              </span>
-                            </span>
-
-                            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eaf8f0] text-xl font-black text-[#039147] transition group-open:rotate-45 group-open:bg-[#039147] group-open:text-white">
-                              +
-                            </span>
-                          </summary>
-
-                          <div className="border-t border-black/5 px-5 pb-5 pt-4">
-                            <p className="text-sm font-black uppercase tracking-[0.14em] text-black/45">
-                              Job Description
-                            </p>
-                            <p className="mt-2 text-base font-medium leading-8 text-black/64">
-                              {role.description}
-                            </p>
-
-                            <p className="mt-5 text-sm font-black uppercase tracking-[0.14em] text-black/45">
-                              Requirements
-                            </p>
-                            <ul className="mt-3 grid gap-2">
-                              {role.requirements.map((item) => (
-                                <li
-                                  key={item}
-                                  className="flex gap-3 text-base font-medium leading-7 text-black/64"
-                                >
-                                  <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#039147]" />
-                                  <span>{item}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </details>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
+                    Contact PML
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>

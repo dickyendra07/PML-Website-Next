@@ -805,3 +805,96 @@ export async function uploadAdminMediaAsset(
 
   return parseJsonResponse<MediaAssetItem>(response);
 }
+
+export type AdminCareerItem = {
+  id: string;
+  title: string;
+  slug: string;
+  department: string | null;
+  location: string | null;
+  employmentType: string | null;
+  experienceLevel: string | null;
+  summary: string | null;
+  description: string | null;
+  responsibilities: string | null;
+  requirements: string | null;
+  benefits: string | null;
+  applyEmail: string | null;
+  applyUrl: string | null;
+  status: PageSeoStatus;
+  sortOrder: number;
+  publishedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type AdminCareerPayload = {
+  title: string;
+  slug?: string;
+  department?: string | null;
+  location?: string | null;
+  employmentType?: string | null;
+  experienceLevel?: string | null;
+  summary?: string | null;
+  description?: string | null;
+  responsibilities?: string | null;
+  requirements?: string | null;
+  benefits?: string | null;
+  applyEmail?: string | null;
+  applyUrl?: string | null;
+  status?: PageSeoStatus;
+  sortOrder?: number;
+  publishedAt?: string | null;
+};
+
+export async function getAdminCareers(token: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/careers`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+  });
+
+  return parseJsonResponse<AdminCareerItem[]>(response);
+}
+
+export async function createAdminCareer(token: string, payload: AdminCareerPayload) {
+  const response = await fetch(`${API_BASE_URL}/admin/careers`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return parseJsonResponse<AdminCareerItem>(response);
+}
+
+export async function updateAdminCareer(
+  token: string,
+  id: string,
+  payload: AdminCareerPayload
+) {
+  const response = await fetch(`${API_BASE_URL}/admin/careers/${id}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return parseJsonResponse<AdminCareerItem>(response);
+}
+
+export async function archiveAdminCareer(token: string, id: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/careers/${id}/archive`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return parseJsonResponse<AdminCareerItem>(response);
+}

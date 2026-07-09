@@ -13,6 +13,7 @@ import { CataloguesModule } from './catalogues/catalogues.module';
 import { InsightsModule } from './insights/insights.module';
 import { HomepageFeaturesModule } from './homepage-features/homepage-features.module';
 import { MediaModule } from './media/media.module';
+import { CareersModule } from './careers/careers.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { MediaModule } from './media/media.module';
     InsightsModule,
     HomepageFeaturesModule,
     MediaModule,
+    CareersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

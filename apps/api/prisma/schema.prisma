@@ -251,6 +251,34 @@ model MediaAsset {
   @@index([createdAt])
 }
 
+
+model CareerPost {
+  id               String        @id @default(cuid())
+  title            String
+  slug             String        @unique
+  department       String?
+  location         String?
+  employmentType   String?
+  experienceLevel  String?
+  summary          String?
+  description      String?
+  responsibilities String?
+  requirements     String?
+  benefits         String?
+  applyEmail       String?
+  applyUrl         String?
+  status           PublishStatus @default(DRAFT)
+  sortOrder        Int           @default(0)
+  publishedAt      DateTime?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@index([status])
+  @@index([department])
+  @@index([sortOrder])
+  @@index([publishedAt])
+}
+
 model PageSeo {
   id            String        @id @default(cuid())
   path          String        @unique

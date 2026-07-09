@@ -157,3 +157,37 @@ export async function getHomepageFeatures(type?: string) {
 
   return (await response.json()) as HomepageFeature[];
 }
+
+export type CareerItem = {
+  id: string;
+  title: string;
+  slug: string;
+  department: string | null;
+  location: string | null;
+  employmentType: string | null;
+  experienceLevel: string | null;
+  summary: string | null;
+  description: string | null;
+  responsibilities: string | null;
+  requirements: string | null;
+  benefits: string | null;
+  applyEmail: string | null;
+  applyUrl: string | null;
+  status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
+  sortOrder: number;
+  publishedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export async function getCareers() {
+  const response = await fetch(`${API_BASE_URL}/careers`, {
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to load careers.");
+  }
+
+  return (await response.json()) as CareerItem[];
+}
