@@ -22,6 +22,10 @@ const SITE_URL = "https://pharmametriclabs.com";
 const DEFAULT_OG_IMAGE = "/images/pml/hero-lab-hexagon.png";
 
 export async function getPageSeo(path: string): Promise<PageSeo | null> {
+  if (!hasApiBaseUrl) {
+    return null;
+  }
+
   try {
     const response = await fetch(
       `${API_BASE_URL}/page-seo?path=${encodeURIComponent(path)}`,

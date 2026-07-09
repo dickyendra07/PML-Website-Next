@@ -11,6 +11,10 @@ const API_BASE_URL =
 const hasApiBaseUrl = API_BASE_URL.length > 0;
 
 export async function getServerPublicSettings(): Promise<PublicSettings> {
+  if (!hasApiBaseUrl) {
+    return fallbackPublicSettings;
+  }
+
   try {
     const response = await fetch(`${API_BASE_URL}/settings/public`, {
       next: {

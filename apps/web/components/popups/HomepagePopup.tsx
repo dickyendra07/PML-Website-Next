@@ -103,6 +103,10 @@ export default function HomepagePopup() {
     let isMounted = true;
 
     async function loadPopup() {
+      if (!hasApiBaseUrl) {
+        return;
+      }
+
       try {
         const response = await fetch(`${API_BASE_URL}/popups/active?path=/`, {
           cache: "no-store",
