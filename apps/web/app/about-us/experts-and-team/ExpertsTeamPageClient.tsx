@@ -5,49 +5,67 @@ import Link from "next/link";
 
 const regulatoryTeam = [
   {
-    name: "Annisa Patimah",
-    role: "Regulatory Affairs Team",
-    image: "/images/pml/team/annisa-patimah.jpg",
-  },
-  {
     name: "Anton Hidayat",
-    role: "Regulatory Affairs Team",
+    role: "President Director",
     image: "/images/pml/team/anton-hidayat.jpg",
+    description:
+      "As PML’s President Director, he leads the company’s strategic direction and business growth, leveraging more than 20 years of experience in regulatory and government affairs, as well as market access within Indonesia’s pharmaceutical industry. He provides strategic oversight of the company’s integrated service portfolio, enabling pharmaceutical and healthcare companies to successfully bring their products to market through tailored regulatory, product development, and market entry strategies. By fostering strong partnerships with regulatory authorities, government institutions, and industry stakeholders, he helps clients navigate Indonesia’s evolving regulatory landscape, facilitate timely market access, and achieve sustainable business growth.",
   },
   {
     name: "Fathi",
-    role: "Regulatory Affairs Team",
+    role: "Senior Regulatory Affairs Professional",
     image: "/images/pml/team/fathi.jpg",
+    description:
+      "Senior Regulatory Affairs professional with 13+ years of experience in Indonesia's pharmaceutical industry, leading regulatory strategies, end-to-end product registrations, lifecycle management, and compliance across diverse product portfolios. Proven expertise in driving complex regulatory submissions and leading technical discussions and negotiations with regulatory authorities to support successful product approvals and business objectives.",
   },
   {
-    name: "Gabriella",
-    role: "Regulatory Affairs Team",
-    image: "/images/pml/team/gabriella.jpg",
+    name: "Rini Hayati Amril",
+    role: "Senior Regulatory Affairs Professional",
+    image: "/images/pml/team/rini-hayati.jpg",
+    description:
+      "Senior Regulatory Affairs professional with over 20 years of experience in Indonesia's pharmaceutical industry. Experienced in developing regulatory strategies, leading product registrations, managing lifecycle activities, and ensuring compliance with Indonesian regulatory requirements.",
   },
   {
-    name: "Hikmah",
-    role: "Regulatory Affairs Team",
+    name: "Hikmahwati Syafrie",
+    role: "Regulatory Affairs Professional",
     image: "/images/pml/team/hikmah.jpg",
+    description:
+      "Regulatory Affairs professional in Indonesia with 9+ years of experience in the registration of pharmaceuticals, medical devices, advanced therapy products, operational licensing and certification and building strong relationships with regulatory authorities.",
   },
   {
-    name: "Jessica",
-    role: "Regulatory Affairs Team",
+    name: "Jessica Seanjaya",
+    role: "Regulatory Affairs Professional",
     image: "/images/pml/team/jessica.jpg",
+    description:
+      "Regulatory Affairs professional with 5+ years of experience in the registration of pharmaceutical products in Indonesia, including novel biological products, biosimilars, generic medicines (chemical), and traditional medicines. Experienced in preparing regulatory submissions, coordinating with regulatory authorities, and supporting product registrations in compliance with applicable regulations.",
+  },
+  {
+    name: "Annisa Patima Az-Zahra",
+    role: "Regulatory Affairs Pharmacist",
+    image: "/images/pml/team/annisa-patimah.jpg",
+    description:
+      "Regulatory Affairs Pharmacist with experience in pharmaceutical, biological, and medical device regulatory affairs in Indonesia. Experienced in product registration and lifecycle management, including new registrations, variations, renewals, site transfers, and notifications for pharmaceutical and biological products. Skilled in CTD dossier preparation, regulatory document review, and submissions to the Indonesian health authority.",
   },
   {
     name: "Kristin Theresia",
-    role: "Regulatory Affairs Team",
+    role: "Regulatory Affairs Pharmacist",
     image: "/images/pml/team/kristin-theresia.jpg",
+    description:
+      "Regulatory Affairs Pharmacist with experience in the registration of medical devices, traditional medicines, pharmaceuticals, and biologics. Experienced in preparing regulatory submissions, supporting product registrations, importation processes, and certification (GMP, Medical Device Good Manufacturing Practice, and Medical Device Good Distribution Practice) in compliance with applicable regulations.",
   },
   {
-    name: "Rini Hayati",
-    role: "Regulatory Affairs Team",
-    image: "/images/pml/team/rini-hayati.jpg",
+    name: "Gabriella Rosalina",
+    role: "Regulatory Affairs Pharmacist",
+    image: "/images/pml/team/gabriella.jpg",
+    description:
+      "Regulatory Affairs Pharmacist with experience in the registration of biological products. Experienced in preparing regulatory submissions, coordinating with regulatory authorities, supporting product registrations, and managing manufacturing site certification processes. Also serves as a Certified Halal Supervisor, supporting halal certification activities.",
   },
   {
-    name: "Silviana",
-    role: "Regulatory Affairs Team",
+    name: "Silviana Rezki Umami",
+    role: "Regulatory Affairs Pharmacist",
     image: "/images/pml/team/silviana.jpg",
+    description:
+      "Regulatory Affairs Pharmacist with experience in the registration and regulatory compliance of pharmaceutical and biological products in Indonesia. Experienced in managing product registrations, post-approval changes, regulatory documentation, and health authority submissions to support product approval and lifecycle maintenance.",
   },
 ];
 
@@ -234,8 +252,8 @@ export default function ExpertsAndTeamPage() {
                     {member.name}
                   </h3>
 
-                  <p className="mt-3 text-base leading-8 text-black/60">
-                    Supporting PML’s regulatory affairs and project documentation workflows.
+                  <p className="mt-3 text-sm leading-7 text-black/60 md:text-[15px] md:leading-7">
+                    {member.description}
                   </p>
                 </div>
               </article>
