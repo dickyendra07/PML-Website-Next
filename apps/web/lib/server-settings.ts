@@ -5,7 +5,8 @@ import {
 } from "@/lib/public-settings";
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") || "http://localhost:4000/api";
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ||
+  (process.env.NODE_ENV === "development" ? "http://localhost:4000/api" : "");
 
 export async function getServerPublicSettings(): Promise<PublicSettings> {
   try {

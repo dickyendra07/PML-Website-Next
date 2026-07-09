@@ -12,7 +12,8 @@ export type PageSeo = {
 };
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") || "http://localhost:4000/api";
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ||
+  (process.env.NODE_ENV === "development" ? "http://localhost:4000/api" : "");
 
 const SITE_NAME = "Pharma Metric Labs";
 const SITE_URL = "https://pharmametriclabs.com";

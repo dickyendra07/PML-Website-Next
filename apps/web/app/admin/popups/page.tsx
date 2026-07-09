@@ -126,7 +126,7 @@ function getAssetUrl(value: string) {
   if (value.startsWith("/uploads")) {
     const apiBaseUrl =
       process.env.NEXT_PUBLIC_API_URL?.replace(/\/api\/?$/, "") ||
-      "http://localhost:4000";
+      (process.env.NODE_ENV === "development" ? "http://localhost:4000" : "");
 
     return `${apiBaseUrl}${value}`;
   }

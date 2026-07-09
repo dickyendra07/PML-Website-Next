@@ -16,7 +16,8 @@ export type ApiSubmitResult = {
 };
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") || "http://localhost:4000/api";
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ||
+  (process.env.NODE_ENV === "development" ? "http://localhost:4000/api" : "");
 
 export async function submitProposal(payload: ProposalPayload): Promise<ApiSubmitResult> {
   const response = await fetch(`${API_BASE_URL}/proposals`, {
