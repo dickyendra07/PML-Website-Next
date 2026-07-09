@@ -367,10 +367,8 @@ function MegaPanel({
   grid?: string;
 }) {
   return (
-    <div className={`w-[min(${width}px,calc(100vw-48px))]`}>
-      <div className="absolute left-0 right-0 top-0 h-5" aria-hidden="true" />
-
-      <div className="relative overflow-hidden rounded-[30px] border border-black/5 bg-white/97 p-6 shadow-[0_26px_80px_rgba(0,0,0,0.16)] ring-1 ring-black/[0.04] backdrop-blur-xl">
+    <div className={`w-[min(${width}px,calc(100vw-40px))] max-h-[calc(100dvh-112px)] overflow-y-auto overscroll-contain rounded-[30px]`}>
+      <div className="relative overflow-hidden rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_26px_80px_rgba(0,0,0,0.16)] ring-1 ring-black/[0.04] backdrop-blur-xl md:p-6">
         <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#039147]/30 to-transparent" />
         <div className="absolute -left-20 -top-24 h-56 w-56 rounded-full bg-[#eaf8f0]/80 blur-3xl" />
         <div className="absolute -right-20 bottom-[-120px] h-64 w-64 rounded-full bg-[#039147]/8 blur-3xl" />
@@ -464,7 +462,7 @@ function NavMega({
     closeTimer.current = setTimeout(() => {
       setOpen(false);
       closeTimer.current = null;
-    }, 180);
+    }, 280);
   };
 
   return (
@@ -493,14 +491,15 @@ function NavMega({
       </Link>
 
       <div
-        className={`absolute left-1/2 top-full z-[80] -translate-x-1/2 pt-4 transition duration-150 ${
+        className={`fixed left-1/2 top-[88px] z-[80] -translate-x-1/2 pt-3 transition duration-150 ${
           open
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none translate-y-2 opacity-0"
         }`}
         onMouseEnter={openMenu}
+        onMouseLeave={closeMenu}
       >
-        <div className="absolute -top-3 left-0 right-0 h-5" aria-hidden="true" />
+        <div className="absolute -top-4 left-0 right-0 h-5" aria-hidden="true" />
         {panel}
       </div>
     </div>
@@ -652,7 +651,7 @@ export default function Header({ onOpenProposal }: HeaderProps) {
           />
         </Link>
 
-        <nav className="hidden items-center gap-1 text-sm font-bold text-black/70 lg:flex">
+        <nav className="hidden items-center gap-1 text-sm font-bold text-black/70 xl:flex">
           <Link className={navClass("/")} href="/">
             Home
           </Link>
@@ -731,7 +730,7 @@ export default function Header({ onOpenProposal }: HeaderProps) {
           </Link>
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <button
             type="button"
             onClick={onOpenProposal}
@@ -744,7 +743,7 @@ export default function Header({ onOpenProposal }: HeaderProps) {
         <button
           type="button"
           onClick={() => setMobileOpen(true)}
-          className="relative z-[70] inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-black shadow-sm lg:hidden"
+          className="relative z-[70] inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-black shadow-sm xl:hidden"
           aria-label="Open menu"
           aria-expanded={mobileOpen}
         >
