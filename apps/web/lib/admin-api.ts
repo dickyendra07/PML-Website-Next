@@ -37,6 +37,8 @@ const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ||
   (process.env.NODE_ENV === "development" ? "http://localhost:4000/api" : "");
 
+const hasApiBaseUrl = API_BASE_URL.length > 0;
+
 const TOKEN_KEY = "pml_admin_token";
 
 export function getAdminToken() {

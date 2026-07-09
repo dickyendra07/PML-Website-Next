@@ -19,6 +19,8 @@ const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ||
   (process.env.NODE_ENV === "development" ? "http://localhost:4000/api" : "");
 
+const hasApiBaseUrl = API_BASE_URL.length > 0;
+
 export async function submitProposal(payload: ProposalPayload): Promise<ApiSubmitResult> {
   const response = await fetch(`${API_BASE_URL}/proposals`, {
     method: "POST",
@@ -59,6 +61,10 @@ export type CatalogueItem = {
 };
 
 export async function getCatalogues() {
+  if (!hasApiBaseUrl) {
+    return [];
+  }
+
   const response = await fetch(`${API_BASE_URL}/catalogues`, {
     cache: "no-store",
   });
@@ -117,6 +123,10 @@ export type InsightItem = {
 };
 
 export async function getInsights(category?: string) {
+  if (!hasApiBaseUrl) {
+    return [];
+  }
+
   const searchParams = category ? `?category=${encodeURIComponent(category)}` : "";
 
   const response = await fetch(`${API_BASE_URL}/insights${searchParams}`, {
@@ -146,6 +156,10 @@ export type HomepageFeature = {
 };
 
 export async function getHomepageFeatures(type?: string) {
+  if (!hasApiBaseUrl) {
+    return [];
+  }
+
   const searchParams = type ? `?type=${encodeURIComponent(type)}` : "";
 
   const response = await fetch(`${API_BASE_URL}/homepage-features${searchParams}`, {
@@ -182,6 +196,10 @@ export type CareerItem = {
 };
 
 export async function getCareers() {
+  if (!hasApiBaseUrl) {
+    return [];
+  }
+
   const response = await fetch(`${API_BASE_URL}/careers`, {
     cache: "no-store",
   });
