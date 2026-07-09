@@ -70,32 +70,147 @@ const regulatoryTeam = [
 ];
 
 const expertiseAreas = [
-  "Regulatory affairs",
-  "Project management",
-  "Data management",
-  "Quality assurance",
-  "Clinical operations",
-  "Analytical laboratory management",
-  "Study documentation",
-  "Sponsor communication",
+  {
+    title: "Regulatory Affairs",
+    desc: "Strategic regulatory planning, submission preparation, and authority coordination.",
+    icon: "regulatory",
+  },
+  {
+    title: "Project Management",
+    desc: "Structured coordination across timelines, stakeholders, and project milestones.",
+    icon: "project",
+  },
+  {
+    title: "Data Management",
+    desc: "Organized handling of study information, records, and documentation flow.",
+    icon: "data",
+  },
+  {
+    title: "Quality Assurance",
+    desc: "Quality-oriented review, compliance mindset, and reliable process control.",
+    icon: "quality",
+  },
+  {
+    title: "Clinical Operations",
+    desc: "Operational support for clinical study preparation, execution, and monitoring.",
+    icon: "clinical",
+  },
+  {
+    title: "Analytical Laboratory",
+    desc: "Laboratory-oriented coordination for analytical testing and technical workflows.",
+    icon: "laboratory",
+  },
+  {
+    title: "Study Documentation",
+    desc: "Clear document preparation, tracking, review, and submission readiness.",
+    icon: "documentation",
+  },
+  {
+    title: "Sponsor Communication",
+    desc: "Consistent communication support between sponsors, teams, and stakeholders.",
+    icon: "communication",
+  },
 ];
+
+function ExpertiseIcon({ name }: { name: string }) {
+  if (name === "regulatory") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M12 3L19 7V12C19 16.6 16.1 19.8 12 21C7.9 19.8 5 16.6 5 12V7L12 3Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        <path d="M9 12L11 14L15.5 9.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  if (name === "project") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M5 6H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M5 12H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M5 18H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M17 15L19 17L22 13.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  if (name === "data") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <ellipse cx="12" cy="6" rx="7" ry="3" stroke="currentColor" strokeWidth="2" />
+        <path d="M5 6V12C5 13.7 8.1 15 12 15C15.9 15 19 13.7 19 12V6" stroke="currentColor" strokeWidth="2" />
+        <path d="M5 12V18C5 19.7 8.1 21 12 21C15.9 21 19 19.7 19 18V12" stroke="currentColor" strokeWidth="2" />
+      </svg>
+    );
+  }
+
+  if (name === "quality") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M12 4L14.2 8.5L19 9.2L15.5 12.6L16.4 17.4L12 15.1L7.6 17.4L8.5 12.6L5 9.2L9.8 8.5L12 4Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  if (name === "clinical") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <rect x="4" y="4" width="16" height="16" rx="5" stroke="currentColor" strokeWidth="2" />
+        <path d="M12 8V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M8 12H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "laboratory") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M9 3H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M10 3V8L6 17.2C5.3 18.8 6.4 20.5 8.2 20.5H15.8C17.6 20.5 18.7 18.8 18 17.2L14 8V3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M8 16H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (name === "documentation") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M7 3H14L19 8V21H7V3Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        <path d="M14 3V8H19" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        <path d="M10 13H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M10 17H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+      <path d="M7 8H17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M7 12H13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M4 5C4 3.9 4.9 3 6 3H18C19.1 3 20 3.9 20 5V14C20 15.1 19.1 16 18 16H9L5 20V16H6C4.9 16 4 15.1 4 14V5Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 const teamStrengths = [
   {
-    title: "Regulatory coordination",
+    title: "Regulatory Coordination",
     desc: "Supporting regulatory-oriented preparation, documentation flow, and communication across project stakeholders.",
+    icon: "regulatory",
   },
   {
-    title: "Project documentation",
+    title: "Project Documentation",
     desc: "Helping maintain organized study records, submission-related materials, and project documentation readiness.",
+    icon: "documentation",
   },
   {
-    title: "Sponsor communication",
+    title: "Sponsor Communication",
     desc: "Supporting clearer coordination between sponsors, internal teams, and related project functions.",
+    icon: "communication",
   },
   {
-    title: "Integrated project support",
+    title: "Integrated Project Support",
     desc: "Working alongside clinical, analytical, and operational teams to support reliable CRO project delivery.",
+    icon: "project",
   },
 ];
 
@@ -187,17 +302,24 @@ export default function ExpertsAndTeamPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 md:gap-4">
+            <div className="grid gap-4 sm:grid-cols-2">
               {expertiseAreas.map((area) => (
                 <div
-                  key={area}
-                  className="rounded-[20px] border border-black/5 bg-[#f6faf7] p-4 shadow-sm md:rounded-[24px] md:p-5"
+                  key={area.title}
+                  className="group relative overflow-hidden rounded-[28px] border border-black/5 bg-white p-5 shadow-[0_18px_55px_rgba(0,0,0,0.06)] transition duration-300 hover:-translate-y-1 hover:border-[#039147]/20 hover:shadow-[0_26px_80px_rgba(3,145,71,0.13)] md:p-6"
                 >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
-                    ✓
-                  </span>
-                  <p className="mt-3 text-base font-bold leading-7 text-black/65 md:mt-4 md:text-base md:leading-7">
-                    {area}
+                  <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#eaf8f0] opacity-70 transition duration-500 group-hover:scale-125" />
+
+                  <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] transition duration-300 group-hover:bg-[#039147] group-hover:text-white">
+                    <ExpertiseIcon name={area.icon} />
+                  </div>
+
+                  <h3 className="relative mt-5 text-lg font-black leading-tight text-black md:text-xl">
+                    {area.title}
+                  </h3>
+
+                  <p className="relative mt-3 text-sm font-medium leading-7 text-black/58 md:text-[15px]">
+                    {area.desc}
                   </p>
                 </div>
               ))}
@@ -284,21 +406,30 @@ export default function ExpertsAndTeamPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 md:gap-4">
+            <div className="grid gap-4 sm:grid-cols-2">
               {teamStrengths.map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-[20px] border border-black/5 bg-[#f6faf7] p-4 shadow-sm md:rounded-[24px] md:p-5"
+                  className="group relative overflow-hidden rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_18px_55px_rgba(0,0,0,0.06)] transition duration-300 hover:-translate-y-1 hover:border-[#039147]/20 hover:shadow-[0_26px_80px_rgba(3,145,71,0.13)] md:p-6"
                 >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf8f0] text-sm font-black text-[#039147]">
-                    ✓
-                  </span>
-                  <h3 className="mt-3 text-base font-black leading-tight text-black md:mt-4 md:text-lg">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-black/58 md:text-base md:leading-7">
-                    {item.desc}
-                  </p>
+                  <div className="absolute -right-14 -top-14 h-36 w-36 rounded-full bg-[#eaf8f0] opacity-75 transition duration-500 group-hover:scale-125" />
+                  <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#039147] via-[#7cc245] to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
+
+                  <div className="relative flex items-start gap-4">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#eaf8f0] text-[#039147] transition duration-300 group-hover:bg-[#039147] group-hover:text-white">
+                      <ExpertiseIcon name={item.icon} />
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-black leading-tight text-black md:text-xl">
+                        {item.title}
+                      </h3>
+
+                      <p className="mt-3 text-sm font-medium leading-7 text-black/58 md:text-[15px]">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>

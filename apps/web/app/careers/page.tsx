@@ -8,6 +8,12 @@ export const metadata = {
     "Explore career opportunities at Pharma Metric Labs across clinical, analytical, regulatory, and project support departments.",
 };
 
+const CAREER_EMAIL = "recruitment@pharmametricslabs.com";
+
+const CAREER_MAILTO = `mailto:${CAREER_EMAIL}?subject=${encodeURIComponent(
+  "Career Application - Pharma Metric Labs"
+)}`;
+
 const values = [
   {
     title: "Scientific Environment",
@@ -83,12 +89,12 @@ function getApplyHref(item: CareerItem) {
     return `mailto:${item.applyEmail}?subject=Application for ${encodeURIComponent(item.title)}`;
   }
 
-  return "/contact";
+  return `mailto:${CAREER_EMAIL}?subject=Application for ${encodeURIComponent(item.title)}`;
 }
 
 function getApplyLabel(item: CareerItem) {
   if (item.applyUrl || item.applyEmail) return "Apply for this role";
-  return "Contact PML";
+  return "Send application by email";
 }
 
 export default async function CareersPage() {
@@ -203,6 +209,27 @@ export default async function CareersPage() {
               <p className="mt-6 text-[17px] leading-8 text-black/66 md:text-[19px] md:leading-9">
                 This section is connected to the CMS. Published job openings can be managed directly from the PML admin panel.
               </p>
+
+              <div className="mt-8 rounded-[30px] border border-[#039147]/12 bg-white/80 p-6 shadow-[0_22px_70px_rgba(3,145,71,0.10)] backdrop-blur">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
+                  General Application
+                </p>
+                <h3 className="mt-3 text-2xl font-black leading-tight text-black">
+                  Interested in joining PML?
+                </h3>
+                <p className="mt-3 text-base font-medium leading-8 text-black/60">
+                  Send your CV, portfolio, or supporting documents to our recruitment contact.
+                </p>
+                <a
+                  href={CAREER_MAILTO}
+                  className="mt-5 inline-flex rounded-full bg-[#039147] px-6 py-3 text-sm font-black text-white shadow-[0_18px_50px_rgba(3,145,71,0.20)] transition hover:-translate-y-0.5"
+                >
+                  Send Your Application
+                </a>
+                <p className="mt-3 text-sm font-bold text-black/42">
+                  {CAREER_EMAIL}
+                </p>
+              </div>
             </div>
 
             <div className="rounded-[38px] border border-[#039147]/10 bg-white p-5 shadow-[0_30px_90px_rgba(3,145,71,0.10)] md:p-8">
@@ -331,12 +358,12 @@ export default async function CareersPage() {
                   <p className="mx-auto mt-4 max-w-xl text-base font-medium leading-8 text-black/60">
                     Please check this page again later or contact PML for general recruitment information.
                   </p>
-                  <Link
-                    href="/contact"
+                  <a
+                    href={CAREER_MAILTO}
                     className="mt-7 inline-flex rounded-full bg-[#039147] px-6 py-3 text-sm font-black text-white"
                   >
-                    Contact PML
-                  </Link>
+                    Send Your Application
+                  </a>
                 </div>
               )}
             </div>
