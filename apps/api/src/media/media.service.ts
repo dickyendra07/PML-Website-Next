@@ -1,6 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { MediaType, Prisma } from '@prisma/client';
+import { unlink } from 'fs/promises';
+import { resolve, sep } from 'path';
 import { PrismaService } from '../prisma/prisma.service';
+import { sanitizeMediaFolder } from '../common/upload/upload-security';
 import { UpdateMediaAssetDto } from './dto/update-media-asset.dto';
 
 function detectMediaType(mimeType?: string): MediaType {
@@ -11,6 +14,26 @@ function detectMediaType(mimeType?: string): MediaType {
   if (mimeType.startsWith('video/')) return MediaType.VIDEO;
 
   return MediaType.OTHER;
+}
+
+async function deletePhysicalMediaFile(url: string) {
+  const mediaDirectory = resolve(process.cwd(), 'public/uploads/media');
+  const relativeUrl = url.replace(/^\/+/, '');
+  const filePath = resolve(process.cwd(), 'public', relativeUrl);
+
+  if (!filePath.startsWith(`${mediaDirectory}${sep}`)) {
+    return;
+  }
+
+  try {
+    await unlink(filePath);
+  } catch (error) {
+    const fileError = error as NodeJS.ErrnoException;
+
+    if (fileError.code !== 'ENOENT') {
+      throw error;
+    }
+  }
 }
 
 @Injectable()
@@ -38,7 +61,7 @@ export class MediaService {
         size: file.size,
         url,
         type: detectMediaType(file.mimetype),
-        folder,
+        folder: sanitizeMediaFolder(folder),
       },
     });
   }
@@ -56,7 +79,9 @@ export class MediaService {
 
     if (dto.altText !== undefined) data.altText = dto.altText;
     if (dto.caption !== undefined) data.caption = dto.caption;
-    if (dto.folder !== undefined) data.folder = dto.folder;
+    if (dto.folder !== undefined) {
+      data.folder = sanitizeMediaFolder(dto.folder);
+    }
     if (dto.type !== undefined) data.type = dto.type;
 
     return this.prisma.mediaAsset.update({
@@ -74,13 +99,15 @@ export class MediaService {
       throw new NotFoundException('Media asset not found.');
     }
 
+    await deletePhysicalMediaFile(existing.url);
+
     await this.prisma.mediaAsset.delete({
       where: { id },
     });
 
     return {
       success: true,
-      message: 'Media asset deleted from library record.',
+      message: 'Media asset and physical file deleted successfully.',
     };
   }
 }

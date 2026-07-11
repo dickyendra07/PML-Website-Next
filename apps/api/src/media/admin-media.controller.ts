@@ -13,20 +13,25 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import type { Express } from 'express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
+import {
+  createMimeTypeFilter,
+  createSecureDiskStorage,
+  requireUploadedFile,
+  sanitizeMediaFolder,
+} from '../common/upload/upload-security';
 import { UpdateMediaAssetDto } from './dto/update-media-asset.dto';
 import { MediaService } from './media.service';
 
-function safeFilename(file: Express.Multer.File) {
-  const originalName = file.originalname.replace(/\s+/g, '-').toLowerCase();
-  const nameWithoutExt = originalName.replace(/\.[^/.]+$/, '');
-  const extension = extname(originalName);
-  return `${Date.now()}-${nameWithoutExt}${extension}`;
-}
+const allowedMediaTypes = [
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+  'application/pdf',
+  'video/mp4',
+] as const;
 
 @Controller('admin/media')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -42,41 +47,28 @@ export class AdminMediaController {
   @Post('upload')
   @UseInterceptors(
     FileInterceptor('file', {
-      storage: diskStorage({
-        destination: 'public/uploads/media',
-        filename: (_request, file, callback) => {
-          callback(null, safeFilename(file));
-        },
-      }),
+      storage: createSecureDiskStorage('public/uploads/media'),
       limits: {
         fileSize: 20 * 1024 * 1024,
+        files: 1,
+        fields: 5,
+        parts: 6,
+        fieldNameSize: 100,
+        fieldSize: 1024,
       },
-      fileFilter: (_request, file, callback) => {
-        const allowed = [
-          'image/jpeg',
-          'image/png',
-          'image/webp',
-          'application/pdf',
-          'video/mp4',
-        ];
-
-        if (!allowed.includes(file.mimetype)) {
-          callback(
-            new Error('Only JPG, PNG, WEBP, PDF, or MP4 files are allowed.'),
-            false,
-          );
-          return;
-        }
-
-        callback(null, true);
-      },
+      fileFilter: createMimeTypeFilter(allowedMediaTypes),
     }),
   )
   upload(
-    @UploadedFile() file: Express.Multer.File,
+    @UploadedFile() uploadedFile: Express.Multer.File | undefined,
     @Body('folder') folder?: string,
   ) {
-    return this.mediaService.createFromUpload(file, folder || 'general');
+    const file = requireUploadedFile(uploadedFile);
+
+    return this.mediaService.createFromUpload(
+      file,
+      sanitizeMediaFolder(folder),
+    );
   }
 
   @Patch(':id')

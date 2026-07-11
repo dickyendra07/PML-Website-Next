@@ -11,21 +11,19 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import type { Express } from 'express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
+import {
+  createMimeTypeFilter,
+  createSecureDiskStorage,
+  requireUploadedFile,
+} from '../common/upload/upload-security';
 import { CreateInsightDto } from './dto/create-insight.dto';
 import { UpdateInsightDto } from './dto/update-insight.dto';
 import { InsightsService } from './insights.service';
 
-function safeFilename(file: Express.Multer.File) {
-  const originalName = file.originalname.replace(/\s+/g, '-').toLowerCase();
-  const nameWithoutExt = originalName.replace(/\.[^/.]+$/, '');
-  const extension = extname(originalName);
-  return `${Date.now()}-${nameWithoutExt}${extension}`;
-}
+const allowedImageTypes = ['image/jpeg', 'image/png', 'image/webp'] as const;
 
 @Controller('admin/insights')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -46,31 +44,21 @@ export class AdminInsightsController {
   @Post('upload-cover')
   @UseInterceptors(
     FileInterceptor('file', {
-      storage: diskStorage({
-        destination: 'public/uploads/insights/covers',
-        filename: (_request, file, callback) => {
-          callback(null, safeFilename(file));
-        },
-      }),
+      storage: createSecureDiskStorage('public/uploads/insights/covers'),
       limits: {
         fileSize: 8 * 1024 * 1024,
+        files: 1,
+        fields: 2,
+        parts: 3,
+        fieldNameSize: 100,
+        fieldSize: 1024,
       },
-      fileFilter: (_request, file, callback) => {
-        if (
-          !['image/jpeg', 'image/png', 'image/webp'].includes(file.mimetype)
-        ) {
-          callback(
-            new Error('Only JPG, PNG, or WEBP images are allowed.'),
-            false,
-          );
-          return;
-        }
-
-        callback(null, true);
-      },
+      fileFilter: createMimeTypeFilter(allowedImageTypes),
     }),
   )
-  uploadCover(@UploadedFile() file: Express.Multer.File) {
+  uploadCover(@UploadedFile() uploadedFile: Express.Multer.File | undefined) {
+    const file = requireUploadedFile(uploadedFile, 'Insight cover');
+
     return {
       filename: file.filename,
       originalName: file.originalname,
