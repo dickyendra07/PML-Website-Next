@@ -138,7 +138,7 @@ describe('PML API (e2e)', () => {
 
     const body = getResponseBody<HealthResponse>(response);
 
-    expect(body.status).toBe('operational');
+    expect(body.status).toBe('ok');
     expect(body.services.api.status).toBe('operational');
     expect(body.services.database.status).toBe('operational');
     expect(body.services.redis.status).toBe('operational');
