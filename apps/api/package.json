@@ -23,7 +23,8 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
     "db:push": "prisma db push",
-    "db:seed": "ts-node prisma/seed.ts"
+    "db:seed": "ts-node prisma/seed.ts",
+    "lint:check": "eslint \"{src,apps,libs,test}/**/*.ts\""
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
