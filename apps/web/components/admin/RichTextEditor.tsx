@@ -99,7 +99,7 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
     if (!editor) return 0;
 
     return editor.getText().trim().split(/\s+/).filter(Boolean).length;
-  }, [editor, value]);
+  }, [editor]);
 
   if (!editor) {
     return (

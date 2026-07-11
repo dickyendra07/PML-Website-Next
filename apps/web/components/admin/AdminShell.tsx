@@ -22,6 +22,7 @@ const navItems = [
   { label: "Media", href: "/admin/media", icon: "M" },
   { label: "Popups", href: "/admin/popups", icon: "P" },
   { label: "Settings", href: "/admin/settings", icon: "S" },
+  { label: "System Health", href: "/admin/health", icon: "+" },
 ];
 
 type AdminShellProps = {

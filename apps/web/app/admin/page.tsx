@@ -57,6 +57,13 @@ const cmsModules = [
     icon: "S",
     tone: "from-white to-[#f6faf7]",
   },
+  {
+    label: "System Health",
+    href: "/admin/health",
+    desc: "Monitor API, PostgreSQL, Redis, environment, and backend uptime.",
+    icon: "+",
+    tone: "from-[#eaf8f0] to-white",
+  },
 ];
 
 export default function AdminDashboardPage() {

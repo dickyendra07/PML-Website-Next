@@ -270,6 +270,7 @@ function ClientIcon({ index }: { index: number }) {
   return <Icon name="document" />;
 }
 
+void ClientIcon;
 export default function RegulatoryConsultationPage() {
   const [activeSlide, setActiveSlide] = useState(0);
 

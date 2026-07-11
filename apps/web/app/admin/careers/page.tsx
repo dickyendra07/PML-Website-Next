@@ -130,7 +130,13 @@ export default function AdminCareersPage() {
   }, []);
 
   useEffect(() => {
-    void loadCareers();
+    const timeoutId = window.setTimeout(() => {
+      void loadCareers();
+    }, 0);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
   }, [loadCareers]);
 
   const updateField = <K extends keyof CareerForm>(key: K, value: CareerForm[K]) => {

@@ -901,3 +901,47 @@ export async function archiveAdminCareer(token: string, id: string) {
 
   return parseJsonResponse<AdminCareerItem>(response);
 }
+
+export type HealthServiceCheck = {
+  status: "ok" | "error";
+  responseTimeMs: number;
+};
+
+export type ApiHealthResult = {
+  status: "ok" | "error";
+  service: string;
+  environment: string;
+  timestamp: string;
+  uptimeSeconds: number;
+  checks: {
+    api: HealthServiceCheck;
+    database: HealthServiceCheck;
+    redis: HealthServiceCheck;
+  };
+};
+
+export type ApiConfigurationStatus = {
+  configured: boolean;
+  baseUrl: string;
+};
+
+export function getApiConfigurationStatus(): ApiConfigurationStatus {
+  return {
+    configured: hasApiBaseUrl,
+    baseUrl: API_BASE_URL,
+  };
+}
+
+export async function getApiHealth() {
+  if (!hasApiBaseUrl) {
+    throw new Error(
+      "NEXT_PUBLIC_API_URL is not configured for this environment."
+    );
+  }
+
+  const response = await fetch(`${API_BASE_URL}/health`, {
+    cache: "no-store",
+  });
+
+  return parseJsonResponse<ApiHealthResult>(response);
+}

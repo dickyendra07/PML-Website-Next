@@ -167,7 +167,7 @@ export default function ContactPageClient() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9 md:text-lg">
-              Let's discuss your project! Share your inquiry and our team will help you identify the right solution and next steps.
+              Let&apos;s discuss your project! Share your inquiry and our team will help you identify the right solution and next steps.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -335,7 +335,7 @@ export default function ContactPageClient() {
               </h2>
 
               <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
-                We'd be happy to welcome you to our Head Office. Find our location using the map below and plan your visit.
+                We&apos;d be happy to welcome you to our Head Office. Find our location using the map below and plan your visit.
               </p>
 
               <div className="mt-7 grid gap-3">

@@ -1,4 +1,4 @@
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
@@ -14,6 +14,7 @@ function parseCorsOrigins() {
 }
 
 async function bootstrap() {
+  const logger = new Logger('Bootstrap');
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   app.setGlobalPrefix('api');
@@ -39,7 +40,7 @@ async function bootstrap() {
 
   await app.listen(port);
 
-  console.log(`PML API is running on http://localhost:${port}/api`);
+  logger.log(`PML API is running on http://localhost:${port}/api`);
 }
 
 void bootstrap();

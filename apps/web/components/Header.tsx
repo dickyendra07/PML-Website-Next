@@ -366,6 +366,8 @@ function MegaPanel({
   sideIcon?: IconType;
   grid?: string;
 }) {
+  void sideIcon;
+
   return (
     <div className={`w-[min(${width}px,calc(100vw-40px))] max-h-[calc(100dvh-112px)] overflow-y-auto overscroll-contain rounded-[30px]`}>
       <div className="relative overflow-hidden rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_26px_80px_rgba(0,0,0,0.16)] ring-1 ring-black/[0.04] backdrop-blur-xl md:p-6">

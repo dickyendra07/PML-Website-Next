@@ -50,9 +50,18 @@ describe('AppController', () => {
         status: 'ok',
         service: 'pml-cms-api',
         checks: {
-          api: 'ok',
-          database: 'ok',
-          redis: 'ok',
+          api: {
+            status: 'ok',
+            responseTimeMs: expect.any(Number),
+          },
+          database: {
+            status: 'ok',
+            responseTimeMs: expect.any(Number),
+          },
+          redis: {
+            status: 'ok',
+            responseTimeMs: expect.any(Number),
+          },
         },
       });
     });

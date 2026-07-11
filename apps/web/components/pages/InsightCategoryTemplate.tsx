@@ -187,7 +187,7 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
               </h2>
 
               <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
-                Find answers to common questions about PML's services, processes, and capabilities. If you need further assistance, our team is here to help.
+                Find answers to common questions about PML&apos;s services, processes, and capabilities. If you need further assistance, our team is here to help.
               </p>
             </div>
 

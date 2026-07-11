@@ -2,14 +2,21 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from './prisma/prisma.service';
 import { RedisService } from './redis/redis.service';
 
+type ServiceCheck = {
+  status: 'ok' | 'error';
+  responseTimeMs: number;
+};
+
 type HealthCheckResult = {
   status: 'ok' | 'error';
   service: string;
+  environment: string;
   timestamp: string;
+  uptimeSeconds: number;
   checks: {
-    api: 'ok';
-    database: 'ok' | 'error';
-    redis: 'ok' | 'error';
+    api: ServiceCheck;
+    database: ServiceCheck;
+    redis: ServiceCheck;
   };
 };
 
@@ -35,33 +42,54 @@ export class AppService {
   }
 
   async getHealth(): Promise<HealthCheckResult> {
-    const checks: HealthCheckResult['checks'] = {
-      api: 'ok',
-      database: 'error',
-      redis: 'error',
-    };
+    const databaseStartedAt = performance.now();
+    let databaseStatus: ServiceCheck['status'] = 'error';
 
     try {
       await this.prisma.$queryRaw`SELECT 1`;
-      checks.database = 'ok';
+      databaseStatus = 'ok';
     } catch {
-      checks.database = 'error';
+      databaseStatus = 'error';
     }
+
+    const databaseResponseTime =
+      Math.round((performance.now() - databaseStartedAt) * 100) / 100;
+
+    const redisStartedAt = performance.now();
+    let redisStatus: ServiceCheck['status'] = 'error';
 
     try {
-      await this.redis.ping();
-      checks.redis = 'ok';
+      const response = await this.redis.ping();
+      redisStatus = response === 'PONG' ? 'ok' : 'error';
     } catch {
-      checks.redis = 'error';
+      redisStatus = 'error';
     }
 
-    const isHealthy = checks.database === 'ok' && checks.redis === 'ok';
+    const redisResponseTime =
+      Math.round((performance.now() - redisStartedAt) * 100) / 100;
+
+    const isHealthy = databaseStatus === 'ok' && redisStatus === 'ok';
 
     return {
       status: isHealthy ? 'ok' : 'error',
       service: 'pml-cms-api',
+      environment: process.env.NODE_ENV || 'development',
       timestamp: new Date().toISOString(),
-      checks,
+      uptimeSeconds: Math.floor(process.uptime()),
+      checks: {
+        api: {
+          status: 'ok',
+          responseTimeMs: 0,
+        },
+        database: {
+          status: databaseStatus,
+          responseTimeMs: databaseResponseTime,
+        },
+        redis: {
+          status: redisStatus,
+          responseTimeMs: redisResponseTime,
+        },
+      },
     };
   }
 }

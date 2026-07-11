@@ -202,6 +202,8 @@ function CertIcon() {
   );
 }
 
+void CertIcon;
+
 function HeroButton({
   children,
   onClick,

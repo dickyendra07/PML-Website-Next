@@ -85,6 +85,8 @@ const clientSegments = [
   "Clinical research partners",
 ];
 
+void clientSegments;
+
 const collaborationValues = [
   {
     title: "Responsive coordination",
