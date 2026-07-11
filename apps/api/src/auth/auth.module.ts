@@ -5,17 +5,37 @@ import type { SignOptions } from 'jsonwebtoken';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 
+function resolveJwtSecret(config: ConfigService) {
+  const environment = config.get<string>('NODE_ENV') || 'development';
+  const configuredSecret = config.get<string>('JWT_SECRET')?.trim();
+
+  if (configuredSecret) {
+    if (environment === 'production' && configuredSecret.length < 32) {
+      throw new Error(
+        'JWT_SECRET must contain at least 32 characters in production.',
+      );
+    }
+
+    return configuredSecret;
+  }
+
+  if (environment === 'production') {
+    throw new Error('JWT_SECRET is required in production.');
+  }
+
+  return 'pml-local-development-secret-only';
+}
+
 @Module({
   imports: [
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        secret:
-          config.get<string>('JWT_SECRET') || 'pml-local-development-secret',
+        secret: resolveJwtSecret(config),
         signOptions: {
           expiresIn: (config.get<string>('JWT_EXPIRES_IN') ||
-            '7d') as SignOptions['expiresIn'],
+            '8h') as SignOptions['expiresIn'],
         },
       }),
     }),

@@ -46,24 +46,20 @@ describe('AppController', () => {
 
   describe('health', () => {
     it('should return health status', async () => {
-      await expect(appController.getHealth()).resolves.toMatchObject({
-        status: 'ok',
-        service: 'pml-cms-api',
-        checks: {
-          api: {
-            status: 'ok',
-            responseTimeMs: expect.any(Number),
-          },
-          database: {
-            status: 'ok',
-            responseTimeMs: expect.any(Number),
-          },
-          redis: {
-            status: 'ok',
-            responseTimeMs: expect.any(Number),
-          },
-        },
-      });
+      const result = await appController.getHealth();
+
+      expect(result.status).toBe('ok');
+      expect(result.service).toBe('pml-cms-api');
+      expect(result.checks.api.status).toBe('ok');
+      expect(result.checks.database.status).toBe('ok');
+      expect(result.checks.redis.status).toBe('ok');
+
+      expect(typeof result.checks.api.responseTimeMs).toBe('number');
+      expect(typeof result.checks.database.responseTimeMs).toBe('number');
+      expect(typeof result.checks.redis.responseTimeMs).toBe('number');
+
+      expect(typeof result.timestamp).toBe('string');
+      expect(result.uptimeSeconds).toBeGreaterThanOrEqual(0);
     });
   });
 });
