@@ -14,7 +14,7 @@ type ApiInformationResponse = {
 
 type HealthResponse = {
   status: string;
-  services: {
+  checks: {
     api: {
       status: string;
     };
@@ -139,9 +139,9 @@ describe('PML API (e2e)', () => {
     const body = getResponseBody<HealthResponse>(response);
 
     expect(body.status).toBe('ok');
-    expect(body.services.api.status).toBe('operational');
-    expect(body.services.database.status).toBe('operational');
-    expect(body.services.redis.status).toBe('operational');
+    expect(body.checks.api.status).toBe('ok');
+    expect(body.checks.database.status).toBe('ok');
+    expect(body.checks.redis.status).toBe('ok');
   });
 
   it('rejects an invalid admin password', async () => {
