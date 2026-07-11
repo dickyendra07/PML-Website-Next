@@ -5,7 +5,8 @@ import { defaultSettings } from '../src/settings/settings.service';
 const prisma = new PrismaClient();
 
 async function main() {
-  const email = 'admin@pharmametriclabs.com';
+  const email = process.env.ADMIN_SEED_EMAIL || 'admin@pharmametriclabs.com';
+  const name = process.env.ADMIN_SEED_NAME || 'PML Admin';
   const password = process.env.ADMIN_SEED_PASSWORD;
 
   if (!password) {
@@ -18,20 +19,19 @@ async function main() {
       email,
     },
     update: {
-      name: 'PML Admin',
+      name,
       passwordHash,
       role: 'SUPER_ADMIN',
       isActive: true,
     },
     create: {
-      name: 'PML Admin',
+      name,
       email,
       passwordHash,
       role: 'SUPER_ADMIN',
       isActive: true,
     },
   });
-
 
   for (const setting of defaultSettings) {
     await prisma.siteSetting.upsert({
