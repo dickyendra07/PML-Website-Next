@@ -20,7 +20,32 @@ jobs:
   api:
     name: API Quality Gate
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: pml_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d pml_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     defaults:
       run:
@@ -51,11 +76,17 @@ jobs:
       - name: Generate Prisma client
         run: npm run prisma:generate
 
+      - name: Apply test database migrations
+        run: npx prisma migrate deploy
+
       - name: Check API lint
         run: npm run lint:check
 
       - name: Run API unit tests
         run: npm test -- --runInBand
+
+      - name: Run API end-to-end tests
+        run: npm run test:e2e -- --runInBand
 
       - name: Generate API coverage
         run: npm run test:cov -- --runInBand
