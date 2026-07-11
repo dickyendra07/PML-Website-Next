@@ -13,6 +13,21 @@ const mimeExtensions: Record<string, string> = {
   'video/mp4': '.mp4',
 };
 
+function trimBoundaryHyphens(value: string) {
+  let start = 0;
+  let end = value.length;
+
+  while (start < end && value.charCodeAt(start) === 45) {
+    start += 1;
+  }
+
+  while (end > start && value.charCodeAt(end - 1) === 45) {
+    end -= 1;
+  }
+
+  return value.slice(start, end);
+}
+
 export function ensureUploadDirectory(relativeDirectory: string) {
   const directory = join(process.cwd(), relativeDirectory);
 
@@ -26,12 +41,12 @@ export function ensureUploadDirectory(relativeDirectory: string) {
 function sanitizeOriginalBaseName(originalName: string) {
   const withoutExtension = originalName.replace(/\.[^/.]+$/, '');
 
-  const safeName = withoutExtension
+  const normalizedName = withoutExtension
     .normalize('NFKD')
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-+|-+$)/g, '')
-    .slice(0, 60);
+    .replace(/[^a-z0-9]+/g, '-');
+
+  const safeName = trimBoundaryHyphens(normalizedName).slice(0, 60);
 
   return safeName || 'upload';
 }
@@ -102,12 +117,12 @@ export function requireUploadedFile(
 export function sanitizeMediaFolder(folder?: string) {
   if (!folder) return 'general';
 
-  const safeFolder = folder
+  const normalizedFolder = folder
     .toLowerCase()
     .trim()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-+|-+$)/g, '')
-    .slice(0, 50);
+    .replace(/[^a-z0-9]+/g, '-');
+
+  const safeFolder = trimBoundaryHyphens(normalizedFolder).slice(0, 50);
 
   return safeFolder || 'general';
 }
