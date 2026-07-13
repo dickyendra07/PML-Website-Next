@@ -23,7 +23,7 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
     "db:push": "prisma db push",
-    "db:seed": "ts-node prisma/seed.ts",
+    "db:seed": "ts-node --project tsconfig.seed.json prisma/seed.ts",
     "lint:check": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "prisma:migrate:deploy": "prisma migrate deploy",
     "db:seed:prod": "prisma db seed"
@@ -89,7 +89,7 @@
     "testEnvironment": "node"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node --project tsconfig.seed.json prisma/seed.ts"
   },
   "overrides": {
     "multer": "$multer"
