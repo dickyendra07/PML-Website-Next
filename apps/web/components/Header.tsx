@@ -5,6 +5,9 @@ import Link from "next/link";
 import { ReactNode, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { getLocaleFromPathname, localizeHref } from "@/i18n/client";
+
 type HeaderProps = {
   onOpenProposal: () => void;
 };
@@ -144,14 +147,113 @@ const insightItems: MegaItem[] = [
   },
 ];
 
+const indonesianMegaItemTranslations: Record<
+  string,
+  {
+    label: string;
+    desc: string;
+  }
+> = {
+  "/about-us/experts-and-team": {
+    label: "Pakar & Tim",
+    desc: "Profesional multidisiplin di bidang klinis, laboratorium, regulasi, dan pengelolaan proyek.",
+  },
+  "/about-us/company-profile": {
+    label: "Profil Perusahaan",
+    desc: "Pelajari kapabilitas, pengalaman, standar mutu, dan fokus layanan CRO Pharma Metric Labs.",
+  },
+  "/about-us/clients": {
+    label: "Klien & Jaringan",
+    desc: "Melayani klien lokal dan internasional melalui jaringan rumah sakit, investigator, dan industri.",
+  },
+  "/about-us/catalogue": {
+    label: "Katalog",
+    desc: "Akses materi perusahaan, informasi layanan, dan referensi yang dapat diunduh.",
+  },
+  "/services/contract-analysis": {
+    label: "Analisis Kontrak",
+    desc: "Dukungan pengujian analitik untuk kualitas produk, keamanan, kepatuhan, dan dokumentasi.",
+  },
+  "/services/babe-studies": {
+    label: "Studi BA/BE",
+    desc: "Dukungan studi bioavailabilitas dan bioekuivalensi dari pelaksanaan klinis dan bioanalisis hingga laporan regulasi.",
+  },
+  "/services/clinical-trial": {
+    label: "Uji Klinis",
+    desc: "Dukungan riset klinis dengan keahlian lokal, kemitraan rumah sakit, dan koordinasi studi yang andal.",
+  },
+  "/services/regulatory-consultation": {
+    label: "Manajemen Regulasi",
+    desc: "Dukungan registrasi produk, dokumen ACTD, kepatuhan, dan kesiapan proses pengajuan.",
+  },
+  "/facilities/clinical-facilities": {
+    label: "Fasilitas Klinis",
+    desc: "Fasilitas klinis 70 tempat tidur dengan dukungan ambulans untuk pelaksanaan studi terkontrol.",
+  },
+  "/facilities/analytical-facilities": {
+    label: "Fasilitas Analitik",
+    desc: "Didukung LC-MS/MS, GC-FID, GC-MS, ICP-OES, HPLC, dan instrumen analitik lainnya.",
+  },
+  "/facilities/supporting-facilities": {
+    label: "Fasilitas Pendukung",
+    desc: "Ruang penyimpanan obat, ruang arsip, ambulans, dan infrastruktur operasional studi.",
+  },
+  "/facilities/vr-gallery": {
+    label: "Galeri VR",
+    desc: "Jelajahi visual fasilitas dan materi galeri Pharma Metric Labs.",
+  },
+  "/insight/articles": {
+    label: "Artikel",
+    desc: "Konten edukatif mengenai CRO, studi BA/BE, uji klinis, dan topik farmasi.",
+  },
+  "/insight/news": {
+    label: "Berita",
+    desc: "Informasi terbaru dari Pharma Metric Labs serta aktivitas terkait layanan.",
+  },
+  "/insight/publications": {
+    label: "Publikasi",
+    desc: "Referensi ilmiah, regulasi, penelitian, dan dokumentasi terkait.",
+  },
+  "/insight/faq": {
+    label: "FAQ",
+    desc: "Pertanyaan umum mengenai layanan PML dan persiapan kebutuhan proyek.",
+  },
+};
+
+function getLocalizedMegaItems(
+  items: MegaItem[],
+  locale: "en" | "id",
+): MegaItem[] {
+  return items.map((item) => {
+    const translation = indonesianMegaItemTranslations[item.href];
+
+    return {
+      ...item,
+      href: localizeHref(item.href, locale),
+      label: locale === "id" && translation ? translation.label : item.label,
+      desc: locale === "id" && translation ? translation.desc : item.desc,
+    };
+  });
+}
+
 function Icon({ type }: { type: IconType }) {
   if (type === "team") {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
         <circle cx="9" cy="8" r="3" stroke="currentColor" strokeWidth="2" />
         <circle cx="17" cy="9" r="2.5" stroke="currentColor" strokeWidth="2" />
-        <path d="M4 19C4.8 16.5 6.6 15 9 15C11.4 15 13.2 16.5 14 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <path d="M14.5 18.5C15.2 16.8 16.4 16 18 16C19.6 16 20.8 16.9 21.5 18.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path
+          d="M4 19C4.8 16.5 6.6 15 9 15C11.4 15 13.2 16.5 14 19"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M14.5 18.5C15.2 16.8 16.4 16 18 16C19.6 16 20.8 16.9 21.5 18.5"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
       </svg>
     );
   }
@@ -159,8 +261,19 @@ function Icon({ type }: { type: IconType }) {
   if (type === "company" || type === "shield") {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <path d="M12 3L19 6V11C19 15.8 16 19.2 12 21C8 19.2 5 15.8 5 11V6L12 3Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-        <path d="M9 12L11 14L15.5 9.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M12 3L19 6V11C19 15.8 16 19.2 12 21C8 19.2 5 15.8 5 11V6L12 3Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M9 12L11 14L15.5 9.5"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     );
   }
@@ -173,7 +286,12 @@ function Icon({ type }: { type: IconType }) {
         <circle cx="19" cy="6" r="2" stroke="currentColor" strokeWidth="2" />
         <circle cx="19" cy="18" r="2" stroke="currentColor" strokeWidth="2" />
         <circle cx="5" cy="18" r="2" stroke="currentColor" strokeWidth="2" />
-        <path d="M7 7.5L9.5 10M16.5 10L18 7.5M16.5 14L18 16.5M7 16.5L9.5 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path
+          d="M7 7.5L9.5 10M16.5 10L18 7.5M16.5 14L18 16.5M7 16.5L9.5 14"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
       </svg>
     );
   }
@@ -181,11 +299,29 @@ function Icon({ type }: { type: IconType }) {
   if (type === "babe") {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <rect x="4" y="13" width="10" height="6" rx="3" stroke="currentColor" strokeWidth="2" />
-        <path d="M9 13V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <rect
+          x="4"
+          y="13"
+          width="10"
+          height="6"
+          rx="3"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <path
+          d="M9 13V19"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
         <circle cx="17" cy="8" r="3.5" stroke="currentColor" strokeWidth="2" />
         <circle cx="8" cy="7" r="2" stroke="currentColor" strokeWidth="2" />
-        <path d="M10 8L14 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path
+          d="M10 8L14 8"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
       </svg>
     );
   }
@@ -193,9 +329,28 @@ function Icon({ type }: { type: IconType }) {
   if (type === "clinical") {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <rect x="7" y="4" width="10" height="16" rx="2" stroke="currentColor" strokeWidth="2" />
-        <path d="M10 9H14M10 13H13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <path d="M15 15L17 17L21 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <rect
+          x="7"
+          y="4"
+          width="10"
+          height="16"
+          rx="2"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <path
+          d="M10 9H14M10 13H13"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M15 15L17 17L21 12"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     );
   }
@@ -203,9 +358,25 @@ function Icon({ type }: { type: IconType }) {
   if (type === "analysis" || type === "lab") {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <path d="M9 3H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <path d="M10 3V8L5.8 17.2C5.1 18.8 6.2 20.5 8 20.5H16C17.8 20.5 18.9 18.8 18.2 17.2L14 8V3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M8 16H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path
+          d="M9 3H15"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M10 3V8L5.8 17.2C5.1 18.8 6.2 20.5 8 20.5H16C17.8 20.5 18.9 18.8 18.2 17.2L14 8V3"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M8 16H16"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
       </svg>
     );
   }
@@ -213,9 +384,24 @@ function Icon({ type }: { type: IconType }) {
   if (type === "building") {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <path d="M4 20H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <path d="M6 20V7L12 4L18 7V20" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-        <path d="M9 10H10.5M13.5 10H15M9 14H10.5M13.5 14H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path
+          d="M4 20H20"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M6 20V7L12 4L18 7V20"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M9 10H10.5M13.5 10H15M9 14H10.5M13.5 14H15"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
       </svg>
     );
   }
@@ -223,8 +409,18 @@ function Icon({ type }: { type: IconType }) {
   if (type === "bed") {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <path d="M4 7V19M20 12V19M4 13H20M4 19H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <path d="M6 10H10.5C12 10 13 11 13 12.5V13H6V10Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        <path
+          d="M4 7V19M20 12V19M4 13H20M4 19H20"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M6 10H10.5C12 10 13 11 13 12.5V13H6V10Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
       </svg>
     );
   }
@@ -232,19 +428,55 @@ function Icon({ type }: { type: IconType }) {
   if (type === "gallery") {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <path d="M4 6H20V18H4V6Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-        <path d="M9 10L12 12L9 14V10Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-        <path d="M15 9H17M15 12H17M15 15H17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path
+          d="M4 6H20V18H4V6Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M9 10L12 12L9 14V10Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M15 9H17M15 12H17M15 15H17"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
       </svg>
     );
   }
 
-  if (type === "article" || type === "publication" || type === "catalogue" || type === "document" || type === "regulatory") {
+  if (
+    type === "article" ||
+    type === "publication" ||
+    type === "catalogue" ||
+    type === "document" ||
+    type === "regulatory"
+  ) {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <path d="M7 3H14L18 7V21H7V3Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-        <path d="M14 3V7H18" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-        <path d="M10 12H15M10 16H14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path
+          d="M7 3H14L18 7V21H7V3Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M14 3V7H18"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M10 12H15M10 16H14"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
       </svg>
     );
   }
@@ -252,7 +484,12 @@ function Icon({ type }: { type: IconType }) {
   if (type === "news") {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <path d="M5 7H19M5 12H15M5 17H12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path
+          d="M5 7H19M5 12H15M5 17H12"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
       </svg>
     );
   }
@@ -260,14 +497,31 @@ function Icon({ type }: { type: IconType }) {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
       <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="2" />
-      <path d="M9.8 9.5C10.2 8.5 11 8 12.1 8C13.4 8 14.3 8.8 14.3 9.9C14.3 11.3 13.1 11.7 12.4 12.5C12.1 12.8 12 13.1 12 13.6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M12 16.5H12.01" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+      <path
+        d="M9.8 9.5C10.2 8.5 11 8 12.1 8C13.4 8 14.3 8.8 14.3 9.9C14.3 11.3 13.1 11.7 12.4 12.5C12.1 12.8 12 13.1 12 13.6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M12 16.5H12.01"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
 
+function ServicesMegaPanel({
+  items,
+  locale,
+}: {
+  items: MegaItem[];
+  locale: "en" | "id";
+}) {
+  const isIndonesian = locale === "id";
 
-function ServicesMegaPanel({ items }: { items: MegaItem[] }) {
   return (
     <div className="w-[min(980px,calc(100vw-48px))]">
       <div className="absolute left-0 right-0 top-0 h-5" aria-hidden="true" />
@@ -282,19 +536,21 @@ function ServicesMegaPanel({ items }: { items: MegaItem[] }) {
             <div>
               <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/10 bg-[#eaf8f0]/80 px-4 py-2 text-[12px] font-black uppercase tracking-[0.17em] text-[#039147]">
                 <span className="h-2 w-2 rounded-full bg-[#039147]" />
-                CRO Services
+                {isIndonesian ? "Layanan CRO" : "CRO Services"}
               </p>
 
               <h3 className="mt-4 max-w-2xl text-[26px] font-black leading-[1.08] tracking-[-0.04em] text-black">
-                Integrated CRO services for regulated healthcare projects
+                {isIndonesian
+                  ? "Layanan CRO terintegrasi untuk proyek kesehatan yang teregulasi"
+                  : "Integrated CRO services for regulated healthcare projects"}
               </h3>
             </div>
 
             <Link
-              href="/services"
+              href={localizeHref("/services", locale)}
               className="hidden shrink-0 rounded-full border border-[#039147]/20 bg-white px-5 py-3 text-[14px] font-black text-[#039147] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white lg:inline-flex"
             >
-              View all services
+              {isIndonesian ? "Lihat semua layanan" : "View all services"}
             </Link>
           </div>
 
@@ -328,14 +584,15 @@ function ServicesMegaPanel({ items }: { items: MegaItem[] }) {
 
           <div className="mt-5 flex items-center justify-between rounded-[22px] border border-[#039147]/10 bg-[#f6faf7] px-5 py-4">
             <p className="text-[14px] font-semibold leading-6 text-black/62">
-              One coordinated workflow across BA/BE study, clinical trial, contract analysis, and regulatory management.
+              One coordinated workflow across BA/BE study, clinical trial,
+              contract analysis, and regulatory management.
             </p>
 
             <Link
               href="/contact"
               className="ml-6 hidden shrink-0 rounded-full bg-[#039147] px-5 py-3 text-[13px] font-black text-white shadow-[0_14px_34px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 lg:inline-flex"
             >
-              Discuss project
+              {isIndonesian ? "Diskusikan proyek" : "Discuss project"}
             </Link>
           </div>
         </div>
@@ -343,7 +600,6 @@ function ServicesMegaPanel({ items }: { items: MegaItem[] }) {
     </div>
   );
 }
-
 
 function MegaPanel({
   label,
@@ -353,6 +609,7 @@ function MegaPanel({
   sideDesc,
   sideHref,
   sideCta,
+  locale,
   sideIcon = "shield",
   grid = "grid-cols-2",
 }: {
@@ -363,13 +620,16 @@ function MegaPanel({
   sideDesc: string;
   sideHref: string;
   sideCta: string;
+  locale: "en" | "id";
   sideIcon?: IconType;
   grid?: string;
 }) {
   void sideIcon;
 
   return (
-    <div className={`w-[min(${width}px,calc(100vw-40px))] max-h-[calc(100dvh-112px)] overflow-y-auto overscroll-contain rounded-[30px]`}>
+    <div
+      className={`w-[min(${width}px,calc(100vw-40px))] max-h-[calc(100dvh-112px)] overflow-y-auto overscroll-contain rounded-[30px]`}
+    >
       <div className="relative overflow-hidden rounded-[30px] border border-black/5 bg-white p-5 shadow-[0_26px_80px_rgba(0,0,0,0.16)] ring-1 ring-black/[0.04] backdrop-blur-xl md:p-6">
         <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#039147]/30 to-transparent" />
         <div className="absolute -left-20 -top-24 h-56 w-56 rounded-full bg-[#eaf8f0]/80 blur-3xl" />
@@ -393,7 +653,7 @@ function MegaPanel({
             </div>
 
             <Link
-              href={sideHref}
+              href={localizeHref(sideHref, locale)}
               className="hidden shrink-0 rounded-full border border-[#039147]/20 bg-white px-5 py-3 text-[14px] font-black text-[#039147] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white lg:inline-flex"
             >
               {sideCta}
@@ -501,7 +761,10 @@ function NavMega({
         onMouseEnter={openMenu}
         onMouseLeave={closeMenu}
       >
-        <div className="absolute -top-4 left-0 right-0 h-5" aria-hidden="true" />
+        <div
+          className="absolute -top-4 left-0 right-0 h-5"
+          aria-hidden="true"
+        />
         {panel}
       </div>
     </div>
@@ -523,15 +786,18 @@ function MobileAccordion({
   onNavigate: () => void;
   isActiveHref: (href: string) => boolean;
 }) {
-  const isParentActive = isActiveHref(href) || items.some((item) => isActiveHref(item.href));
+  const isParentActive =
+    isActiveHref(href) || items.some((item) => isActiveHref(item.href));
   const [open, setOpen] = useState(defaultOpen || isParentActive);
 
   return (
-    <div className={`overflow-hidden rounded-2xl border transition ${
-      isParentActive
-        ? "border-[#039147]/25 bg-[#dff5e9] shadow-[0_10px_30px_rgba(3,145,71,0.10)]"
-        : "border-transparent bg-[#eaf8f0]"
-    }`}>
+    <div
+      className={`overflow-hidden rounded-2xl border transition ${
+        isParentActive
+          ? "border-[#039147]/25 bg-[#dff5e9] shadow-[0_10px_30px_rgba(3,145,71,0.10)]"
+          : "border-transparent bg-[#eaf8f0]"
+      }`}
+    >
       <div className="flex items-center">
         <Link
           href={href}
@@ -550,7 +816,9 @@ function MobileAccordion({
           aria-label={`${open ? "Close" : "Open"} ${title} menu`}
           aria-expanded={open}
         >
-          <span className={`text-xl font-black leading-none transition ${open ? "rotate-45" : ""}`}>
+          <span
+            className={`text-xl font-black leading-none transition ${open ? "rotate-45" : ""}`}
+          >
             +
           </span>
         </button>
@@ -569,23 +837,29 @@ function MobileAccordion({
                   : "bg-white text-black"
               }`}
             >
-              <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
-                isActiveHref(item.href)
-                  ? "bg-white/15 text-white"
-                  : "bg-[#eaf8f0] text-[#039147]"
-              }`}>
+              <span
+                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
+                  isActiveHref(item.href)
+                    ? "bg-white/15 text-white"
+                    : "bg-[#eaf8f0] text-[#039147]"
+                }`}
+              >
                 <Icon type={item.icon} />
               </span>
 
               <span>
-                <span className={`block text-sm font-black leading-tight ${
-                  isActiveHref(item.href) ? "text-white" : "text-black"
-                }`}>
+                <span
+                  className={`block text-sm font-black leading-tight ${
+                    isActiveHref(item.href) ? "text-white" : "text-black"
+                  }`}
+                >
                   {item.label}
                 </span>
-                <span className={`mt-1 block text-xs font-semibold leading-5 ${
-                  isActiveHref(item.href) ? "text-white/70" : "text-black/50"
-                }`}>
+                <span
+                  className={`mt-1 block text-xs font-semibold leading-5 ${
+                    isActiveHref(item.href) ? "text-white/70" : "text-black/50"
+                  }`}
+                >
                   {item.desc}
                 </span>
               </span>
@@ -599,23 +873,44 @@ function MobileAccordion({
 
 export default function Header({ onOpenProposal }: HeaderProps) {
   const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const isIndonesian = locale === "id";
+
+  const localizedHref = (href: string) => localizeHref(href, locale);
+
+  const localizedAboutItems = getLocalizedMegaItems(aboutItems, locale);
+  const localizedServiceItems = getLocalizedMegaItems(serviceItems, locale);
+  const localizedFacilityItems = getLocalizedMegaItems(facilityItems, locale);
+  const localizedInsightItems = getLocalizedMegaItems(insightItems, locale);
+
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const closeMobile = () => setMobileOpen(false);
 
   const normalizeHref = (href: string) => href.split("#")[0] || "/";
+
+  const pathnameWithoutLocale =
+    pathname.replace(/^\/(en|id)(?=\/|$)/, "") || "/";
+
   const isActiveHref = (href: string) => {
-    const cleanHref = normalizeHref(href);
+    const cleanHref =
+      normalizeHref(href).replace(/^\/(en|id)(?=\/|$)/, "") || "/";
 
     if (cleanHref === "/") {
-      return pathname === "/";
+      return pathnameWithoutLocale === "/";
     }
 
     if (cleanHref === "/services") {
-      return pathname === "/services" || pathname.startsWith("/services/");
+      return (
+        pathnameWithoutLocale === "/services" ||
+        pathnameWithoutLocale.startsWith("/services/")
+      );
     }
 
-    return pathname === cleanHref || pathname.startsWith(`${cleanHref}/`);
+    return (
+      pathnameWithoutLocale === cleanHref ||
+      pathnameWithoutLocale.startsWith(`${cleanHref}/`)
+    );
   };
 
   const navClass = (href: string) =>
@@ -642,7 +937,11 @@ export default function Header({ onOpenProposal }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur-xl">
       <div className="pml-container flex h-[72px] items-center justify-between md:h-20">
-        <Link href="/" aria-label="Pharma Metric Labs Home" className="flex items-center">
+        <Link
+          href={localizedHref("/")}
+          aria-label="Pharma Metric Labs Home"
+          className="flex items-center"
+        >
           <Image
             src="/images/LOGO-PML.png"
             alt="Pharma Metric Labs"
@@ -654,91 +953,137 @@ export default function Header({ onOpenProposal }: HeaderProps) {
         </Link>
 
         <nav className="hidden items-center gap-1 text-sm font-bold text-black/70 xl:flex">
-          <Link className={navClass("/")} href="/">
-            Home
+          <Link className={navClass("/")} href={localizedHref("/")}>
+            {isIndonesian ? "Beranda" : "Home"}
           </Link>
 
           <NavMega
-            href="/about-us"
-            className={navMegaClass("/about-us", aboutItems)}
+            href={localizedHref("/about-us")}
+            className={navMegaClass("/about-us", localizedAboutItems)}
             panel={
               <MegaPanel
-                label="About PML"
+                locale={locale}
+                label={isIndonesian ? "Tentang PML" : "About PML"}
                 width="980"
-                items={aboutItems}
-                sideTitle="Independent CRO support with scientific integrity"
-                sideDesc="PML combines quality, compliance, multidisciplinary expertise, and responsive project support for reliable study delivery."
+                items={localizedAboutItems}
+                sideTitle={
+                  isIndonesian
+                    ? "Dukungan CRO independen dengan integritas ilmiah"
+                    : "Independent CRO support with scientific integrity"
+                }
+                sideDesc={
+                  isIndonesian
+                    ? "PML memadukan kualitas, kepatuhan, keahlian multidisiplin, dan dukungan proyek responsif untuk pelaksanaan studi yang andal."
+                    : "PML combines quality, compliance, multidisciplinary expertise, and responsive project support for reliable study delivery."
+                }
                 sideHref="/about-us"
-                sideCta="Learn about PML"
+                sideCta={isIndonesian ? "Pelajari PML" : "Learn about PML"}
                 sideIcon="building"
               />
             }
           >
-            About Us
+            {isIndonesian ? "Tentang Kami" : "About Us"}
           </NavMega>
 
           <NavMega
-            href="/services"
-            className={navMegaClass("/services", serviceItems)}
-            panel={<ServicesMegaPanel items={serviceItems} />}
+            href={localizedHref("/services")}
+            className={navMegaClass("/services", localizedServiceItems)}
+            panel={
+              <ServicesMegaPanel
+                items={localizedServiceItems}
+                locale={locale}
+              />
+            }
           >
-            Services
+            {isIndonesian ? "Layanan" : "Services"}
           </NavMega>
 
           <NavMega
-            href="/facilities"
-            className={navMegaClass("/facilities", facilityItems)}
+            href={localizedHref("/facilities")}
+            className={navMegaClass("/facilities", localizedFacilityItems)}
             panel={
               <MegaPanel
-                label="Facilities & Capability"
+                locale={locale}
+                label={
+                  isIndonesian
+                    ? "Fasilitas & Kapabilitas"
+                    : "Facilities & Capability"
+                }
                 width="980"
-                items={facilityItems}
-                sideTitle="Facilities for reliable study execution"
-                sideDesc="PML supports clinical, analytical, and operational needs through integrated facilities and documentation workflows."
+                items={localizedFacilityItems}
+                sideTitle={
+                  isIndonesian
+                    ? "Fasilitas untuk pelaksanaan studi yang andal"
+                    : "Facilities for reliable study execution"
+                }
+                sideDesc={
+                  isIndonesian
+                    ? "PML mendukung kebutuhan klinis, analitik, dan operasional melalui fasilitas serta alur dokumentasi yang terintegrasi."
+                    : "PML supports clinical, analytical, and operational needs through integrated facilities and documentation workflows."
+                }
                 sideHref="/facilities"
-                sideCta="Explore facilities"
+                sideCta={
+                  isIndonesian ? "Jelajahi fasilitas" : "Explore facilities"
+                }
                 sideIcon="building"
               />
             }
           >
-            Facilities
+            {isIndonesian ? "Fasilitas" : "Facilities"}
           </NavMega>
 
-          <Link className={navClass("/contact")} href="/contact">
-            Contact
+          <Link
+            className={navClass("/contact")}
+            href={localizeHref("/contact", locale)}
+          >
+            {isIndonesian ? "Kontak" : "Contact"}
           </Link>
 
           <NavMega
-            href="/insight"
-            className={navMegaClass("/insight", insightItems)}
+            href={localizedHref("/insight")}
+            className={navMegaClass("/insight", localizedInsightItems)}
             panel={
               <MegaPanel
-                label="Latest Insight"
+                locale={locale}
+                label={isIndonesian ? "Wawasan Terbaru" : "Latest Insight"}
                 width="980"
-                items={insightItems}
-                sideTitle="Educational resources for better project readiness"
-                sideDesc="Explore articles, news, publications, and FAQ content to better understand PML services."
+                items={localizedInsightItems}
+                sideTitle={
+                  isIndonesian
+                    ? "Sumber edukasi untuk kesiapan proyek yang lebih baik"
+                    : "Educational resources for better project readiness"
+                }
+                sideDesc={
+                  isIndonesian
+                    ? "Jelajahi artikel, berita, publikasi, dan FAQ untuk memahami layanan PML dengan lebih baik."
+                    : "Explore articles, news, publications, and FAQ content to better understand PML services."
+                }
                 sideHref="/insight"
-                sideCta="View insight"
+                sideCta={isIndonesian ? "Lihat wawasan" : "View insight"}
                 sideIcon="catalogue"
               />
             }
           >
-            Insight
+            {isIndonesian ? "Wawasan" : "Insight"}
           </NavMega>
 
-          <Link className={navClass("/careers")} href="/careers">
-            Careers
+          <Link
+            className={navClass("/careers")}
+            href={localizedHref("/careers")}
+          >
+            {isIndonesian ? "Karier" : "Careers"}
           </Link>
         </nav>
 
         <div className="hidden items-center gap-3 xl:flex">
+          <LanguageSwitcher />
+
           <button
             type="button"
             onClick={onOpenProposal}
             className="inline-flex h-12 items-center justify-center rounded-full border border-[#039147] px-7 text-sm font-black text-[#039147] transition hover:bg-[#039147] hover:text-white"
           >
-            Request Proposal
+            {isIndonesian ? "Ajukan Proposal" : "Request Proposal"}
           </button>
         </div>
 
@@ -785,43 +1130,55 @@ export default function Header({ onOpenProposal }: HeaderProps) {
               </button>
             </div>
 
-            <div className="mt-7 grid gap-2.5 text-base font-black text-black sm:mt-9 sm:gap-3 sm:text-lg">
-              <Link onClick={closeMobile} className={mobileLinkClass("/")} href="/">
-                Home
+            <div className="mt-7">
+              <LanguageSwitcher mobile onNavigate={closeMobile} />
+            </div>
+
+            <div className="mt-5 grid gap-2.5 text-base font-black text-black sm:mt-7 sm:gap-3 sm:text-lg">
+              <Link
+                onClick={closeMobile}
+                className={mobileLinkClass("/")}
+                href={localizedHref("/")}
+              >
+                {isIndonesian ? "Beranda" : "Home"}
               </Link>
 
               <MobileAccordion
                 title="About Us"
-                href="/about-us"
-                items={aboutItems}
+                href={localizedHref("/about-us")}
+                items={localizedAboutItems}
                 onNavigate={closeMobile}
                 isActiveHref={isActiveHref}
               />
 
               <MobileAccordion
                 title="Services"
-                href="/services"
-                items={serviceItems}
+                href={localizedHref("/services")}
+                items={localizedServiceItems}
                 onNavigate={closeMobile}
                 isActiveHref={isActiveHref}
               />
 
               <MobileAccordion
                 title="Facilities"
-                href="/facilities"
-                items={facilityItems}
+                href={localizedHref("/facilities")}
+                items={localizedFacilityItems}
                 onNavigate={closeMobile}
                 isActiveHref={isActiveHref}
               />
 
-              <Link onClick={closeMobile} className={mobileLinkClass("/contact")} href="/contact">
-                Contact
+              <Link
+                onClick={closeMobile}
+                className={mobileLinkClass("/contact")}
+                href={localizedHref("/contact")}
+              >
+                {isIndonesian ? "Kontak" : "Contact"}
               </Link>
 
               <MobileAccordion
                 title="Insight"
-                href="/insight"
-                items={insightItems}
+                href={localizedHref("/insight")}
+                items={localizedInsightItems}
                 onNavigate={closeMobile}
                 isActiveHref={isActiveHref}
               />
@@ -835,7 +1192,7 @@ export default function Header({ onOpenProposal }: HeaderProps) {
               }}
               className="sticky bottom-4 mt-8 inline-flex w-full items-center justify-center rounded-full bg-[#039147] px-6 py-4 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.28)] transition active:scale-[0.99]"
             >
-              Request a Proposal
+              {isIndonesian ? "Ajukan Proposal" : "Request a Proposal"}
             </button>
           </aside>
         </div>

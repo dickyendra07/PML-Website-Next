@@ -2,45 +2,89 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
-const slides = [
-  {
-    eyebrow: "CRO Services",
-    title: "Your Partner for End-to-End Clinical Research Success",
-    description:
-      "PML supports pharmaceutical, biotechnology, medical device, food, beverage, and healthcare companies with integrated CRO services, from contract analysis, BA/BE study, and clinical trial to regulatory management.",
-    primary: "Request a Proposal",
-    secondary: "Explore Our Services",
-    secondaryHref: "#services",
-    image: "/images/pml/hero-lab-hexagon.png",
-  },
-  {
-    eyebrow: "BA/BE Study",
-    title: "End-to-End BA/BE Study Support You Can Rely On",
-    description:
-      "PML supports end-to-end bioavailability and bioequivalence study from clinical conduct and bioanalysis to regulatory-ready reporting, helping sponsors move forward with quality, compliance, and confidence.",
-    primary: "Request a Proposal",
-    secondary: "Explore BA/BE Study",
-    secondaryHref: "#services",
-    image: "/images/pml/hero/hero-babe-studies.png",
-  },
-  {
-    eyebrow: "Clinical Trial",
-    title: "Clinical Trial Support Across the Entire Study Journey",
-    description:
-      "From study planning and site coordination to monitoring, data management, and regulatory support, PML helps sponsors execute clinical research with reliable local expertise.",
-    primary: "Request a Proposal",
-    secondary: "Explore Clinical Trial",
-    secondaryHref: "#services",
-    image: "/images/pml/hero/hero-clinical-trials.png",
-  },
-];
+import { getLocaleFromPathname, localizeHref } from "@/i18n/client";
+
+const slidesByLocale = {
+  en: [
+    {
+      eyebrow: "CRO Services",
+      title: "Your Partner for End-to-End Clinical Research Success",
+      description:
+        "PML supports pharmaceutical, biotechnology, medical device, food, beverage, and healthcare companies with integrated CRO services, from contract analysis, BA/BE study, and clinical trial to regulatory management.",
+      primary: "Request a Proposal",
+      secondary: "Explore Our Services",
+      secondaryHref: "#services",
+      image: "/images/pml/hero-lab-hexagon.png",
+    },
+    {
+      eyebrow: "BA/BE Study",
+      title: "End-to-End BA/BE Study Support You Can Rely On",
+      description:
+        "PML supports end-to-end bioavailability and bioequivalence studies, from clinical conduct and bioanalysis to regulatory-ready reporting.",
+      primary: "Request a Proposal",
+      secondary: "Explore BA/BE Study",
+      secondaryHref: "/services/babe-studies",
+      image: "/images/pml/hero/hero-babe-studies.png",
+    },
+    {
+      eyebrow: "Clinical Trial",
+      title: "Clinical Trial Support Across the Entire Study Journey",
+      description:
+        "From study planning and site coordination to monitoring, data management, and regulatory support, PML helps sponsors execute clinical research with reliable local expertise.",
+      primary: "Request a Proposal",
+      secondary: "Explore Clinical Trial",
+      secondaryHref: "/services/clinical-trial",
+      image: "/images/pml/hero/hero-clinical-trials.png",
+    },
+  ],
+  id: [
+    {
+      eyebrow: "Layanan CRO",
+      title: "Mitra Anda untuk Keberhasilan Riset Klinis Menyeluruh",
+      description:
+        "PML mendukung perusahaan farmasi, bioteknologi, alat kesehatan, makanan, minuman, dan layanan kesehatan melalui layanan CRO terintegrasi, mulai dari analisis kontrak, studi BA/BE, dan uji klinis hingga manajemen regulasi.",
+      primary: "Ajukan Proposal",
+      secondary: "Jelajahi Layanan Kami",
+      secondaryHref: "#services",
+      image: "/images/pml/hero-lab-hexagon.png",
+    },
+    {
+      eyebrow: "Studi BA/BE",
+      title: "Dukungan Studi BA/BE Menyeluruh yang Dapat Diandalkan",
+      description:
+        "PML mendukung studi bioavailabilitas dan bioekuivalensi secara menyeluruh, mulai dari pelaksanaan klinis dan bioanalisis hingga laporan yang siap untuk kebutuhan regulasi.",
+      primary: "Ajukan Proposal",
+      secondary: "Pelajari Studi BA/BE",
+      secondaryHref: "/services/babe-studies",
+      image: "/images/pml/hero/hero-babe-studies.png",
+    },
+    {
+      eyebrow: "Uji Klinis",
+      title: "Dukungan Uji Klinis di Setiap Tahap Penelitian",
+      description:
+        "Mulai dari perencanaan studi dan koordinasi lokasi hingga monitoring, pengelolaan data, dan dukungan regulasi, PML membantu sponsor menjalankan riset klinis dengan keahlian lokal yang andal.",
+      primary: "Ajukan Proposal",
+      secondary: "Pelajari Uji Klinis",
+      secondaryHref: "/services/clinical-trial",
+      image: "/images/pml/hero/hero-clinical-trials.png",
+    },
+  ],
+} as const;
 
 export default function Hero() {
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const slides = slidesByLocale[locale];
+
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const activeSlide = useMemo(() => slides[activeIndex], [activeIndex]);
+  const activeSlide = useMemo(
+    () => slides[activeIndex] ?? slides[0],
+    [activeIndex, slides],
+  );
 
   const openProposal = () => {
     window.dispatchEvent(new CustomEvent("open-proposal-modal"));
@@ -51,12 +95,16 @@ export default function Hero() {
   };
 
   useEffect(() => {
+    setActiveIndex(0);
+  }, [locale]);
+
+  useEffect(() => {
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % slides.length);
     }, 10000);
 
     return () => window.clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   return (
     <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-white">
@@ -66,7 +114,7 @@ export default function Hero() {
 
           return (
             <article
-              key={slide.title}
+              key={`${locale}-${slide.title}`}
               className={`absolute inset-0 min-h-[calc(100vh-80px)] transition-opacity duration-700 ${
                 isActive ? "z-10 opacity-100" : "z-0 opacity-0"
               }`}
@@ -91,7 +139,9 @@ export default function Hero() {
               <div className="pml-container relative flex min-h-[calc(100vh-80px)] items-center py-20">
                 <div
                   className={`max-w-4xl transition duration-700 ${
-                    isActive ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+                    isActive
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-5 opacity-0"
                   }`}
                 >
                   <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-black/70 shadow-sm backdrop-blur">
@@ -117,7 +167,7 @@ export default function Hero() {
                     </button>
 
                     <Link
-                      href={slide.secondaryHref}
+                      href={localizeHref(slide.secondaryHref, locale)}
                       className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/70 px-7 py-3.5 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white"
                     >
                       {slide.secondary}
@@ -133,7 +183,9 @@ export default function Hero() {
           type="button"
           onClick={() => goToSlide(activeIndex - 1)}
           className="absolute left-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-black/10 bg-white/75 text-2xl font-light text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white md:flex"
-          aria-label="Previous hero slide"
+          aria-label={
+            locale === "id" ? "Slide sebelumnya" : "Previous hero slide"
+          }
         >
           ‹
         </button>
@@ -142,7 +194,7 @@ export default function Hero() {
           type="button"
           onClick={() => goToSlide(activeIndex + 1)}
           className="absolute right-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-black/10 bg-white/75 text-2xl font-light text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white md:flex"
-          aria-label="Next hero slide"
+          aria-label={locale === "id" ? "Slide berikutnya" : "Next hero slide"}
         >
           ›
         </button>
@@ -150,13 +202,17 @@ export default function Hero() {
         <div className="absolute bottom-9 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3">
           {slides.map((slide, index) => (
             <button
-              key={slide.title}
+              key={`${locale}-${slide.title}`}
               type="button"
               onClick={() => goToSlide(index)}
               className={`h-2.5 rounded-full transition ${
                 index === activeIndex ? "w-8 bg-[#039147]" : "w-2.5 bg-white/50"
               }`}
-              aria-label={`Go to hero slide ${index + 1}`}
+              aria-label={
+                locale === "id"
+                  ? `Buka slide ${index + 1}`
+                  : `Go to hero slide ${index + 1}`
+              }
               aria-current={index === activeIndex}
             />
           ))}
