@@ -95,10 +95,6 @@ export default function Hero() {
   };
 
   useEffect(() => {
-    setActiveIndex(0);
-  }, [locale]);
-
-  useEffect(() => {
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % slides.length);
     }, 10000);

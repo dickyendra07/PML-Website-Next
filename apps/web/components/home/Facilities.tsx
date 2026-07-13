@@ -207,12 +207,12 @@ export default function Facilities() {
               ))}
             </div>
 
-            <a
+            <Link
               href="/contact"
               className="mt-8 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-3.5 text-sm font-extrabold text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
             >
               Explore Facilities
-            </a>
+            </Link>
           </div>
         </div>
       </div>
