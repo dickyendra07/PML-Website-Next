@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
-import { defaultSettings } from '../src/settings/settings.service';
+import { defaultSettings } from './default-settings';
 
 const prisma = new PrismaClient();
 
