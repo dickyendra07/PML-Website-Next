@@ -1,11 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import FacilityCardGrid from "@/components/pages/FacilityCardGrid";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
-const facilityHeroSlides = [
+import FacilityCardGrid from "@/components/pages/FacilityCardGrid";
+import { getLocaleFromPathname, localizeHref } from "@/i18n/client";
+
+const facilityHeroSlidesEn = [
   {
     eyebrow: "Clinical Study Support",
     title: "Clinical facilities for reliable study execution",
@@ -44,7 +47,57 @@ const facilityHeroSlides = [
   },
 ];
 
+const facilityHeroSlidesId = [
+  {
+    eyebrow: "Dukungan Studi Klinis",
+    title: "Fasilitas klinis untuk pelaksanaan studi yang andal",
+    description:
+      "Jelajahi fasilitas klinis PML yang dirancang untuk mendukung aktivitas studi terkontrol, koordinasi relawan, screening, area makan, dan dukungan medis.",
+    image: "/images/pml/facilities/photos/pml-facility-photo-01.png",
+    href: "/facilities/clinical-facilities",
+    cta: "Jelajahi Fasilitas Klinis",
+  },
+  {
+    eyebrow: "Kapabilitas Laboratorium",
+    title: "Fasilitas analitik untuk pengujian dan bioanalisis",
+    description:
+      "Temukan kapabilitas laboratorium analitik yang didukung instrumen dan alur kerja untuk bioanalisis, analisis kontrak, pengujian produk, dokumentasi, dan pelaporan.",
+    image: "/images/pml/facilities/photos/pml-facility-photo-17.png",
+    href: "/facilities/analytical-facilities",
+    cta: "Jelajahi Fasilitas Analitik",
+  },
+  {
+    eyebrow: "Dukungan Operasional",
+    title: "Fasilitas pendukung untuk alur proyek yang lengkap",
+    description:
+      "Tinjau infrastruktur pendukung untuk penyimpanan obat, pengelolaan arsip, penanganan sampel, operasional studi, dan kesiapan dokumentasi proyek.",
+    image: "/images/pml/facilities/photos/pml-facility-photo-11.png",
+    href: "/facilities/supporting-facilities",
+    cta: "Jelajahi Fasilitas Pendukung",
+  },
+  {
+    eyebrow: "Pengalaman Fasilitas",
+    title: "Jelajahi fasilitas PML melalui Galeri VR",
+    description:
+      "Akses pengalaman fasilitas dan referensi visual melalui Galeri VR PML untuk melihat area fasilitas terpilih dengan lebih jelas.",
+    image: "/images/pml/facilities/photos/pml-facility-photo-18.png",
+    href: "/facilities/vr-gallery",
+    cta: "Buka Galeri VR",
+  },
+];
+
 export default function FacilitiesPage() {
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const isIndonesian = locale === "id";
+
+  const t = (english: string, indonesian: string) =>
+    isIndonesian ? indonesian : english;
+
+  const facilityHeroSlides = isIndonesian
+    ? facilityHeroSlidesId
+    : facilityHeroSlidesEn;
+
   const [activeSlide, setActiveSlide] = useState(0);
   const currentSlide = facilityHeroSlides[activeSlide];
 
@@ -72,7 +125,7 @@ export default function FacilitiesPage() {
     }, 6000);
 
     return () => window.clearInterval(timer);
-  }, []);
+  }, [facilityHeroSlides.length]);
 
   return (
     <main>
@@ -97,11 +150,16 @@ export default function FacilitiesPage() {
 
         <div className="pml-container relative py-20 md:py-32">
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-black/58">
-            <Link href="/" className="transition hover:text-[#039147]">
-              Home
+            <Link
+              href={localizeHref("/", locale)}
+              className="transition hover:text-[#039147]"
+            >
+              {t("Home", "Beranda")}
             </Link>
             <span>/</span>
-            <span className="text-[#039147]">Facilities</span>
+            <span className="text-[#039147]">
+              {t("Facilities", "Fasilitas")}
+            </span>
           </nav>
 
           <div className="grid gap-10 lg:grid-cols-[1fr_0.46fr] lg:items-end">
@@ -121,7 +179,7 @@ export default function FacilitiesPage() {
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
-                  href={currentSlide.href}
+                  href={localizeHref(currentSlide.href, locale)}
                   className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
                 >
                   {currentSlide.cta}
@@ -132,14 +190,14 @@ export default function FacilitiesPage() {
                   onClick={openProposal}
                   className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-xl backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white"
                 >
-                  Request a Proposal
+                  {t("Request a Proposal", "Ajukan Proposal")}
                 </button>
               </div>
             </div>
 
             <div className="rounded-[30px] border border-white/35 bg-white/70 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.08)] backdrop-blur-xl md:rounded-[36px] md:p-6">
               <p className="text-xs font-black uppercase tracking-[0.18em] text-[#039147]">
-                Facility Highlight
+                {t("Facility Highlight", "Sorotan Fasilitas")}
               </p>
 
               <div className="mt-5 grid gap-3">
@@ -177,7 +235,10 @@ export default function FacilitiesPage() {
               type="button"
               onClick={goToPreviousSlide}
               className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-xl font-black text-[#039147] shadow-xl transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white"
-              aria-label="Previous facility slide"
+              aria-label={t(
+                "Previous facility slide",
+                "Slide fasilitas sebelumnya",
+              )}
             >
               ←
             </button>
@@ -186,7 +247,10 @@ export default function FacilitiesPage() {
               type="button"
               onClick={goToNextSlide}
               className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-xl font-black text-[#039147] shadow-xl transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white"
-              aria-label="Next facility slide"
+              aria-label={t(
+                "Next facility slide",
+                "Slide fasilitas berikutnya",
+              )}
             >
               →
             </button>
@@ -202,7 +266,10 @@ export default function FacilitiesPage() {
                       ? "w-9 bg-[#039147]"
                       : "w-2.5 bg-black/18 hover:bg-[#039147]/60"
                   }`}
-                  aria-label={`Go to ${slide.eyebrow} slide`}
+                  aria-label={`${t(
+                    "Go to",
+                    "Buka",
+                  )} ${slide.eyebrow} ${t("slide", "slide")}`}
                 />
               ))}
             </div>
@@ -218,29 +285,44 @@ export default function FacilitiesPage() {
         <div className="pml-container grid gap-9 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-              Facility Trust
+              {t("Facility Trust", "Keandalan Fasilitas")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Built for reliable study execution and laboratory support
+              {t(
+                "Built for reliable study execution and laboratory support",
+                "Dirancang untuk pelaksanaan studi dan dukungan laboratorium yang andal",
+              )}
             </h2>
 
             <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
-              PML facilities are designed to support clinical conduct, sample
-              handling, analytical work, study documentation, and project
-              coordination. This gives sponsors a clearer operational foundation
-              from early discussion to final reporting.
+              {t(
+                "PML facilities are designed to support clinical conduct, sample handling, analytical work, study documentation, and project coordination. This gives sponsors a clearer operational foundation from early discussion to final reporting.",
+                "Fasilitas PML dirancang untuk mendukung pelaksanaan klinis, penanganan sampel, pekerjaan analitik, dokumentasi studi, dan koordinasi proyek. Hal ini memberikan landasan operasional yang lebih jelas bagi sponsor sejak diskusi awal hingga pelaporan akhir.",
+              )}
             </p>
           </div>
 
           <div className="grid grid-cols-2 gap-3 md:grid-cols-2 md:gap-4">
             {[
-              "Clinical facility and volunteer coordination",
-              "Analytical laboratory capability",
-              "Drug storage and archive support",
-              "Sample handling workflow",
-              "Regulatory-ready documentation",
-              "VR Gallery facility experience",
+              t(
+                "Clinical facility and volunteer coordination",
+                "Fasilitas klinis dan koordinasi relawan",
+              ),
+              t(
+                "Analytical laboratory capability",
+                "Kapabilitas laboratorium analitik",
+              ),
+              t(
+                "Drug storage and archive support",
+                "Dukungan penyimpanan obat dan arsip",
+              ),
+              t("Sample handling workflow", "Alur penanganan sampel"),
+              t("Regulatory-ready documentation", "Dokumentasi siap regulasi"),
+              t(
+                "VR Gallery facility experience",
+                "Pengalaman fasilitas melalui Galeri VR",
+              ),
             ].map((item) => (
               <div
                 key={item}
@@ -273,17 +355,21 @@ export default function FacilitiesPage() {
 
             <div className="relative mx-auto max-w-3xl">
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-                Facility Discussion
+                {t("Facility Discussion", "Diskusi Fasilitas")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight md:text-[52px] text-black">
-                Need to understand PML facility capability?
+                {t(
+                  "Need to understand PML facility capability?",
+                  "Perlu memahami kapabilitas fasilitas PML?",
+                )}
               </h2>
 
               <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/72">
-                Share your study, testing, or facility-related questions with
-                our team and we will help identify the right support and next
-                steps.
+                {t(
+                  "Share your study, testing, or facility-related questions with our team and we will help identify the right support and next steps.",
+                  "Sampaikan pertanyaan terkait studi, pengujian, atau fasilitas kepada tim kami dan kami akan membantu menentukan dukungan serta langkah berikutnya yang tepat.",
+                )}
               </p>
 
               <button
@@ -291,7 +377,7 @@ export default function FacilitiesPage() {
                 onClick={openProposal}
                 className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
               >
-                Request a Proposal
+                {t("Request a Proposal", "Ajukan Proposal")}
               </button>
             </div>
           </div>
