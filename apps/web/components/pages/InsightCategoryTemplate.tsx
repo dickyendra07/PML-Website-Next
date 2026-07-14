@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+
 import InsightCard from "@/components/pages/InsightCard";
-import { InsightCategory, insightCategories } from "@/data/insights";
-import { getInsights, InsightItem } from "@/lib/api";
+import { type InsightCategory, insightCategories } from "@/data/insights";
+import { getLocaleFromPathname, localizeHref } from "@/i18n/client";
+import { getInsights, type InsightItem } from "@/lib/api";
 
 type InsightCategoryTemplateProps = {
   category: InsightCategory;
@@ -73,10 +76,104 @@ const categoryHero: Record<
   },
 };
 
-export default function InsightCategoryTemplate({ category }: InsightCategoryTemplateProps) {
-  const hero = categoryHero[category];
+const mockFaqItemsId = [
+  {
+    question: "Layanan apa saja yang disediakan PML?",
+    answer:
+      "PML menyediakan layanan CRO terintegrasi, termasuk dukungan studi BA/BE, uji klinis, analisis kontrak, manajemen regulasi, dan dokumentasi proyek.",
+  },
+  {
+    question: "Apakah PML dapat mendukung sponsor lokal maupun internasional?",
+    answer:
+      "Ya. PML mendukung sponsor lokal dan internasional dari industri farmasi, kesehatan, penelitian, dan produk teregulasi.",
+  },
+  {
+    question:
+      "Informasi apa yang perlu disiapkan sponsor sebelum menghubungi PML?",
+    answer:
+      "Sponsor dapat menyiapkan latar belakang produk atau studi, layanan yang dibutuhkan, jadwal proyek, dokumen yang tersedia, serta kebutuhan regulasi atau analitik.",
+  },
+  {
+    question: "Apakah PML menyediakan dukungan manajemen regulasi?",
+    answer:
+      "Ya. PML mendukung persiapan berorientasi regulasi, peninjauan dokumen, dokumentasi terkait ACTD, dan kesiapan pengajuan berdasarkan kebutuhan proyek.",
+  },
+  {
+    question: "Bagaimana sponsor dapat memulai diskusi proyek dengan PML?",
+    answer:
+      "Sponsor dapat mengirimkan inquiry melalui formulir kontak atau mengajukan proposal. Tim PML akan meninjau informasi tersebut dan menindaklanjuti dengan rekomendasi langkah berikutnya.",
+  },
+];
+
+const categoryHeroId: Record<
+  InsightCategory,
+  {
+    title: string;
+    eyebrow: string;
+    description: string;
+    image: string;
+  }
+> = {
+  articles: {
+    eyebrow: "Artikel",
+    title: "Artikel edukatif untuk kesiapan proyek CRO dan farmasi",
+    description:
+      "Baca konten praktis mengenai studi BA/BE, dukungan uji klinis, analisis kontrak, persiapan regulasi, dan pengembangan farmasi.",
+    image: "/images/pml/services/babe-studies-hero.png",
+  },
+  news: {
+    eyebrow: "Berita",
+    title: "Pembaruan perusahaan dan aktivitas layanan dari PML",
+    description:
+      "Ikuti informasi terbaru dari Pharma Metric Labs, termasuk kapabilitas fasilitas, aktivitas layanan, dan pengumuman perusahaan.",
+    image: "/images/pml/facilities-gallery/clinical-main.jpg",
+  },
+  publications: {
+    eyebrow: "Publikasi",
+    title: "Publikasi Ilmiah Kami",
+    description:
+      "Jelajahi publikasi peer-reviewed dan kontribusi ilmiah PML yang menunjukkan keahlian kami dalam penelitian klinis, pengujian analitik, dan ilmu regulasi.",
+    image: "/images/pml/services/clinical-trial-regulatory.png",
+  },
+  faq: {
+    eyebrow: "FAQ",
+    title: "Pertanyaan yang sering diajukan mengenai Pharma Metric Labs",
+    description:
+      "Temukan jawaban atas pertanyaan umum mengenai layanan PML, persiapan inquiry, dukungan regulasi, dan akses fasilitas.",
+    image: "/images/pml/cta-lab-background.png",
+  },
+};
+
+const categoryLabelId: Record<InsightCategory, string> = {
+  articles: "Artikel",
+  news: "Berita",
+  publications: "Publikasi",
+  faq: "FAQ",
+};
+
+export default function InsightCategoryTemplate({
+  category,
+}: InsightCategoryTemplateProps) {
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const isIndonesian = locale === "id";
+
+  const t = (english: string, indonesian: string) =>
+    isIndonesian ? indonesian : english;
+
+  const hero = isIndonesian ? categoryHeroId[category] : categoryHero[category];
+
+  const localizedCategories = insightCategories.map((item) => ({
+    ...item,
+    label: isIndonesian ? categoryLabelId[item.category] : item.label,
+  }));
+
+  const fallbackFaqItems = isIndonesian ? mockFaqItemsId : mockFaqItems;
+
   const [items, setItems] = useState<InsightItem[]>([]);
-  const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
+  const [status, setStatus] = useState<"loading" | "success" | "error">(
+    "loading",
+  );
 
   const openProposal = () => {
     window.dispatchEvent(new CustomEvent("open-proposal-modal"));
@@ -125,9 +222,19 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
 
         <div className="pml-container relative py-20 md:py-32">
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-black/58">
-            <Link href="/" className="transition hover:text-black">Home</Link>
+            <Link
+              href={localizeHref("/", locale)}
+              className="transition hover:text-black"
+            >
+              {t("Home", "Beranda")}
+            </Link>
             <span>/</span>
-            <Link href="/insight" className="transition hover:text-black">Insight</Link>
+            <Link
+              href={localizeHref("/insight", locale)}
+              className="transition hover:text-black"
+            >
+              Insight
+            </Link>
             <span>/</span>
             <span className="text-[#039147]">{hero.eyebrow}</span>
           </nav>
@@ -152,16 +259,16 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
       <section className="sticky top-[72px] z-30 border-b border-black/5 bg-[#eaf8f0]/95 py-3 backdrop-blur md:top-20 md:py-4">
         <div className="pml-container flex gap-2 overflow-x-auto md:gap-3">
           <Link
-            href="/insight"
+            href={localizeHref("/insight", locale)}
             className="shrink-0 rounded-full bg-white px-4 py-2.5 text-xs font-extrabold text-black/60 transition hover:text-[#039147] md:px-5 md:py-3 md:text-sm"
           >
-            All Resources
+            {t("All Resources", "Semua Sumber Daya")}
           </Link>
 
-          {insightCategories.map((item) => (
+          {localizedCategories.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              href={localizeHref(item.href, locale)}
               className={`shrink-0 rounded-full px-4 py-2.5 text-xs font-extrabold transition md:px-5 md:py-3 md:text-sm ${
                 item.category === category
                   ? "bg-[#039147] text-white shadow-[0_12px_30px_rgba(3,145,71,0.20)]"
@@ -179,15 +286,21 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
           <div className="pml-container grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:gap-10">
             <div>
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-                FAQ Center
+                {t("FAQ Center", "Pusat FAQ")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Frequently Asked Questions
+                {t(
+                  "Frequently Asked Questions",
+                  "Pertanyaan yang Sering Diajukan",
+                )}
               </h2>
 
               <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
-                Find answers to common questions about PML&apos;s services, processes, and capabilities. If you need further assistance, our team is here to help.
+                {t(
+                  "Find answers to common questions about PML's services, processes, and capabilities. If you need further assistance, our team is here to help.",
+                  "Temukan jawaban atas pertanyaan umum mengenai layanan, proses, dan kapabilitas PML. Tim kami siap membantu apabila Anda membutuhkan informasi lebih lanjut.",
+                )}
               </p>
             </div>
 
@@ -195,9 +308,15 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
               {(items.length > 0
                 ? items.map((faq) => ({
                     question: faq.title,
-                    answer: faq.excerpt || faq.content || "Answer will be available soon.",
+                    answer:
+                      faq.excerpt ||
+                      faq.content ||
+                      t(
+                        "Answer will be available soon.",
+                        "Jawaban akan segera tersedia.",
+                      ),
                   }))
-                : mockFaqItems
+                : fallbackFaqItems
               ).map((faq) => (
                 <details
                   key={faq.question}
@@ -223,26 +342,35 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
             <div className="mb-9 flex flex-col justify-between gap-5 md:mb-12 md:flex-row md:items-end md:gap-6">
               <div>
                 <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-                  {hero.eyebrow} Collection
+                  {t(`${hero.eyebrow} Collection`, `Koleksi ${hero.eyebrow}`)}
                 </p>
 
                 <h2 className="mt-4 max-w-3xl text-4xl font-black leading-tight text-black md:text-[52px]">
-                  Latest {hero.eyebrow.toLowerCase()} from Pharma Metric Labs
+                  {t(
+                    `Latest ${hero.eyebrow.toLowerCase()} from Pharma Metric Labs`,
+                    `${hero.eyebrow} terbaru dari Pharma Metric Labs`,
+                  )}
                 </h2>
               </div>
 
               <p className="max-w-xl text-base leading-8 text-black/55">
-                This section is connected to the CMS and can be updated from the admin panel.
+                {t(
+                  "This section is connected to the CMS and can be updated from the admin panel.",
+                  "Bagian ini terhubung dengan CMS dan dapat diperbarui melalui panel admin.",
+                )}
               </p>
             </div>
 
             {status === "loading" ? (
               <div className="mx-auto max-w-3xl rounded-[34px] border border-black/5 bg-[#f6faf7] p-10 text-center shadow-sm">
                 <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-                  Loading
+                  {t("Loading", "Memuat")}
                 </p>
                 <h2 className="mt-4 text-3xl font-black leading-tight text-black">
-                  Loading {hero.eyebrow.toLowerCase()} from CMS...
+                  {t(
+                    `Loading ${hero.eyebrow.toLowerCase()} from CMS...`,
+                    `Memuat ${hero.eyebrow.toLowerCase()} dari CMS...`,
+                  )}
                 </h2>
               </div>
             ) : null}
@@ -250,13 +378,13 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
             {status === "error" ? (
               <div className="mx-auto max-w-3xl rounded-[34px] border border-red-100 bg-red-50 p-10 text-center shadow-sm">
                 <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-red-600">
-                  Error
+                  {t("Error", "Kesalahan")}
                 </p>
                 <h2 className="mt-4 text-3xl font-black leading-tight text-red-700">
-                  Unable to load content
+                  {t("Unable to load content", "Konten tidak dapat dimuat")}
                 </h2>
                 <p className="mt-5 text-base leading-8 text-red-600">
-                  Please try again later.
+                  {t("Please try again later.", "Silakan coba kembali nanti.")}
                 </p>
               </div>
             ) : null}
@@ -270,7 +398,10 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
                 </div>
 
                 <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
-                  Swipe to explore resources
+                  {t(
+                    "Swipe to explore resources",
+                    "Geser untuk menjelajahi sumber daya",
+                  )}
                 </p>
               </>
             ) : null}
@@ -278,13 +409,19 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
             {status === "success" && items.length === 0 ? (
               <div className="mx-auto max-w-3xl rounded-[34px] border border-black/5 bg-white p-10 text-center shadow-sm">
                 <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-                  Coming Soon
+                  {t("Coming Soon", "Segera Hadir")}
                 </p>
                 <h2 className="mt-4 text-3xl font-black leading-tight text-black">
-                  More resources will be available soon
+                  {t(
+                    "More resources will be available soon",
+                    "Sumber daya lainnya akan segera tersedia",
+                  )}
                 </h2>
                 <p className="mt-5 text-base leading-8 text-black/60">
-                  This section is ready for future CMS-managed content updates.
+                  {t(
+                    "This section is ready for future CMS-managed content updates.",
+                    "Bagian ini telah siap untuk pembaruan konten melalui CMS.",
+                  )}
                 </p>
               </div>
             ) : null}
@@ -307,16 +444,21 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
 
             <div className="relative mx-auto max-w-3xl">
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-                Start a Project
+                {t("Start a Project", "Mulai Proyek")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight md:text-[52px] text-black">
-                Need support for your next project?
+                {t(
+                  "Need support for your next project?",
+                  "Membutuhkan dukungan untuk proyek berikutnya?",
+                )}
               </h2>
 
               <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/72">
-                Share your study, testing, or regulatory needs with our team and we will help
-                identify the right service scope, required information, and next steps.
+                {t(
+                  "Share your study, testing, or regulatory needs with our team and we will help identify the right service scope, required information, and next steps.",
+                  "Sampaikan kebutuhan studi, pengujian, atau regulasi kepada tim kami. Kami akan membantu menentukan ruang lingkup layanan, informasi yang dibutuhkan, dan langkah berikutnya.",
+                )}
               </p>
 
               <button
@@ -324,7 +466,7 @@ export default function InsightCategoryTemplate({ category }: InsightCategoryTem
                 onClick={openProposal}
                 className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
               >
-                Request a Proposal
+                {t("Request a Proposal", "Ajukan Proposal")}
               </button>
             </div>
           </div>
