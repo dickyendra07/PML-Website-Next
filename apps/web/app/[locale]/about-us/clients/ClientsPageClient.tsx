@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { getLocaleFromPathname, localizeHref } from "@/i18n/client";
 
 const clientLogos = [
   {
@@ -95,7 +98,7 @@ const clientSegments = [
 
 void clientSegments;
 
-const collaborationValues = [
+const collaborationValuesEn = [
   {
     title: "Responsive coordination",
     desc: "Clear communication and project support from inquiry to study or testing execution.",
@@ -114,7 +117,37 @@ const collaborationValues = [
   },
 ];
 
+const collaborationValuesId = [
+  {
+    title: "Koordinasi responsif",
+    desc: "Komunikasi yang jelas dan dukungan proyek sejak tahap permintaan hingga pelaksanaan studi atau pengujian.",
+  },
+  {
+    title: "Keandalan ilmiah",
+    desc: "Alur kerja klinis, analitik, dan regulasi yang didukung oleh tim berpengalaman serta kapabilitas fasilitas.",
+  },
+  {
+    title: "Kesiapan lokal dan internasional",
+    desc: "PML mendukung sponsor dan mitra yang membutuhkan kapabilitas CRO Indonesia dengan standar berorientasi global.",
+  },
+  {
+    title: "Dokumentasi berorientasi regulasi",
+    desc: "Hasil proyek disiapkan dengan mempertimbangkan kebutuhan dokumentasi dan kesiapan pengajuan.",
+  },
+];
+
 export default function ClientsPage() {
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const isIndonesian = locale === "id";
+
+  const collaborationValues = isIndonesian
+    ? collaborationValuesId
+    : collaborationValuesEn;
+
+  const t = (english: string, indonesian: string) =>
+    isIndonesian ? indonesian : english;
+
   const openProposal = () => {
     window.dispatchEvent(new CustomEvent("open-proposal-modal"));
   };
@@ -135,31 +168,43 @@ export default function ClientsPage() {
 
         <div className="pml-container relative py-20 md:py-32">
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-black/58">
-            <Link href="/" className="transition hover:text-[#039147]">
-              Home
+            <Link
+              href={localizeHref("/", locale)}
+              className="transition hover:text-[#039147]"
+            >
+              {t("Home", "Beranda")}
             </Link>
             <span>/</span>
-            <Link href="/about-us" className="transition hover:text-[#039147]">
-              About Us
+            <Link
+              href={localizeHref("/about-us", locale)}
+              className="transition hover:text-[#039147]"
+            >
+              {t("About Us", "Tentang Kami")}
             </Link>
             <span>/</span>
-            <span className="text-[#039147]">Our Clients</span>
+            <span className="text-[#039147]">
+              {t("Our Clients", "Klien Kami")}
+            </span>
           </nav>
 
           <div className="max-w-5xl">
             <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/20 bg-white/95 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#039147] backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
-              Clients & Network
+              {t("Clients & Network", "Klien & Jaringan")}
             </p>
 
             <h1 className="mt-6 max-w-5xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-6xl lg:text-[68px]">
-              Trusted by clients and partners across research-driven industries
+              {t(
+                "Trusted by clients and partners across research-driven industries",
+                "Dipercaya oleh klien dan mitra di berbagai industri berbasis penelitian",
+              )}
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-8 text-black/68 md:text-lg">
-              PML works closely with local and international sponsors,
-              institutions, and research partners that require clinical,
-              analytical, regulatory, and documentation support.
+              {t(
+                "PML works closely with local and international sponsors, institutions, and research partners that require clinical, analytical, regulatory, and documentation support.",
+                "PML bekerja sama erat dengan sponsor lokal dan internasional, institusi, serta mitra penelitian yang membutuhkan dukungan klinis, analitik, regulasi, dan dokumentasi.",
+              )}
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -167,7 +212,7 @@ export default function ClientsPage() {
                 href="#client-network"
                 className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-xl"
               >
-                Explore Network
+                {t("Explore Network", "Jelajahi Jaringan")}
               </a>
 
               <button
@@ -175,7 +220,7 @@ export default function ClientsPage() {
                 onClick={openProposal}
                 className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-xl backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white"
               >
-                Start Collaboration
+                {t("Start Collaboration", "Mulai Kolaborasi")}
               </button>
             </div>
           </div>
@@ -186,19 +231,21 @@ export default function ClientsPage() {
         <div className="pml-container">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-              Client Network
+              {t("Client Network", "Jaringan Klien")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight tracking-tight text-black md:text-6xl">
-              More than 300 clients globally have worked with PML
+              {t(
+                "More than 300 clients globally have worked with PML",
+                "Lebih dari 300 klien global telah bekerja sama dengan PML",
+              )}
             </h2>
 
             <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-black/64 md:text-lg md:leading-9">
-              PML supports a broad client network across pharmaceutical,
-              healthcare, research, and regulated product industries. The
-              collaboration experience includes clinical research, BA/BE study,
-              contract analysis, regulatory management, and project
-              documentation support.
+              {t(
+                "PML supports a broad client network across pharmaceutical, healthcare, research, and regulated product industries. The collaboration experience includes clinical research, BA/BE study, contract analysis, regulatory management, and project documentation support.",
+                "PML mendukung jaringan klien yang luas di industri farmasi, layanan kesehatan, penelitian, dan produk teregulasi. Pengalaman kolaborasinya mencakup penelitian klinis, studi BA/BE, analisis kontrak, manajemen regulasi, dan dukungan dokumentasi proyek.",
+              )}
             </p>
           </div>
 
@@ -239,16 +286,21 @@ export default function ClientsPage() {
         <div className="pml-container">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-              Client Logo Wall
+              {t("Client Logo Wall", "Kumpulan Logo Klien")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight tracking-tight text-black md:text-6xl">
-              Collaboration across industry, research, and clinical development
+              {t(
+                "Collaboration across industry, research, and clinical development",
+                "Kolaborasi lintas industri, penelitian, dan pengembangan klinis",
+              )}
             </h2>
 
             <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-black/64 md:text-lg md:leading-9">
-              Selected client and partner logos are shown as visual references
-              for PML’s broader collaboration network.
+              {t(
+                "Selected client and partner logos are shown as visual references for PML’s broader collaboration network.",
+                "Logo klien dan mitra terpilih ditampilkan sebagai referensi visual dari jaringan kolaborasi PML yang lebih luas.",
+              )}
             </p>
           </div>
 
@@ -270,7 +322,7 @@ export default function ClientsPage() {
           </div>
 
           <p className="mt-6 text-center text-base font-extrabold text-[#039147] md:text-lg">
-            and many more...
+            {t("and many more...", "dan masih banyak lagi...")}
           </p>
         </div>
       </section>
@@ -280,18 +332,24 @@ export default function ClientsPage() {
           <div className="grid gap-9 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-12">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Why Clients Work With PML
+                {t(
+                  "Why Clients Work With PML",
+                  "Mengapa Klien Bekerja Sama dengan PML",
+                )}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                A reliable partner for scientific, clinical, analytical, and
-                regulatory needs
+                {t(
+                  "A reliable partner for scientific, clinical, analytical, and regulatory needs",
+                  "Mitra andal untuk kebutuhan ilmiah, klinis, analitik, dan regulasi",
+                )}
               </h2>
 
               <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
-                PML combines project coordination, facility capability,
-                scientific discipline, and documentation-oriented workflows to
-                help sponsors move with confidence.
+                {t(
+                  "PML combines project coordination, facility capability, scientific discipline, and documentation-oriented workflows to help sponsors move with confidence.",
+                  "PML memadukan koordinasi proyek, kapabilitas fasilitas, disiplin ilmiah, dan alur kerja berorientasi dokumentasi untuk membantu sponsor melangkah dengan lebih percaya diri.",
+                )}
               </p>
             </div>
 
@@ -331,13 +389,14 @@ export default function ClientsPage() {
         <div className="pml-container relative">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-              Client Testimonial
+              {t("Client Testimonial", "Testimoni Klien")}
             </p>
 
             <blockquote className="mt-5 text-2xl font-black leading-tight md:text-4xl">
-              “PML provides responsive support and reliable coordination for
-              study-related projects, helping sponsors move from planning to
-              execution with clearer communication.”
+              {t(
+                "“PML provides responsive support and reliable coordination for study-related projects, helping sponsors move from planning to execution with clearer communication.”",
+                "“PML memberikan dukungan yang responsif dan koordinasi yang andal untuk proyek terkait studi, membantu sponsor bergerak dari perencanaan menuju pelaksanaan dengan komunikasi yang lebih jelas.”",
+              )}
             </blockquote>
 
             <div className="mx-auto mt-8 h-px w-20 bg-white/30" />
@@ -367,17 +426,21 @@ export default function ClientsPage() {
 
             <div className="relative mx-auto max-w-3xl">
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-                Business Opportunity
+                {t("Business Opportunity", "Peluang Kolaborasi")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Looking for a reliable CRO partner in Indonesia?
+                {t(
+                  "Looking for a reliable CRO partner in Indonesia?",
+                  "Mencari mitra CRO yang andal di Indonesia?",
+                )}
               </h2>
 
               <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68">
-                Contact PML to discuss BA/BE study, clinical trial support,
-                contract analysis, regulatory management, or other collaboration
-                opportunities.
+                {t(
+                  "Contact PML to discuss BA/BE study, clinical trial support, contract analysis, regulatory management, or other collaboration opportunities.",
+                  "Hubungi PML untuk mendiskusikan studi BA/BE, dukungan uji klinis, analisis kontrak, manajemen regulasi, atau peluang kolaborasi lainnya.",
+                )}
               </p>
 
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
@@ -386,14 +449,14 @@ export default function ClientsPage() {
                   onClick={openProposal}
                   className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
                 >
-                  Request Proposal
+                  {t("Request Proposal", "Ajukan Proposal")}
                 </button>
 
                 <Link
-                  href="/contact"
+                  href={localizeHref("/contact", locale)}
                   className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-8 py-4 text-sm font-extrabold text-[#039147] shadow-xl backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white"
                 >
-                  Contact PML
+                  {t("Contact PML", "Hubungi PML")}
                 </Link>
               </div>
             </div>
