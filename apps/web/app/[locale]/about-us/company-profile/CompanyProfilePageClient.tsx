@@ -2,9 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-const corporateStats = [
+import { getLocaleFromPathname, localizeHref } from "@/i18n/client";
+
+const corporateStatsEn = [
   {
     value: "20+",
     label: "Years Experience",
@@ -27,7 +30,7 @@ const corporateStats = [
   },
 ];
 
-const industryCards = [
+const industryCardsEn = [
   {
     title: "Pharmaceuticals",
     desc: "Drug development, BA/BE studies, analytical testing, and regulatory-ready documentation.",
@@ -162,7 +165,7 @@ const countryDetails = countries.map((country) => {
   };
 });
 
-const serviceEcosystem = [
+const serviceEcosystemEn = [
   {
     title: "Contract Analysis",
     desc: "Analytical Development Center PML provides laboratory analysis support for product quality, safety, compliance, analytical method development, validation, and documentation needs.",
@@ -185,7 +188,7 @@ const serviceEcosystem = [
   },
 ];
 
-const accreditations = [
+const accreditationsEn = [
   {
     title: "Malaysian NPRA",
     desc: "PML is listed under the Bioequivalence Centre Compliance Programme of the National Pharmaceutical Regulatory Agency (NPRA), Ministry of Health Malaysia.",
@@ -204,7 +207,7 @@ const accreditations = [
   },
 ];
 
-const contactItems = [
+const contactItemsEn = [
   {
     title: "Office Address",
     value:
@@ -223,6 +226,142 @@ const contactItems = [
     value: "www.pharmametriclabs.com",
   },
 ];
+
+const corporateStatsId = [
+  {
+    value: "20+",
+    label: "Tahun Pengalaman",
+    desc: "Pengalaman CRO jangka panjang untuk sponsor lokal dan internasional.",
+  },
+  {
+    value: "6000+",
+    label: "Proyek Selesai",
+    desc: "Proyek yang telah diselesaikan dalam layanan klinis, analitik, dan regulasi.",
+  },
+  {
+    value: "150+",
+    label: "Proyek Berjalan",
+    desc: "Portofolio proyek aktif yang didukung oleh tim PML.",
+  },
+  {
+    value: "300+",
+    label: "Sponsor",
+    desc: "Dipercaya oleh sponsor lokal dan internasional di berbagai industri teregulasi.",
+  },
+];
+
+const industryCardsId = [
+  {
+    title: "Farmasi",
+    desc: "Pengembangan obat, studi BA/BE, pengujian analitik, dan dokumentasi yang siap untuk kebutuhan regulasi.",
+    icon: "pharma",
+  },
+  {
+    title: "Bioteknologi",
+    desc: "Dukungan ilmiah untuk produk biologis, produk terapi lanjutan, dan kebutuhan pengembangan teknis.",
+    icon: "bio",
+  },
+  {
+    title: "Alat Kesehatan",
+    desc: "Dukungan klinis, regulasi, dan dokumentasi untuk jalur pengembangan produk alat kesehatan.",
+    icon: "device",
+  },
+  {
+    title: "Makanan & Minuman",
+    desc: "Dukungan laboratorium dan mutu untuk kategori produk makanan, minuman, dan UMKM tertentu.",
+    icon: "food",
+  },
+  {
+    title: "Kosmetik",
+    desc: "Dukungan pengujian dan kepatuhan untuk persyaratan mutu serta keamanan produk kosmetik.",
+    icon: "cosmetic",
+  },
+  {
+    title: "Obat Tradisional",
+    desc: "Dukungan regulasi dan analitik untuk produk herbal, obat tradisional, dan produk kuasi.",
+    icon: "traditional",
+  },
+];
+
+const serviceEcosystemId = [
+  {
+    title: "Analisis Kontrak",
+    desc: "Analytical Development Center PML menyediakan dukungan analisis laboratorium untuk mutu produk, keamanan, kepatuhan, pengembangan metode analitik, validasi, dan dokumentasi.",
+    href: "/services/contract-analysis",
+  },
+  {
+    title: "Studi BA/BE",
+    desc: "Dukungan studi bioavailabilitas dan bioekuivalensi dari pelaksanaan klinis dan bioanalisis hingga pelaporan yang siap untuk kebutuhan regulasi.",
+    href: "/services/babe-studies",
+  },
+  {
+    title: "Uji Klinis dan Praklinis",
+    desc: "Dukungan penelitian klinis termasuk persiapan studi, koordinasi lokasi, monitoring, dokumentasi, dan pelaksanaan proyek.",
+    href: "/services/clinical-trial",
+  },
+  {
+    title: "Manajemen Regulasi",
+    desc: "Strategi regulasi, persiapan pengajuan, peninjauan produk, dan dukungan kepatuhan pascapemasaran.",
+    href: "/services/regulatory-consultation",
+  },
+];
+
+const accreditationsId = [
+  {
+    title: "NPRA Malaysia",
+    desc: "PML terdaftar dalam Bioequivalence Centre Compliance Programme dari National Pharmaceutical Regulatory Agency (NPRA), Kementerian Kesehatan Malaysia.",
+  },
+  {
+    title: "Kementerian Kesehatan Republik Indonesia",
+    desc: "Direkomendasikan oleh Kementerian Kesehatan untuk melaksanakan studi alat kesehatan.",
+  },
+  {
+    title: "Akreditasi Paripurna",
+    desc: "Tingkat sertifikasi tertinggi yang diberikan kepada klinik primer oleh Kementerian Kesehatan. Pengakuan ini membuktikan bahwa klinik kami konsisten mematuhi regulasi kesehatan nasional.",
+  },
+  {
+    title: "Laboratorium Pengujian – SNI ISO/IEC 17025:2017",
+    desc: "Menunjukkan komitmen kami terhadap kompetensi teknis, mutu, dan hasil pengujian yang andal.",
+  },
+];
+
+const contactItemsId = [
+  {
+    title: "Alamat Kantor",
+    value:
+      "Gedung Indra Sentral Unit R-U, Jl. Let. Jend. Suprapto No. 60, Cempaka Putih, Jakarta Pusat 10520, Indonesia",
+  },
+  {
+    title: "Telepon",
+    value: "(021) 4265310",
+  },
+  {
+    title: "Email",
+    value: "info@pharmametriclabs.com",
+  },
+  {
+    title: "Situs Web",
+    value: "www.pharmametriclabs.com",
+  },
+];
+
+const countryNamesId: Record<string, string> = {
+  "United States of America": "Amerika Serikat",
+  "South Korea": "Korea Selatan",
+  Cambodia: "Kamboja",
+  "Hong Kong": "Hong Kong",
+  Indonesia: "Indonesia",
+  Malaysia: "Malaysia",
+  Maldives: "Maladewa",
+  Mauritius: "Mauritius",
+  Mongolia: "Mongolia",
+  Myanmar: "Myanmar",
+  Nigeria: "Nigeria",
+  Philippines: "Filipina",
+  Singapore: "Singapura",
+  "Sri Lanka": "Sri Lanka",
+  Vietnam: "Vietnam",
+};
 
 function IndustryIcon({ name }: { name: string }) {
   const common = "h-6 w-6";
@@ -492,6 +631,21 @@ function AccreditationIcon({ name }: { name: string }) {
 }
 
 export default function CompanyProfilePage() {
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const isIndonesian = locale === "id";
+
+  const corporateStats = isIndonesian ? corporateStatsId : corporateStatsEn;
+  const industryCards = isIndonesian ? industryCardsId : industryCardsEn;
+  const serviceEcosystem = isIndonesian
+    ? serviceEcosystemId
+    : serviceEcosystemEn;
+  const accreditations = isIndonesian ? accreditationsId : accreditationsEn;
+  const contactItems = isIndonesian ? contactItemsId : contactItemsEn;
+
+  const t = (english: string, indonesian: string) =>
+    isIndonesian ? indonesian : english;
+
   const [activeCountry, setActiveCountry] = useState(countryDetails[0]);
 
   const openProposal = () => {
@@ -514,33 +668,44 @@ export default function CompanyProfilePage() {
 
         <div className="pml-container relative py-20 md:py-32">
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-black/58">
-            <Link href="/" className="transition hover:text-[#039147]">
-              Home
+            <Link
+              href={localizeHref("/", locale)}
+              className="transition hover:text-[#039147]"
+            >
+              {t("Home", "Beranda")}
             </Link>
             <span>/</span>
-            <Link href="/about-us" className="transition hover:text-[#039147]">
-              About Us
+            <Link
+              href={localizeHref("/about-us", locale)}
+              className="transition hover:text-[#039147]"
+            >
+              {t("About Us", "Tentang Kami")}
             </Link>
             <span>/</span>
-            <span className="text-[#039147]">Company Profile</span>
+            <span className="text-[#039147]">
+              {t("Company Profile", "Profil Perusahaan")}
+            </span>
           </nav>
 
           <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
             <div>
               <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/20 bg-white/95 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#039147] shadow-sm backdrop-blur">
                 <span className="h-2 w-2 rounded-full bg-[#039147]" />
-                Company Profile
+                {t("Company Profile", "Profil Perusahaan")}
               </p>
 
               <h1 className="mt-6 max-w-5xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-6xl lg:text-[68px]">
-                Accelerating research with Pharma Metric Labs
+                {t(
+                  "Accelerating research with Pharma Metric Labs",
+                  "Mempercepat penelitian bersama Pharma Metric Labs",
+                )}
               </h1>
 
               <p className="mt-6 max-w-2xl text-base leading-8 text-black/68 md:text-lg">
-                Pharma Metric Labs is an Indonesia-based Contract Research
-                Organization supporting pharmaceutical and healthcare
-                development through BA/BE study, clinical research, contract
-                analysis, and regulatory affairs consultation.
+                {t(
+                  "Pharma Metric Labs is an Indonesia-based Contract Research Organization supporting pharmaceutical and healthcare development through BA/BE study, clinical research, contract analysis, and regulatory affairs consultation.",
+                  "Pharma Metric Labs adalah Contract Research Organization berbasis di Indonesia yang mendukung pengembangan farmasi dan layanan kesehatan melalui studi BA/BE, penelitian klinis, analisis kontrak, dan konsultasi regulasi.",
+                )}
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -548,7 +713,7 @@ export default function CompanyProfilePage() {
                   href="#corporate-snapshot"
                   className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-extrabold text-[#039147] shadow-xl"
                 >
-                  View Profile
+                  {t("View Profile", "Lihat Profil")}
                 </a>
 
                 <button
@@ -556,14 +721,14 @@ export default function CompanyProfilePage() {
                   onClick={openProposal}
                   className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
                 >
-                  Request a Proposal
+                  {t("Request a Proposal", "Ajukan Proposal")}
                 </button>
               </div>
             </div>
 
             <div className="rounded-[30px] border border-[#039147]/15 bg-white/92 p-5 shadow-[0_24px_70px_rgba(3,145,71,0.10)] backdrop-blur-xl md:rounded-[34px] md:p-6">
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-black/58">
-                Corporate Snapshot
+                {t("Corporate Snapshot", "Ringkasan Perusahaan")}
               </p>
 
               <div className="mt-5 grid grid-cols-2 gap-3">
@@ -591,29 +756,29 @@ export default function CompanyProfilePage() {
           <div className="grid gap-9 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                About PML
+                {t("About PML", "Tentang PML")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                High-quality research solutions aligned with international
-                standards
+                {t(
+                  "High-quality research solutions aligned with international standards",
+                  "Solusi penelitian berkualitas tinggi yang selaras dengan standar internasional",
+                )}
               </h2>
 
               <div className="mt-5 space-y-4 text-base leading-8 text-black/65 md:mt-6 md:space-y-5 md:text-base md:leading-8">
                 <p>
-                  Since its establishment in 2005, PML has delivered research
-                  services that support pharmaceutical and healthcare
-                  development. The company combines scientific discipline,
-                  quality-focused workflows, and integrated service capability
-                  for local and international clients.
+                  {t(
+                    "Since its establishment in 2005, PML has delivered research services that support pharmaceutical and healthcare development. The company combines scientific discipline, quality-focused workflows, and integrated service capability for local and international clients.",
+                    "Sejak didirikan pada tahun 2005, PML telah memberikan layanan penelitian yang mendukung pengembangan farmasi dan layanan kesehatan. Perusahaan memadukan disiplin ilmiah, alur kerja berorientasi mutu, dan kapabilitas layanan terintegrasi untuk klien lokal maupun internasional.",
+                  )}
                 </p>
 
                 <p>
-                  PML has completed more than 6,000 projects and continues to
-                  manage an active project pipeline with sponsors worldwide. Its
-                  expertise spans pharmaceuticals, biotechnology, medical
-                  devices, food and beverage, cosmetics, and traditional
-                  medicines.
+                  {t(
+                    "PML has completed more than 6,000 projects and continues to manage an active project pipeline with sponsors worldwide. Its expertise spans pharmaceuticals, biotechnology, medical devices, food and beverage, cosmetics, and traditional medicines.",
+                    "PML telah menyelesaikan lebih dari 6.000 proyek dan terus mengelola portofolio proyek aktif bersama sponsor dari berbagai negara. Keahliannya mencakup farmasi, bioteknologi, alat kesehatan, makanan dan minuman, kosmetik, serta obat tradisional.",
+                  )}
                 </p>
               </div>
             </div>
@@ -658,19 +823,22 @@ export default function CompanyProfilePage() {
           <div className="mb-10 flex flex-col justify-between gap-6 md:mb-14 lg:flex-row lg:items-end">
             <div className="max-w-3xl">
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Industries Served
+                {t("Industries Served", "Industri yang Dilayani")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight tracking-[-0.04em] text-black md:text-[52px]">
-                Supporting regulated industries with CRO and laboratory
-                capability
+                {t(
+                  "Supporting regulated industries with CRO and laboratory capability",
+                  "Mendukung industri teregulasi melalui kapabilitas CRO dan laboratorium",
+                )}
               </h2>
             </div>
 
             <p className="max-w-xl text-base leading-8 text-black/60 md:text-base md:leading-8">
-              PML supports organizations that need research, testing,
-              regulatory, and documentation support across science-driven
-              product categories.
+              {t(
+                "PML supports organizations that need research, testing, regulatory, and documentation support across science-driven product categories.",
+                "PML mendukung organisasi yang membutuhkan layanan penelitian, pengujian, regulasi, dan dokumentasi pada berbagai kategori produk berbasis sains.",
+              )}
             </p>
           </div>
 
@@ -697,7 +865,7 @@ export default function CompanyProfilePage() {
                   </p>
 
                   <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#f4fbf7] px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-[#039147] transition group-hover:bg-[#039147] group-hover:text-white">
-                    Industry fit
+                    {t("Industry fit", "Sesuai untuk industri")}
                     <span className="transition group-hover:translate-x-1">
                       →
                     </span>
@@ -713,17 +881,21 @@ export default function CompanyProfilePage() {
         <div className="pml-container">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-              Services Ecosystem
+              {t("Services Ecosystem", "Ekosistem Layanan")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Driving progress through integrated service excellence
+              {t(
+                "Driving progress through integrated service excellence",
+                "Mendorong kemajuan melalui keunggulan layanan terintegrasi",
+              )}
             </h2>
 
             <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
-              PML connects clinical, laboratory, and regulatory capabilities to
-              support project delivery from early discussion through execution
-              and reporting.
+              {t(
+                "PML connects clinical, laboratory, and regulatory capabilities to support project delivery from early discussion through execution and reporting.",
+                "PML menghubungkan kapabilitas klinis, laboratorium, dan regulasi untuk mendukung pelaksanaan proyek sejak tahap diskusi awal hingga eksekusi dan pelaporan.",
+              )}
             </p>
           </div>
 
@@ -731,7 +903,7 @@ export default function CompanyProfilePage() {
             {serviceEcosystem.map((service) => (
               <Link
                 key={service.title}
-                href={service.href}
+                href={localizeHref(service.href, locale)}
                 className="group w-[78vw] max-w-[320px] shrink-0 snap-start rounded-[26px] border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:w-auto md:max-w-none md:rounded-[28px] md:p-7"
               >
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf8f0] text-sm font-black text-[#039147] transition group-hover:bg-[#039147] group-hover:text-white">
@@ -747,14 +919,14 @@ export default function CompanyProfilePage() {
                 </p>
 
                 <span className="mt-6 inline-flex text-sm font-extrabold text-[#039147]">
-                  Learn more →
+                  {t("Learn more", "Pelajari lebih lanjut")} →
                 </span>
               </Link>
             ))}
           </div>
 
           <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
-            Swipe to explore services
+            {t("Swipe to explore services", "Geser untuk melihat layanan")}
           </p>
         </div>
       </section>
@@ -767,24 +939,28 @@ export default function CompanyProfilePage() {
           <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Regulatory Acceptance
+                {t("Regulatory Acceptance", "Penerimaan Regulasi")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Study reports accepted across multiple regulatory bodies
+                {t(
+                  "Study reports accepted across multiple regulatory bodies",
+                  "Laporan studi diterima oleh berbagai badan regulasi",
+                )}
               </h2>
 
               <p className="mt-5 max-w-2xl text-base leading-8 text-black/62 md:mt-6 md:text-lg md:leading-9">
-                PML’s study reports have supported submissions across multiple
-                global regulatory bodies, strengthening its position as a
-                trusted CRO partner for local and international sponsors.
+                {t(
+                  "PML’s study reports have supported submissions across multiple global regulatory bodies, strengthening its position as a trusted CRO partner for local and international sponsors.",
+                  "Laporan studi PML telah mendukung pengajuan kepada berbagai badan regulasi global, sehingga memperkuat posisinya sebagai mitra CRO terpercaya bagi sponsor lokal dan internasional.",
+                )}
               </p>
 
               <div className="mt-8 grid grid-cols-3 gap-3">
                 {[
-                  ["13", "Accepted countries"],
-                  ["300+", "Sponsors"],
-                  ["190+", "Validated methods"],
+                  ["13", t("Accepted countries", "Negara penerima")],
+                  ["300+", t("Sponsors", "Sponsor")],
+                  ["190+", t("Validated methods", "Metode tervalidasi")],
                 ].map(([value, label]) => (
                   <div
                     key={label}
@@ -805,7 +981,7 @@ export default function CompanyProfilePage() {
               <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr]">
                 <div className="rounded-[28px] bg-[#f4fbf7] p-5 md:p-6">
                   <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#039147]">
-                    Accepted Countries
+                    {t("Accepted Countries", "Negara Penerima")}
                   </p>
 
                   <div className="mt-5 flex max-h-[310px] flex-wrap gap-2.5 overflow-y-auto pr-1">
@@ -828,7 +1004,9 @@ export default function CompanyProfilePage() {
                               active ? "bg-white" : "bg-[#039147]"
                             }`}
                           />
-                          {country.name}
+                          {isIndonesian
+                            ? (countryNamesId[country.name] ?? country.name)
+                            : country.name}
                         </button>
                       );
                     })}
@@ -849,7 +1027,10 @@ export default function CompanyProfilePage() {
 
                   <div className="absolute bottom-0 left-0 right-0 p-7 md:p-9">
                     <h3 className="text-4xl font-black leading-tight tracking-[-0.04em] text-white drop-shadow-[0_12px_34px_rgba(0,0,0,0.48)] md:text-5xl">
-                      {activeCountry.name}
+                      {isIndonesian
+                        ? (countryNamesId[activeCountry.name] ??
+                          activeCountry.name)
+                        : activeCountry.name}
                     </h3>
                   </div>
                 </div>
@@ -867,27 +1048,33 @@ export default function CompanyProfilePage() {
           <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Accreditations & Recognitions
+                {t("Accreditations & Recognitions", "Akreditasi & Pengakuan")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight tracking-[-0.04em] text-black md:text-[52px]">
-                Quality credentials that strengthen clinical and laboratory
-                trust
+                {t(
+                  "Quality credentials that strengthen clinical and laboratory trust",
+                  "Kredensial mutu yang memperkuat kepercayaan terhadap layanan klinis dan laboratorium",
+                )}
               </h2>
 
               <p className="mt-5 max-w-2xl text-base leading-8 text-black/62 md:mt-6 md:text-lg md:leading-9">
-                PML’s accreditation and inspection records help demonstrate
-                study readiness, laboratory reliability, and regulatory
-                confidence across clinical and analytical project delivery.
+                {t(
+                  "PML’s accreditation and inspection records help demonstrate study readiness, laboratory reliability, and regulatory confidence across clinical and analytical project delivery.",
+                  "Rekam jejak akreditasi dan inspeksi PML menunjukkan kesiapan studi, keandalan laboratorium, dan kepercayaan regulasi dalam pelaksanaan proyek klinis maupun analitik.",
+                )}
               </p>
             </div>
 
             <div className="rounded-[34px] border border-[#039147]/10 bg-[#f4fbf7] p-6 shadow-[0_24px_70px_rgba(3,145,71,0.10)] md:p-8">
               <div className="grid gap-4 sm:grid-cols-3">
                 {[
-                  ["4", "Credential areas"],
-                  ["GCP / GLP", "Quality framework"],
-                  ["Local + regional", "Acceptance signal"],
+                  ["4", t("Credential areas", "Area kredensial")],
+                  ["GCP / GLP", t("Quality framework", "Kerangka mutu")],
+                  [
+                    "Local + regional",
+                    t("Acceptance signal", "Pengakuan lokal dan regional"),
+                  ],
                 ].map(([value, label]) => (
                   <div
                     key={label}
@@ -925,7 +1112,7 @@ export default function CompanyProfilePage() {
                         0{index + 1}
                       </span>
                       <span className="rounded-full border border-[#039147]/12 bg-white px-3 py-1 text-[11px] font-black uppercase tracking-[0.12em] text-black/45">
-                        Recognition
+                        {t("Recognition", "Pengakuan")}
                       </span>
                     </div>
 
@@ -955,26 +1142,41 @@ export default function CompanyProfilePage() {
                 <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#039147]/15 bg-white px-4 py-2 shadow-sm">
                   <span className="h-2 w-2 rounded-full bg-[#039147]" />
                   <span className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
-                    Ministry of Health Project
+                    {t(
+                      "Ministry of Health Project",
+                      "Proyek Kementerian Kesehatan",
+                    )}
                   </span>
                 </div>
 
                 <h2 className="mt-6 max-w-3xl text-4xl font-black leading-tight tracking-[-0.04em] text-black md:text-[52px]">
-                  Chosen partner for Indonesia Ministry of Health BA/BE Project
+                  {t(
+                    "Chosen partner for Indonesia Ministry of Health BA/BE Project",
+                    "Mitra terpilih untuk proyek BA/BE Kementerian Kesehatan Indonesia",
+                  )}
                 </h2>
 
                 <p className="mt-5 max-w-2xl text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
-                  PML has been trusted to perform bioequivalence studies
-                  supporting the transition from imported to locally
-                  manufactured active pharmaceutical ingredients (APIs) for
-                  Azithromycin and Bisoprolol products.
+                  {t(
+                    "PML has been trusted to perform bioequivalence studies supporting the transition from imported to locally manufactured active pharmaceutical ingredients (APIs) for Azithromycin and Bisoprolol products.",
+                    "PML dipercaya untuk melaksanakan studi bioekuivalensi yang mendukung peralihan bahan baku aktif farmasi dari impor menuju produksi lokal untuk produk Azithromycin dan Bisoprolol.",
+                  )}
                 </p>
 
                 <div className="mt-8 grid gap-3 sm:grid-cols-3">
                   {[
-                    ["BA/BE", "Bioequivalence study"],
-                    ["APIs", "Azithromycin and Bisoprolol"],
-                    ["Trusted", "Ministry-level project support"],
+                    [
+                      "BA/BE",
+                      t("Bioequivalence study", "Studi bioekuivalensi"),
+                    ],
+                    ["APIs", "Azithromycin dan Bisoprolol"],
+                    [
+                      "Trusted",
+                      t(
+                        "Ministry-level project support",
+                        "Dukungan proyek tingkat kementerian",
+                      ),
+                    ],
                   ].map(([title, desc]) => (
                     <div
                       key={title}
@@ -1004,7 +1206,7 @@ export default function CompanyProfilePage() {
                 <div className="relative h-full min-h-[430px]">
                   <article className="absolute inset-0 flex animate-[pmlProjectSlideOne_12s_ease-in-out_infinite] flex-col justify-center rounded-[34px] border border-white/18 bg-white/14 p-7 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl md:p-9">
                     <div className="inline-flex w-fit rounded-full bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#039147]">
-                      Case Highlight
+                      {t("Case Highlight", "Sorotan Proyek")}
                     </div>
 
                     <h3 className="mt-7 text-6xl font-black leading-none tracking-[-0.06em] text-white md:text-7xl">
@@ -1018,12 +1220,13 @@ export default function CompanyProfilePage() {
 
                     <div className="mt-7 rounded-[24px] bg-white p-6 text-black shadow-xl">
                       <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
-                        Project Relevance
+                        {t("Project Relevance", "Relevansi Proyek")}
                       </p>
                       <p className="mt-3 text-base font-bold leading-8 text-black/72">
-                        Bioequivalence studies supporting the transition from
-                        imported to locally manufactured APIs for Azithromycin
-                        and Bisoprolol products.
+                        {t(
+                          "Bioequivalence studies supporting the transition from imported to locally manufactured APIs for Azithromycin and Bisoprolol products.",
+                          "Studi bioekuivalensi yang mendukung peralihan bahan baku aktif farmasi dari impor menuju produksi lokal untuk produk Azithromycin dan Bisoprolol.",
+                        )}
                       </p>
                     </div>
                   </article>
@@ -1034,24 +1237,31 @@ export default function CompanyProfilePage() {
                     </div>
 
                     <h3 className="mt-7 text-4xl font-black leading-tight tracking-[-0.05em] text-white md:text-5xl">
-                      Clinical Trial and Regulatory Management
+                      {t(
+                        "Clinical Trial and Regulatory Management",
+                        "Uji Klinis dan Manajemen Regulasi",
+                      )}
                     </h3>
 
                     <p className="mt-5 max-w-xl text-base font-semibold leading-8 text-white/86 md:text-lg md:leading-9">
-                      Reliable partner for an innovator nephrology product.
+                      {t(
+                        "Reliable partner for an innovator nephrology product.",
+                        "Mitra andal untuk produk inovatif di bidang nefrologi.",
+                      )}
                     </p>
 
                     <div className="mt-7 rounded-[24px] bg-white p-6 text-black shadow-xl">
                       <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
-                        CT & Regulatory Management
+                        {t(
+                          "CT & Regulatory Management",
+                          "Uji Klinis & Manajemen Regulasi",
+                        )}
                       </p>
                       <p className="mt-3 text-base font-bold leading-8 text-black/72">
-                        PML supported the successful clinical development and
-                        regulatory approval of an innovative nephrology product
-                        through end-to-end research and regulatory services,
-                        including clinical trial management, regulatory
-                        coordination, and product registration support for
-                        innovative therapies.
+                        {t(
+                          "PML supported the successful clinical development and regulatory approval of an innovative nephrology product through end-to-end research and regulatory services, including clinical trial management, regulatory coordination, and product registration support for innovative therapies.",
+                          "PML mendukung keberhasilan pengembangan klinis dan persetujuan regulasi produk nefrologi inovatif melalui layanan penelitian dan regulasi menyeluruh, termasuk manajemen uji klinis, koordinasi regulasi, dan dukungan registrasi produk untuk terapi inovatif.",
+                        )}
                       </p>
                     </div>
                   </article>
@@ -1099,33 +1309,36 @@ export default function CompanyProfilePage() {
           <div className="grid gap-9 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-12">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Company Contact
+                {t("Company Contact", "Kontak Perusahaan")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Reach Pharma Metric Labs for company, service, and project
-                discussions
+                {t(
+                  "Reach Pharma Metric Labs for company, service, and project discussions",
+                  "Hubungi Pharma Metric Labs untuk diskusi perusahaan, layanan, dan proyek",
+                )}
               </h2>
 
               <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
-                Use the official company contact information below for catalogue
-                requests, project discussions, proposal inquiries, or service
-                clarification.
+                {t(
+                  "Use the official company contact information below for catalogue requests, project discussions, proposal inquiries, or service clarification.",
+                  "Gunakan informasi kontak resmi perusahaan di bawah ini untuk permintaan katalog, diskusi proyek, pengajuan proposal, atau klarifikasi layanan.",
+                )}
               </p>
 
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Link
-                  href="/contact"
+                  href={localizeHref("/contact", locale)}
                   className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-sm font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5"
                 >
-                  Open Contact Page
+                  {t("Open Contact Page", "Buka Halaman Kontak")}
                 </Link>
 
                 <a
                   href="mailto:info@pharmametriclabs.com"
                   className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-7 py-4 text-sm font-extrabold text-[#039147] transition hover:bg-[#039147] hover:text-[#039147]"
                 >
-                  Email PML
+                  {t("Email PML", "Kirim Email ke PML")}
                 </a>
               </div>
             </div>
@@ -1164,24 +1377,29 @@ export default function CompanyProfilePage() {
 
             <div className="relative mx-auto max-w-3xl">
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-black/64">
-                Company Materials
+                {t("Company Materials", "Materi Perusahaan")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Need the latest official company profile or service catalogue?
+                {t(
+                  "Need the latest official company profile or service catalogue?",
+                  "Membutuhkan profil perusahaan atau katalog layanan resmi terbaru?",
+                )}
               </h2>
 
               <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68">
-                Explore PML catalogue materials or contact the team to request
-                the latest official documents.
+                {t(
+                  "Explore PML catalogue materials or contact the team to request the latest official documents.",
+                  "Jelajahi materi katalog PML atau hubungi tim kami untuk meminta dokumen resmi terbaru.",
+                )}
               </p>
 
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                 <Link
-                  href="/about-us/catalogue"
+                  href={localizeHref("/about-us/catalogue", locale)}
                   className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
                 >
-                  View Catalogue
+                  {t("View Catalogue", "Lihat Katalog")}
                 </Link>
 
                 <button
@@ -1189,7 +1407,7 @@ export default function CompanyProfilePage() {
                   onClick={openProposal}
                   className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
                 >
-                  Request Proposal
+                  {t("Request Proposal", "Ajukan Proposal")}
                 </button>
               </div>
             </div>
