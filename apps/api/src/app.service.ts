@@ -1,14 +1,17 @@
 import { Injectable } from '@nestjs/common';
+
 import { PrismaService } from './prisma/prisma.service';
 import { RedisService } from './redis/redis.service';
 
+type ServiceStatus = 'ok' | 'error';
+
 type ServiceCheck = {
-  status: 'ok' | 'error';
+  status: ServiceStatus;
   responseTimeMs: number;
 };
 
 type HealthCheckResult = {
-  status: 'ok' | 'error';
+  status: ServiceStatus;
   service: string;
   environment: string;
   timestamp: string;
@@ -17,6 +20,17 @@ type HealthCheckResult = {
     api: ServiceCheck;
     database: ServiceCheck;
     redis: ServiceCheck;
+  };
+};
+
+type PublicHealthResult = {
+  status: 'operational' | 'degraded';
+  checkedAt: string;
+  services: {
+    website: 'operational';
+    backend: 'operational';
+    database: 'operational' | 'unavailable';
+    caching: 'operational' | 'unavailable';
   };
 };
 
@@ -36,14 +50,15 @@ export class AppService {
       standard: 'NestJS backend for Kalbe corporate project',
       endpoints: {
         health: '/api/health',
+        publicHealth: '/api/health/public',
         proposals: '/api/proposals',
       },
     };
   }
 
-  async getHealth(): Promise<HealthCheckResult> {
+  private async checkServices() {
     const databaseStartedAt = performance.now();
-    let databaseStatus: ServiceCheck['status'] = 'error';
+    let databaseStatus: ServiceStatus = 'error';
 
     try {
       await this.prisma.$queryRaw`SELECT 1`;
@@ -56,7 +71,7 @@ export class AppService {
       Math.round((performance.now() - databaseStartedAt) * 100) / 100;
 
     const redisStartedAt = performance.now();
-    let redisStatus: ServiceCheck['status'] = 'error';
+    let redisStatus: ServiceStatus = 'error';
 
     try {
       const response = await this.redis.ping();
@@ -68,7 +83,23 @@ export class AppService {
     const redisResponseTime =
       Math.round((performance.now() - redisStartedAt) * 100) / 100;
 
-    const isHealthy = databaseStatus === 'ok' && redisStatus === 'ok';
+    return {
+      database: {
+        status: databaseStatus,
+        responseTimeMs: databaseResponseTime,
+      },
+      redis: {
+        status: redisStatus,
+        responseTimeMs: redisResponseTime,
+      },
+    };
+  }
+
+  async getHealth(): Promise<HealthCheckResult> {
+    const checks = await this.checkServices();
+
+    const isHealthy =
+      checks.database.status === 'ok' && checks.redis.status === 'ok';
 
     return {
       status: isHealthy ? 'ok' : 'error',
@@ -81,14 +112,27 @@ export class AppService {
           status: 'ok',
           responseTimeMs: 0,
         },
-        database: {
-          status: databaseStatus,
-          responseTimeMs: databaseResponseTime,
-        },
-        redis: {
-          status: redisStatus,
-          responseTimeMs: redisResponseTime,
-        },
+        database: checks.database,
+        redis: checks.redis,
+      },
+    };
+  }
+
+  async getPublicHealth(): Promise<PublicHealthResult> {
+    const checks = await this.checkServices();
+
+    const databaseOperational = checks.database.status === 'ok';
+    const cachingOperational = checks.redis.status === 'ok';
+    const allOperational = databaseOperational && cachingOperational;
+
+    return {
+      status: allOperational ? 'operational' : 'degraded',
+      checkedAt: new Date().toISOString(),
+      services: {
+        website: 'operational',
+        backend: 'operational',
+        database: databaseOperational ? 'operational' : 'unavailable',
+        caching: cachingOperational ? 'operational' : 'unavailable',
       },
     };
   }

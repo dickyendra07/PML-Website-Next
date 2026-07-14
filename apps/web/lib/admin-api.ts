@@ -11,11 +11,7 @@ export type AdminLoginResult = {
 };
 
 export type InquiryStatus =
-  | "NEW"
-  | "IN_REVIEW"
-  | "CONTACTED"
-  | "CLOSED"
-  | "SPAM";
+  "NEW" | "IN_REVIEW" | "CONTACTED" | "CLOSED" | "SPAM";
 
 export type ProposalSubmission = {
   id: string;
@@ -127,7 +123,7 @@ export async function getAdminProposalDetail(token: string, id: string) {
 export async function updateAdminProposalStatus(
   token: string,
   id: string,
-  status: InquiryStatus
+  status: InquiryStatus,
 ) {
   const response = await fetch(`${API_BASE_URL}/admin/proposals/${id}/status`, {
     method: "PATCH",
@@ -144,16 +140,19 @@ export async function updateAdminProposalStatus(
 export async function updateAdminProposalNote(
   token: string,
   id: string,
-  internalNote: string
+  internalNote: string,
 ) {
-  const response = await fetch(`${API_BASE_URL}/admin/proposals/${id}/internal-note`, {
-    method: "PATCH",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
+  const response = await fetch(
+    `${API_BASE_URL}/admin/proposals/${id}/internal-note`,
+    {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ internalNote }),
     },
-    body: JSON.stringify({ internalNote }),
-  });
+  );
 
   return parseJsonResponse<ProposalSubmission>(response);
 }
@@ -194,7 +193,7 @@ export async function getAdminSettings(token: string) {
 
 export async function updateAdminSettings(
   token: string,
-  items: Array<{ key: string; value: SiteSetting["value"] }>
+  items: Array<{ key: string; value: SiteSetting["value"] }>,
 ) {
   const response = await fetch(`${API_BASE_URL}/admin/settings`, {
     method: "PATCH",
@@ -207,7 +206,6 @@ export async function updateAdminSettings(
 
   return parseJsonResponse<SiteSetting[]>(response);
 }
-
 
 export type PageSeoStatus = "DRAFT" | "PUBLISHED" | "ARCHIVED";
 
@@ -252,7 +250,7 @@ export async function updateAdminPageSeo(
       | "canonicalUrl"
       | "status"
     >
-  >
+  >,
 ) {
   const response = await fetch(`${API_BASE_URL}/admin/page-seo/${id}`, {
     method: "PATCH",
@@ -278,7 +276,8 @@ export async function seedAdminPageSeoDefaults(token: string) {
 }
 
 export type PopupType = "ANNOUNCEMENT" | "PROMOTION" | "ALERT" | "INFORMATION";
-export type PopupLayout = "IMAGE_LEFT" | "IMAGE_RIGHT" | "IMAGE_TOP" | "TEXT_ONLY";
+export type PopupLayout =
+  "IMAGE_LEFT" | "IMAGE_RIGHT" | "IMAGE_TOP" | "TEXT_ONLY";
 export type PopupFrequency = "ONCE_PER_SESSION" | "ONCE_PER_DAY" | "ALWAYS";
 
 export type PopupItem = {
@@ -343,7 +342,7 @@ export async function createAdminPopup(token: string, payload: PopupPayload) {
 export async function updateAdminPopup(
   token: string,
   id: string,
-  payload: PopupPayload
+  payload: PopupPayload,
 ) {
   const response = await fetch(`${API_BASE_URL}/admin/popups/${id}`, {
     method: "PATCH",
@@ -434,7 +433,7 @@ export async function getAdminCatalogues(token: string) {
 
 export async function createAdminCatalogue(
   token: string,
-  payload: AdminCataloguePayload
+  payload: AdminCataloguePayload,
 ) {
   const response = await fetch(`${API_BASE_URL}/admin/catalogues`, {
     method: "POST",
@@ -451,7 +450,7 @@ export async function createAdminCatalogue(
 export async function updateAdminCatalogue(
   token: string,
   id: string,
-  payload: AdminCataloguePayload
+  payload: AdminCataloguePayload,
 ) {
   const response = await fetch(`${API_BASE_URL}/admin/catalogues/${id}`, {
     method: "PATCH",
@@ -466,12 +465,15 @@ export async function updateAdminCatalogue(
 }
 
 export async function archiveAdminCatalogue(token: string, id: string) {
-  const response = await fetch(`${API_BASE_URL}/admin/catalogues/${id}/archive`, {
-    method: "PATCH",
-    headers: {
-      Authorization: `Bearer ${token}`,
+  const response = await fetch(
+    `${API_BASE_URL}/admin/catalogues/${id}/archive`,
+    {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     },
-  });
+  );
 
   return parseJsonResponse<AdminCatalogueItem>(response);
 }
@@ -480,13 +482,16 @@ export async function uploadAdminCatalogueCover(token: string, file: File) {
   const formData = new FormData();
   formData.append("file", file);
 
-  const response = await fetch(`${API_BASE_URL}/admin/catalogues/upload-cover`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
+  const response = await fetch(
+    `${API_BASE_URL}/admin/catalogues/upload-cover`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
     },
-    body: formData,
-  });
+  );
 
   return parseJsonResponse<{
     filename: string;
@@ -560,7 +565,7 @@ export async function getAdminInsights(token: string) {
 
 export async function createAdminInsight(
   token: string,
-  payload: AdminInsightPayload
+  payload: AdminInsightPayload,
 ) {
   const response = await fetch(`${API_BASE_URL}/admin/insights`, {
     method: "POST",
@@ -577,7 +582,7 @@ export async function createAdminInsight(
 export async function updateAdminInsight(
   token: string,
   id: string,
-  payload: AdminInsightPayload
+  payload: AdminInsightPayload,
 ) {
   const response = await fetch(`${API_BASE_URL}/admin/insights/${id}`, {
     method: "PATCH",
@@ -663,7 +668,7 @@ export async function getAdminHomepageFeatures(token: string) {
 
 export async function createAdminHomepageFeature(
   token: string,
-  payload: HomepageFeaturePayload
+  payload: HomepageFeaturePayload,
 ) {
   const response = await fetch(`${API_BASE_URL}/admin/homepage-features`, {
     method: "POST",
@@ -680,42 +685,54 @@ export async function createAdminHomepageFeature(
 export async function updateAdminHomepageFeature(
   token: string,
   id: string,
-  payload: HomepageFeaturePayload
+  payload: HomepageFeaturePayload,
 ) {
-  const response = await fetch(`${API_BASE_URL}/admin/homepage-features/${id}`, {
-    method: "PATCH",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
+  const response = await fetch(
+    `${API_BASE_URL}/admin/homepage-features/${id}`,
+    {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
     },
-    body: JSON.stringify(payload),
-  });
+  );
 
   return parseJsonResponse<HomepageFeatureItem>(response);
 }
 
 export async function archiveAdminHomepageFeature(token: string, id: string) {
-  const response = await fetch(`${API_BASE_URL}/admin/homepage-features/${id}/archive`, {
-    method: "PATCH",
-    headers: {
-      Authorization: `Bearer ${token}`,
+  const response = await fetch(
+    `${API_BASE_URL}/admin/homepage-features/${id}/archive`,
+    {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     },
-  });
+  );
 
   return parseJsonResponse<HomepageFeatureItem>(response);
 }
 
-export async function uploadAdminHomepageFeatureImage(token: string, file: File) {
+export async function uploadAdminHomepageFeatureImage(
+  token: string,
+  file: File,
+) {
   const formData = new FormData();
   formData.append("file", file);
 
-  const response = await fetch(`${API_BASE_URL}/admin/homepage-features/upload-image`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
+  const response = await fetch(
+    `${API_BASE_URL}/admin/homepage-features/upload-image`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
     },
-    body: formData,
-  });
+  );
 
   return parseJsonResponse<{
     filename: string;
@@ -764,7 +781,7 @@ export async function getAdminMediaAssets(token: string) {
 export async function updateAdminMediaAsset(
   token: string,
   id: string,
-  payload: MediaAssetPayload
+  payload: MediaAssetPayload,
 ) {
   const response = await fetch(`${API_BASE_URL}/admin/media/${id}`, {
     method: "PATCH",
@@ -792,7 +809,7 @@ export async function deleteAdminMediaAsset(token: string, id: string) {
 export async function uploadAdminMediaAsset(
   token: string,
   file: File,
-  folder = "general"
+  folder = "general",
 ) {
   const formData = new FormData();
   formData.append("file", file);
@@ -861,7 +878,10 @@ export async function getAdminCareers(token: string) {
   return parseJsonResponse<AdminCareerItem[]>(response);
 }
 
-export async function createAdminCareer(token: string, payload: AdminCareerPayload) {
+export async function createAdminCareer(
+  token: string,
+  payload: AdminCareerPayload,
+) {
   const response = await fetch(`${API_BASE_URL}/admin/careers`, {
     method: "POST",
     headers: {
@@ -877,7 +897,7 @@ export async function createAdminCareer(token: string, payload: AdminCareerPaylo
 export async function updateAdminCareer(
   token: string,
   id: string,
-  payload: AdminCareerPayload
+  payload: AdminCareerPayload,
 ) {
   const response = await fetch(`${API_BASE_URL}/admin/careers/${id}`, {
     method: "PATCH",
@@ -935,12 +955,21 @@ export function getApiConfigurationStatus(): ApiConfigurationStatus {
 export async function getApiHealth() {
   if (!hasApiBaseUrl) {
     throw new Error(
-      "NEXT_PUBLIC_API_URL is not configured for this environment."
+      "NEXT_PUBLIC_API_URL is not configured for this environment.",
     );
+  }
+
+  const token = getAdminToken();
+
+  if (!token) {
+    throw new Error("Admin session is not available.");
   }
 
   const response = await fetch(`${API_BASE_URL}/health`, {
     cache: "no-store",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
 
   return parseJsonResponse<ApiHealthResult>(response);

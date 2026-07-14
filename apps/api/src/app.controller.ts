@@ -1,4 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
+
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { AppService } from './app.service';
 
 @Controller()
@@ -11,7 +13,13 @@ export class AppController {
   }
 
   @Get('health')
+  @UseGuards(JwtAuthGuard)
   async getHealth() {
     return this.appService.getHealth();
+  }
+
+  @Get('health/public')
+  async getPublicHealth() {
+    return this.appService.getPublicHealth();
   }
 }
