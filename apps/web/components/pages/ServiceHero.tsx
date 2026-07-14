@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { getLocaleFromPathname, localizeHref } from "@/i18n/client";
 
 type ServiceHeroProps = {
   eyebrow: string;
@@ -16,6 +19,10 @@ export default function ServiceHero({
   description,
   image,
 }: ServiceHeroProps) {
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const isIndonesian = locale === "id";
+
   const openProposal = () => {
     window.dispatchEvent(new CustomEvent("open-proposal-modal"));
   };
@@ -54,14 +61,14 @@ export default function ServiceHero({
               onClick={openProposal}
               className="inline-flex h-13 items-center justify-center rounded-full bg-white px-7 text-sm font-black text-[#039147] transition hover:-translate-y-0.5"
             >
-              Request a Proposal
+              {isIndonesian ? "Ajukan Proposal" : "Request a Proposal"}
             </button>
 
             <Link
-              href="/services"
+              href={localizeHref("/services", locale)}
               className="inline-flex h-13 items-center justify-center rounded-full border border-white/20 bg-white/10 px-7 text-sm font-black text-white transition hover:-translate-y-0.5"
             >
-              Explore Services
+              {isIndonesian ? "Jelajahi Layanan" : "Explore Services"}
             </Link>
           </div>
         </div>

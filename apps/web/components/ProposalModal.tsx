@@ -1,12 +1,15 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { type FormEvent, useEffect, useState } from "react";
+
+import { getLocaleFromPathname } from "@/i18n/client";
 import { submitProposal } from "@/lib/api";
 import {
   fallbackPublicSettings,
   getPublicSettings,
   getSettingValue,
-  PublicSettings,
+  type PublicSettings,
 } from "@/lib/public-settings";
 
 type ProposalModalProps = {
@@ -25,9 +28,20 @@ const initialForm = {
 };
 
 export default function ProposalModal({ open, onClose }: ProposalModalProps) {
-  const [settings, setSettings] = useState<PublicSettings>(fallbackPublicSettings);
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const isIndonesian = locale === "id";
+
+  const t = (english: string, indonesian: string) =>
+    isIndonesian ? indonesian : english;
+
+  const [settings, setSettings] = useState<PublicSettings>(
+    fallbackPublicSettings,
+  );
   const [form, setForm] = useState(initialForm);
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -47,10 +61,23 @@ export default function ProposalModal({ open, onClose }: ProposalModalProps) {
 
   if (!open) return null;
 
-  const primaryEmail = getSettingValue(settings, "contact.email", "info@pharmametriclabs.com");
-  const secondaryEmail = "";
-  const phoneNumber = getSettingValue(settings, "contact.phone", "(+6221) 426 5310 / (+6221) 426 9475");
-  const proposalRecipient = getSettingValue(settings, "proposal.recipientEmail", primaryEmail);
+  const primaryEmail = getSettingValue(
+    settings,
+    "contact.email",
+    "info@pharmametriclabs.com",
+  );
+
+  const phoneNumber = getSettingValue(
+    settings,
+    "contact.phone",
+    "(+6221) 426 5310 / (+6221) 426 9475",
+  );
+
+  const proposalRecipient = getSettingValue(
+    settings,
+    "proposal.recipientEmail",
+    primaryEmail,
+  );
 
   const updateField = (field: keyof typeof initialForm, value: string) => {
     setForm((current) => ({
@@ -79,45 +106,75 @@ export default function ProposalModal({ open, onClose }: ProposalModalProps) {
     try {
       await submitProposal({
         ...form,
-        sourcePage: typeof window !== "undefined" ? window.location.pathname : "unknown",
+        sourcePage:
+          typeof window !== "undefined" ? window.location.pathname : "unknown",
       });
 
       setStatus("success");
-      setMessage("Your proposal request has been submitted successfully.");
+      setMessage(
+        t(
+          "Your proposal request has been submitted successfully.",
+          "Permintaan proposal Anda berhasil dikirim.",
+        ),
+      );
       setForm(initialForm);
     } catch (error) {
       setStatus("error");
-      setMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+      setMessage(
+        error instanceof Error && !isIndonesian
+          ? error.message
+          : t(
+              "Something went wrong. Please try again.",
+              "Terjadi kesalahan. Silakan coba kembali.",
+            ),
+      );
     }
   };
 
   return (
-    <div className="fixed inset-0 z-[80] flex items-center justify-center p-4">
+    <div
+      className="fixed inset-0 z-[80] flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="proposal-modal-title"
+    >
       <button
         type="button"
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={closeModal}
-        aria-label="Close proposal modal"
+        aria-label={t("Close proposal modal", "Tutup modal proposal")}
       />
 
       <div className="relative z-10 max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-[34px] bg-white p-7 shadow-2xl md:p-9">
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.18em] text-[#039147]">
-              Request Proposal
+              {t("Request Proposal", "Ajukan Proposal")}
             </p>
-            <h2 className="mt-3 text-3xl font-black leading-tight text-black md:text-4xl">
-              Tell us about your project
+
+            <h2
+              id="proposal-modal-title"
+              className="mt-3 text-3xl font-black leading-tight text-black md:text-4xl"
+            >
+              {t(
+                "Tell us about your project",
+                "Ceritakan kebutuhan proyek Anda",
+              )}
             </h2>
+
             <p className="mt-3 text-sm leading-7 text-black/60">
-              Share your study, testing, or regulatory needs and the PML team will help identify the right next steps.
+              {t(
+                "Share your study, testing, or regulatory needs and the PML team will help identify the right next steps.",
+                "Sampaikan kebutuhan studi, pengujian, atau regulasi Anda dan tim PML akan membantu menentukan langkah berikutnya.",
+              )}
             </p>
 
             <div className="mt-4 grid gap-3 rounded-2xl border border-[#039147]/10 bg-[#eaf8f0] p-4 text-xs font-bold leading-6 text-black/60">
               <div>
                 <p className="font-black uppercase tracking-[0.14em] text-[#039147]">
-                  Proposal routed to
+                  {t("Proposal routed to", "Proposal dikirim kepada")}
                 </p>
+
                 <a
                   className="mt-1 inline-flex break-all text-sm font-black text-black underline decoration-[#039147]/30 underline-offset-4 transition hover:text-[#039147]"
                   href={`mailto:${proposalRecipient}`}
@@ -128,22 +185,16 @@ export default function ProposalModal({ open, onClose }: ProposalModalProps) {
 
               <div className="grid gap-1 border-t border-[#039147]/10 pt-3">
                 <p className="font-black uppercase tracking-[0.14em] text-[#039147]">
-                  Direct assistance
+                  {t("Direct assistance", "Bantuan langsung")}
                 </p>
+
                 <a
                   className="break-all text-black/70 underline decoration-black/20 underline-offset-4 transition hover:text-[#039147]"
                   href={`mailto:${primaryEmail}`}
                 >
                   {primaryEmail}
                 </a>
-                {secondaryEmail ? (
-                  <a
-                    className="break-all text-black/50 underline decoration-black/10 underline-offset-4 transition hover:text-[#039147]"
-                    href={`mailto:${secondaryEmail}`}
-                  >
-                    {secondaryEmail}
-                  </a>
-                ) : null}
+
                 <a
                   className="text-black/70 transition hover:text-[#039147]"
                   href={`tel:${phoneNumber.replace(/[^0-9+]/g, "")}`}
@@ -158,7 +209,7 @@ export default function ProposalModal({ open, onClose }: ProposalModalProps) {
             type="button"
             onClick={closeModal}
             className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-black/10 text-black"
-            aria-label="Close modal"
+            aria-label={t("Close modal", "Tutup modal")}
           >
             ✕
           </button>
@@ -168,14 +219,15 @@ export default function ProposalModal({ open, onClose }: ProposalModalProps) {
           <div className="grid gap-4 md:grid-cols-2">
             <input
               className="h-12 rounded-2xl border border-black/10 px-4 text-sm outline-none focus:border-[#039147]"
-              placeholder="Name"
+              placeholder={t("Name", "Nama")}
               value={form.name}
               onChange={(event) => updateField("name", event.target.value)}
               required
             />
+
             <input
               className="h-12 rounded-2xl border border-black/10 px-4 text-sm outline-none focus:border-[#039147]"
-              placeholder="Company"
+              placeholder={t("Company", "Perusahaan")}
               value={form.company}
               onChange={(event) => updateField("company", event.target.value)}
               required
@@ -191,9 +243,10 @@ export default function ProposalModal({ open, onClose }: ProposalModalProps) {
               onChange={(event) => updateField("email", event.target.value)}
               required
             />
+
             <input
               className="h-12 rounded-2xl border border-black/10 px-4 text-sm outline-none focus:border-[#039147]"
-              placeholder="Phone"
+              placeholder={t("Phone", "Nomor telepon")}
               value={form.phone}
               onChange={(event) => updateField("phone", event.target.value)}
             />
@@ -201,7 +254,7 @@ export default function ProposalModal({ open, onClose }: ProposalModalProps) {
 
           <input
             className="h-12 rounded-2xl border border-black/10 px-4 text-sm outline-none focus:border-[#039147]"
-            placeholder="Country"
+            placeholder={t("Country", "Negara")}
             value={form.country}
             onChange={(event) => updateField("country", event.target.value)}
           />
@@ -212,18 +265,28 @@ export default function ProposalModal({ open, onClose }: ProposalModalProps) {
             onChange={(event) => updateField("serviceType", event.target.value)}
             required
           >
-            <option value="">Choose service</option>
-            <option value="Contract Analysis">Contract Analysis</option>
-            <option value="BA/BE Study">BA/BE Study</option>
-            <option value="Clinical Trial">Clinical Trial</option>
-            <option value="Regulatory Management">Regulatory Management</option>
+            <option value="">{t("Choose service", "Pilih layanan")}</option>
+            <option value="Contract Analysis">
+              {t("Contract Analysis", "Analisis Kontrak")}
+            </option>
+            <option value="BA/BE Study">
+              {t("BA/BE Study", "Studi BA/BE")}
+            </option>
+            <option value="Clinical Trial">
+              {t("Clinical Trial", "Uji Klinis")}
+            </option>
+            <option value="Regulatory Management">
+              {t("Regulatory Management", "Manajemen Regulasi")}
+            </option>
           </select>
 
           <textarea
             className="min-h-32 rounded-2xl border border-black/10 px-4 py-3 text-sm outline-none focus:border-[#039147]"
-            placeholder="Project needs"
+            placeholder={t("Project needs", "Kebutuhan proyek")}
             value={form.projectNeeds}
-            onChange={(event) => updateField("projectNeeds", event.target.value)}
+            onChange={(event) =>
+              updateField("projectNeeds", event.target.value)
+            }
             required
           />
 
@@ -244,7 +307,9 @@ export default function ProposalModal({ open, onClose }: ProposalModalProps) {
             disabled={status === "loading"}
             className="mt-2 inline-flex h-13 items-center justify-center rounded-full bg-[#039147] px-7 text-sm font-black text-white transition hover:bg-[#026834] disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {status === "loading" ? "Submitting..." : "Submit Request"}
+            {status === "loading"
+              ? t("Submitting...", "Mengirim...")
+              : t("Submit Request", "Kirim Permintaan")}
           </button>
         </form>
       </div>

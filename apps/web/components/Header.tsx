@@ -589,7 +589,7 @@ function ServicesMegaPanel({
             </p>
 
             <Link
-              href="/contact"
+              href={localizeHref("/contact", locale)}
               className="ml-6 hidden shrink-0 rounded-full bg-[#039147] px-5 py-3 text-[13px] font-black text-white shadow-[0_14px_34px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 lg:inline-flex"
             >
               {isIndonesian ? "Diskusikan proyek" : "Discuss project"}

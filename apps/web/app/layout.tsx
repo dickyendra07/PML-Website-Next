@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import ClientShell from "@/components/ClientShell";
-import { getSeoDefaults } from "@/lib/server-settings";
 import CookieConsent from "@/components/CookieConsent";
+import DocumentLanguage from "@/components/DocumentLanguage";
+import { getSeoDefaults } from "@/lib/server-settings";
 
 const kalbeHelix = localFont({
   src: [
@@ -94,9 +95,7 @@ export async function generateMetadata(): Promise<Metadata> {
         { url: "/favicon.ico", sizes: "64x64", type: "image/x-icon" },
         { url: "/icon.png", type: "image/png" },
       ],
-      apple: [
-        { url: "/apple-icon.png", type: "image/png" },
-      ],
+      apple: [{ url: "/apple-icon.png", type: "image/png" }],
     },
     robots: {
       index: true,
@@ -120,8 +119,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${kalbeHelix.className} ${kalbeHelix.variable}`}>
+        <DocumentLanguage />
         <ClientShell>{children}</ClientShell>
-              <CookieConsent />
+        <CookieConsent />
       </body>
     </html>
   );

@@ -2,7 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+
+import { getLocaleFromPathname, localizeHref } from "@/i18n/client";
 
 type PopupLayout = "IMAGE_LEFT" | "IMAGE_RIGHT" | "IMAGE_TOP" | "TEXT_ONLY";
 
@@ -76,6 +79,13 @@ function markPopupClosed(popup: PopupItem) {
 }
 
 export default function HomepagePopup() {
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const isIndonesian = locale === "id";
+
+  const t = (english: string, indonesian: string) =>
+    isIndonesian ? indonesian : english;
+
   const [popup, setPopup] = useState<PopupItem | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -156,7 +166,9 @@ export default function HomepagePopup() {
   const imageBlock = hasImage ? (
     <div
       className={`relative overflow-hidden bg-black ${
-        layout === "IMAGE_TOP" ? "min-h-[220px] md:min-h-[320px]" : "min-h-[190px] md:min-h-[420px]"
+        layout === "IMAGE_TOP"
+          ? "min-h-[220px] md:min-h-[320px]"
+          : "min-h-[190px] md:min-h-[420px]"
       }`}
     >
       <Image
@@ -164,9 +176,14 @@ export default function HomepagePopup() {
         alt=""
         fill
         priority={false}
-        sizes={layout === "IMAGE_TOP" ? "920px" : "(max-width: 768px) 100vw, 460px"}
+        sizes={
+          layout === "IMAGE_TOP" ? "920px" : "(max-width: 768px) 100vw, 460px"
+        }
         className="object-cover opacity-90"
-        unoptimized={imageUrl.startsWith("http://localhost") || imageUrl.startsWith(API_ORIGIN)}
+        unoptimized={
+          imageUrl.startsWith("http://localhost") ||
+          imageUrl.startsWith(API_ORIGIN)
+        }
       />
 
       <div className="absolute inset-0 bg-gradient-to-br from-black/35 via-black/25 to-[#039147]/55" />
@@ -177,16 +194,18 @@ export default function HomepagePopup() {
           Pharma Metric Labs
         </p>
         <p className="mt-2 text-lg font-black leading-tight">
-          Integrated CRO Services
+          {t("Integrated CRO Services", "Layanan CRO Terintegrasi")}
         </p>
       </div>
     </div>
   ) : null;
 
   const contentBlock = (
-    <div className={`bg-white p-6 md:p-10 lg:p-12 ${layout === "TEXT_ONLY" ? "text-center" : ""}`}>
+    <div
+      className={`bg-white p-6 md:p-10 lg:p-12 ${layout === "TEXT_ONLY" ? "text-center" : ""}`}
+    >
       <p className="inline-flex rounded-full bg-[#eaf8f0] px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-[#039147]">
-        Announcement
+        {t("Announcement", "Pengumuman")}
       </p>
 
       <h2 className="mt-5 text-3xl font-black leading-tight tracking-tight text-black md:text-5xl">
@@ -210,7 +229,7 @@ export default function HomepagePopup() {
       >
         {popup.buttonLabel && popup.buttonUrl ? (
           <Link
-            href={popup.buttonUrl}
+            href={localizeHref(popup.buttonUrl, locale)}
             onClick={closePopup}
             className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-sm font-black text-white shadow-[0_18px_45px_rgba(3,145,71,0.25)] transition hover:-translate-y-0.5 hover:bg-[#02783b]"
           >
@@ -223,12 +242,15 @@ export default function HomepagePopup() {
           onClick={closePopup}
           className="inline-flex items-center justify-center rounded-full border border-black/10 bg-black/[0.03] px-7 py-4 text-sm font-black text-black/70 transition hover:bg-black hover:text-white"
         >
-          Maybe Later
+          {t("Maybe Later", "Nanti Saja")}
         </button>
       </div>
 
       <p className="mt-5 text-xs font-semibold leading-5 text-black/35">
-        This popup can be managed from the admin CMS.
+        {t(
+          "This popup can be managed from the admin CMS.",
+          "Popup ini dapat dikelola melalui CMS admin.",
+        )}
       </p>
     </div>
   );
@@ -251,7 +273,7 @@ export default function HomepagePopup() {
           type="button"
           onClick={closePopup}
           className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/90 text-xl font-black text-black shadow-lg transition hover:bg-black hover:text-white"
-          aria-label="Close popup"
+          aria-label={t("Close popup", "Tutup popup")}
         >
           ×
         </button>

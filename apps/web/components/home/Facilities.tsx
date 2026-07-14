@@ -1,5 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { getLocaleFromPathname, localizeHref } from "@/i18n/client";
 
 const items = [
   {
@@ -139,6 +142,9 @@ function Icon({ name }: { name: string }) {
 }
 
 export default function Facilities() {
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const isIndonesian = locale === "id";
   return (
     <section
       id="facilities"
@@ -208,10 +214,10 @@ export default function Facilities() {
             </div>
 
             <Link
-              href="/contact"
+              href={localizeHref("/facilities", locale)}
               className="mt-8 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-3.5 text-sm font-extrabold text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
             >
-              Explore Facilities
+              {isIndonesian ? "Jelajahi Fasilitas" : "Explore Facilities"}
             </Link>
           </div>
         </div>
