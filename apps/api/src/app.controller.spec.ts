@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { PrismaService } from './prisma/prisma.service';
 import { RedisService } from './redis/redis.service';
 
@@ -15,7 +17,13 @@ describe('AppController', () => {
     ping: jest.fn().mockResolvedValue('PONG'),
   };
 
+  const jwtAuthGuardMock = {
+    canActivate: jest.fn().mockReturnValue(true),
+  };
+
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
       providers: [
@@ -29,7 +37,10 @@ describe('AppController', () => {
           useValue: redisMock,
         },
       ],
-    }).compile();
+    })
+      .overrideGuard(JwtAuthGuard)
+      .useValue(jwtAuthGuardMock)
+      .compile();
 
     appController = app.get<AppController>(AppController);
   });
