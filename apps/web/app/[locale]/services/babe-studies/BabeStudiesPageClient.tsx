@@ -2,8 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+
 import OtherServices from "@/components/OtherServices";
+import { getLocaleFromPathname, localizeHref } from "@/i18n/client";
 
 const heroSlides = [
   "/images/pml/services/babe-studies-hero.png",
@@ -11,7 +14,7 @@ const heroSlides = [
   "/images/pml/services/babe-studies-sample-handling.png",
 ];
 
-const benefits = [
+const benefitsEn = [
   {
     title: "End-to-end study support",
     text: "Integrated BA/BE support from clinical conduct and bioanalysis to final reporting.",
@@ -30,7 +33,7 @@ const benefits = [
   },
 ];
 
-const scope = [
+const scopeEn = [
   "Bioavailability and bioequivalence study planning support",
   "Clinical conduct coordination for BA/BE study activities",
   "Sample collection, handling, and study operation support",
@@ -39,7 +42,7 @@ const scope = [
   "Project coordination with sponsors and relevant study stakeholders",
 ];
 
-const clients = [
+const clientsEn = [
   {
     title: "Pharmaceutical companies",
     text: "Sponsors that require structured BA/BE study execution, bioanalysis, and documentation support.",
@@ -135,7 +138,7 @@ const countries = [
   },
 ];
 
-const workflow = [
+const workflowEn = [
   "Initial discussion and project requirement review",
   "Study planning, protocol alignment, and operational preparation",
   "Clinical conduct, volunteer coordination, and sample collection",
@@ -143,7 +146,7 @@ const workflow = [
   "Data review, documentation, and regulatory-ready report preparation",
 ];
 
-const requirements = [
+const requirementsEn = [
   "Product or molecule information",
   "Study objective and intended market or submission destination",
   "Available protocol, reference product, or study design requirements",
@@ -151,7 +154,7 @@ const requirements = [
   "Specific regulatory or documentation requirements, if available",
 ];
 
-const faqs = [
+const faqsEn = [
   {
     question: "Who needs BA/BE study?",
     answer:
@@ -173,6 +176,104 @@ const faqs = [
       "Yes. PML BE reports have been accepted by regulatory bodies in multiple countries including Cambodia, Hong Kong, Indonesia, Malaysia, Maldives, Mauritius, Mongolia, Myanmar, Nigeria, Philippines, Singapore, Sri Lanka, and Vietnam.",
   },
 ];
+
+const benefitsId = [
+  {
+    title: "Dukungan studi menyeluruh",
+    text: "Dukungan BA/BE terintegrasi mulai dari pelaksanaan klinis dan bioanalisis hingga pelaporan akhir.",
+  },
+  {
+    title: "Dokumentasi siap regulasi",
+    text: "Hasil studi disiapkan untuk mendukung registrasi produk dan kesiapan pengajuan regulasi.",
+  },
+  {
+    title: "Kapabilitas bioanalitik berpengalaman",
+    text: "Lebih dari 190 metode bioanalitik tervalidasi untuk berbagai senyawa farmasi.",
+  },
+  {
+    title: "Laporan BE yang diterima",
+    text: "Laporan BE PML telah diterima oleh berbagai badan regulasi global di sejumlah negara.",
+  },
+];
+
+const scopeId = [
+  "Dukungan perencanaan studi bioavailabilitas dan bioekuivalensi",
+  "Koordinasi pelaksanaan klinis untuk aktivitas studi BA/BE",
+  "Dukungan pengambilan, penanganan sampel, dan operasional studi",
+  "Dukungan metode bioanalitik dan analisis laboratorium",
+  "Dokumentasi studi dan pelaporan yang siap untuk kebutuhan regulasi",
+  "Koordinasi proyek dengan sponsor dan pemangku kepentingan studi terkait",
+];
+
+const clientsId = [
+  {
+    title: "Perusahaan farmasi",
+    text: "Sponsor yang membutuhkan pelaksanaan studi BA/BE, bioanalisis, dan dukungan dokumentasi yang terstruktur.",
+  },
+  {
+    title: "Produsen obat generik",
+    text: "Produsen yang mempersiapkan bukti ekuivalensi untuk pengembangan dan registrasi obat generik.",
+  },
+  {
+    title: "Tim regulasi dan produk",
+    text: "Tim yang membutuhkan hasil studi yang andal, laporan yang diterima, dan dokumentasi yang jelas untuk mendukung kesiapan pengajuan.",
+  },
+];
+
+const workflowId = [
+  "Diskusi awal dan peninjauan kebutuhan proyek",
+  "Perencanaan studi, penyelarasan protokol, dan persiapan operasional",
+  "Pelaksanaan klinis, koordinasi relawan, dan pengambilan sampel",
+  "Penanganan sampel, bioanalisis, dan pekerjaan laboratorium terkait metode",
+  "Peninjauan data, dokumentasi, dan penyusunan laporan siap regulasi",
+];
+
+const requirementsId = [
+  "Informasi produk atau molekul",
+  "Tujuan studi dan pasar atau tujuan pengajuan yang ditargetkan",
+  "Protokol, produk pembanding, atau kebutuhan desain studi yang tersedia",
+  "Target waktu dan ruang lingkup proyek yang diharapkan",
+  "Kebutuhan regulasi atau dokumentasi khusus apabila tersedia",
+];
+
+const faqsId = [
+  {
+    question: "Siapa yang membutuhkan studi BA/BE?",
+    answer:
+      "Studi BA/BE umumnya dibutuhkan oleh perusahaan farmasi dan produsen obat generik untuk mendukung registrasi produk, evaluasi ekuivalensi, dan persyaratan pengajuan regulasi.",
+  },
+  {
+    question: "Berapa banyak metode bioanalitik tervalidasi yang dimiliki PML?",
+    answer:
+      "PML telah mengembangkan dan memvalidasi lebih dari 190 metode bioanalitik yang mencakup berbagai senyawa farmasi. PML juga dapat mengembangkan dan memvalidasi metode bioanalitik baru sesuai kebutuhan sponsor dan persyaratan proyek.",
+  },
+  {
+    question: "Apakah PML dapat mendukung studi BA/BE secara menyeluruh?",
+    answer:
+      "Ya. PML mendukung aktivitas studi BA/BE mulai dari pelaksanaan klinis dan penanganan sampel hingga bioanalisis, dokumentasi, dan pelaporan yang siap untuk kebutuhan regulasi.",
+  },
+  {
+    question: "Apakah laporan BE PML telah diterima secara internasional?",
+    answer:
+      "Ya. Laporan BE PML telah diterima oleh badan regulasi di berbagai negara, termasuk Kamboja, Hong Kong, Indonesia, Malaysia, Maladewa, Mauritius, Mongolia, Myanmar, Nigeria, Filipina, Singapura, Sri Lanka, dan Vietnam.",
+  },
+];
+
+const countryNamesId: Record<string, string> = {
+  Cambodia: "Kamboja",
+  "Hong Kong": "Hong Kong",
+  Indonesia: "Indonesia",
+  Malaysia: "Malaysia",
+  Maldives: "Maladewa",
+  Mauritius: "Mauritius",
+  Mongolia: "Mongolia",
+  Myanmar: "Myanmar",
+  Nigeria: "Nigeria",
+  Philippines: "Filipina",
+  Singapore: "Singapura",
+  "Sri Lanka": "Sri Lanka",
+  Vietnam: "Vietnam",
+};
 
 function openProposal() {
   window.dispatchEvent(new CustomEvent("open-proposal-modal"));
@@ -213,6 +314,20 @@ function ShieldIcon() {
 }
 
 export default function BabeStudiesPage() {
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const isIndonesian = locale === "id";
+
+  const t = (english: string, indonesian: string) =>
+    isIndonesian ? indonesian : english;
+
+  const benefits = isIndonesian ? benefitsId : benefitsEn;
+  const scope = isIndonesian ? scopeId : scopeEn;
+  const clients = isIndonesian ? clientsId : clientsEn;
+  const workflow = isIndonesian ? workflowId : workflowEn;
+  const requirements = isIndonesian ? requirementsId : requirementsEn;
+  const faqs = isIndonesian ? faqsId : faqsEn;
+
   const [activeCountry, setActiveCountry] = useState(countries[0]);
   return (
     <main>
@@ -248,32 +363,43 @@ export default function BabeStudiesPage() {
 
         <div className="pml-container relative flex min-h-[560px] flex-col justify-center py-14 md:min-h-[calc(100vh-80px)] md:py-24">
           <nav className="mb-7 flex flex-wrap items-center gap-2 text-xs font-bold text-black/58 md:mb-10 md:text-sm">
-            <Link href="/" className="transition hover:text-[#039147]">
-              Home
+            <Link
+              href={localizeHref("/", locale)}
+              className="transition hover:text-[#039147]"
+            >
+              {t("Home", "Beranda")}
             </Link>
             <span>/</span>
-            <Link href="/services" className="transition hover:text-[#039147]">
-              Services
+            <Link
+              href={localizeHref("/services", locale)}
+              className="transition hover:text-[#039147]"
+            >
+              {t("Services", "Layanan")}
             </Link>
             <span>/</span>
-            <span className="text-[#039147]">BA/BE Study</span>
+            <span className="text-[#039147]">
+              {t("BA/BE Study", "Studi BA/BE")}
+            </span>
           </nav>
 
           <div className="max-w-4xl">
             <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/20 bg-white/95 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#039147] shadow-sm backdrop-blur md:text-xs">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
-              BA/BE Study
+              {t("BA/BE Study", "Studi BA/BE")}
             </p>
 
             <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] tracking-tight text-black md:mt-6 md:text-6xl lg:text-[68px]">
-              End-to-end bioequivalence study support for reliable regulatory
-              submission
+              {t(
+                "End-to-end bioequivalence study support for reliable regulatory submission",
+                "Dukungan studi bioekuivalensi menyeluruh untuk pengajuan regulasi yang andal",
+              )}
             </h1>
 
             <p className="mt-5 max-w-2xl text-base leading-8 text-black/70 md:mt-6 md:text-lg md:leading-8">
-              PML supports pharmaceutical companies and generic manufacturers
-              with integrated BA/BE study services, from clinical conduct and
-              bioanalysis to regulatory-ready documentation and reporting.
+              {t(
+                "PML supports pharmaceutical companies and generic manufacturers with integrated BA/BE study services, from clinical conduct and bioanalysis to regulatory-ready documentation and reporting.",
+                "PML mendukung perusahaan farmasi dan produsen obat generik melalui layanan studi BA/BE terintegrasi, mulai dari pelaksanaan klinis dan bioanalisis hingga dokumentasi serta pelaporan yang siap untuk kebutuhan regulasi.",
+              )}
             </p>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row md:mt-8">
@@ -282,14 +408,14 @@ export default function BabeStudiesPage() {
                 onClick={openProposal}
                 className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-base font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)] transition hover:-translate-y-0.5 md:py-4"
               >
-                Request a Proposal
+                {t("Request a Proposal", "Ajukan Proposal")}
               </button>
 
               <a
                 href="#babe-overview"
                 className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-3.5 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white md:py-4"
               >
-                Explore Service
+                {t("Explore Service", "Jelajahi Layanan")}
               </a>
             </div>
           </div>
@@ -312,26 +438,30 @@ export default function BabeStudiesPage() {
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Service Overview
+                {t("Service Overview", "Ringkasan Layanan")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Integrated BA/BE study services in one place
+                {t(
+                  "Integrated BA/BE study services in one place",
+                  "Layanan studi BA/BE terintegrasi dalam satu tempat",
+                )}
               </h2>
             </div>
 
             <div className="space-y-4 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:space-y-5 md:text-base md:leading-8">
               <p>
-                PML provides end-to-end BA/BE study support for pharmaceutical
-                companies and generic manufacturers that need reliable study
-                execution and regulatory-ready documentation.
+                {t(
+                  "PML provides end-to-end BA/BE study support for pharmaceutical companies and generic manufacturers that need reliable study execution and regulatory-ready documentation.",
+                  "PML menyediakan dukungan studi BA/BE secara menyeluruh bagi perusahaan farmasi dan produsen obat generik yang membutuhkan pelaksanaan studi yang andal serta dokumentasi siap regulasi.",
+                )}
               </p>
 
               <p>
-                With accepted BE reports across multiple regulatory bodies and
-                more than 190 validated bioanalytical methods, PML helps
-                sponsors prepare better evidence for product registration and
-                market access requirements.
+                {t(
+                  "With accepted BE reports across multiple regulatory bodies and more than 190 validated bioanalytical methods, PML helps sponsors prepare better evidence for product registration and market access requirements.",
+                  "Dengan laporan BE yang telah diterima oleh berbagai badan regulasi dan lebih dari 190 metode bioanalitik tervalidasi, PML membantu sponsor mempersiapkan bukti yang lebih kuat untuk registrasi produk dan kebutuhan akses pasar.",
+                )}
               </p>
             </div>
           </div>
@@ -356,7 +486,10 @@ export default function BabeStudiesPage() {
           </div>
 
           <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
-            Swipe to explore key benefits
+            {t(
+              "Swipe to explore key benefits",
+              "Geser untuk melihat manfaat utama",
+            )}
           </p>
         </div>
       </section>
@@ -368,7 +501,10 @@ export default function BabeStudiesPage() {
               <div className="overflow-hidden rounded-[30px] bg-white p-2 shadow-[0_24px_70px_rgba(0,0,0,0.10)] md:rounded-[34px] md:p-3">
                 <Image
                   src="/images/pml/services/babe-studies-lab-analysis.png"
-                  alt="Bioanalytical laboratory analysis"
+                  alt={t(
+                    "Bioanalytical laboratory analysis",
+                    "Analisis laboratorium bioanalitik",
+                  )}
                   width={900}
                   height={700}
                   className="aspect-[4/3] w-full rounded-[24px] object-cover md:rounded-[26px]"
@@ -378,16 +514,21 @@ export default function BabeStudiesPage() {
 
             <div className="order-1 lg:order-2">
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Scope of Service
+                {t("Scope of Service", "Ruang Lingkup Layanan")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                From clinical conduct to bioanalytical reporting
+                {t(
+                  "From clinical conduct to bioanalytical reporting",
+                  "Dari pelaksanaan klinis hingga pelaporan bioanalitik",
+                )}
               </h2>
 
               <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
-                BA/BE study require coordinated clinical activity, reliable
-                sample handling, robust bioanalysis, and complete documentation.
+                {t(
+                  "BA/BE study require coordinated clinical activity, reliable sample handling, robust bioanalysis, and complete documentation.",
+                  "Studi BA/BE membutuhkan aktivitas klinis yang terkoordinasi, penanganan sampel yang andal, bioanalisis yang kuat, dan dokumentasi yang lengkap.",
+                )}
               </p>
 
               <div className="mt-8 grid grid-cols-2 gap-3 md:gap-4">
@@ -415,17 +556,21 @@ export default function BabeStudiesPage() {
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-12">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Target Client
+                {t("Target Client", "Target Klien")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Built for pharmaceutical sponsors and generic manufacturers
+                {t(
+                  "Built for pharmaceutical sponsors and generic manufacturers",
+                  "Dirancang untuk sponsor farmasi dan produsen obat generik",
+                )}
               </h2>
 
               <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
-                BA/BE study is most relevant for companies preparing evidence
-                for product registration, generic drug development, regulatory
-                submission, or equivalence evaluation.
+                {t(
+                  "BA/BE study is most relevant for companies preparing evidence for product registration, generic drug development, regulatory submission, or equivalence evaluation.",
+                  "Studi BA/BE paling relevan bagi perusahaan yang mempersiapkan bukti untuk registrasi produk, pengembangan obat generik, pengajuan regulasi, atau evaluasi ekuivalensi.",
+                )}
               </p>
             </div>
 
@@ -486,17 +631,21 @@ export default function BabeStudiesPage() {
           <div className="mx-auto max-w-4xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#039147]/15 bg-white/85 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-[#039147] shadow-sm backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
-              Proof & Trust Signals
+              {t("Proof & Trust Signals", "Bukti & Indikator Kepercayaan")}
             </div>
 
             <h2 className="mt-6 text-4xl font-black leading-tight tracking-[-0.04em] text-black md:text-5xl lg:text-6xl">
-              Accepted BE reports across global regulatory bodies
+              {t(
+                "Accepted BE reports across global regulatory bodies",
+                "Laporan BE yang diterima oleh badan regulasi global",
+              )}
             </h2>
 
             <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-black/64 md:text-lg md:leading-9">
-              PML’s BE reports have supported client submissions across regional
-              and international contexts, helping sponsors move forward with
-              credible, regulatory-ready documentation.
+              {t(
+                "PML’s BE reports have supported client submissions across regional and international contexts, helping sponsors move forward with credible, regulatory-ready documentation.",
+                "Laporan BE PML telah mendukung pengajuan klien dalam konteks regional dan internasional, membantu sponsor melangkah dengan dokumentasi yang kredibel dan siap regulasi.",
+              )}
             </p>
           </div>
 
@@ -526,7 +675,9 @@ export default function BabeStudiesPage() {
                             : "bg-[#039147]/55 group-hover:bg-[#039147]"
                         }`}
                       />
-                      {country.name}
+                      {isIndonesian
+                        ? (countryNamesId[country.name] ?? country.name)
+                        : country.name}
                     </button>
                   );
                 })}
@@ -536,18 +687,27 @@ export default function BabeStudiesPage() {
                 {[
                   {
                     value: "190+",
-                    label: "Validated methods",
-                    desc: "Bioanalytical method capability",
+                    label: t("Validated methods", "Metode tervalidasi"),
+                    desc: t(
+                      "Bioanalytical method capability",
+                      "Kapabilitas metode bioanalitik",
+                    ),
                   },
                   {
                     value: "13",
-                    label: "Accepted countries",
-                    desc: "Regional and international contexts",
+                    label: t("Accepted countries", "Negara penerima"),
+                    desc: t(
+                      "Regional and international contexts",
+                      "Konteks regional dan internasional",
+                    ),
                   },
                   {
-                    value: "End-to-end",
-                    label: "BA/BE support",
-                    desc: "Clinical conduct to reporting",
+                    value: t("End-to-end", "Menyeluruh"),
+                    label: t("BA/BE support", "Dukungan BA/BE"),
+                    desc: t(
+                      "Clinical conduct to reporting",
+                      "Pelaksanaan klinis hingga pelaporan",
+                    ),
                   },
                 ].map((item) => (
                   <article
@@ -577,7 +737,10 @@ export default function BabeStudiesPage() {
                 <div className="absolute bottom-5 left-5 right-5">
                   <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-black/64"></p>
                   <h3 className="mt-2 text-3xl font-black tracking-[-0.04em] text-white">
-                    {activeCountry.name}
+                    {isIndonesian
+                      ? (countryNamesId[activeCountry.name] ??
+                        activeCountry.name)
+                      : activeCountry.name}
                   </h3>
                   <p className="mt-1 text-sm font-bold text-white/72"></p>
                 </div>
@@ -585,17 +748,20 @@ export default function BabeStudiesPage() {
 
               <div className="p-3 pt-5">
                 <p className="text-base leading-8 text-black/62">
-                  BE report acceptance experience in {activeCountry.name}{" "}
-                  supports PML’s positioning as a CRO partner with regional and
-                  international regulatory readiness.
+                  {t(
+                    `BE report acceptance experience in ${activeCountry.name} supports PML’s positioning as a CRO partner with regional and international regulatory readiness.`,
+                    `Pengalaman penerimaan laporan BE di ${
+                      countryNamesId[activeCountry.name] ?? activeCountry.name
+                    } memperkuat posisi PML sebagai mitra CRO dengan kesiapan regulasi regional dan internasional.`,
+                  )}
                 </p>
 
                 <div className="mt-5 flex items-center justify-between rounded-2xl border border-[#039147]/12 bg-[#f4fbf7] px-4 py-3">
                   <span className="text-xs font-extrabold uppercase tracking-[0.16em] text-black/45">
-                    Submission context
+                    {t("Submission context", "Konteks pengajuan")}
                   </span>
                   <span className="rounded-full bg-[#039147] px-3 py-1 text-xs font-extrabold text-white">
-                    Accepted report
+                    {t("Accepted report", "Laporan diterima")}
                   </span>
                 </div>
               </div>
@@ -603,9 +769,10 @@ export default function BabeStudiesPage() {
           </div>
 
           <div className="mx-auto mt-9 max-w-4xl rounded-[26px] border border-[#039147]/10 bg-white/80 px-6 py-5 text-center text-base leading-8 text-black/58 shadow-sm backdrop-blur">
-            These trust signals are presented to strengthen confidence in PML’s
-            BA/BE study capability, reporting experience, and regulatory
-            submission support.
+            {t(
+              "These trust signals are presented to strengthen confidence in PML’s BA/BE study capability, reporting experience, and regulatory submission support.",
+              "Indikator kepercayaan ini ditampilkan untuk memperkuat keyakinan terhadap kapabilitas studi BA/BE PML, pengalaman pelaporan, dan dukungan pengajuan regulasi.",
+            )}
           </div>
         </div>
       </section>
@@ -615,11 +782,14 @@ export default function BabeStudiesPage() {
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-12">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Process / Workflow
+                {t("Process / Workflow", "Proses / Alur Kerja")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                A clear workflow from discussion to report completion
+                {t(
+                  "A clear workflow from discussion to report completion",
+                  "Alur kerja yang jelas dari diskusi hingga penyelesaian laporan",
+                )}
               </h2>
 
               <div className="mt-8 space-y-3 md:space-y-4">
@@ -642,7 +812,10 @@ export default function BabeStudiesPage() {
             <div className="overflow-hidden rounded-[30px] bg-white p-2 shadow-[0_24px_70px_rgba(0,0,0,0.10)] md:rounded-[34px] md:p-3">
               <Image
                 src="/images/pml/services/babe-studies-sample-handling.png"
-                alt="BA/BE sample handling and laboratory workflow"
+                alt={t(
+                  "BA/BE sample handling and laboratory workflow",
+                  "Penanganan sampel BA/BE dan alur kerja laboratorium",
+                )}
                 width={900}
                 height={700}
                 className="aspect-[4/3] w-full rounded-[24px] object-cover md:rounded-[26px]"
@@ -657,16 +830,21 @@ export default function BabeStudiesPage() {
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Required Information
+                {t("Required Information", "Informasi yang Dibutuhkan")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                What we need to start the discussion
+                {t(
+                  "What we need to start the discussion",
+                  "Informasi yang kami perlukan untuk memulai diskusi",
+                )}
               </h2>
 
               <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
-                To prepare a better proposal or consultation, sponsors can share
-                available product, study, timeline, and regulatory information.
+                {t(
+                  "To prepare a better proposal or consultation, sponsors can share available product, study, timeline, and regulatory information.",
+                  "Untuk mempersiapkan proposal atau konsultasi yang lebih baik, sponsor dapat menyampaikan informasi produk, studi, jadwal, dan regulasi yang tersedia.",
+                )}
               </p>
 
               <button
@@ -674,7 +852,7 @@ export default function BabeStudiesPage() {
                 onClick={openProposal}
                 className="mt-7 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-3.5 text-base font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] md:mt-8 md:py-4"
               >
-                Discuss This Service
+                {t("Discuss This Service", "Diskusikan Layanan Ini")}
               </button>
             </div>
 
@@ -701,11 +879,14 @@ export default function BabeStudiesPage() {
         <div className="pml-container">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-              BA/BE FAQ
+              {t("BA/BE FAQ", "FAQ BA/BE")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Frequently asked questions
+              {t(
+                "Frequently asked questions",
+                "Pertanyaan yang Sering Diajukan",
+              )}
             </h2>
           </div>
 
@@ -758,17 +939,21 @@ export default function BabeStudiesPage() {
               </div>
 
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-black/64 md:text-sm">
-                Start a Project
+                {t("Start a Project", "Mulai Proyek")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight md:text-[52px]">
-                Need BA/BE study support?
+                {t(
+                  "Need BA/BE study support?",
+                  "Membutuhkan dukungan studi BA/BE?",
+                )}
               </h2>
 
               <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9 md:text-lg md:leading-9">
-                Share your study requirements with our team and we will help
-                identify the right service scope, required information, and next
-                steps.
+                {t(
+                  "Share your study requirements with our team and we will help identify the right service scope, required information, and next steps.",
+                  "Sampaikan kebutuhan studi Anda kepada tim kami dan kami akan membantu menentukan ruang lingkup layanan, informasi yang diperlukan, dan langkah berikutnya.",
+                )}
               </p>
 
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
@@ -777,14 +962,14 @@ export default function BabeStudiesPage() {
                   onClick={openProposal}
                   className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-base font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5 md:py-4"
                 >
-                  Request a Proposal
+                  {t("Request a Proposal", "Ajukan Proposal")}
                 </button>
 
                 <a
                   href="#babe-overview"
                   className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-8 py-3.5 text-base font-extrabold text-white backdrop-blur transition hover:bg-[#039147] hover:text-white md:py-4"
                 >
-                  Review BA/BE Service
+                  {t("Review BA/BE Service", "Tinjau Layanan BA/BE")}
                 </a>
               </div>
             </div>
