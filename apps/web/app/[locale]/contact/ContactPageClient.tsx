@@ -2,7 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { type FormEvent, useEffect, useState } from "react";
+
+import { getLocaleFromPathname, localizeHref } from "@/i18n/client";
 import { submitProposal } from "@/lib/api";
 import {
   fallbackPublicSettings,
@@ -62,6 +65,13 @@ function ContactIcon({ type }: { type: string }) {
 }
 
 export default function ContactPageClient() {
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const isIndonesian = locale === "id";
+
+  const t = (english: string, indonesian: string) =>
+    isIndonesian ? indonesian : english;
+
   const [settings, setSettings] = useState<PublicSettings>(
     fallbackPublicSettings,
   );
@@ -119,17 +129,17 @@ export default function ContactPageClient() {
 
   const contactCards = [
     {
-      title: "Office Address",
+      title: t("Office Address", "Alamat Kantor"),
       value: officeAddress,
       icon: "address",
     },
     {
-      title: "Phone Number",
+      title: t("Phone Number", "Nomor Telepon"),
       value: phoneNumber,
       icon: "phone",
     },
     {
-      title: "Email Address",
+      title: t("Email Address", "Alamat Email"),
       value: primaryEmail,
       secondValue: secondaryEmail,
       icon: "email",
@@ -155,7 +165,10 @@ export default function ContactPageClient() {
 
       setSubmitStatus("success");
       setSubmitMessage(
-        "Your inquiry has been submitted successfully. PML team will follow up soon.",
+        t(
+          "Your inquiry has been submitted successfully. PML team will follow up soon.",
+          "Inquiry Anda berhasil dikirim. Tim PML akan segera menindaklanjuti.",
+        ),
       );
       setName("");
       setCompany("");
@@ -165,9 +178,12 @@ export default function ContactPageClient() {
     } catch (error) {
       setSubmitStatus("error");
       setSubmitMessage(
-        error instanceof Error
+        error instanceof Error && !isIndonesian
           ? error.message
-          : "Something went wrong. Please try again.",
+          : t(
+              "Something went wrong. Please try again.",
+              "Terjadi kesalahan. Silakan coba kembali.",
+            ),
       );
     }
   };
@@ -188,26 +204,33 @@ export default function ContactPageClient() {
 
         <div className="pml-container relative py-20 md:py-32">
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-black/58">
-            <Link href="/" className="transition hover:text-[#039147]">
-              Home
+            <Link
+              href={localizeHref("/", locale)}
+              className="transition hover:text-[#039147]"
+            >
+              {t("Home", "Beranda")}
             </Link>
             <span>/</span>
-            <span className="text-[#039147]">Contact Us</span>
+            <span className="text-[#039147]">
+              {t("Contact Us", "Hubungi Kami")}
+            </span>
           </nav>
 
           <div className="max-w-4xl">
             <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/15 bg-white/80 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#039147] backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
-              Contact Us
+              {t("Contact Us", "Hubungi Kami")}
             </p>
 
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-6xl lg:text-[68px]">
-              We are here to help!
+              {t("We are here to help!", "Kami siap membantu Anda!")}
             </h1>
 
             <p className="mt-6 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9 md:text-lg">
-              Let&apos;s discuss your project! Share your inquiry and our team
-              will help you identify the right solution and next steps.
+              {t(
+                "Let's discuss your project! Share your inquiry and our team will help you identify the right solution and next steps.",
+                "Mari diskusikan proyek Anda. Sampaikan inquiry Anda dan tim kami akan membantu menentukan solusi serta langkah berikutnya yang tepat.",
+              )}
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -215,14 +238,14 @@ export default function ContactPageClient() {
                 href="#contact-form"
                 className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-base font-extrabold text-[#039147] shadow-xl"
               >
-                Send an Inquiry
+                {t("Send an Inquiry", "Kirim Inquiry")}
               </a>
 
               <a
                 href={phoneHref}
                 className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-7 py-4 text-base font-extrabold text-[#039147] shadow-xl backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#039147] hover:text-white"
               >
-                Call PML
+                {t("Call PML", "Hubungi PML")}
               </a>
             </div>
           </div>
@@ -233,16 +256,21 @@ export default function ContactPageClient() {
         <div className="pml-container grid gap-9 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-10">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-              Get in Touch
+              {t("Get in Touch", "Hubungi Kami")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Complete the form below and our team will be in touch
+              {t(
+                "Complete the form below and our team will be in touch",
+                "Lengkapi formulir berikut dan tim kami akan menghubungi Anda",
+              )}
             </h2>
 
             <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
-              Please provide your name, contact details, service of interest,
-              and a brief message so we can assist you effectively.
+              {t(
+                "Please provide your name, contact details, service of interest, and a brief message so we can assist you effectively.",
+                "Silakan isi nama, detail kontak, layanan yang diminati, dan pesan singkat agar kami dapat membantu Anda secara tepat.",
+              )}
             </p>
 
             <div className="mt-8 grid gap-3 md:gap-4">
@@ -280,20 +308,20 @@ export default function ContactPageClient() {
             <div className="grid gap-4 md:grid-cols-2 md:gap-5">
               <label className="grid gap-2">
                 <span className="text-sm font-black text-black">
-                  Your Name*
+                  {t("Your Name*", "Nama Anda*")}
                 </span>
                 <input
                   required
                   value={name}
                   onChange={(event) => setName(event.target.value)}
                   className="h-14 rounded-2xl border border-black/10 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
-                  placeholder="Your full name"
+                  placeholder={t("Your full name", "Nama lengkap Anda")}
                 />
               </label>
 
               <label className="grid gap-2">
                 <span className="text-sm font-black text-black">
-                  Email Address*
+                  {t("Email Address*", "Alamat Email*")}
                 </span>
                 <input
                   required
@@ -306,35 +334,47 @@ export default function ContactPageClient() {
               </label>
 
               <label className="grid gap-2">
-                <span className="text-sm font-black text-black">Company</span>
+                <span className="text-sm font-black text-black">
+                  {t("Company", "Perusahaan")}
+                </span>
                 <input
                   value={company}
                   onChange={(event) => setCompany(event.target.value)}
                   className="h-14 rounded-2xl border border-black/10 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
-                  placeholder="Company name"
+                  placeholder={t("Company name", "Nama perusahaan")}
                 />
               </label>
 
               <label className="grid gap-2">
                 <span className="text-sm font-black text-black">
-                  Service Interest
+                  {t("Service Interest", "Layanan yang Diminati")}
                 </span>
                 <select
                   value={service}
                   onChange={(event) => setService(event.target.value)}
                   className="h-14 rounded-2xl border border-black/10 bg-white px-4 text-sm font-bold text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
                 >
-                  <option>General Inquiry</option>
-                  <option>Contract Analysis</option>
-                  <option>BA/BE Study</option>
-                  <option>Clinical Trial</option>
-                  <option>Regulatory Management</option>
+                  <option value="General Inquiry">
+                    {t("General Inquiry", "Inquiry Umum")}
+                  </option>
+                  <option value="Contract Analysis">
+                    {t("Contract Analysis", "Analisis Kontrak")}
+                  </option>
+                  <option value="BA/BE Study">
+                    {t("BA/BE Study", "Studi BA/BE")}
+                  </option>
+                  <option value="Clinical Trial">
+                    {t("Clinical Trial", "Uji Klinis")}
+                  </option>
+                  <option value="Regulatory Management">
+                    {t("Regulatory Management", "Manajemen Regulasi")}
+                  </option>
                 </select>
               </label>
 
               <label className="grid gap-2 md:col-span-2">
                 <span className="text-sm font-black text-black">
-                  Your Message*
+                  {t("Your Message*", "Pesan Anda*")}
                 </span>
                 <textarea
                   required
@@ -342,7 +382,10 @@ export default function ContactPageClient() {
                   onChange={(event) => setMessage(event.target.value)}
                   rows={6}
                   className="resize-none rounded-2xl border border-black/10 bg-white px-4 py-4 text-sm font-bold leading-7 text-black outline-none transition focus:border-[#039147] focus:ring-4 focus:ring-[#039147]/10"
-                  placeholder="Tell us about your inquiry, project needs, timeline, or questions..."
+                  placeholder={t(
+                    "Tell us about your inquiry, project needs, timeline, or questions...",
+                    "Ceritakan inquiry, kebutuhan proyek, jadwal, atau pertanyaan Anda...",
+                  )}
                 />
               </label>
             </div>
@@ -364,12 +407,16 @@ export default function ContactPageClient() {
               disabled={submitStatus === "loading"}
               className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 md:w-auto"
             >
-              {submitStatus === "loading" ? "Sending..." : "Send Inquiry"}
+              {submitStatus === "loading"
+                ? t("Sending...", "Mengirim...")
+                : t("Send Inquiry", "Kirim Inquiry")}
             </button>
 
             <p className="mt-5 text-xs font-semibold leading-6 text-black/45">
-              This form is connected to the PML NestJS backend and stored
-              securely for follow-up.
+              {t(
+                "This form is connected to the PML NestJS backend and stored securely for follow-up.",
+                "Formulir ini terhubung ke backend NestJS PML dan disimpan secara aman untuk proses tindak lanjut.",
+              )}
             </p>
           </form>
         </div>
@@ -380,16 +427,21 @@ export default function ContactPageClient() {
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-stretch lg:gap-10">
             <div className="rounded-[30px] border border-black/5 bg-[#f6faf7] p-6 shadow-sm md:rounded-[36px] md:p-8">
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Location Map
+                {t("Location Map", "Peta Lokasi")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Visit Pharma Metric Labs’ Head Office
+                {t(
+                  "Visit Pharma Metric Labs’ Head Office",
+                  "Kunjungi Kantor Pusat Pharma Metric Labs",
+                )}
               </h2>
 
               <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
-                We&apos;d be happy to welcome you to our Head Office. Find our
-                location using the map below and plan your visit.
+                {t(
+                  "We'd be happy to welcome you to our Head Office. Find our location using the map below and plan your visit.",
+                  "Kami dengan senang hati menyambut Anda di kantor pusat kami. Temukan lokasi kami melalui peta berikut dan rencanakan kunjungan Anda.",
+                )}
               </p>
 
               <div className="mt-7 grid gap-3">
@@ -399,21 +451,24 @@ export default function ContactPageClient() {
                   rel="noreferrer"
                   className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-base font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5"
                 >
-                  Open in Google Maps
+                  {t("Open in Google Maps", "Buka di Google Maps")}
                 </a>
 
                 <a
                   href={phoneHref}
                   className="inline-flex items-center justify-center rounded-full border border-[#039147]/20 bg-white px-7 py-4 text-base font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5 hover:bg-[#eaf8f0] hover:text-[#039147]"
                 >
-                  Call Before Visit
+                  {t("Call Before Visit", "Hubungi Sebelum Berkunjung")}
                 </a>
               </div>
             </div>
 
             <div className="overflow-hidden rounded-[30px] border border-black/5 bg-white p-2 shadow-[0_24px_70px_rgba(0,0,0,0.10)] md:rounded-[36px] md:p-3">
               <iframe
-                title="Pharma Metric Labs Location Map"
+                title={t(
+                  "Pharma Metric Labs Location Map",
+                  "Peta Lokasi Pharma Metric Labs",
+                )}
                 src={`https://www.google.com/maps?q=${mapsQuery}&output=embed`}
                 className="h-[320px] w-full rounded-[24px] border-0 md:h-full md:min-h-[470px] md:rounded-[28px]"
                 loading="lazy"
@@ -439,23 +494,28 @@ export default function ContactPageClient() {
 
             <div className="relative mx-auto max-w-3xl">
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-                Business Opportunity
+                {t("Business Opportunity", "Peluang Bisnis")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight md:text-[52px] text-black">
-                Looking for business opportunity?
+                {t(
+                  "Looking for business opportunity?",
+                  "Sedang mencari peluang kerja sama bisnis?",
+                )}
               </h2>
 
               <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/72">
-                Contact PML to discuss study collaboration, laboratory testing,
-                regulatory needs, or other project opportunities.
+                {t(
+                  "Contact PML to discuss study collaboration, laboratory testing, regulatory needs, or other project opportunities.",
+                  "Hubungi PML untuk mendiskusikan kolaborasi studi, pengujian laboratorium, kebutuhan regulasi, atau peluang proyek lainnya.",
+                )}
               </p>
 
               <a
                 href={`mailto:${primaryEmail}`}
                 className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-base font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
               >
-                Email PML
+                {t("Email PML", "Kirim Email ke PML")}
               </a>
             </div>
           </div>
