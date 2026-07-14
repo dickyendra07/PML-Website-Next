@@ -2,8 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-const regulatoryTeam = [
+import { getLocaleFromPathname, localizeHref } from "@/i18n/client";
+
+const regulatoryTeamEn = [
   {
     name: "Anton Hidayat",
     role: "President Director",
@@ -69,7 +72,7 @@ const regulatoryTeam = [
   },
 ];
 
-const expertiseAreas = [
+const expertiseAreasEn = [
   {
     title: "Regulatory Affairs",
     desc: "Strategic regulatory planning, submission preparation, and authority coordination.",
@@ -109,6 +112,138 @@ const expertiseAreas = [
     title: "Sponsor Communication",
     desc: "Consistent communication support between sponsors, teams, and stakeholders.",
     icon: "communication",
+  },
+];
+
+const regulatoryTeamId = [
+  {
+    name: "Anton Hidayat",
+    role: "Presiden Direktur",
+    image: "/images/pml/team/anton-hidayat.jpg",
+    description:
+      "Sebagai Presiden Direktur PML, beliau memimpin arah strategis dan pertumbuhan bisnis perusahaan dengan pengalaman lebih dari 20 tahun dalam bidang regulasi, hubungan pemerintahan, dan akses pasar di industri farmasi Indonesia. Beliau memberikan pengawasan strategis terhadap portofolio layanan terintegrasi perusahaan untuk membantu perusahaan farmasi dan layanan kesehatan membawa produknya ke pasar melalui strategi regulasi, pengembangan produk, dan masuk pasar yang disesuaikan. Melalui kemitraan yang kuat dengan otoritas regulasi, institusi pemerintah, dan pemangku kepentingan industri, beliau membantu klien menghadapi perkembangan regulasi Indonesia, mempercepat akses pasar, dan mencapai pertumbuhan bisnis yang berkelanjutan.",
+  },
+  {
+    name: "Fathi",
+    role: "Profesional Senior Urusan Regulasi",
+    image: "/images/pml/team/fathi.jpg",
+    description:
+      "Profesional senior Urusan Regulasi dengan pengalaman lebih dari 13 tahun di industri farmasi Indonesia. Berpengalaman memimpin strategi regulasi, registrasi produk secara menyeluruh, manajemen siklus hidup, dan kepatuhan untuk berbagai portofolio produk. Memiliki keahlian dalam menangani pengajuan regulasi yang kompleks serta memimpin diskusi dan negosiasi teknis dengan otoritas regulasi untuk mendukung persetujuan produk dan tujuan bisnis.",
+  },
+  {
+    name: "Rini Hayati Amril",
+    role: "Profesional Senior Urusan Regulasi",
+    image: "/images/pml/team/rini-hayati.jpg",
+    description:
+      "Profesional senior Urusan Regulasi dengan pengalaman lebih dari 20 tahun di industri farmasi Indonesia. Berpengalaman menyusun strategi regulasi, memimpin registrasi produk, mengelola aktivitas siklus hidup produk, dan memastikan kepatuhan terhadap persyaratan regulasi Indonesia.",
+  },
+  {
+    name: "Hikmahwati Syafrie",
+    role: "Profesional Urusan Regulasi",
+    image: "/images/pml/team/hikmah.jpg",
+    description:
+      "Profesional Urusan Regulasi di Indonesia dengan pengalaman lebih dari 9 tahun dalam registrasi produk farmasi, alat kesehatan, produk terapi lanjutan, perizinan operasional, dan sertifikasi. Memiliki pengalaman membangun hubungan yang kuat dengan otoritas regulasi.",
+  },
+  {
+    name: "Jessica Seanjaya",
+    role: "Profesional Urusan Regulasi",
+    image: "/images/pml/team/jessica.jpg",
+    description:
+      "Profesional Urusan Regulasi dengan pengalaman lebih dari 5 tahun dalam registrasi produk farmasi di Indonesia, termasuk produk biologis baru, biosimilar, obat generik kimia, dan obat tradisional. Berpengalaman menyiapkan dokumen pengajuan regulasi, berkoordinasi dengan otoritas regulasi, dan mendukung registrasi produk sesuai regulasi yang berlaku.",
+  },
+  {
+    name: "Annisa Patima Az-Zahra",
+    role: "Apoteker Urusan Regulasi",
+    image: "/images/pml/team/annisa-patimah.jpg",
+    description:
+      "Apoteker Urusan Regulasi dengan pengalaman dalam regulasi produk farmasi, biologis, dan alat kesehatan di Indonesia. Berpengalaman dalam registrasi produk dan manajemen siklus hidup, termasuk registrasi baru, variasi, perpanjangan, perpindahan lokasi produksi, dan notifikasi. Terampil dalam penyusunan dossier CTD, peninjauan dokumen regulasi, dan pengajuan kepada otoritas kesehatan Indonesia.",
+  },
+  {
+    name: "Kristin Theresia",
+    role: "Apoteker Urusan Regulasi",
+    image: "/images/pml/team/kristin-theresia.jpg",
+    description:
+      "Apoteker Urusan Regulasi dengan pengalaman dalam registrasi alat kesehatan, obat tradisional, produk farmasi, dan biologis. Berpengalaman menyiapkan pengajuan regulasi, mendukung registrasi produk, proses importasi, serta sertifikasi GMP, Cara Pembuatan Alat Kesehatan yang Baik, dan Cara Distribusi Alat Kesehatan yang Baik sesuai regulasi yang berlaku.",
+  },
+  {
+    name: "Gabriella Rosalina",
+    role: "Apoteker Urusan Regulasi",
+    image: "/images/pml/team/gabriella.jpg",
+    description:
+      "Apoteker Urusan Regulasi dengan pengalaman dalam registrasi produk biologis. Berpengalaman menyiapkan pengajuan regulasi, berkoordinasi dengan otoritas, mendukung registrasi produk, dan mengelola proses sertifikasi lokasi produksi. Beliau juga merupakan Penyelia Halal Bersertifikat yang mendukung aktivitas sertifikasi halal.",
+  },
+  {
+    name: "Silviana Rezki Umami",
+    role: "Apoteker Urusan Regulasi",
+    image: "/images/pml/team/silviana.jpg",
+    description:
+      "Apoteker Urusan Regulasi dengan pengalaman dalam registrasi dan kepatuhan regulasi produk farmasi serta biologis di Indonesia. Berpengalaman mengelola registrasi produk, perubahan pascapersetujuan, dokumentasi regulasi, dan pengajuan kepada otoritas kesehatan untuk mendukung persetujuan serta pemeliharaan siklus hidup produk.",
+  },
+];
+
+const expertiseAreasId = [
+  {
+    title: "Urusan Regulasi",
+    desc: "Perencanaan regulasi strategis, persiapan pengajuan, dan koordinasi dengan otoritas.",
+    icon: "regulatory",
+  },
+  {
+    title: "Manajemen Proyek",
+    desc: "Koordinasi terstruktur terhadap jadwal, pemangku kepentingan, dan pencapaian proyek.",
+    icon: "project",
+  },
+  {
+    title: "Manajemen Data",
+    desc: "Pengelolaan informasi studi, catatan, dan alur dokumentasi secara terorganisasi.",
+    icon: "data",
+  },
+  {
+    title: "Jaminan Mutu",
+    desc: "Peninjauan berorientasi mutu, kepatuhan, dan pengendalian proses yang andal.",
+    icon: "quality",
+  },
+  {
+    title: "Operasional Klinis",
+    desc: "Dukungan operasional untuk persiapan, pelaksanaan, dan monitoring studi klinis.",
+    icon: "clinical",
+  },
+  {
+    title: "Laboratorium Analitik",
+    desc: "Koordinasi laboratorium untuk pengujian analitik dan alur kerja teknis.",
+    icon: "laboratory",
+  },
+  {
+    title: "Dokumentasi Studi",
+    desc: "Persiapan, pelacakan, peninjauan dokumen, dan kesiapan pengajuan.",
+    icon: "documentation",
+  },
+  {
+    title: "Komunikasi Sponsor",
+    desc: "Dukungan komunikasi yang konsisten antara sponsor, tim, dan pemangku kepentingan.",
+    icon: "communication",
+  },
+];
+
+const teamStrengthsId = [
+  {
+    title: "Koordinasi Regulasi",
+    desc: "Mendukung persiapan berorientasi regulasi, alur dokumentasi, dan komunikasi antar pemangku kepentingan proyek.",
+    icon: "regulatory",
+  },
+  {
+    title: "Dokumentasi Proyek",
+    desc: "Membantu menjaga catatan studi, materi pengajuan, dan kesiapan dokumentasi proyek secara terorganisasi.",
+    icon: "documentation",
+  },
+  {
+    title: "Komunikasi Sponsor",
+    desc: "Mendukung koordinasi yang lebih jelas antara sponsor, tim internal, dan fungsi proyek terkait.",
+    icon: "communication",
+  },
+  {
+    title: "Dukungan Proyek Terintegrasi",
+    desc: "Bekerja bersama tim klinis, analitik, dan operasional untuk mendukung pelaksanaan proyek CRO yang andal.",
+    icon: "project",
   },
 ];
 
@@ -312,7 +447,7 @@ function ExpertiseIcon({ name }: { name: string }) {
   );
 }
 
-const teamStrengths = [
+const teamStrengthsEn = [
   {
     title: "Regulatory Coordination",
     desc: "Supporting regulatory-oriented preparation, documentation flow, and communication across project stakeholders.",
@@ -336,6 +471,17 @@ const teamStrengths = [
 ];
 
 export default function ExpertsAndTeamPage() {
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const isIndonesian = locale === "id";
+
+  const regulatoryTeam = isIndonesian ? regulatoryTeamId : regulatoryTeamEn;
+  const expertiseAreas = isIndonesian ? expertiseAreasId : expertiseAreasEn;
+  const teamStrengths = isIndonesian ? teamStrengthsId : teamStrengthsEn;
+
+  const t = (english: string, indonesian: string) =>
+    isIndonesian ? indonesian : english;
+
   const openProposal = () => {
     window.dispatchEvent(new CustomEvent("open-proposal-modal"));
   };
@@ -345,7 +491,7 @@ export default function ExpertsAndTeamPage() {
       <section className="relative overflow-hidden bg-white text-black">
         <Image
           src="/images/pml/team/ra-team-pml.png"
-          alt="PML Regulatory Affairs Team"
+          alt={t("PML Regulatory Affairs Team", "Tim Urusan Regulasi PML")}
           fill
           priority
           className="object-cover opacity-85"
@@ -356,31 +502,43 @@ export default function ExpertsAndTeamPage() {
 
         <div className="pml-container relative py-20 md:py-32">
           <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-black/58">
-            <Link href="/" className="transition hover:text-[#039147]">
-              Home
+            <Link
+              href={localizeHref("/", locale)}
+              className="transition hover:text-[#039147]"
+            >
+              {t("Home", "Beranda")}
             </Link>
             <span>/</span>
-            <Link href="/about-us" className="transition hover:text-[#039147]">
-              About Us
+            <Link
+              href={localizeHref("/about-us", locale)}
+              className="transition hover:text-[#039147]"
+            >
+              {t("About Us", "Tentang Kami")}
             </Link>
             <span>/</span>
-            <span className="text-[#039147]">Experts & Team</span>
+            <span className="text-[#039147]">
+              {t("Experts & Team", "Para Ahli & Tim")}
+            </span>
           </nav>
 
           <div className="max-w-5xl">
             <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/20 bg-white/95 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#039147] shadow-sm backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
-              Experts & Team
+              {t("Experts & Team", "Para Ahli & Tim")}
             </p>
 
             <h1 className="mt-6 max-w-5xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-6xl lg:text-[68px]">
-              Regulatory affairs team supporting reliable CRO project delivery
+              {t(
+                "Regulatory affairs team supporting reliable CRO project delivery",
+                "Tim urusan regulasi yang mendukung pelaksanaan proyek CRO secara andal",
+              )}
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-8 text-black/68 md:text-lg">
-              PML is supported by professionals across regulatory affairs,
-              project coordination, documentation, and sponsor communication to
-              support smoother research and service delivery.
+              {t(
+                "PML is supported by professionals across regulatory affairs, project coordination, documentation, and sponsor communication to support smoother research and service delivery.",
+                "PML didukung oleh para profesional di bidang urusan regulasi, koordinasi proyek, dokumentasi, dan komunikasi sponsor untuk mendukung pelaksanaan penelitian dan layanan yang lebih lancar.",
+              )}
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -388,7 +546,7 @@ export default function ExpertsAndTeamPage() {
                 href="#regulatory-team"
                 className="inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-sm font-extrabold text-white shadow-xl shadow-[#039147]/20 transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
               >
-                Meet the Team
+                {t("Meet the Team", "Kenali Tim Kami")}
               </a>
 
               <button
@@ -396,7 +554,7 @@ export default function ExpertsAndTeamPage() {
                 onClick={openProposal}
                 className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/88 px-7 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
               >
-                Request a Proposal
+                {t("Request a Proposal", "Ajukan Proposal")}
               </button>
             </div>
           </div>
@@ -408,20 +566,21 @@ export default function ExpertsAndTeamPage() {
           <div className="grid gap-9 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-12">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Team Capability
+                {t("Team Capability", "Kapabilitas Tim")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Experienced support for regulatory, documentation, and project
-                workflows
+                {t(
+                  "Experienced support for regulatory, documentation, and project workflows",
+                  "Dukungan berpengalaman untuk alur regulasi, dokumentasi, dan proyek",
+                )}
               </h2>
 
               <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
-                PML’s team structure supports the complete project journey, from
-                study discussion, planning, documentation, regulatory-oriented
-                preparation, coordination, and reporting. This multidisciplinary
-                capability helps sponsors work with clearer direction and
-                stronger operational support.
+                {t(
+                  "PML’s team structure supports the complete project journey, from study discussion, planning, documentation, regulatory-oriented preparation, coordination, and reporting. This multidisciplinary capability helps sponsors work with clearer direction and stronger operational support.",
+                  "Struktur tim PML mendukung perjalanan proyek secara menyeluruh, mulai dari diskusi studi, perencanaan, dokumentasi, persiapan regulasi, koordinasi, hingga pelaporan. Kapabilitas multidisiplin ini membantu sponsor bekerja dengan arah yang lebih jelas dan dukungan operasional yang lebih kuat.",
+                )}
               </p>
             </div>
 
@@ -455,17 +614,21 @@ export default function ExpertsAndTeamPage() {
         <div className="pml-container">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-              Regulatory Affairs Team
+              {t("Regulatory Affairs Team", "Tim Urusan Regulasi")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Meet PML’s regulatory affairs team
+              {t(
+                "Meet PML’s regulatory affairs team",
+                "Kenali tim urusan regulasi PML",
+              )}
             </h2>
 
             <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
-              Selected team members supporting regulatory affairs, project
-              coordination, and documentation readiness. Detailed team
-              narratives will be updated after final client review.
+              {t(
+                "Selected team members supporting regulatory affairs, project coordination, and documentation readiness. Detailed team narratives will be updated after final client review.",
+                "Anggota tim terpilih yang mendukung urusan regulasi, koordinasi proyek, dan kesiapan dokumentasi. Informasi rinci mengenai tim akan diperbarui setelah peninjauan akhir dari klien.",
+              )}
             </p>
           </div>
 
@@ -506,7 +669,10 @@ export default function ExpertsAndTeamPage() {
           </div>
 
           <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
-            Swipe to explore team members
+            {t(
+              "Swipe to explore team members",
+              "Geser untuk melihat anggota tim",
+            )}
           </p>
         </div>
       </section>
@@ -516,17 +682,21 @@ export default function ExpertsAndTeamPage() {
           <div className="grid gap-9 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-12">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Team Strength
+                {t("Team Strength", "Kekuatan Tim")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Built to support sponsors from planning to documentation
+                {t(
+                  "Built to support sponsors from planning to documentation",
+                  "Dibangun untuk mendukung sponsor dari perencanaan hingga dokumentasi",
+                )}
               </h2>
 
               <p className="mt-5 text-base leading-8 text-black/65 md:mt-6 md:text-lg md:leading-9">
-                PML’s team capability is designed to support project clarity,
-                operational reliability, communication flow, and documentation
-                readiness.
+                {t(
+                  "PML’s team capability is designed to support project clarity, operational reliability, communication flow, and documentation readiness.",
+                  "Kapabilitas tim PML dirancang untuk mendukung kejelasan proyek, keandalan operasional, alur komunikasi, dan kesiapan dokumentasi.",
+                )}
               </p>
             </div>
 
@@ -575,16 +745,21 @@ export default function ExpertsAndTeamPage() {
         <div className="pml-container relative">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-              Work With PML Experts
+              {t("Work With PML Experts", "Bekerja Sama dengan Ahli PML")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Need clinical, analytical, regulatory, or project support?
+              {t(
+                "Need clinical, analytical, regulatory, or project support?",
+                "Membutuhkan dukungan klinis, analitik, regulasi, atau proyek?",
+              )}
             </h2>
 
             <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-black/68 md:mt-6 md:text-lg md:leading-9">
-              Share your project needs with PML and our team will help identify
-              the right service scope, required information, and next steps.
+              {t(
+                "Share your project needs with PML and our team will help identify the right service scope, required information, and next steps.",
+                "Sampaikan kebutuhan proyek Anda kepada PML dan tim kami akan membantu menentukan ruang lingkup layanan, informasi yang diperlukan, dan langkah berikutnya.",
+              )}
             </p>
 
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
@@ -593,14 +768,14 @@ export default function ExpertsAndTeamPage() {
                 onClick={openProposal}
                 className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-sm font-extrabold text-[#039147] shadow-xl transition hover:-translate-y-0.5"
               >
-                Request Proposal
+                {t("Request Proposal", "Ajukan Proposal")}
               </button>
 
               <Link
-                href="/contact"
+                href={localizeHref("/contact", locale)}
                 className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-sm font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
               >
-                Contact PML
+                {t("Contact PML", "Hubungi PML")}
               </Link>
             </div>
           </div>
