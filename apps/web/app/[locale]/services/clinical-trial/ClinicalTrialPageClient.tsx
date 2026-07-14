@@ -2,8 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+
 import OtherServices from "@/components/OtherServices";
+import { getLocaleFromPathname, localizeHref } from "@/i18n/client";
 
 const heroSlides = [
   "/images/pml/services/clinical-trial-hero.png",
@@ -11,7 +14,7 @@ const heroSlides = [
   "/images/pml/services/clinical-trial-regulatory.png",
 ];
 
-const scopeGroups = [
+const scopeGroupsEn = [
   {
     title: "Medical Writing",
     icon: "document",
@@ -78,7 +81,7 @@ const scopeGroups = [
   },
 ];
 
-const clients = [
+const clientsEn = [
   "Pharmaceutical companies",
   "Medical device companies",
   "Biotechnology companies",
@@ -87,7 +90,7 @@ const clients = [
   "Contract Research Organizations from other regions or countries",
 ];
 
-const benefits = [
+const benefitsEn = [
   {
     title: "End-to-end clinical trial support",
     text: "PML supports clinical research activities from planning and regulatory coordination to monitoring, data management, and study close-out.",
@@ -110,7 +113,7 @@ const benefits = [
   },
 ];
 
-const workflow = [
+const workflowEn = [
   "Initial consultation and clinical research requirement review",
   "Study planning, study document development and/or review, site feasibility",
   "Site selection, EC submission, regulatory (BPOM / Kemenkes) submission",
@@ -119,7 +122,7 @@ const workflow = [
   "Study close-out, data management, analytical statistics, final report writing",
 ];
 
-const coreTherapeuticAreas = [
+const coreTherapeuticAreasEn = [
   { title: "Oncology", icon: "oncology" },
   { title: "Nutrition", icon: "nutrition" },
   { title: "Pediatrics", icon: "pediatrics" },
@@ -129,7 +132,7 @@ const coreTherapeuticAreas = [
   { title: "Nephrology", icon: "nephrology" },
 ];
 
-const extendedTherapeuticAreas = [
+const extendedTherapeuticAreasEn = [
   { title: "Cardiology", icon: "cardiology" },
   { title: "Psychology", icon: "psychology" },
   { title: "Respiratory", icon: "respiratory" },
@@ -143,7 +146,7 @@ const extendedTherapeuticAreas = [
   },
 ];
 
-const requirements = [
+const requirementsEn = [
   "Study objective and clinical research category",
   "Product type or investigational product information",
   "Target indication, therapeutic area, and intended population",
@@ -152,7 +155,7 @@ const requirements = [
   "Regulatory destination or submission requirement, if available",
 ];
 
-const faqs = [
+const faqsEn = [
   {
     question: "Why conduct clinical trials in Indonesia?",
     answer:
@@ -174,6 +177,171 @@ const faqs = [
       "Does PML have experience handling multi-country clinical trials?",
     answer:
       "Yes. PML has experience participating as the local CRO partner for Indonesia in multi-country clinical trials led by global sponsors or global CROs. In these studies, PML supports local study execution and coordination while ensuring compliance with Indonesian regulatory requirements and applicable international guidelines such as Good Clinical Practice standards.",
+  },
+];
+
+const scopeGroupsId = [
+  {
+    title: "Penulisan Medis",
+    icon: "document",
+    items: [
+      "Pengembangan dokumen studi",
+      "Pengembangan laporan studi",
+      "Publikasi ilmiah",
+      "Pengembangan laporan evaluasi klinis",
+    ],
+  },
+  {
+    title: "Lokasi Studi",
+    icon: "building",
+    items: [
+      "Studi kelayakan dan pemilihan lokasi",
+      "Studi kelayakan dan pemilihan laboratorium",
+      "Negosiasi anggaran dan CTA",
+      "Pelatihan GCP",
+      "Manajemen dan pembayaran lokasi studi",
+    ],
+  },
+  {
+    title: "Regulasi",
+    icon: "shield",
+    items: [
+      "Dukungan pengajuan EC dan BPOM",
+      "Dukungan perizinan impor",
+      "Dukungan perjanjian transfer material",
+      "Dukungan inspeksi dan audit",
+    ],
+  },
+  {
+    title: "Monitoring Klinis dan Keamanan",
+    icon: "monitor",
+    items: [
+      "Kunjungan monitoring",
+      "Monitoring keamanan",
+      "Pemeliharaan ISF dan TMF",
+      "Manajemen produk investigasi",
+      "Dukungan farmakovigilans",
+      "Aktivitas penutupan studi",
+    ],
+  },
+  {
+    title: "Manajemen Data dan Statistik",
+    icon: "chart",
+    items: [
+      "Perhitungan ukuran sampel",
+      "Pengembangan rencana manajemen data dan analisis statistik",
+      "Randomisasi",
+      "Pengumpulan, validasi, dan pembersihan data",
+      "Analisis statistik",
+    ],
+  },
+  {
+    title: "Dukungan Penelitian Klinis Lainnya",
+    icon: "network",
+    items: [
+      "Dukungan studi praklinis",
+      "Studi biokompatibilitas",
+      "Penilaian teknologi kesehatan",
+      "Tinjauan sistematis dan meta-analisis",
+    ],
+  },
+];
+
+const clientsId = [
+  "Perusahaan farmasi",
+  "Perusahaan alat kesehatan",
+  "Perusahaan bioteknologi",
+  "Perusahaan makanan dan minuman",
+  "Perusahaan kosmetik",
+  "Contract Research Organization dari wilayah atau negara lain",
+];
+
+const benefitsId = [
+  {
+    title: "Dukungan uji klinis menyeluruh",
+    text: "PML mendukung aktivitas penelitian klinis mulai dari perencanaan dan koordinasi regulasi hingga monitoring, manajemen data, dan penutupan studi.",
+    icon: "check",
+  },
+  {
+    title: "Keahlian CRO lokal di Indonesia",
+    text: "PML membantu sponsor menjalankan koordinasi lokasi, memenuhi persyaratan regulasi, dan melaksanakan operasional studi di Indonesia.",
+    icon: "map",
+  },
+  {
+    title: "Jaringan rumah sakit dan peneliti",
+    text: "Aktivitas uji klinis didukung melalui kemitraan rumah sakit, penilaian kelayakan lokasi, dan koordinasi peneliti.",
+    icon: "network",
+  },
+  {
+    title: "Kesiapan regulasi dan mutu",
+    text: "Dukungan mencakup pengajuan EC/BPOM, keselarasan GCP, kesiapan inspeksi, dan alur dokumentasi.",
+    icon: "shield",
+  },
+];
+
+const workflowId = [
+  "Konsultasi awal dan peninjauan kebutuhan penelitian klinis",
+  "Perencanaan studi, pengembangan dan/atau peninjauan dokumen studi, serta penilaian kelayakan lokasi",
+  "Pemilihan lokasi, pengajuan EC, dan pengajuan regulasi BPOM/Kemenkes",
+  "Persetujuan EC, persetujuan regulasi BPOM/Kemenkes, dan inisiasi studi",
+  "Monitoring klinis, monitoring keamanan, manajemen proyek, dan manajemen lokasi studi",
+  "Penutupan studi, manajemen data, analisis statistik, dan penulisan laporan akhir",
+];
+
+const coreTherapeuticAreasId = [
+  { title: "Onkologi", icon: "oncology" },
+  { title: "Nutrisi", icon: "nutrition" },
+  { title: "Pediatri", icon: "pediatrics" },
+  { title: "Alat Kesehatan", icon: "medical-device" },
+  { title: "Ortopedi", icon: "orthopedic" },
+  { title: "Sel Punca dan Turunannya", icon: "stem-cell" },
+  { title: "Nefrologi", icon: "nephrology" },
+];
+
+const extendedTherapeuticAreasId = [
+  { title: "Kardiologi", icon: "cardiology" },
+  { title: "Psikologi", icon: "psychology" },
+  { title: "Pernapasan", icon: "respiratory" },
+  { title: "Hormonal", icon: "hormonal" },
+  { title: "Endokrinologi", icon: "endocrinology" },
+  { title: "Gastroenterologi", icon: "gastroenterology" },
+  { title: "Imunomodulator", icon: "immunomodulator" },
+  {
+    title: "Herbal / Obat Herbal Terstandar / Fitofarmaka",
+    icon: "herbal",
+  },
+];
+
+const requirementsId = [
+  "Tujuan studi dan kategori penelitian klinis",
+  "Jenis produk atau informasi produk investigasi",
+  "Indikasi, area terapeutik, dan populasi yang ditargetkan",
+  "Protokol studi atau rancangan studi apabila tersedia",
+  "Target waktu, preferensi lokasi studi, dan kebutuhan lokasi",
+  "Tujuan regulasi atau persyaratan pengajuan apabila tersedia",
+];
+
+const faqsId = [
+  {
+    question: "Mengapa melakukan uji klinis di Indonesia?",
+    answer:
+      "Indonesia menawarkan akses terhadap populasi pasien yang besar dan beragam, peneliti berpengalaman, biaya operasional yang kompetitif, serta dukungan regulasi yang terus berkembang untuk penelitian klinis.",
+  },
+  {
+    question: "Layanan apa saja yang dapat diberikan PML untuk uji klinis?",
+    answer:
+      "PML menyediakan layanan penelitian klinis menyeluruh sepanjang proses uji klinis, termasuk perencanaan studi, strategi regulasi, pengajuan komite etik, penilaian kelayakan dan pemilihan lokasi, manajemen proyek, monitoring klinis, manajemen data, monitoring medis, farmakovigilans, dan aktivitas penutupan studi. PML juga mendukung studi praklinis, penulisan medis, Clinical Evaluation Report, Health Technology Assessment, tinjauan sistematis, dan meta-analisis.",
+  },
+  {
+    question:
+      "Area terapeutik apa saja yang pernah ditangani PML dalam uji klinis?",
+    answer:
+      "PML berpengalaman mendukung uji klinis di berbagai area terapeutik, termasuk akne, onkologi, nutrisi, pediatri, nefrologi, ortopedi, alat kesehatan, serta sel punca dan turunannya.",
+  },
+  {
+    question: "Apakah PML berpengalaman menangani uji klinis multinegara?",
+    answer:
+      "Ya. PML berpengalaman menjadi mitra CRO lokal untuk Indonesia dalam uji klinis multinegara yang dipimpin sponsor global atau CRO global. Dalam studi tersebut, PML mendukung pelaksanaan dan koordinasi studi lokal sekaligus memastikan kepatuhan terhadap regulasi Indonesia serta pedoman internasional seperti Good Clinical Practice.",
   },
 ];
 
@@ -787,6 +955,26 @@ function TherapeuticAreaIcon({ name }: { name: string }) {
 }
 
 export default function ClinicalTrialPage() {
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const isIndonesian = locale === "id";
+
+  const t = (english: string, indonesian: string) =>
+    isIndonesian ? indonesian : english;
+
+  const scopeGroups = isIndonesian ? scopeGroupsId : scopeGroupsEn;
+  const clients = isIndonesian ? clientsId : clientsEn;
+  const benefits = isIndonesian ? benefitsId : benefitsEn;
+  const workflow = isIndonesian ? workflowId : workflowEn;
+  const coreTherapeuticAreas = isIndonesian
+    ? coreTherapeuticAreasId
+    : coreTherapeuticAreasEn;
+  const extendedTherapeuticAreas = isIndonesian
+    ? extendedTherapeuticAreasId
+    : extendedTherapeuticAreasEn;
+  const requirements = isIndonesian ? requirementsId : requirementsEn;
+  const faqs = isIndonesian ? faqsId : faqsEn;
+
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeTherapeuticTab, setActiveTherapeuticTab] = useState<
     "core" | "all"
@@ -832,31 +1020,43 @@ export default function ClinicalTrialPage() {
             className="mb-7 flex flex-wrap items-center gap-2 text-xs font-bold text-black/58 md:mb-10 md:text-sm"
             aria-label="Breadcrumb"
           >
-            <Link href="/" className="transition hover:text-[#039147]">
-              Home
+            <Link
+              href={localizeHref("/", locale)}
+              className="transition hover:text-[#039147]"
+            >
+              {t("Home", "Beranda")}
             </Link>
             <span aria-hidden="true">/</span>
-            <Link href="/services" className="transition hover:text-[#039147]">
-              Services
+            <Link
+              href={localizeHref("/services", locale)}
+              className="transition hover:text-[#039147]"
+            >
+              {t("Services", "Layanan")}
             </Link>
             <span aria-hidden="true">/</span>
-            <span className="text-[#039147]">Clinical Trial</span>
+            <span className="text-[#039147]">
+              {t("Clinical Trial", "Uji Klinis")}
+            </span>
           </nav>
 
           <div className="max-w-4xl">
             <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/20 bg-white/95 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#039147] shadow-sm backdrop-blur md:text-xs">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
-              Clinical Trial
+              {t("Clinical Trial", "Uji Klinis")}
             </p>
 
             <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] tracking-tight text-black md:mt-6 md:text-6xl lg:text-[68px]">
-              End-to-end clinical trial support with local expertise
+              {t(
+                "End-to-end clinical trial support with local expertise",
+                "Dukungan uji klinis menyeluruh dengan keahlian lokal",
+              )}
             </h1>
 
             <p className="mt-5 max-w-2xl text-base leading-8 text-black/70 md:mt-6 md:text-lg md:leading-8">
-              PML supports sponsors with clinical research services across study
-              planning, regulatory coordination, site management, monitoring,
-              data management, and medical writing.
+              {t(
+                "PML supports sponsors with clinical research services across study planning, regulatory coordination, site management, monitoring, data management, and medical writing.",
+                "PML mendukung sponsor melalui layanan penelitian klinis yang mencakup perencanaan studi, koordinasi regulasi, manajemen lokasi, monitoring, manajemen data, dan penulisan medis.",
+              )}
             </p>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row md:mt-8">
@@ -865,14 +1065,14 @@ export default function ClinicalTrialPage() {
                 onClick={openProposal}
                 className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-extrabold md:py-4 text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
               >
-                Request a Proposal
+                {t("Request a Proposal", "Ajukan Proposal")}
               </button>
 
               <a
                 href="#clinical-overview"
                 className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-3.5 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white md:py-4"
               >
-                Explore Service
+                {t("Explore Service", "Jelajahi Layanan")}
               </a>
             </div>
           </div>
@@ -888,7 +1088,10 @@ export default function ClinicalTrialPage() {
                     ? "w-8 bg-[#039147]"
                     : "w-2.5 bg-black/25"
                 }`}
-                aria-label={`Go to Clinical Trial hero slide ${index + 1}`}
+                aria-label={`${t(
+                  "Go to Clinical Trial hero slide",
+                  "Buka slide hero Uji Klinis",
+                )} ${index + 1}`}
               />
             ))}
           </div>
@@ -900,29 +1103,30 @@ export default function ClinicalTrialPage() {
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Service Overview
+                {t("Service Overview", "Ringkasan Layanan")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Clinical research support from planning to close-out
+                {t(
+                  "Clinical research support from planning to close-out",
+                  "Dukungan penelitian klinis dari perencanaan hingga penutupan studi",
+                )}
               </h2>
             </div>
 
             <div className="space-y-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:text-base md:leading-8">
               <p>
-                PML provides clinical trial for sponsors that need reliable
-                local execution, regulatory coordination, and study management
-                support in Indonesia. The service covers study preparation, site
-                feasibility, ethics and regulatory coordination, monitoring,
-                safety support, data management, and medical writing.
+                {t(
+                  "PML provides clinical trial for sponsors that need reliable local execution, regulatory coordination, and study management support in Indonesia. The service covers study preparation, site feasibility, ethics and regulatory coordination, monitoring, safety support, data management, and medical writing.",
+                  "PML menyediakan layanan uji klinis bagi sponsor yang membutuhkan pelaksanaan lokal, koordinasi regulasi, dan dukungan manajemen studi yang andal di Indonesia. Layanan ini mencakup persiapan studi, penilaian kelayakan lokasi, koordinasi etik dan regulasi, monitoring, dukungan keamanan, manajemen data, serta penulisan medis.",
+                )}
               </p>
 
               <p>
-                With experience across multiple therapeutic areas and
-                multi-country study participation, PML can act as a local CRO
-                partner for sponsors and global CROs that require strong
-                operational support and compliance with Indonesian requirements
-                and international Good Clinical Practice standards.
+                {t(
+                  "With experience across multiple therapeutic areas and multi-country study participation, PML can act as a local CRO partner for sponsors and global CROs that require strong operational support and compliance with Indonesian requirements and international Good Clinical Practice standards.",
+                  "Dengan pengalaman di berbagai area terapeutik dan keterlibatan dalam studi multinegara, PML dapat berperan sebagai mitra CRO lokal bagi sponsor dan CRO global yang membutuhkan dukungan operasional kuat serta kepatuhan terhadap regulasi Indonesia dan standar internasional Good Clinical Practice.",
+                )}
               </p>
             </div>
           </div>
@@ -948,7 +1152,7 @@ export default function ClinicalTrialPage() {
           </div>
 
           <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
-            Swipe to explore benefits
+            {t("Swipe to explore benefits", "Geser untuk melihat manfaat")}
           </p>
         </div>
       </section>
@@ -957,17 +1161,21 @@ export default function ClinicalTrialPage() {
         <div className="pml-container">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-              Scope of Service
+              {t("Scope of Service", "Ruang Lingkup Layanan")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Complete clinical trial service coverage
+              {t(
+                "Complete clinical trial service coverage",
+                "Cakupan layanan uji klinis yang lengkap",
+              )}
             </h2>
 
             <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
-              PML supports multiple areas of clinical research execution, from
-              medical writing and site readiness to monitoring, regulatory
-              coordination, data management, and statistical analysis.
+              {t(
+                "PML supports multiple areas of clinical research execution, from medical writing and site readiness to monitoring, regulatory coordination, data management, and statistical analysis.",
+                "PML mendukung berbagai area pelaksanaan penelitian klinis, mulai dari penulisan medis dan kesiapan lokasi hingga monitoring, koordinasi regulasi, manajemen data, dan analisis statistik.",
+              )}
             </p>
           </div>
 
@@ -1001,7 +1209,7 @@ export default function ClinicalTrialPage() {
           </div>
 
           <p className="mt-1 text-center text-xs font-bold text-black/40 md:hidden">
-            Swipe to explore scope
+            {t("Swipe to explore scope", "Geser untuk melihat ruang lingkup")}
           </p>
         </div>
       </section>
@@ -1010,18 +1218,21 @@ export default function ClinicalTrialPage() {
         <div className="pml-container">
           <div className="max-w-4xl">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-              Target Client
+              {t("Target Client", "Target Klien")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Built for sponsors that need reliable clinical research execution
+              {t(
+                "Built for sponsors that need reliable clinical research execution",
+                "Dirancang untuk sponsor yang membutuhkan pelaksanaan penelitian klinis yang andal",
+              )}
             </h2>
 
             <p className="mx-auto mt-6 max-w-3xl text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:text-lg">
-              PML supports clinical research needs for pharmaceutical companies,
-              medical device companies, biotechnology companies, food and
-              beverage companies, cosmetic companies, and CRO partners from
-              other regions or countries.
+              {t(
+                "PML supports clinical research needs for pharmaceutical companies, medical device companies, biotechnology companies, food and beverage companies, cosmetic companies, and CRO partners from other regions or countries.",
+                "PML mendukung kebutuhan penelitian klinis bagi perusahaan farmasi, alat kesehatan, bioteknologi, makanan dan minuman, kosmetik, serta mitra CRO dari wilayah atau negara lain.",
+              )}
             </p>
           </div>
 
@@ -1049,11 +1260,14 @@ export default function ClinicalTrialPage() {
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Process / Workflow
+                {t("Process / Workflow", "Proses / Alur Kerja")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                A structured workflow from study preparation to close-out
+                {t(
+                  "A structured workflow from study preparation to close-out",
+                  "Alur kerja terstruktur dari persiapan hingga penutupan studi",
+                )}
               </h2>
 
               <div className="mt-8 space-y-4">
@@ -1076,7 +1290,10 @@ export default function ClinicalTrialPage() {
             <div className="overflow-hidden rounded-[34px] bg-white p-3 shadow-[0_24px_70px_rgba(0,0,0,0.10)]">
               <Image
                 src="/images/pml/services/clinical-trial-monitoring.png"
-                alt="Clinical trial monitoring and coordination"
+                alt={t(
+                  "Clinical trial monitoring and coordination",
+                  "Monitoring dan koordinasi uji klinis",
+                )}
                 width={900}
                 height={675}
                 className="aspect-[4/3] w-full rounded-[26px] object-cover"
@@ -1090,25 +1307,29 @@ export default function ClinicalTrialPage() {
         <div className="pml-container">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-              Therapeutic Areas
+              {t("Therapeutic Areas", "Area Terapeutik")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Experience across multiple clinical research areas
+              {t(
+                "Experience across multiple clinical research areas",
+                "Pengalaman di berbagai area penelitian klinis",
+              )}
             </h2>
 
             <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
-              PML has experience supporting clinical trials and related clinical
-              research activities across a wide range of therapeutic and product
-              areas.
+              {t(
+                "PML has experience supporting clinical trials and related clinical research activities across a wide range of therapeutic and product areas.",
+                "PML berpengalaman mendukung uji klinis dan aktivitas penelitian klinis terkait di berbagai area terapeutik dan kategori produk.",
+              )}
             </p>
           </div>
 
           <div className="mt-12 w-full">
             <div className="mx-auto flex w-fit rounded-full border border-[#039147]/12 bg-[#f4fbf7] p-1 shadow-sm">
               {[
-                ["core", "Core Experiences"],
-                ["all", "All Study Areas"],
+                ["core", t("Core Experiences", "Pengalaman Utama")],
+                ["all", t("All Study Areas", "Semua Area Studi")],
               ].map(([value, label]) => {
                 const active = activeTherapeuticTab === value;
 
@@ -1136,20 +1357,32 @@ export default function ClinicalTrialPage() {
                 <div>
                   <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
                     {activeTherapeuticTab === "core"
-                      ? "Highlighted capability"
-                      : "Extended capability"}
+                      ? t("Highlighted capability", "Kapabilitas utama")
+                      : t("Extended capability", "Kapabilitas tambahan")}
                   </p>
                   <h3 className="mt-2 text-xl font-black text-black md:text-2xl">
                     {activeTherapeuticTab === "core"
-                      ? "PML core clinical trial experience areas"
-                      : "Additional clinical research study areas"}
+                      ? t(
+                          "PML core clinical trial experience areas",
+                          "Area pengalaman utama uji klinis PML",
+                        )
+                      : t(
+                          "Additional clinical research study areas",
+                          "Area penelitian klinis tambahan",
+                        )}
                   </h3>
                 </div>
 
                 <p className="max-w-xl text-base font-medium leading-8 text-black/58">
                   {activeTherapeuticTab === "core"
-                    ? "Key areas with stronger experience signals are presented first for clearer sponsor understanding."
-                    : "The complete list reflects therapeutic and product areas that may be discussed based on project needs."}
+                    ? t(
+                        "Key areas with stronger experience signals are presented first for clearer sponsor understanding.",
+                        "Area dengan pengalaman yang lebih kuat ditampilkan terlebih dahulu agar lebih mudah dipahami sponsor.",
+                      )
+                    : t(
+                        "The complete list reflects therapeutic and product areas that may be discussed based on project needs.",
+                        "Daftar lengkap mencerminkan area terapeutik dan produk yang dapat didiskusikan berdasarkan kebutuhan proyek.",
+                      )}
                 </p>
               </div>
 
@@ -1172,7 +1405,7 @@ export default function ClinicalTrialPage() {
                       </h4>
                       {activeTherapeuticTab === "core" && (
                         <p className="mt-2 text-[10px] font-black uppercase tracking-[0.13em] text-[#039147]">
-                          Core experience
+                          {t("Core experience", "Pengalaman utama")}
                         </p>
                       )}
                     </div>
@@ -1224,26 +1457,28 @@ export default function ClinicalTrialPage() {
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <div>
               <p className="inline-flex rounded-full border border-[#039147]/12 bg-white/82 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#039147] shadow-sm backdrop-blur">
-                Proof & Trust Signals
+                {t("Proof & Trust Signals", "Bukti & Indikator Kepercayaan")}
               </p>
 
               <h2 className="mt-6 max-w-3xl text-4xl font-black leading-[1.05] tracking-[-0.045em] text-black md:text-6xl">
-                Local CRO support for Indonesia and multi-country clinical
-                trials
+                {t(
+                  "Local CRO support for Indonesia and multi-country clinical trials",
+                  "Dukungan CRO lokal untuk Indonesia dan uji klinis multinegara",
+                )}
               </h2>
 
               <p className="mt-6 max-w-2xl text-base font-medium leading-8 text-black/62 md:text-lg">
-                PML has experience participating as the local CRO partner for
-                Indonesia in multi-country clinical trials led by global
-                sponsors or global CROs, supporting local execution while
-                maintaining regulatory and GCP alignment.
+                {t(
+                  "PML has experience participating as the local CRO partner for Indonesia in multi-country clinical trials led by global sponsors or global CROs, supporting local execution while maintaining regulatory and GCP alignment.",
+                  "PML berpengalaman menjadi mitra CRO lokal untuk Indonesia dalam uji klinis multinegara yang dipimpin sponsor atau CRO global, dengan mendukung pelaksanaan lokal sekaligus menjaga keselarasan regulasi dan GCP.",
+                )}
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
                 {[
-                  "Indonesia-based CRO",
-                  "GCP-aligned support",
-                  "Multi-country coordination",
+                  t("Indonesia-based CRO", "CRO berbasis di Indonesia"),
+                  t("GCP-aligned support", "Dukungan selaras GCP"),
+                  t("Multi-country coordination", "Koordinasi multinegara"),
                 ].map((label) => (
                   <span
                     key={label}
@@ -1263,10 +1498,13 @@ export default function ClinicalTrialPage() {
                   <div className="flex items-center justify-between gap-4">
                     <div>
                       <p className="text-xs font-black uppercase tracking-[0.16em] text-[#039147]">
-                        Evidence profile
+                        {t("Evidence profile", "Profil bukti")}
                       </p>
                       <h3 className="mt-2 text-2xl font-black leading-tight text-black md:text-3xl">
-                        Trusted execution signals for sponsors
+                        {t(
+                          "Trusted execution signals for sponsors",
+                          "Indikator pelaksanaan tepercaya bagi sponsor",
+                        )}
                       </h3>
                     </div>
 
@@ -1297,18 +1535,27 @@ export default function ClinicalTrialPage() {
                   <div className="mt-6 grid gap-3">
                     {[
                       [
-                        "Local CRO",
-                        "Indonesia-based coordination for clinical research execution.",
+                        t("Local CRO", "CRO Lokal"),
+                        t(
+                          "Indonesia-based coordination for clinical research execution.",
+                          "Koordinasi berbasis Indonesia untuk pelaksanaan penelitian klinis.",
+                        ),
                         "01",
                       ],
                       [
                         "GCP",
-                        "Study support aligned with Good Clinical Practice standards.",
+                        t(
+                          "Study support aligned with Good Clinical Practice standards.",
+                          "Dukungan studi yang selaras dengan standar Good Clinical Practice.",
+                        ),
                         "02",
                       ],
                       [
-                        "Multi-country",
-                        "Experience supporting studies led by global sponsors and CROs.",
+                        t("Multi-country", "Multinegara"),
+                        t(
+                          "Experience supporting studies led by global sponsors and CROs.",
+                          "Pengalaman mendukung studi yang dipimpin sponsor dan CRO global.",
+                        ),
                         "03",
                       ],
                     ].map(([title, desc, number]) => (
@@ -1343,17 +1590,21 @@ export default function ClinicalTrialPage() {
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-                Required Information
+                {t("Required Information", "Informasi yang Dibutuhkan")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                What we need to start clinical trial discussion
+                {t(
+                  "What we need to start clinical trial discussion",
+                  "Informasi yang diperlukan untuk memulai diskusi uji klinis",
+                )}
               </h2>
 
               <p className="mt-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:mt-6 md:text-lg md:leading-9">
-                To prepare a relevant proposal or consultation, sponsors can
-                share available study, product, regulatory, timeline, and
-                site-related information.
+                {t(
+                  "To prepare a relevant proposal or consultation, sponsors can share available study, product, regulatory, timeline, and site-related information.",
+                  "Untuk mempersiapkan proposal atau konsultasi yang relevan, sponsor dapat menyampaikan informasi studi, produk, regulasi, jadwal, dan lokasi yang tersedia.",
+                )}
               </p>
 
               <button
@@ -1361,7 +1612,7 @@ export default function ClinicalTrialPage() {
                 onClick={openProposal}
                 className="mt-8 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-base font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)]"
               >
-                Discuss This Service
+                {t("Discuss This Service", "Diskusikan Layanan Ini")}
               </button>
             </div>
 
@@ -1388,11 +1639,14 @@ export default function ClinicalTrialPage() {
         <div className="pml-container">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#039147] md:text-sm">
-              Clinical Trial FAQ
+              {t("Clinical Trial FAQ", "FAQ Uji Klinis")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Frequently asked questions
+              {t(
+                "Frequently asked questions",
+                "Pertanyaan yang Sering Diajukan",
+              )}
             </h2>
           </div>
 
@@ -1445,17 +1699,21 @@ export default function ClinicalTrialPage() {
               </div>
 
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-                Start a Project
+                {t("Start a Project", "Mulai Proyek")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Need clinical trial support in Indonesia?
+                {t(
+                  "Need clinical trial support in Indonesia?",
+                  "Membutuhkan dukungan uji klinis di Indonesia?",
+                )}
               </h2>
 
               <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9">
-                Share your clinical research requirements with our team and we
-                will help identify the right service scope, required
-                information, and next steps.
+                {t(
+                  "Share your clinical research requirements with our team and we will help identify the right service scope, required information, and next steps.",
+                  "Sampaikan kebutuhan penelitian klinis Anda kepada tim kami dan kami akan membantu menentukan ruang lingkup layanan, informasi yang diperlukan, dan langkah berikutnya.",
+                )}
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
@@ -1464,14 +1722,14 @@ export default function ClinicalTrialPage() {
                   onClick={openProposal}
                   className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
                 >
-                  Request a Proposal
+                  {t("Request a Proposal", "Ajukan Proposal")}
                 </button>
 
                 <a
                   href="#clinical-overview"
                   className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
                 >
-                  Review Clinical Trial
+                  {t("Review Clinical Trial", "Tinjau Uji Klinis")}
                 </a>
               </div>
             </div>
