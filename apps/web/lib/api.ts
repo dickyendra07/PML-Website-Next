@@ -21,7 +21,9 @@ const API_BASE_URL =
 
 const hasApiBaseUrl = API_BASE_URL.length > 0;
 
-export async function submitProposal(payload: ProposalPayload): Promise<ApiSubmitResult> {
+export async function submitProposal(
+  payload: ProposalPayload,
+): Promise<ApiSubmitResult> {
   const response = await fetch(`${API_BASE_URL}/proposals`, {
     method: "POST",
     headers: {
@@ -33,7 +35,9 @@ export async function submitProposal(payload: ProposalPayload): Promise<ApiSubmi
   const result = (await response.json()) as Partial<ApiSubmitResult>;
 
   if (!response.ok || !result.success) {
-    throw new Error(result.message || "Failed to submit request. Please try again.");
+    throw new Error(
+      result.message || "Failed to submit request. Please try again.",
+    );
   }
 
   return {
@@ -115,6 +119,8 @@ export type InsightItem = {
   category: string;
   coverImage: string | null;
   tags: string[];
+  seoTitle: string;
+  metaDescription: string;
   status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
   isFeatured: boolean;
   publishedAt: string | null;
@@ -122,16 +128,28 @@ export type InsightItem = {
   updatedAt: string;
 };
 
-export async function getInsights(category?: string) {
+export async function getInsights(
+  category?: string,
+  locale: "en" | "id" = "en",
+) {
   if (!hasApiBaseUrl) {
     return [];
   }
 
-  const searchParams = category ? `?category=${encodeURIComponent(category)}` : "";
+  const searchParams = new URLSearchParams();
 
-  const response = await fetch(`${API_BASE_URL}/insights${searchParams}`, {
-    cache: "no-store",
-  });
+  if (category) {
+    searchParams.set("category", category);
+  }
+
+  searchParams.set("locale", locale);
+
+  const response = await fetch(
+    `${API_BASE_URL}/insights?${searchParams.toString()}`,
+    {
+      cache: "no-store",
+    },
+  );
 
   if (!response.ok) {
     throw new Error("Failed to load insights.");
@@ -162,9 +180,12 @@ export async function getHomepageFeatures(type?: string) {
 
   const searchParams = type ? `?type=${encodeURIComponent(type)}` : "";
 
-  const response = await fetch(`${API_BASE_URL}/homepage-features${searchParams}`, {
-    cache: "no-store",
-  });
+  const response = await fetch(
+    `${API_BASE_URL}/homepage-features${searchParams}`,
+    {
+      cache: "no-store",
+    },
+  );
 
   if (!response.ok) {
     throw new Error("Failed to load homepage features.");

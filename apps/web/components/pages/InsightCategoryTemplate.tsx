@@ -184,7 +184,7 @@ export default function InsightCategoryTemplate({
 
     async function loadCategoryInsights() {
       try {
-        const data = await getInsights(category);
+        const data = await getInsights(category, locale);
 
         if (!isMounted) return;
 
@@ -202,7 +202,7 @@ export default function InsightCategoryTemplate({
     return () => {
       isMounted = false;
     };
-  }, [category]);
+  }, [category, locale]);
 
   return (
     <main>

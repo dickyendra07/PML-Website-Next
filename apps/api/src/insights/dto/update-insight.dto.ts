@@ -9,19 +9,61 @@ import {
 export class UpdateInsightDto {
   @IsOptional()
   @IsString()
-  title?: string;
+  titleEn?: string;
 
   @IsOptional()
   @IsString()
-  slug?: string;
+  slugEn?: string;
 
   @IsOptional()
   @IsString()
-  excerpt?: string;
+  excerptEn?: string;
 
   @IsOptional()
   @IsString()
-  content?: string;
+  contentEn?: string;
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  tagsEn?: string[];
+
+  @IsOptional()
+  @IsString()
+  seoTitleEn?: string;
+
+  @IsOptional()
+  @IsString()
+  metaDescriptionEn?: string;
+
+  @IsOptional()
+  @IsString()
+  titleId?: string;
+
+  @IsOptional()
+  @IsString()
+  slugId?: string;
+
+  @IsOptional()
+  @IsString()
+  excerptId?: string;
+
+  @IsOptional()
+  @IsString()
+  contentId?: string;
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  tagsId?: string[];
+
+  @IsOptional()
+  @IsString()
+  seoTitleId?: string;
+
+  @IsOptional()
+  @IsString()
+  metaDescriptionId?: string;
 
   @IsOptional()
   @IsString()
@@ -30,11 +72,6 @@ export class UpdateInsightDto {
   @IsOptional()
   @IsString()
   coverImage?: string;
-
-  @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
-  tags?: string[];
 
   @IsOptional()
   @IsIn(['DRAFT', 'PUBLISHED', 'ARCHIVED'])

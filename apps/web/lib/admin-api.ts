@@ -525,13 +525,25 @@ export async function uploadAdminCatalogueFile(token: string, file: File) {
 
 export type AdminInsightItem = {
   id: string;
-  title: string;
-  slug: string;
-  excerpt: string | null;
-  content: string | null;
+
+  titleEn: string | null;
+  slugEn: string | null;
+  excerptEn: string | null;
+  contentEn: string | null;
+  tagsEn: string[];
+  seoTitleEn: string | null;
+  metaDescriptionEn: string | null;
+
+  titleId: string | null;
+  slugId: string | null;
+  excerptId: string | null;
+  contentId: string | null;
+  tagsId: string[];
+  seoTitleId: string | null;
+  metaDescriptionId: string | null;
+
   category: string;
   coverImage: string | null;
-  tags: string[];
   status: PageSeoStatus;
   isFeatured: boolean;
   publishedAt: string | null;
@@ -540,13 +552,24 @@ export type AdminInsightItem = {
 };
 
 export type AdminInsightPayload = {
-  title: string;
-  slug?: string;
-  excerpt?: string | null;
-  content?: string | null;
-  category?: string;
+  titleEn?: string | null;
+  slugEn?: string | null;
+  excerptEn?: string | null;
+  contentEn?: string | null;
+  tagsEn?: string[];
+  seoTitleEn?: string | null;
+  metaDescriptionEn?: string | null;
+
+  titleId?: string | null;
+  slugId?: string | null;
+  excerptId?: string | null;
+  contentId?: string | null;
+  tagsId?: string[];
+  seoTitleId?: string | null;
+  metaDescriptionId?: string | null;
+
+  category: string;
   coverImage?: string | null;
-  tags?: string[];
   status?: PageSeoStatus;
   isFeatured?: boolean;
   publishedAt?: string | null;
