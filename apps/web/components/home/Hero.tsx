@@ -103,15 +103,15 @@ export default function Hero() {
   }, [slides.length]);
 
   return (
-    <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-white">
-      <div className="relative min-h-[calc(100vh-80px)]">
+    <section className="pml-home-hero relative min-h-[calc(100vh-80px)] overflow-hidden bg-white">
+      <div className="pml-home-hero-stage relative min-h-[calc(100vh-80px)]">
         {slides.map((slide, index) => {
           const isActive = index === activeIndex;
 
           return (
             <article
               key={`${locale}-${slide.title}`}
-              className={`absolute inset-0 min-h-[calc(100vh-80px)] transition-opacity duration-700 ${
+              className={`pml-home-hero-slide absolute inset-0 min-h-[calc(100vh-80px)] transition-opacity duration-700 ${
                 isActive ? "z-10 opacity-100" : "z-0 opacity-0"
               }`}
               aria-hidden={!isActive}
@@ -132,7 +132,7 @@ export default function Hero() {
                 <div className="pml-hex-pattern absolute inset-0 opacity-[0.075]" />
               </div>
 
-              <div className="pml-container relative flex min-h-[calc(100vh-80px)] items-center py-20">
+              <div className="pml-home-hero-content pml-container relative flex min-h-[calc(100vh-80px)] items-center py-20">
                 <div
                   className={`max-w-4xl transition duration-700 ${
                     isActive
@@ -145,15 +145,15 @@ export default function Hero() {
                     {slide.eyebrow}
                   </div>
 
-                  <h1 className="max-w-5xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-5xl lg:text-[54px] xl:text-[60px]">
+                  <h1 className="pml-home-hero-title max-w-5xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-5xl lg:text-[54px] xl:text-[60px]">
                     {slide.title}
                   </h1>
 
-                  <p className="mt-6 max-w-2xl text-base leading-7 text-black/66 md:text-lg">
+                  <p className="pml-home-hero-description mt-6 max-w-2xl text-base leading-7 text-black/66 md:text-lg">
                     {slide.description}
                   </p>
 
-                  <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                  <div className="pml-home-hero-actions mt-9 flex flex-col gap-3 sm:flex-row">
                     <button
                       type="button"
                       onClick={openProposal}
