@@ -2,8 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+
 import OtherServices from "@/components/OtherServices";
+import { getLocaleFromPathname, localizeHref } from "@/i18n/client";
 
 const heroSlides = [
   "/images/pml/services/clinical-trial-regulatory.png",
@@ -11,7 +14,7 @@ const heroSlides = [
   "/images/pml/services/contract-analysis-proof.png",
 ];
 
-const scopeGroups = [
+const scopeGroupsEn = [
   {
     title: "Product Registration",
     icon: "approval",
@@ -74,7 +77,7 @@ const scopeGroups = [
   },
 ];
 
-const clients = [
+const clientsEn = [
   "Pharmaceutical companies",
   "Biologics and advanced therapy product companies",
   "Traditional and quasi-drug companies",
@@ -83,7 +86,7 @@ const clients = [
   "Companies preparing BPOM registration in Indonesia",
 ];
 
-const benefits = [
+const benefitsEn = [
   {
     title: "One-stop regulatory support",
     text: "Support for regulatory management, documentation, and submission-related activities in one coordinated workflow.",
@@ -106,7 +109,7 @@ const benefits = [
   },
 ];
 
-const workflow = [
+const workflowEn = [
   "Initial consultation and product category review",
   "BPOM pathway, local agent, and registration requirement discussion",
   "Dossier gap analysis and ACTD documentation review",
@@ -114,7 +117,7 @@ const workflow = [
   "Regulatory strategy, compliance action plan, and submission readiness recommendations",
 ];
 
-const requirements = [
+const requirementsEn = [
   "Product category and dosage form or device type",
   "Target registration objective in Indonesia",
   "Available dossier, ACTD, technical, clinical, or non-clinical documents",
@@ -123,7 +126,7 @@ const requirements = [
   "Questions about BPOM pathway, local agent, BE study, clinical trial, or waiver needs",
 ];
 
-const faqs = [
+const faqsEn = [
   {
     question: "Do you only support companies based in Indonesia?",
     answer:
@@ -150,6 +153,150 @@ const faqs = [
     question: "Can PML help assess the best regulatory strategy?",
     answer:
       "Yes. PML can help evaluate the product and existing data package to determine an appropriate regulatory strategy, including assessment of local study requirements, bridging considerations, and potential waiver opportunities in line with current BPOM regulations.",
+  },
+];
+
+const scopeGroupsId = [
+  {
+    title: "Registrasi Produk",
+    icon: "approval",
+    items: [
+      "Dukungan registrasi produk baru",
+      "Peninjauan persyaratan BPOM",
+      "Konsultasi jalur registrasi",
+      "Diskusi jadwal dan kesiapan registrasi",
+    ],
+  },
+  {
+    title: "Perubahan Pascapersetujuan",
+    icon: "strategy",
+    items: [
+      "Dukungan variasi dan perubahan pascapersetujuan",
+      "Diskusi dampak perubahan",
+      "Peninjauan dokumen pendukung",
+      "Perencanaan tindak lanjut regulasi",
+    ],
+  },
+  {
+    title: "Dukungan Dossier & ACTD",
+    icon: "document",
+    items: [
+      "Analisis kesenjangan dossier",
+      "Dukungan persiapan dokumen ACTD",
+      "Peninjauan kelengkapan dokumen teknis",
+      "Peninjauan dokumen klinis dan nonklinis",
+    ],
+  },
+  {
+    title: "Konsultasi Strategi Regulasi",
+    icon: "checklist",
+    items: [
+      "Konsultasi strategi regulasi",
+      "Penilaian kebutuhan studi lokal",
+      "Peninjauan pertimbangan bridging",
+      "Diskusi peluang waiver berdasarkan regulasi BPOM terkini",
+    ],
+  },
+  {
+    title: "Dukungan Kepatuhan & Perizinan",
+    icon: "shield",
+    items: [
+      "Dukungan kepatuhan halal",
+      "Dukungan impor dan perizinan",
+      "Panduan persyaratan kepatuhan BPOM",
+      "Diskusi local agent atau pemegang registrasi",
+    ],
+  },
+  {
+    title: "Peninjauan Regulasi Terkait Studi",
+    icon: "network",
+    items: [
+      "Konsultasi studi BE",
+      "Konsultasi uji klinis",
+      "Peninjauan bukti klinis yang tersedia",
+      "Penyelarasan data studi dengan kebutuhan registrasi",
+    ],
+  },
+];
+
+const clientsId = [
+  "Perusahaan farmasi",
+  "Perusahaan produk biologis dan advanced therapy",
+  "Perusahaan obat tradisional dan kuasi",
+  "Perusahaan alat kesehatan",
+  "Prinsipal dan produsen luar negeri",
+  "Perusahaan yang mempersiapkan registrasi BPOM di Indonesia",
+];
+
+const benefitsId = [
+  {
+    title: "Dukungan regulasi terpadu",
+    text: "Dukungan untuk manajemen regulasi, dokumentasi, dan aktivitas terkait pengajuan dalam satu alur kerja yang terkoordinasi.",
+    icon: "strategy",
+  },
+  {
+    title: "Pemahaman persyaratan BPOM",
+    text: "Panduan berdasarkan persyaratan regulasi Indonesia, proses pengajuan, dan pertimbangan kategori produk.",
+    icon: "shield",
+  },
+  {
+    title: "Koordinasi pemangku kepentingan",
+    text: "Koordinasi dengan pemangku kepentingan, local agent, dan badan regulasi terkait untuk mendukung komunikasi registrasi.",
+    icon: "network",
+  },
+  {
+    title: "Pemahaman regulasi terkini",
+    text: "Pengetahuan terkini mengenai regulasi, tren regulasi, dan pertimbangan praktis dalam perencanaan registrasi.",
+    icon: "document",
+  },
+];
+
+const workflowId = [
+  "Konsultasi awal dan peninjauan kategori produk",
+  "Diskusi jalur BPOM, local agent, dan persyaratan registrasi",
+  "Analisis kesenjangan dossier dan peninjauan dokumentasi ACTD",
+  "Penilaian kebutuhan data klinis, BE, nonklinis, atau bridging",
+  "Rekomendasi strategi regulasi, rencana tindakan kepatuhan, dan kesiapan pengajuan",
+];
+
+const requirementsId = [
+  "Kategori produk dan bentuk sediaan atau jenis alat",
+  "Tujuan registrasi yang ditargetkan di Indonesia",
+  "Dossier, ACTD, dokumen teknis, klinis, atau nonklinis yang tersedia",
+  "Persetujuan dari otoritas regulasi lain apabila tersedia",
+  "Status registrasi produk saat ini dan jadwal yang ditargetkan",
+  "Pertanyaan mengenai jalur BPOM, local agent, studi BE, uji klinis, atau kebutuhan waiver",
+];
+
+const faqsId = [
+  {
+    question:
+      "Apakah PML hanya mendukung perusahaan yang berbasis di Indonesia?",
+    answer:
+      "Tidak. PML juga bekerja sama dengan prinsipal dan produsen luar negeri untuk mendukung registrasi produk di Indonesia, termasuk koordinasi dengan local agent serta pemenuhan persyaratan BPOM.",
+  },
+  {
+    question:
+      "Apakah perusahaan luar negeri membutuhkan local agent atau pemegang registrasi lokal di Indonesia?",
+    answer:
+      "Ya. Produsen asing wajib menunjuk perusahaan lokal di Indonesia sebagai Marketing Authorization Holder atau local agent untuk proses registrasi dan komunikasi dengan BPOM.",
+  },
+  {
+    question:
+      "Apakah produk yang sudah disetujui di negara lain dapat langsung diregistrasikan di Indonesia?",
+    answer:
+      "Persetujuan dari otoritas regulasi lain dapat mendukung proses registrasi, terutama dari negara SRA seperti Inggris, Uni Eropa, Amerika Serikat, Kanada, Swiss, Jepang, dan Australia. Namun, produk tetap harus memenuhi persyaratan BPOM dan standar regulasi lokal sebelum dapat diregistrasikan di Indonesia.",
+  },
+  {
+    question: "Apakah uji klinis lokal atau studi BE diwajibkan di Indonesia?",
+    answer:
+      "Kebutuhan uji klinis lokal atau studi bioekuivalensi di Indonesia bergantung pada beberapa faktor, termasuk kategori produk, jalur regulasi, bukti klinis yang tersedia, dan negara asal. Dalam kondisi tertentu, BPOM dapat menerima data klinis atau BE dari luar negeri apabila studi memenuhi standar regulasi yang berlaku dan dianggap representatif bagi populasi Indonesia. Namun, produk tertentu tetap dapat memerlukan studi lokal atau justifikasi tambahan untuk mendukung registrasi.",
+  },
+  {
+    question:
+      "Apakah PML dapat membantu menilai strategi regulasi yang paling tepat?",
+    answer:
+      "Ya. PML dapat membantu mengevaluasi produk dan paket data yang tersedia untuk menentukan strategi regulasi yang tepat, termasuk penilaian kebutuhan studi lokal, pertimbangan bridging, dan peluang waiver berdasarkan regulasi BPOM terkini.",
   },
 ];
 
@@ -408,6 +555,20 @@ function ClientIcon({ index }: { index: number }) {
 
 void ClientIcon;
 export default function RegulatoryConsultationPage() {
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const isIndonesian = locale === "id";
+
+  const t = (english: string, indonesian: string) =>
+    isIndonesian ? indonesian : english;
+
+  const scopeGroups = isIndonesian ? scopeGroupsId : scopeGroupsEn;
+  const clients = isIndonesian ? clientsId : clientsEn;
+  const benefits = isIndonesian ? benefitsId : benefitsEn;
+  const workflow = isIndonesian ? workflowId : workflowEn;
+  const requirements = isIndonesian ? requirementsId : requirementsEn;
+  const faqs = isIndonesian ? faqsId : faqsEn;
+
   const [activeSlide, setActiveSlide] = useState(0);
 
   const openProposal = () => {
@@ -448,32 +609,43 @@ export default function RegulatoryConsultationPage() {
             className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-black/58"
             aria-label="Breadcrumb"
           >
-            <Link href="/" className="transition hover:text-[#039147]">
-              Home
+            <Link
+              href={localizeHref("/", locale)}
+              className="transition hover:text-[#039147]"
+            >
+              {t("Home", "Beranda")}
             </Link>
             <span aria-hidden="true">/</span>
-            <Link href="/services" className="transition hover:text-[#039147]">
-              Services
+            <Link
+              href={localizeHref("/services", locale)}
+              className="transition hover:text-[#039147]"
+            >
+              {t("Services", "Layanan")}
             </Link>
             <span aria-hidden="true">/</span>
-            <span className="text-[#039147]">Regulatory Management</span>
+            <span className="text-[#039147]">
+              {t("Regulatory Management", "Manajemen Regulasi")}
+            </span>
           </nav>
 
           <div className="max-w-4xl">
             <p className="inline-flex items-center gap-2 rounded-full border border-[#039147]/20 bg-white/95 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#039147] shadow-sm backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#039147]" />
-              Regulatory Management
+              {t("Regulatory Management", "Manajemen Regulasi")}
             </p>
 
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-tight text-black md:text-6xl lg:text-[68px]">
-              Regulatory affairs support for BPOM registration and compliance
+              {t(
+                "Regulatory affairs support for BPOM registration and compliance",
+                "Dukungan regulatory affairs untuk registrasi dan kepatuhan BPOM",
+              )}
             </h1>
 
             <p className="mt-6 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9 md:text-lg">
-              PML supports pharmaceutical, biologics, advanced therapy,
-              traditional and quasi-drug, and medical device registration
-              through practical regulatory strategy, documentation review, and
-              BPOM-focused compliance guidance.
+              {t(
+                "PML supports pharmaceutical, biologics, advanced therapy, traditional and quasi-drug, and medical device registration through practical regulatory strategy, documentation review, and BPOM-focused compliance guidance.",
+                "PML mendukung registrasi produk farmasi, biologis, advanced therapy, obat tradisional dan kuasi, serta alat kesehatan melalui strategi regulasi yang praktis, peninjauan dokumentasi, dan panduan kepatuhan yang berfokus pada BPOM.",
+              )}
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -482,14 +654,14 @@ export default function RegulatoryConsultationPage() {
                 onClick={openProposal}
                 className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-base font-extrabold text-[#039147] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
               >
-                Request a Proposal
+                {t("Request a Proposal", "Ajukan Proposal")}
               </button>
 
               <a
                 href="#regulatory-overview"
                 className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-7 py-4 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
               >
-                Explore Service
+                {t("Explore Service", "Jelajahi Layanan")}
               </a>
             </div>
           </div>
@@ -501,7 +673,10 @@ export default function RegulatoryConsultationPage() {
                 type="button"
                 onClick={() => setActiveSlide(index)}
                 className={`h-2.5 rounded-full transition-all ${index === activeSlide ? "w-8 bg-[#039147]" : "w-2.5 bg-black/25"}`}
-                aria-label={`Go to Regulatory Management hero slide ${index + 1}`}
+                aria-label={`${t(
+                  "Go to Regulatory Management hero slide",
+                  "Buka slide hero Manajemen Regulasi",
+                )} ${index + 1}`}
               />
             ))}
           </div>
@@ -513,30 +688,30 @@ export default function RegulatoryConsultationPage() {
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-                Service Overview
+                {t("Service Overview", "Ringkasan Layanan")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Regulatory affairs expertise across multiple product categories
+                {t(
+                  "Regulatory affairs expertise across multiple product categories",
+                  "Keahlian regulatory affairs untuk berbagai kategori produk",
+                )}
               </h2>
             </div>
 
             <div className="space-y-5 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9">
               <p>
-                PML’s Regulatory Affairs team supports companies with experience
-                across pharmaceutical products, biologics, advanced therapy
-                products, traditional and quasi drugs, and medical device
-                registration. The service helps companies navigate BPOM
-                requirements through practical and strategic regulatory
-                solutions aligned with business timelines.
+                {t(
+                  "PML’s Regulatory Affairs team supports companies with experience across pharmaceutical products, biologics, advanced therapy products, traditional and quasi drugs, and medical device registration. The service helps companies navigate BPOM requirements through practical and strategic regulatory solutions aligned with business timelines.",
+                  "Tim Regulatory Affairs PML mendukung perusahaan dengan pengalaman pada registrasi produk farmasi, biologis, advanced therapy, obat tradisional dan kuasi, serta alat kesehatan. Layanan ini membantu perusahaan menjalani persyaratan BPOM melalui solusi regulasi yang praktis dan strategis serta selaras dengan jadwal bisnis.",
+                )}
               </p>
 
               <p>
-                Support includes new product registration, post-approval
-                variations, dossier gap analysis, ACTD document preparation,
-                regulatory strategy consultation, halal compliance, importation
-                and licensing support, and review of clinical or non-clinical
-                documents.
+                {t(
+                  "Support includes new product registration, post-approval variations, dossier gap analysis, ACTD document preparation, regulatory strategy consultation, halal compliance, importation and licensing support, and review of clinical or non-clinical documents.",
+                  "Dukungan mencakup registrasi produk baru, variasi pascapersetujuan, analisis kesenjangan dossier, persiapan dokumen ACTD, konsultasi strategi regulasi, kepatuhan halal, dukungan impor dan perizinan, serta peninjauan dokumen klinis maupun nonklinis.",
+                )}
               </p>
             </div>
           </div>
@@ -566,18 +741,21 @@ export default function RegulatoryConsultationPage() {
         <div className="pml-container">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-              Scope of Service
+              {t("Scope of Service", "Ruang Lingkup Layanan")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Support for BPOM registration, ACTD documents, and regulatory
-              strategy
+              {t(
+                "Support for BPOM registration, ACTD documents, and regulatory strategy",
+                "Dukungan registrasi BPOM, dokumen ACTD, dan strategi regulasi",
+              )}
             </h2>
 
             <p className="mt-6 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:text-lg">
-              PML helps clients review registration pathways, identify dossier
-              gaps, prepare ACTD-related documentation, assess study
-              requirements, and align compliance needs with BPOM expectations.
+              {t(
+                "PML helps clients review registration pathways, identify dossier gaps, prepare ACTD-related documentation, assess study requirements, and align compliance needs with BPOM expectations.",
+                "PML membantu klien meninjau jalur registrasi, mengidentifikasi kesenjangan dossier, menyiapkan dokumentasi terkait ACTD, menilai kebutuhan studi, dan menyelaraskan kebutuhan kepatuhan dengan ekspektasi BPOM.",
+              )}
             </p>
           </div>
 
@@ -634,19 +812,21 @@ export default function RegulatoryConsultationPage() {
         <div className="pml-container relative">
           <div className="max-w-4xl">
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-              Target Client
+              {t("Target Client", "Target Klien")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Built for local and overseas companies preparing Indonesian
-              registration
+              {t(
+                "Built for local and overseas companies preparing Indonesian registration",
+                "Dirancang untuk perusahaan lokal dan luar negeri yang mempersiapkan registrasi di Indonesia",
+              )}
             </h2>
 
             <p className="mt-6 max-w-3xl text-base leading-8 text-black/62">
-              Regulatory Management supports local companies, overseas
-              principals, manufacturers, and product teams that need clarity on
-              BPOM requirements, local agent needs, registration pathways,
-              documentation gaps, and compliance planning.
+              {t(
+                "Regulatory Management supports local companies, overseas principals, manufacturers, and product teams that need clarity on BPOM requirements, local agent needs, registration pathways, documentation gaps, and compliance planning.",
+                "Manajemen Regulasi mendukung perusahaan lokal, prinsipal luar negeri, produsen, dan tim produk yang membutuhkan kejelasan mengenai persyaratan BPOM, kebutuhan local agent, jalur registrasi, kesenjangan dokumentasi, dan perencanaan kepatuhan.",
+              )}
             </p>
           </div>
 
@@ -676,11 +856,14 @@ export default function RegulatoryConsultationPage() {
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-                Process / Workflow
+                {t("Process / Workflow", "Proses / Alur Kerja")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                From regulatory question to submission readiness plan
+                {t(
+                  "From regulatory question to submission readiness plan",
+                  "Dari pertanyaan regulasi hingga rencana kesiapan pengajuan",
+                )}
               </h2>
 
               <div className="mt-8 space-y-4">
@@ -703,7 +886,10 @@ export default function RegulatoryConsultationPage() {
             <div className="overflow-hidden rounded-[34px] bg-white p-3 shadow-[0_24px_70px_rgba(0,0,0,0.10)]">
               <Image
                 src="/images/pml/services/clinical-trial-regulatory.png"
-                alt="Regulatory management documentation workflow"
+                alt={t(
+                  "Regulatory management documentation workflow",
+                  "Alur dokumentasi manajemen regulasi",
+                )}
                 width={900}
                 height={675}
                 className="aspect-[4/3] w-full rounded-[26px] object-cover"
@@ -740,34 +926,46 @@ export default function RegulatoryConsultationPage() {
         <div className="pml-container relative">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-              Proof & Trust Signals
+              {t("Proof & Trust Signals", "Bukti & Indikator Kepercayaan")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Regulatory affairs support backed by BPOM-focused execution
+              {t(
+                "Regulatory affairs support backed by BPOM-focused execution",
+                "Dukungan regulatory affairs dengan pelaksanaan yang berfokus pada BPOM",
+              )}
             </h2>
 
             <p className="mt-6 text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9">
-              PML combines regulatory affairs experience, BPOM requirement
-              understanding, documentation support, and coordination with
-              scientific CRO services to help clients prepare stronger
-              registration strategies.
+              {t(
+                "PML combines regulatory affairs experience, BPOM requirement understanding, documentation support, and coordination with scientific CRO services to help clients prepare stronger registration strategies.",
+                "PML memadukan pengalaman regulatory affairs, pemahaman persyaratan BPOM, dukungan dokumentasi, dan koordinasi dengan layanan CRO ilmiah untuk membantu klien mempersiapkan strategi registrasi yang lebih kuat.",
+              )}
             </p>
           </div>
 
           <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-3">
             {[
               [
-                "Strategy",
-                "Practical strategy for registration, bridging, BE, clinical trial, and waiver considerations.",
+                t("Strategy", "Strategi"),
+                t(
+                  "Practical strategy for registration, bridging, BE, clinical trial, and waiver considerations.",
+                  "Strategi praktis untuk registrasi, bridging, BE, uji klinis, dan pertimbangan waiver.",
+                ),
               ],
               [
-                "Documents",
-                "Dossier gap analysis and ACTD-related document preparation support.",
+                t("Documents", "Dokumen"),
+                t(
+                  "Dossier gap analysis and ACTD-related document preparation support.",
+                  "Analisis kesenjangan dossier dan dukungan persiapan dokumen terkait ACTD.",
+                ),
               ],
               [
-                "Compliance",
-                "Guidance for BPOM requirements, halal compliance, importation, and licensing support.",
+                t("Compliance", "Kepatuhan"),
+                t(
+                  "Guidance for BPOM requirements, halal compliance, importation, and licensing support.",
+                  "Panduan persyaratan BPOM, kepatuhan halal, impor, dan dukungan perizinan.",
+                ),
               ],
             ].map(([title, desc]) => (
               <div
@@ -791,18 +989,21 @@ export default function RegulatoryConsultationPage() {
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-                Required Information
+                {t("Required Information", "Informasi yang Dibutuhkan")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                What we need to start BPOM registration discussion
+                {t(
+                  "What we need to start BPOM registration discussion",
+                  "Informasi yang diperlukan untuk memulai diskusi registrasi BPOM",
+                )}
               </h2>
 
               <p className="mt-6 text-[17px] leading-8 text-black/68 md:text-[19px] md:leading-9 md:text-lg">
-                To provide relevant regulatory direction, clients can share
-                product category, registration objective, available dossier or
-                technical documents, previous approvals, and questions about
-                BPOM pathway, local agent, or study requirements.
+                {t(
+                  "To provide relevant regulatory direction, clients can share product category, registration objective, available dossier or technical documents, previous approvals, and questions about BPOM pathway, local agent, or study requirements.",
+                  "Untuk memberikan arahan regulasi yang relevan, klien dapat menyampaikan kategori produk, tujuan registrasi, dossier atau dokumen teknis yang tersedia, persetujuan sebelumnya, serta pertanyaan mengenai jalur BPOM, local agent, atau kebutuhan studi.",
+                )}
               </p>
 
               <button
@@ -810,7 +1011,7 @@ export default function RegulatoryConsultationPage() {
                 onClick={openProposal}
                 className="mt-8 inline-flex items-center justify-center rounded-full bg-[#039147] px-7 py-4 text-base font-extrabold text-white shadow-[0_18px_40px_rgba(3,145,71,0.22)]"
               >
-                Discuss This Service
+                {t("Discuss This Service", "Diskusikan Layanan Ini")}
               </button>
             </div>
 
@@ -837,11 +1038,14 @@ export default function RegulatoryConsultationPage() {
         <div className="pml-container">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-              Regulatory FAQ
+              {t("Regulatory FAQ", "FAQ Regulasi")}
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-              Frequently asked questions
+              {t(
+                "Frequently asked questions",
+                "Pertanyaan yang Sering Diajukan",
+              )}
             </h2>
           </div>
 
@@ -894,17 +1098,21 @@ export default function RegulatoryConsultationPage() {
               </div>
 
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#039147]">
-                Start a Project
+                {t("Start a Project", "Mulai Proyek")}
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-black md:text-[52px]">
-                Need BPOM regulatory management?
+                {t(
+                  "Need BPOM regulatory management?",
+                  "Membutuhkan dukungan manajemen regulasi BPOM?",
+                )}
               </h2>
 
               <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-black/70 md:text-[19px] md:leading-9">
-                Share your product registration, documentation, local agent, or
-                study requirement questions with our team and we will help
-                identify the right regulatory next steps.
+                {t(
+                  "Share your product registration, documentation, local agent, or study requirement questions with our team and we will help identify the right regulatory next steps.",
+                  "Sampaikan pertanyaan mengenai registrasi produk, dokumentasi, local agent, atau kebutuhan studi kepada tim kami. Kami akan membantu menentukan langkah regulasi berikutnya yang tepat.",
+                )}
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
@@ -913,14 +1121,14 @@ export default function RegulatoryConsultationPage() {
                   onClick={openProposal}
                   className="inline-flex items-center justify-center rounded-full bg-[#039147] px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_44px_rgba(3,145,71,0.22)] transition hover:-translate-y-0.5 hover:bg-[#027a3c]"
                 >
-                  Request a Proposal
+                  {t("Request a Proposal", "Ajukan Proposal")}
                 </button>
 
                 <a
                   href="#regulatory-overview"
                   className="inline-flex items-center justify-center rounded-full border border-[#039147]/25 bg-white/85 px-8 py-4 text-base font-extrabold text-[#039147] shadow-sm backdrop-blur transition hover:bg-[#039147] hover:text-white"
                 >
-                  Review Regulatory Service
+                  {t("Review Regulatory Service", "Tinjau Layanan Regulasi")}
                 </a>
               </div>
             </div>
