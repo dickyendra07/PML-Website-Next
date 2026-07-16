@@ -10,7 +10,7 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 
 COPY apps/web/package*.json ./
-RUN npm ci
+RUN npm ci --ignore-scripts
 
 
 FROM base AS builder

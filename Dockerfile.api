@@ -7,7 +7,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 COPY apps/api/package*.json ./
-RUN npm ci
+RUN npm ci --ignore-scripts
 
 COPY apps/api/prisma ./prisma
 RUN npx prisma generate
