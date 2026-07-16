@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { defaultLocale, locales } from "@/i18n/config";
 
-const PUBLIC_FILE = /\.[^/]+$/;
+function isPublicFile(pathname: string) {
+  const lastSegment = pathname.slice(pathname.lastIndexOf("/") + 1);
+  return lastSegment.includes(".");
+}
 
 function hasLocale(pathname: string) {
   return locales.some(
@@ -20,7 +23,7 @@ export function proxy(request: NextRequest) {
     pathname.startsWith("/api") ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/.well-known") ||
-    PUBLIC_FILE.test(pathname)
+    isPublicFile(pathname)
   ) {
     return NextResponse.next();
   }

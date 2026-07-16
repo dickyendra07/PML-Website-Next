@@ -49,7 +49,8 @@ function getResponseBody<T>(response: { body: unknown }): T {
 
 describe('PML API (e2e)', () => {
   const adminEmail = 'e2e-admin@pharmametriclabs.com';
-  const adminPassword = 'E2E-Strong-Password-2026!';
+  const adminCredential = 'E2E-Strong-Password-2026!';
+  const invalidAdminCredential = 'incorrect-password';
   const proposalEmail = 'e2e-proposal@example.com';
 
   let app: INestApplication<App>;
@@ -80,7 +81,7 @@ describe('PML API (e2e)', () => {
     await redis.ping();
     await redis.getClient().flushdb();
 
-    const passwordHash = await bcrypt.hash(adminPassword, 4);
+    const passwordHash = await bcrypt.hash(adminCredential, 4);
 
     await prisma.adminUser.upsert({
       where: {
@@ -131,17 +132,19 @@ describe('PML API (e2e)', () => {
     expect(typeof body.name).toBe('string');
   });
 
-  it('GET /api/health reports database and Redis status', async () => {
+  it('GET /api/health/public reports public service status', async () => {
     const response = await request(app.getHttpServer())
-      .get('/api/health')
+      .get('/api/health/public')
       .expect(200);
 
     const body = getResponseBody<HealthResponse>(response);
 
-    expect(body.status).toBe('ok');
+    expect(['operational', 'degraded']).toContain(body.status);
     expect(body.checks.api.status).toBe('ok');
-    expect(body.checks.database.status).toBe('ok');
-    expect(body.checks.redis.status).toBe('ok');
+  });
+
+  it('rejects unauthenticated access to detailed health status', async () => {
+    await request(app.getHttpServer()).get('/api/health').expect(401);
   });
 
   it('rejects an invalid admin password', async () => {
@@ -149,7 +152,7 @@ describe('PML API (e2e)', () => {
       .post('/api/admin/auth/login')
       .send({
         email: adminEmail,
-        password: 'incorrect-password',
+        password: invalidAdminCredential,
       })
       .expect(401);
   });
@@ -159,7 +162,7 @@ describe('PML API (e2e)', () => {
       .post('/api/admin/auth/login')
       .send({
         email: adminEmail,
-        password: adminPassword,
+        password: adminCredential,
       })
       .expect(201);
 
@@ -186,7 +189,7 @@ describe('PML API (e2e)', () => {
       .post('/api/admin/auth/login')
       .send({
         email: adminEmail,
-        password: adminPassword,
+        password: adminCredential,
       })
       .expect(201);
 

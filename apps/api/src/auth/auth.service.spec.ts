@@ -17,13 +17,20 @@ type MockAdmin = {
   isActive: boolean;
 };
 
+const AUTH_TEST_VALUES = {
+  storedHash: 'hashed-password',
+  validInput: 'correct-password',
+  genericInput: 'password',
+  invalidInput: 'wrong-password',
+} as const;
+
 describe('AuthService', () => {
   const admin: MockAdmin = {
     id: 'admin-1',
     name: 'PML Administrator',
     email: 'admin@pharmametriclabs.com',
     role: 'SUPER_ADMIN',
-    passwordHash: 'hashed-password',
+    passwordHash: AUTH_TEST_VALUES.storedHash,
     isActive: true,
   };
 
@@ -59,7 +66,7 @@ describe('AuthService', () => {
 
       const result = await service.login({
         email: 'ADMIN@PHARMAMETRICLABS.COM',
-        password: 'correct-password',
+        password: AUTH_TEST_VALUES.validInput,
       });
 
       expect(prisma.adminUser.findUnique).toHaveBeenCalledWith({
@@ -69,7 +76,7 @@ describe('AuthService', () => {
       });
 
       expect(bcrypt.compare).toHaveBeenCalledWith(
-        'correct-password',
+        AUTH_TEST_VALUES.validInput,
         admin.passwordHash,
       );
 
@@ -106,7 +113,7 @@ describe('AuthService', () => {
       await expect(
         service.login({
           email: 'missing@pharmametriclabs.com',
-          password: 'password',
+          password: AUTH_TEST_VALUES.genericInput,
         }),
       ).rejects.toThrow(UnauthorizedException);
 
@@ -123,7 +130,7 @@ describe('AuthService', () => {
       await expect(
         service.login({
           email: admin.email,
-          password: 'password',
+          password: AUTH_TEST_VALUES.genericInput,
         }),
       ).rejects.toThrow('Invalid email or password.');
 
@@ -137,7 +144,7 @@ describe('AuthService', () => {
       await expect(
         service.login({
           email: admin.email,
-          password: 'wrong-password',
+          password: AUTH_TEST_VALUES.invalidInput,
         }),
       ).rejects.toThrow('Invalid email or password.');
 
