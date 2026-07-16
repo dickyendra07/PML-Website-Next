@@ -22,14 +22,16 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY apps/web ./
 
 RUN test -n "$NEXT_PUBLIC_API_URL" \
-  || (echo "NEXT_PUBLIC_API_URL build argument is required" && exit 1)
-
-RUN npm run build
+  || (echo "NEXT_PUBLIC_API_URL build argument is required" && exit 1) \
+  && npm run build
 
 
 FROM node:22-alpine AS runner
 
 WORKDIR /app
+
+LABEL maintainer="PML Development Team"
+LABEL description="PML Website frontend application"
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -48,6 +50,6 @@ USER nextjs
 EXPOSE 3000
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-  CMD wget -q --spider http://127.0.0.1:3000/ || exit 1
+  CMD ["wget", "-q", "--spider", "http://127.0.0.1:3000/"]
 
 CMD ["node", "server.js"]

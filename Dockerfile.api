@@ -22,6 +22,9 @@ FROM node:22-slim AS runner
 
 WORKDIR /app
 
+LABEL maintainer="PML Development Team"
+LABEL description="PML Website API application"
+
 ENV NODE_ENV=production
 ENV PORT=4000
 
@@ -45,6 +48,6 @@ USER node
 EXPOSE 4000
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-  CMD node -e "const port = process.env.PORT || 4000; fetch('http://127.0.0.1:' + port + '/api/health/public').then(r => { if (!r.ok) process.exit(1); return r.json(); }).then(body => { if (!['operational', 'degraded'].includes(body.status)) process.exit(1); }).catch(() => process.exit(1))"
+  CMD ["node", "-e", "const port = process.env.PORT || 4000; fetch('http://127.0.0.1:' + port + '/api/health/public').then(r => { if (!r.ok) process.exit(1); return r.json(); }).then(body => { if (!['operational', 'degraded'].includes(body.status)) process.exit(1); }).catch(() => process.exit(1))"]
 
 CMD ["node", "dist/src/main.js"]
