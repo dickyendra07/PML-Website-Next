@@ -890,7 +890,7 @@ export default function Header({ onOpenProposal }: HeaderProps) {
   const normalizeHref = (href: string) => href.split("#")[0] || "/";
 
   const pathnameWithoutLocale =
-    pathname.replace(/^\/(en|id)(?=\/|$)/, "") || "/";
+    pathname?.replace(/^\/(en|id)(?=\/|$)/, "") || "/";
 
   const isActiveHref = (href: string) => {
     const cleanHref =
