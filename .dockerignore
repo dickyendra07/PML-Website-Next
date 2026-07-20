@@ -13,3 +13,8 @@ npm-debug.log
 .env.*
 **/.env
 **/.env.*
+**/.vercel
+**/*.tsbuildinfo
+**/coverage
+**/AGENTS.md
+**/CLAUDE.md
