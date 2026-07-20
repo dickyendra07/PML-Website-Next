@@ -1,4 +1,4 @@
-FROM node:22-alpine AS base
+FROM node:22-alpine@sha256:16e22a550f3863206a3f701448c45f7912c6896a62de43add43bb9c86130c3e2 AS base
 
 WORKDIR /app
 
@@ -26,7 +26,7 @@ RUN test -n "$NEXT_PUBLIC_API_URL" \
   && npm run build
 
 
-FROM node:22-alpine AS runner
+FROM node:22-alpine@sha256:16e22a550f3863206a3f701448c45f7912c6896a62de43add43bb9c86130c3e2 AS runner
 
 WORKDIR /app
 
