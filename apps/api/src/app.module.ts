@@ -14,6 +14,7 @@ import { InsightsModule } from './insights/insights.module';
 import { HomepageFeaturesModule } from './homepage-features/homepage-features.module';
 import { MediaModule } from './media/media.module';
 import { CareersModule } from './careers/careers.module';
+import { FacilitiesModule } from './facilities/facilities.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { CareersModule } from './careers/careers.module';
     HomepageFeaturesModule,
     MediaModule,
     CareersModule,
+    FacilitiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

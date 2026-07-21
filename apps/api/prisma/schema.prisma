@@ -263,6 +263,44 @@ model MediaAsset {
   @@index([createdAt])
 }
 
+model Facility {
+  id String @id @default(cuid())
+
+  key String @unique
+
+  titleEn String
+  titleId String?
+
+  eyebrowEn String?
+  eyebrowId String?
+
+  summaryEn String?
+  summaryId String?
+
+  contentEn String?
+  contentId String?
+
+  image String?
+
+  gallery Json?
+
+  pointsEn String[] @default([])
+  pointsId String[] @default([])
+
+  category String
+
+  status PublishStatus @default(DRAFT)
+
+  sortOrder Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@index([status])
+  @@index([sortOrder])
+}
+
 model CareerPost {
   id               String        @id @default(cuid())
   title            String
