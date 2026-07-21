@@ -19,6 +19,7 @@ const navItems = [
   { label: "Catalogues", href: "/admin/catalogues", icon: "C" },
   { label: "Insights", href: "/admin/insights", icon: "N" },
   { label: "Careers", href: "/admin/careers", icon: "J" },
+  { label: "Facilities", href: "/admin/facilities", icon: "F" },
   { label: "Media", href: "/admin/media", icon: "M" },
   { label: "Popups", href: "/admin/popups", icon: "P" },
   { label: "Settings", href: "/admin/settings", icon: "S" },

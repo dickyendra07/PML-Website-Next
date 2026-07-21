@@ -945,6 +945,124 @@ export async function archiveAdminCareer(token: string, id: string) {
   return parseJsonResponse<AdminCareerItem>(response);
 }
 
+
+export type AdminFacilityItem = {
+  id: string;
+  key: string;
+
+  titleEn: string;
+  titleId: string | null;
+
+  eyebrowEn: string | null;
+  eyebrowId: string | null;
+
+  summaryEn: string | null;
+  summaryId: string | null;
+
+  contentEn: string | null;
+  contentId: string | null;
+
+  image: string | null;
+  gallery: unknown;
+
+  pointsEn: string[];
+  pointsId: string[];
+
+  category: string;
+  status: PageSeoStatus;
+  sortOrder: number;
+
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type AdminFacilityPayload = {
+  key: string;
+
+  titleEn: string;
+  titleId?: string;
+
+  eyebrowEn?: string;
+  eyebrowId?: string;
+
+  summaryEn?: string;
+  summaryId?: string;
+
+  contentEn?: string;
+  contentId?: string;
+
+  image?: string;
+  gallery?: unknown;
+
+  pointsEn?: string[];
+  pointsId?: string[];
+
+  category: string;
+  status?: PageSeoStatus;
+  sortOrder?: number;
+};
+
+export async function getAdminFacilities(token: string) {
+  const response = await fetch(`${API_BASE_URL}/admin/facilities`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+  });
+
+  return parseJsonResponse<AdminFacilityItem[]>(response);
+}
+
+export async function createAdminFacility(
+  token: string,
+  payload: AdminFacilityPayload,
+) {
+  const response = await fetch(`${API_BASE_URL}/admin/facilities`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return parseJsonResponse<AdminFacilityItem>(response);
+}
+
+export async function updateAdminFacility(
+  token: string,
+  id: string,
+  payload: AdminFacilityPayload,
+) {
+  const response = await fetch(`${API_BASE_URL}/admin/facilities/${id}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return parseJsonResponse<AdminFacilityItem>(response);
+}
+
+export async function archiveAdminFacility(
+  token: string,
+  id: string,
+) {
+  const response = await fetch(
+    `${API_BASE_URL}/admin/facilities/${id}/archive`,
+    {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+
+  return parseJsonResponse<AdminFacilityItem>(response);
+}
+
 export type HealthServiceCheck = {
   status: "ok" | "error";
   responseTimeMs: number;
